@@ -10,6 +10,8 @@ import java.util.List;
 
 /**
  * A builder for building service client instance
+ *
+ * @author Yelong
  */
 public class ServiceClientBuilder {
 
@@ -17,7 +19,7 @@ public class ServiceClientBuilder {
     private List<AbstractServiceListener> listeners;
     private IKeyDAO keyDAO;
 
-    protected ServiceClientBuilder() {
+    private ServiceClientBuilder() {
         this.listeners = new ArrayList<>();
     }
 
@@ -26,7 +28,7 @@ public class ServiceClientBuilder {
      *
      * @return New service client builder
      */
-    public static final ServiceClientBuilder create() {
+    public static ServiceClientBuilder create() {
         return new ServiceClientBuilder();
     }
 
@@ -69,6 +71,6 @@ public class ServiceClientBuilder {
      * @return New service client instance
      */
     public final ServiceClient build() {
-        return new ServiceClient(options, listeners);
+        return new ServiceClient(options, listeners, keyDAO);
     }
 }

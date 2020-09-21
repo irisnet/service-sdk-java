@@ -1,6 +1,7 @@
 package iservice.sdk.module;
 
 import iservice.sdk.entity.Mnemonic;
+import iservice.sdk.exception.ServiceSDKException;
 
 /**
  * Key management service
@@ -14,7 +15,7 @@ public interface IKeyService {
      * @param password Password for encrypting the keystore
      * @return Bech32 address and mnemonic
      */
-    Mnemonic addKey(String name, String password);
+    Mnemonic addKey(String name, String password) throws ServiceSDKException;
 
     /**
      * Recovers a key
@@ -27,7 +28,7 @@ public interface IKeyService {
      * @param saltPassword A passphrase for generating the salt, according to bip39
      * @return Bech32 address
      */
-    String recoverKey(String name, String password, String mnemonic, boolean derive, int index, String saltPassword);
+    String recoverKey(String name, String password, String mnemonic, boolean derive, int index, String saltPassword) throws ServiceSDKException;
 
     /**
      * Imports a key from keystore
@@ -54,9 +55,8 @@ public interface IKeyService {
      *
      * @param name Name of the key
      * @param password Password of the key
-     * @since v0.17
      */
-    void deleteKey(String name, String password);
+    void deleteKey(String name, String password) throws ServiceSDKException;
 
     /**
      * Gets address of a key
@@ -64,5 +64,5 @@ public interface IKeyService {
      * @param name Name of the key
      * @return Bech32 address
      */
-    String showKey(String name);
+    String showAddress(String name) throws ServiceSDKException;
 }
