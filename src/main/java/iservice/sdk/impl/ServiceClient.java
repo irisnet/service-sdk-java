@@ -8,6 +8,7 @@ import iservice.sdk.net.WebSocketClient;
 import iservice.sdk.net.WebSocketClientOption;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -43,6 +44,7 @@ public final class ServiceClient {
      **/
 
     public void startWebSocketClient() {
+        prepareStart();
         if (options.getUri() == null) {
             throw new WebSocketConnectException("uri is null!");
         }
@@ -58,8 +60,17 @@ public final class ServiceClient {
         webSocketClient.start();
     }
 
+    private void prepareStart() {
+        if (options != null && LISTENERS.size()>0 ) {
+            return;
+        }
+        options = new ServiceClientOptions();
+        options.setUri(optionsCache.getUri());
+        LISTENERS.addAll(LISTENERS_CACHE);
+    }
+
     public <T> void callService(T msg) {
-        webSocketClient.send(JSON.toJSONString(new WrappedMessage<>(msg)));
+        webSocketClient.send(msg);
     }
 
     public void doNotifyAllListener(String msg) {

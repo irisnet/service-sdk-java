@@ -1,5 +1,6 @@
 package iservice.sdk.net;
 
+import com.alibaba.fastjson.JSON;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelFuture;
@@ -11,6 +12,7 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.codec.http.HttpClientCodec;
 import io.netty.handler.codec.http.HttpObjectAggregator;
 import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
+import iservice.sdk.entity.WrappedMessage;
 import iservice.sdk.exception.WebSocketConnectException;
 import iservice.sdk.impl.handler.WebSocketClientHandler;
 import iservice.sdk.impl.observer.WebSocketClientObserver;
@@ -75,7 +77,6 @@ public class WebSocketClient {
      * prepare for start client
      */
     private void prepareStart() {
-        options = new WebSocketClientOption();
         this.startedFlag = true;
     }
 
@@ -135,6 +136,7 @@ public class WebSocketClient {
             if (ifThrow) {
                 throw new WebSocketConnectException("Client has not start!");
             } else {
+                System.err.println("Client has not start!");
                 return false;
             }
         }
@@ -142,17 +144,14 @@ public class WebSocketClient {
     }
 
     public boolean isReady() {
-        if (checkChannelActive(false)) {
-            System.err.println("Client has not start!");
-            return false;
-        }
-        return true;
+        return checkChannelActive(false);
     }
 
-    public void send(String msg) {
-        if (isReady()) {
-            channel.writeAndFlush(new TextWebSocketFrame(msg));
+    public <T> void send(T msg) {
+        if (!isReady()) {
+            throw new WebSocketConnectException("Connect is not ready...");
         }
+        channel.writeAndFlush(new TextWebSocketFrame(JSON.toJSONString(new WrappedMessage<>(msg))));
     }
 
 }
