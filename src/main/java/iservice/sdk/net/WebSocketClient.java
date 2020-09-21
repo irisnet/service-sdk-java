@@ -85,24 +85,20 @@ public class WebSocketClient {
     }
 
     private Bootstrap getBootstrap(NioEventLoopGroup workLoopGroup) {
-        // 建立链接引导器
         return new Bootstrap()
-                // 设置工作组
                 .group(workLoopGroup)
-                // 设置nio信道
                 .channel(NioSocketChannel.class)
-                // 加入处理器
                 .handler(new ChannelInitializer<SocketChannel>() {
                     @Override
                     protected void initChannel(SocketChannel ch) {
                         ch.pipeline().addLast(
-                                // 日志处理器
+                                // you can read binary info with this plugin
 //                                    new LoggingHandler(LogLevel.INFO),
-                                // http编码解码器
+                                // HttpEncoder & HttpDecoder
                                 new HttpClientCodec(),
-                                // http对象长度限制器，用于限制http传输对象大小
+                                // HttpFile length limiter
                                 new HttpObjectAggregator(1024 * 1024 * 10),
-                                // 默认websocket信息处理器
+                                // custom websocket message handler
                                 new WebSocketClientHandler(options.getUri())
                         );
                     }

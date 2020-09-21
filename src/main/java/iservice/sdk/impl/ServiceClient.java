@@ -1,14 +1,11 @@
 package iservice.sdk.impl;
 
-import com.alibaba.fastjson.JSON;
 import iservice.sdk.entity.ServiceClientOptions;
-import iservice.sdk.entity.WrappedMessage;
 import iservice.sdk.exception.WebSocketConnectException;
 import iservice.sdk.net.WebSocketClient;
 import iservice.sdk.net.WebSocketClientOption;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**

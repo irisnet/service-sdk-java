@@ -28,7 +28,7 @@ public class WebSocketClientHandler extends WebSocketClientProtocolHandler {
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-        System.out.println("获取到信息了");
+        System.out.println("Message arrived!");
         if (msg instanceof TextWebSocketFrame) {
             String json = ((TextWebSocketFrame) msg).text();
             EVENT_OBSERVABLE.setChanged();
