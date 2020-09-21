@@ -1,7 +1,6 @@
 package iservice.sdk;
 
-import iservice.sdk.TestRequest;
-import iservice.sdk.TestResponse;
+import com.alibaba.fastjson.JSON;
 import iservice.sdk.entity.ServiceListenerOptions;
 import iservice.sdk.impl.AbstractProviderListener;
 
@@ -18,6 +17,16 @@ public class TestProviderListener extends AbstractProviderListener<TestRequest, 
     }
 
     @Override
+    protected TestRequest getReqFromJson(String json) {
+        return JSON.parseObject(json,TestRequest.class);
+    }
+
+    @Override
+    protected boolean checkValidate(TestRequest res) {
+        return true;
+    }
+
+    @Override
     public TestResponse onRequest(TestRequest req) {
         System.out.println("----------------- Provider -----------------");
         System.out.println("Got request");
@@ -26,7 +35,8 @@ public class TestProviderListener extends AbstractProviderListener<TestRequest, 
         res.setS1("res1");
         res.setS2("res2");
         System.out.println("Sending response");
-
         return res;
     }
+
+
 }

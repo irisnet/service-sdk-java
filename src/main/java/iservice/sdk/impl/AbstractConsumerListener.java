@@ -8,9 +8,12 @@ import iservice.sdk.entity.ServiceListenerOptions;
 public abstract class AbstractConsumerListener<T> extends AbstractServiceListener<T> {
 
     @Override
-    final void callback(Object obj) {
-        // xxx
-        onResponse((T) obj);
+    public final void callback(String json) {
+        T res = getReqFromJson(json);
+        if (!checkValidate(res)) {
+            return;
+        }
+        onResponse(res);
     }
 
     @Override
