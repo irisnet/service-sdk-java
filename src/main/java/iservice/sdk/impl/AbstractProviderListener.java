@@ -7,13 +7,25 @@ import iservice.sdk.entity.ServiceListenerOptions;
  */
 public abstract class AbstractProviderListener<T, R> extends AbstractServiceListener<T> {
 
-    void callback(Object obj) {
-        // TODO 解析
-        R res = onRequest((T) obj);
+    @Override
+    public void callback(String json) {
+        T req = getReqFromJson(json);
+        if (!checkValidate(req)) {
+            return;
+        }
+        R res = onRequest(req);
         // TODO 创建 tx 并签名广播
+        ServiceClient.getInstance().callService(res);
     }
 
     @Override
     public abstract ServiceListenerOptions getOptions();
+
+    /**
+     * deal with business
+     *
+     * @param req
+     * @return
+     */
     public abstract R onRequest(T req);
 }

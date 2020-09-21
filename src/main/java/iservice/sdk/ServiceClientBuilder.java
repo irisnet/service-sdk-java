@@ -73,7 +73,6 @@ public class ServiceClientBuilder {
         serviceClient.setOptions(options);
         serviceClient.clearListeners();
         serviceClient.addListeners(listeners);
-        serviceClient.start();
         return serviceClient;
     }
 }
