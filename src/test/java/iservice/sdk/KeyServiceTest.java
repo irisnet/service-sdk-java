@@ -6,6 +6,10 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -24,7 +28,8 @@ public class KeyServiceTest {
     private static Map<KEYS, Object> paramMap = new HashMap<>();
     private enum KEYS {
         ADDRESS,
-        MNEMONIC
+        MNEMONIC,
+        FILEPATH
     }
 
     @Test
@@ -57,5 +62,22 @@ public class KeyServiceTest {
     @Test
     public void test4DeleteKey() throws Exception {
         keyService.deleteKey("test1", "123456");
+    }
+
+    @Test
+    public void test5ExportKey() throws Exception {
+        String fileName = keyService.exportKeystore("test", "123456", "123456", new File("/tmp/"));
+        assertNotNull(fileName);
+        paramMap.put(KEYS.FILEPATH, "/tmp/" + fileName);
+    }
+
+    @Test
+    public void test6ImporttKey() throws Exception {
+        BufferedReader bfr = Files.newBufferedReader(Paths.get((String) paramMap.get(KEYS.FILEPATH)));
+        String keystore = bfr.readLine();
+        bfr.close();
+        String address = keyService.importFromKeystore("test1", "123456", keystore);
+        assertNotNull(address);
+        assertEquals("Wrong Address", paramMap.get(KEYS.ADDRESS), address);
     }
 }

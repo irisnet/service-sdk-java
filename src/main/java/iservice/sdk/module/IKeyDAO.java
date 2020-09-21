@@ -41,7 +41,7 @@ public interface IKeyDAO {
      * @return The encrypted private key
      * @throws ServiceSDKException if encrypt failed
      */
-    default String encrypt(String privKey, String password) throws ServiceSDKException {
+    default byte[] encrypt(byte[] privKey, String password) throws ServiceSDKException {
         try {
             return AESUtils.encrypt(privKey, password);
         } catch (Exception e) {
@@ -58,7 +58,7 @@ public interface IKeyDAO {
      * @return The plain private key
      * @throws ServiceSDKException if decrypt failed
      */
-    default String decrypt(String encrptedPrivKey, String password) throws ServiceSDKException {
+    default byte[] decrypt(byte[] encrptedPrivKey, String password) throws ServiceSDKException {
         try {
             return AESUtils.decrypt(encrptedPrivKey, password);
         } catch (Exception e) {

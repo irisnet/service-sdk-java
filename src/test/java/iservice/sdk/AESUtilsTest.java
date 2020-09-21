@@ -1,19 +1,11 @@
 package iservice.sdk;
 
-import iservice.sdk.entity.Mnemonic;
-import iservice.sdk.module.IKeyService;
 import iservice.sdk.util.AESUtils;
-import org.junit.FixMethodOrder;
 import org.junit.Test;
-import org.junit.runners.MethodSorters;
 
-import javax.xml.soap.Text;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Base64;
 
-import static junit.framework.TestCase.assertNotNull;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 /**
  * @author Yelong
@@ -26,15 +18,15 @@ public class AESUtilsTest {
     @Test
     public void test1Encrypt() throws Exception {
 
-        String encrypted = AESUtils.encrypt(TEXT, TEXT);
-        assertEquals(ENCRYPTED, encrypted);
+        byte[] encrypted = AESUtils.encrypt(TEXT.getBytes(), TEXT);
+        assertEquals(ENCRYPTED, Base64.getEncoder().encodeToString(encrypted));
     }
 
     @Test
     public void test2Decrypt() throws Exception {
 
-        String text = AESUtils.decrypt(ENCRYPTED, TEXT);
-        assertEquals(TEXT, text);
+        byte[] text = AESUtils.decrypt(Base64.getDecoder().decode(ENCRYPTED), TEXT);
+        assertEquals(TEXT, new String(text));
     }
 
 }

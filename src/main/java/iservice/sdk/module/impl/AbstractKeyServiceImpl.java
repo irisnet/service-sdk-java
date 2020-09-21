@@ -45,7 +45,7 @@ public abstract class AbstractKeyServiceImpl implements IKeyService {
     }
 
     final DeterministicKey generateDeterministicKey(String mnemonic) throws ServiceSDKException {
-        DeterministicSeed seed = null;
+        DeterministicSeed seed;
         try {
             seed = new DeterministicSeed(mnemonic, null, "", 0);
         } catch (UnreadableWalletException e) {
@@ -55,8 +55,7 @@ public abstract class AbstractKeyServiceImpl implements IKeyService {
 
         DeterministicKeyChain chain = DeterministicKeyChain.builder().seed(seed).build();
         List<ChildNumber> keyPath = HDUtils.parsePath(HD_PATH);
-        DeterministicKey key = chain.getKeyByPath(keyPath, true);
-        return key;
+        return chain.getKeyByPath(keyPath, true);
     }
 
     final String toBech32(byte[] pubkeyHex) {
@@ -64,15 +63,15 @@ public abstract class AbstractKeyServiceImpl implements IKeyService {
         return Bech32.encode(HRP, bits);
     }
 
-    final void saveKey(String name, String password, String address, String privKey) throws ServiceSDKException {
-        String encrypted = this.keyDAO.encrypt(privKey, password);
+    final void saveKey(String name, String password, String address, byte[] privKey) throws ServiceSDKException {
+        byte[] encrypted = this.keyDAO.encrypt(privKey, password);
         Key key = new Key(address, encrypted);
         this.keyDAO.write(name, key);
     }
 
     final Key getKey(String name, String password) throws ServiceSDKException {
         Key key = this.keyDAO.read(name);
-        String decrypted = this.keyDAO.decrypt(key.getPrivKey(), password);
+        byte[] decrypted = this.keyDAO.decrypt(key.getPrivKey(), password);
         key.setPrivKey(decrypted);
         return key;
     }

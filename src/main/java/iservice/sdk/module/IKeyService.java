@@ -2,6 +2,10 @@ package iservice.sdk.module;
 
 import iservice.sdk.entity.Mnemonic;
 import iservice.sdk.exception.ServiceSDKException;
+import org.web3j.crypto.CipherException;
+
+import java.io.File;
+import java.io.IOException;
 
 /**
  * Key management service
@@ -38,7 +42,7 @@ public interface IKeyService {
      * @param keystore Keystore json
      * @return Bech32 address
      */
-    String importFromKeystore(String name, String password, String keystore);
+    String importFromKeystore(String name, String password, String keystore) throws ServiceSDKException, IOException;
 
     /**
      * Exports keystore of a key
@@ -46,9 +50,10 @@ public interface IKeyService {
      * @param name Name of the key
      * @param keyPassword Password of the key
      * @param keystorePassword Password for encrypting the keystore
+     * @param destinationDirectory Directory for Keystore file to export
      * @return Keystore json
      */
-    String exportKeystore(String name, String keyPassword, String keystorePassword);
+    String exportKeystore(String name, String keyPassword, String keystorePassword, File destinationDirectory) throws ServiceSDKException, IOException;
 
     /**
      * Deletes a key
