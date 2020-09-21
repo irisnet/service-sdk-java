@@ -69,6 +69,11 @@ public class ServiceClientBuilder {
      * @return New service client instance
      */
     public final ServiceClient build() {
-        return new ServiceClient(options, listeners);
+        ServiceClient serviceClient = ServiceClient.getInstance();
+        serviceClient.setOptions(options);
+        serviceClient.clearListeners();
+        serviceClient.addListeners(listeners);
+        serviceClient.start();
+        return serviceClient;
     }
 }
