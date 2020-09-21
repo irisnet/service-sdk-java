@@ -77,6 +77,7 @@ public final class ServiceClient {
      * prepare for start client
      */
     private void initStart() {
+        options = new ServiceClientOptions();
         options.setUri(optionsCache.getUri());
         LISTENERS.addAll(LISTENERS_CACHE);
         this.startedFlag = true;
