@@ -6,10 +6,9 @@ import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
 import io.netty.handler.codec.http.websocketx.WebSocketClientHandshakerFactory;
 import io.netty.handler.codec.http.websocketx.WebSocketClientProtocolHandler;
 import io.netty.handler.codec.http.websocketx.WebSocketVersion;
-import iservice.sdk.impl.listener.ConnectEventSource;
-import iservice.sdk.impl.listener.ServiceClientConnectListenerImpl;
-import iservice.sdk.impl.listener.events.ConnectEvent;
-import iservice.sdk.impl.listener.events.ConnectEventType;
+import iservice.sdk.impl.observer.events.ConnectEvent;
+import iservice.sdk.impl.observer.events.ConnectEventType;
+import iservice.sdk.impl.observer.ConnectEventObservable;
 
 import java.net.URI;
 
@@ -21,12 +20,10 @@ import java.net.URI;
  */
 public class WebSocketClientHandler extends WebSocketClientProtocolHandler {
 
-    private final ConnectEventSource eventSource;
+    public final static ConnectEventObservable EVENT_OBSERVABLE = new ConnectEventObservable();
 
     public WebSocketClientHandler(URI uri) {
         super(WebSocketClientHandshakerFactory.newHandshaker(uri, WebSocketVersion.V13, null, true, new DefaultHttpHeaders()));
-        eventSource = new ConnectEventSource();
-        eventSource.addListener(new ServiceClientConnectListenerImpl());
     }
 
     @Override
@@ -34,7 +31,7 @@ public class WebSocketClientHandler extends WebSocketClientProtocolHandler {
         System.out.println("获取到信息了");
         if (msg instanceof TextWebSocketFrame) {
             String json = ((TextWebSocketFrame) msg).text();
-            eventSource.notifyAllListeners(new ConnectEvent(eventSource, ConnectEventType.ON_MESSAGE,json));
+            EVENT_OBSERVABLE.notifyObservers(new ConnectEvent(ConnectEventType.ON_MESSAGE,json));
         }
         super.channelRead(ctx, msg);
     }
@@ -43,21 +40,21 @@ public class WebSocketClientHandler extends WebSocketClientProtocolHandler {
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         System.out.println("connect is open!");
-        eventSource.notifyAllListeners(new ConnectEvent(eventSource, ConnectEventType.ON_OPEN));
+        EVENT_OBSERVABLE.notifyObservers(new ConnectEvent(ConnectEventType.ON_OPEN));
         super.channelActive(ctx);
     }
 
     @Override
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
         System.out.println("connect is closed!");
-        eventSource.notifyAllListeners(new ConnectEvent(eventSource, ConnectEventType.ON_CLOSE));
+        EVENT_OBSERVABLE.notifyObservers(new ConnectEvent(ConnectEventType.ON_CLOSE));
         super.channelInactive(ctx);
     }
 
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
         System.out.println("channel exception");
-        eventSource.notifyAllListeners(new ConnectEvent(eventSource, ConnectEventType.ON_ERROR));
+        EVENT_OBSERVABLE.notifyObservers(new ConnectEvent(ConnectEventType.ON_ERROR));
         super.exceptionCaught(ctx, cause);
     }
 }

@@ -13,6 +13,7 @@ import io.netty.handler.codec.http.HttpObjectAggregator;
 import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
 import iservice.sdk.exception.WebSocketConnectException;
 import iservice.sdk.impl.handler.WebSocketClientHandler;
+import iservice.sdk.impl.observer.WebSocketClientObserver;
 
 /**
  * Created with IntelliJ IDEA.
@@ -51,6 +52,8 @@ public class WebSocketClient {
             ChannelFuture channelFuture = bootstrap.connect(options.getHost(), options.getPort()).sync();
             // to hold a channel
             channel = channelFuture.channel();
+            // init Handler Observer
+            initHandlerObserver();
             // insure client will be closed
             Runtime.getRuntime().addShutdownHook(new Thread(this::close));
             channel.closeFuture().sync();
@@ -62,6 +65,10 @@ public class WebSocketClient {
             prepareClose();
             workLoopGroup.shutdownGracefully();
         }
+    }
+
+    private void initHandlerObserver() {
+        WebSocketClientHandler.EVENT_OBSERVABLE.addObserver(new WebSocketClientObserver());
     }
 
     /**
