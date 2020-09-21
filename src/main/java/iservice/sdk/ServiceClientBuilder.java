@@ -20,6 +20,7 @@ public class ServiceClientBuilder {
     private IKeyDAO keyDAO;
 
     private ServiceClientBuilder() {
+        this.options = new ServiceClientOptions();
         this.listeners = new ArrayList<>();
     }
 

@@ -6,7 +6,7 @@ package iservice.sdk.entity;
  * @author Yelong
  */
 public class ServiceClientOptions {
-    private SignAlgo signAlgo;
+    private SignAlgo signAlgo = SignAlgo.SECP256K1;
 
     public ServiceClientOptions() {
     }
