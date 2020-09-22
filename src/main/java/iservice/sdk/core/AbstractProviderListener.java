@@ -4,11 +4,11 @@ import iservice.sdk.entity.ServiceListenerOptions;
 import iservice.sdk.net.WebSocketClient;
 
 /**
- * Created by mitch on 2020/9/16.
+ * @author Yelong
  */
 public abstract class AbstractProviderListener<T, R> extends AbstractServiceListener<T> {
 
-    private WebSocketClient client;
+    private ServiceClient client;
 
     @Override
     public void callback(String json) {
@@ -23,9 +23,9 @@ public abstract class AbstractProviderListener<T, R> extends AbstractServiceList
 
     private void sendRes(R res) {
         if (client == null) {
-            client = ServiceClientFactory.getInstance().getClient().getWebSocketClient();
+            client = ServiceClientFactory.getInstance().getClient();
         }
-        client.send(res);
+        client.sendMsg(res);
     }
 
     @Override

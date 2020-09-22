@@ -6,8 +6,6 @@ import java.util.Observable;
 import java.util.Observer;
 
 /**
- *
- *
  * @author : ori
  * @date : 2020/9/21 8:14 下午
  */

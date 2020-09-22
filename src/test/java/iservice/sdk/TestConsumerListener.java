@@ -18,7 +18,7 @@ public class TestConsumerListener extends AbstractConsumerListener<TestResponse>
 
     @Override
     protected TestResponse getReqFromJson(String json) {
-        return JSON.parseObject(json,TestResponse.class);
+        return JSON.parseObject(json, TestResponse.class);
     }
 
     @Override

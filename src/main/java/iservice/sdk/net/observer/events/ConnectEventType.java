@@ -1,8 +1,6 @@
 package iservice.sdk.net.observer.events;
 
 /**
- *
- *
  * @author : ori
  * @date : 2020/9/21 2:58 下午
  */
@@ -22,6 +20,5 @@ public enum ConnectEventType {
     /**
      * connect error
      */
-    ON_ERROR,
-    ;
+    ON_ERROR,;
 }

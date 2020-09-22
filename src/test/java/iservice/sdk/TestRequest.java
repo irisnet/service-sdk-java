@@ -1,7 +1,7 @@
 package iservice.sdk;
 
 /**
- * Created by mitch on 2020/9/16.
+ * @author Yelong
  */
 public class TestRequest {
     private String s1;

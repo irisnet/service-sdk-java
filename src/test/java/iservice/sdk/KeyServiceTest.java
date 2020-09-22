@@ -1,6 +1,8 @@
 package iservice.sdk;
 
+import iservice.sdk.core.ServiceClientFactory;
 import iservice.sdk.entity.Mnemonic;
+import iservice.sdk.entity.ServiceClientOptions;
 import iservice.sdk.module.IKeyService;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -23,7 +25,7 @@ import static org.junit.Assert.assertTrue;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class KeyServiceTest {
 
-    private static IKeyService keyService = null; //ServiceClientBuilder.create().build().getKeyService();
+    private static IKeyService keyService = ServiceClientFactory.getInstance().setOptions(new ServiceClientOptions()).getClient().getKeyService();
     private static final String HRP = "iaa";
     private static Map<KEYS, Object> paramMap = new HashMap<>();
     private enum KEYS {

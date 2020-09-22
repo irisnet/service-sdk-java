@@ -17,13 +17,11 @@ import iservice.sdk.exception.WebSocketConnectException;
 import iservice.sdk.core.WebSocketClientObserver;
 
 /**
- *
- *
  * @author : ori
  * @date : 2020/9/21 5:46 下午
  */
 public class WebSocketClient {
-    private WebSocketClientOption options;
+    private WebSocketClientOptions options;
 
     private Channel channel = null;
 
@@ -32,7 +30,7 @@ public class WebSocketClient {
      */
     private boolean startedFlag = false;
 
-    public WebSocketClient(WebSocketClientOption options) {
+    public WebSocketClient(WebSocketClientOptions options) {
         this.options = options;
     }
 

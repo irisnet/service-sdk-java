@@ -70,4 +70,16 @@ public interface IKeyService {
      * @return Bech32 address
      */
     String showAddress(String name) throws ServiceSDKException;
+
+    /**
+     * Single sign a transaction
+     *
+     * @param stdTx    StdTx with no signatures
+     * @param name     Name of the key to sign the tx
+     * @param password Password of the key
+     * @param offline  Offline signing, default `false`
+     * @return The signed tx
+     * @throws ServiceSDKException
+     */
+    String signTx(String stdTx, String name, String password, boolean offline) throws ServiceSDKException;
 }

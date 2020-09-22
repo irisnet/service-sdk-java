@@ -3,8 +3,6 @@ package iservice.sdk.entity;
 import java.io.Serializable;
 
 /**
- *
- *
  * @author : ori
  * @date : 2020/9/21 7:26 下午
  */

@@ -6,13 +6,16 @@ import iservice.sdk.exception.ServiceSDKException;
 import iservice.sdk.module.IKeyDAO;
 import iservice.sdk.util.Bip39Utils;
 import org.bitcoinj.core.ECKey;
+import org.bitcoinj.core.Sha256Hash;
 import org.bitcoinj.core.Utils;
 import org.bitcoinj.crypto.DeterministicKey;
 import org.web3j.crypto.*;
+import org.web3j.utils.Numeric;
 
 import java.io.File;
 import java.io.IOException;
 import java.math.BigInteger;
+import java.nio.charset.StandardCharsets;
 
 /**
  * @author Yelong
@@ -75,4 +78,18 @@ public class DefaultKeyServiceImpl extends AbstractKeyServiceImpl {
         return path;
     }
 
+    @Override
+    public String signTx(String stdTx, String name, String password, boolean offline) throws ServiceSDKException {
+        // TODO implement stdTx
+        Key key = super.getKey(name, password);
+        ECKeyPair keyPair = ECKeyPair.create(key.getPrivKey());
+        byte[] bytes = Numeric.hexStringToByteArray(stdTx);
+        byte[] hash = Sha256Hash.hash(bytes);
+        Sign.SignatureData signature = Sign.signMessage(hash, keyPair, false);
+        String r = Numeric.toHexString(signature.getR());
+        String s = Numeric.toHexString(signature.getS());
+        return new StringBuilder(Numeric.cleanHexPrefix(r))
+                .append(Numeric.cleanHexPrefix(s))
+                .toString();
+    }
 }

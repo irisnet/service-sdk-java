@@ -20,7 +20,7 @@ public class ServiceClientFactory {
     private final List<AbstractServiceListener> LISTENERS;
     private IKeyDAO keyDAO;
 
-    private ServiceClientFactory(){
+    private ServiceClientFactory() {
         LISTENERS = new ArrayList<>();
     }
 
@@ -28,16 +28,26 @@ public class ServiceClientFactory {
         private static final ServiceClientFactory INSTANCE = new ServiceClientFactory();
     }
 
+    /**
+     * Get {@link ServiceClientFactory} instance
+     *
+     * @return {@link ServiceClientFactory} instance
+     */
     public static ServiceClientFactory getInstance() {
         return ServiceClientFactoryHolder.INSTANCE;
     }
 
+    /**
+     * Get service client instance
+     *
+     * @return {@link ServiceClient} instance
+     */
     public ServiceClient getClient() {
         if (client == null) {
             synchronized (this) {
                 if (client == null) {
                     validateParam();
-                    client = new ServiceClient(options,LISTENERS);
+                    client = new ServiceClient(options, LISTENERS, keyDAO);
                 }
             }
         }
@@ -46,7 +56,7 @@ public class ServiceClientFactory {
 
     private void validateParam() {
         if (options == null) {
-//            throw new ServiceSDKException("Param 'option' is missing!");
+            throw new ServiceSDKException("ServiceClientOptions are required!");
         }
     }
 
@@ -54,7 +64,7 @@ public class ServiceClientFactory {
      * Set service client configs
      *
      * @param options Service client configs
-     * @return The builder itself
+     * @return The {@link ServiceClientFactory} itself
      */
     public final ServiceClientFactory setOptions(ServiceClientOptions options) {
         this.options = options;
@@ -65,7 +75,7 @@ public class ServiceClientFactory {
      * Add service event listener
      *
      * @param listener Service event listener
-     * @return The builder itself
+     * @return The {@link ServiceClientFactory} itself
      */
     public final ServiceClientFactory addListener(AbstractServiceListener listener) {
         this.LISTENERS.add(listener);
@@ -75,10 +85,10 @@ public class ServiceClientFactory {
     /**
      * Set Key DAO Implementation
      *
-     * @param keyDAO Key DAO Implemention
-     * @return The builder itself
+     * @param keyDAO Key DAO Implementation
+     * @return The {@link ServiceClientFactory} itself
      */
-    public final ServiceClientFactory withKeyDAO(IKeyDAO keyDAO) {
+    public final ServiceClientFactory setKeyDAO(IKeyDAO keyDAO) {
         this.keyDAO = keyDAO;
         return this;
     }

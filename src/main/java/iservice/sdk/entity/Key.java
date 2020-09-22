@@ -1,7 +1,5 @@
 package iservice.sdk.entity;
 
-import org.bitcoinj.core.Utils;
-
 /**
  * Struct of keys
  */
@@ -34,7 +32,7 @@ public class Key {
     public String toString() {
         return "Key{" +
                 "address='" + address + '\'' +
-                ", privKey='" + Utils.HEX.encode(privKey) + '\'' +
+                ", privKey='" + new String(privKey) + '\'' +
                 '}';
     }
 }

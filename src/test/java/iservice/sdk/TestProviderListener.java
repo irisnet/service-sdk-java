@@ -18,7 +18,7 @@ public class TestProviderListener extends AbstractProviderListener<TestRequest, 
 
     @Override
     protected TestRequest getReqFromJson(String json) {
-        return JSON.parseObject(json,TestRequest.class);
+        return JSON.parseObject(json, TestRequest.class);
     }
 
     @Override
