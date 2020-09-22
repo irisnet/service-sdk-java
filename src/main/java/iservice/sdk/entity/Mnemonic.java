@@ -1,7 +1,7 @@
 package iservice.sdk.entity;
 
 /**
- * Created by Yelong on 2020/9/21.
+ * @author Yelong
  */
 public class Mnemonic {
     private String address;

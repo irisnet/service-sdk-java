@@ -1,6 +1,11 @@
 package iservice.sdk.module;
 
 import iservice.sdk.entity.Mnemonic;
+import iservice.sdk.exception.ServiceSDKException;
+import org.web3j.crypto.CipherException;
+
+import java.io.File;
+import java.io.IOException;
 
 /**
  * Key management service
@@ -14,7 +19,7 @@ public interface IKeyService {
      * @param password Password for encrypting the keystore
      * @return Bech32 address and mnemonic
      */
-    Mnemonic addKey(String name, String password);
+    Mnemonic addKey(String name, String password) throws ServiceSDKException;
 
     /**
      * Recovers a key
@@ -27,7 +32,7 @@ public interface IKeyService {
      * @param saltPassword A passphrase for generating the salt, according to bip39
      * @return Bech32 address
      */
-    String recoverKey(String name, String password, String mnemonic, boolean derive, int index, String saltPassword);
+    String recoverKey(String name, String password, String mnemonic, boolean derive, int index, String saltPassword) throws ServiceSDKException;
 
     /**
      * Imports a key from keystore
@@ -37,7 +42,7 @@ public interface IKeyService {
      * @param keystore Keystore json
      * @return Bech32 address
      */
-    String importFromKeystore(String name, String password, String keystore);
+    String importFromKeystore(String name, String password, String keystore) throws ServiceSDKException, IOException;
 
     /**
      * Exports keystore of a key
@@ -45,18 +50,18 @@ public interface IKeyService {
      * @param name Name of the key
      * @param keyPassword Password of the key
      * @param keystorePassword Password for encrypting the keystore
+     * @param destinationDirectory Directory for Keystore file to export
      * @return Keystore json
      */
-    String exportKeystore(String name, String keyPassword, String keystorePassword);
+    String exportKeystore(String name, String keyPassword, String keystorePassword, File destinationDirectory) throws ServiceSDKException, IOException;
 
     /**
      * Deletes a key
      *
      * @param name Name of the key
      * @param password Password of the key
-     * @since v0.17
      */
-    void deleteKey(String name, String password);
+    void deleteKey(String name, String password) throws ServiceSDKException;
 
     /**
      * Gets address of a key
@@ -64,5 +69,5 @@ public interface IKeyService {
      * @param name Name of the key
      * @return Bech32 address
      */
-    String showKey(String name);
+    String showAddress(String name) throws ServiceSDKException;
 }

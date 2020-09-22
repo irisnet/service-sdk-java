@@ -1,7 +1,9 @@
 package iservice.sdk.entity;
 
 /**
- * Created by mitch on 2020/9/16.
+ * Service listener config options
+ *
+ * @author Yelong
  */
 public class ServiceListenerOptions {
 }

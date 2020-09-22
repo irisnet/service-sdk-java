@@ -2,6 +2,7 @@ package iservice.sdk.module;
 
 import iservice.sdk.entity.Key;
 import iservice.sdk.exception.ServiceSDKException;
+import iservice.sdk.util.AESUtils;
 
 /**
  * Key DAO Interface, to be implemented by apps if they need the key management.
@@ -21,7 +22,7 @@ public interface IKeyDAO {
      * Get the encrypted private key by name
      *
      * @param name Name of the key
-     * @returns The encrypted private key object or null
+     * @return The encrypted private key object or null
      */
     Key read(String name);
 
@@ -40,9 +41,13 @@ public interface IKeyDAO {
      * @return The encrypted private key
      * @throws ServiceSDKException if encrypt failed
      */
-    default String encrypt(String privKey, String password) throws ServiceSDKException {
-        // TODO
-        return null;
+    default byte[] encrypt(byte[] privKey, String password) throws ServiceSDKException {
+        try {
+            return AESUtils.encrypt(privKey, password);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new ServiceSDKException("Private key encrypt failed", e);
+        }
     }
 
     /**
@@ -53,8 +58,12 @@ public interface IKeyDAO {
      * @return The plain private key
      * @throws ServiceSDKException if decrypt failed
      */
-    default String decrypt(String encrptedPrivKey, String password) throws ServiceSDKException {
-        // TODO
-        return null;
+    default byte[] decrypt(byte[] encrptedPrivKey, String password) throws ServiceSDKException {
+        try {
+            return AESUtils.decrypt(encrptedPrivKey, password);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new ServiceSDKException("Private key decrypt failed", e);
+        }
     }
 }
