@@ -1,8 +1,6 @@
 package iservice.sdk.net.observer.events;
 
 /**
- *
- *
  * @author : ori
  * @date : 2020/9/21 2:33 下午
  */

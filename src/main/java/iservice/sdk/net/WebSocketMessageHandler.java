@@ -13,8 +13,6 @@ import iservice.sdk.net.observer.ConnectEventObservable;
 import java.net.URI;
 
 /**
- *
- *
  * @author : ori
  * @date : 2020/9/20 9:16 下午
  */
@@ -32,7 +30,7 @@ public class WebSocketMessageHandler extends WebSocketClientProtocolHandler {
         if (msg instanceof TextWebSocketFrame) {
             String json = ((TextWebSocketFrame) msg).text();
             EVENT_OBSERVABLE.setChanged();
-            EVENT_OBSERVABLE.notifyObservers(new ConnectEvent(ConnectEventType.ON_MESSAGE,json));
+            EVENT_OBSERVABLE.notifyObservers(new ConnectEvent(ConnectEventType.ON_MESSAGE, json));
         }
         super.channelRead(ctx, msg);
     }

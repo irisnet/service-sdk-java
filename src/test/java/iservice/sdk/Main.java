@@ -2,7 +2,10 @@ package iservice.sdk;
 
 import iservice.sdk.core.ServiceClient;
 import iservice.sdk.core.ServiceClientFactory;
+import iservice.sdk.entity.Mnemonic;
 import iservice.sdk.entity.ServiceClientOptions;
+import iservice.sdk.module.IKeyService;
+import org.web3j.utils.Numeric;
 
 import java.net.URI;
 import java.util.ArrayList;
@@ -12,20 +15,15 @@ import java.util.ArrayList;
  */
 public class Main {
 
-    public static void main(String[] args) throws Exception{
-        ServiceClientOptions options = new ServiceClientOptions();
-        URI websocketURI = new URI("ws://localhost:8083/websocket/?request=e2lkOjE7cmlkOjI2O3Rva2VuOiI0MzYwNjgxMWM3MzA1Y2NjNmFiYjJiZTExNjU3OWJmZCJ9");
-        options.setUri(websocketURI);
-        ServiceClient sc = ServiceClientFactory.getInstance()
-                .setOptions(options)
-                .addListener(new TestConsumerListener())
-                .addListener(new TestProviderListener())
-                .getClient();
-        new Thread(sc::startWebSocketClient).start();
+    public static void main(String[] args) throws Exception {
 
-        TestRequest req = new TestRequest();
-        req.setS1("req1");
-        req.setS2("req2");
-        System.out.println("----------------- Consumer -----------------");
+        IKeyService keyService = ServiceClientFactory.getInstance().setOptions(new ServiceClientOptions()).getClient().getKeyService();
+        String address = keyService.recoverKey("test", "123456", "potato below health analyst hurry arrange shift tent elevator syrup clever ladder adjust agree dentist pass best space behind badge enemy nothing twice nut", true, 0, "");
+        System.out.println("Address: " + address);
+
+        String hex = Numeric.toHexString("test".getBytes());
+        String sig = keyService.signTx(hex, "test", "123456", false);
+        System.out.println(sig);
+
     }
 }

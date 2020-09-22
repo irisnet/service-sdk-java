@@ -1,12 +1,12 @@
 package iservice.sdk.exception;
 
 /**
- *
- *
  * @author : ori
  * @date : 2020/9/21 4:01 上午
  */
-public class WebSocketConnectException extends RuntimeException{
+public class WebSocketConnectException extends RuntimeException {
+    private static final long serialVersionUID = 4868608554854884110L;
+
     public WebSocketConnectException() {
     }
 

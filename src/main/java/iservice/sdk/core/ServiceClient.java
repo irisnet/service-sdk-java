@@ -2,96 +2,96 @@ package iservice.sdk.core;
 
 import iservice.sdk.entity.ServiceClientOptions;
 import iservice.sdk.exception.WebSocketConnectException;
+import iservice.sdk.module.IKeyDAO;
+import iservice.sdk.module.IKeyService;
+import iservice.sdk.module.impl.DefaultKeyServiceImpl;
 import iservice.sdk.net.WebSocketClient;
-import iservice.sdk.net.WebSocketClientOption;
+import iservice.sdk.net.WebSocketClientOptions;
+import org.apache.commons.lang3.NotImplementedException;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by mitch on 2020/9/16.
+ * @author Yelong
  */
 public final class ServiceClient {
 
-    private ServiceClientOptions optionsCache;
     private ServiceClientOptions options;
 
-    private final List<AbstractServiceListener> LISTENERS_CACHE = new ArrayList<>();
     private final List<AbstractServiceListener> LISTENERS = new ArrayList<>();
+
+    private IKeyDAO keyDAO;
 
     private volatile WebSocketClient webSocketClient = null;
 
-    ServiceClient(ServiceClientOptions options, List<AbstractServiceListener> listeners) {
+    ServiceClient(ServiceClientOptions options, List<AbstractServiceListener> listeners, IKeyDAO keyDAO) {
         this.options = options;
         this.LISTENERS.addAll(listeners);
+        this.keyDAO = keyDAO;
     }
 
+    /**
+     * Start WebSocket Client
+     */
     public void startWebSocketClient() {
-        prepareStart();
         if (options.getUri() == null) {
-            throw new WebSocketConnectException("uri is null!");
+            throw new WebSocketConnectException("WebSocket uri is undefined");
         }
         if (webSocketClient == null) {
             synchronized (this) {
                 if (webSocketClient == null) {
-                    WebSocketClientOption webSocketClientOption = new WebSocketClientOption();
-                    webSocketClientOption.setUri(options.getUri());
-                    webSocketClient = new WebSocketClient(webSocketClientOption);
+                    WebSocketClientOptions webSocketClientOptions = new WebSocketClientOptions();
+                    webSocketClientOptions.setUri(options.getUri());
+                    webSocketClient = new WebSocketClient(webSocketClientOptions);
                 }
             }
         }
         webSocketClient.start();
     }
 
-    private void prepareStart() {
-        if (options != null && LISTENERS.size()>0 ) {
-            return;
-        }
-        options = new ServiceClientOptions();
-        options.setUri(optionsCache.getUri());
-        LISTENERS.addAll(LISTENERS_CACHE);
-    }
-
+    /**
+     * Send remote service request
+     *
+     * @param msg Service request
+     * @param <T> Service request object type
+     */
     public <T> void callService(T msg) {
         webSocketClient.send(msg);
     }
 
-    <T> void send(T msg) {
-        webSocketClient.send(msg);
-    }
-
-    void doNotifyAllListener(String msg) {
-        // TODO 创建 tx 并签名广播
-        System.out.println("Sending request ...");
-        System.out.println(msg);
-
-        this.LISTENERS.forEach(listener -> {
-            listener.callback(msg);
-        });
+    /**
+     * Get key management service
+     *
+     * @return {@link IKeyService} implementation
+     */
+    public IKeyService getKeyService() {
+        switch (this.options.getSignAlgo()) {
+            case SM2:
+                throw new NotImplementedException("SM2 not implemented");
+            default:
+                return new DefaultKeyServiceImpl(this.keyDAO);
+        }
     }
 
     /**
+     * Send msg to the blockchain
      *
-     * @param options
+     * @param msg Msg to send
+     * @param <T> Msg type
      */
-    public void setOptions(ServiceClientOptions options) {
-        this.optionsCache = options;
+    <T> void sendMsg(T msg) {
+        webSocketClient.send(msg);
     }
 
-    public void refreshListeners(List<AbstractServiceListener> listeners) {
-        clearListeners();
-        addListeners(listeners);
-    }
-
-    public void addListeners(List<AbstractServiceListener> listeners) {
-        this.LISTENERS_CACHE.addAll(listeners);
-    }
-
-    public void clearListeners() {
-        this.LISTENERS_CACHE.clear();
-    }
-
-    public WebSocketClient getWebSocketClient() {
-        return webSocketClient;
+    /**
+     * Listening from blockchain and notify listeners
+     *
+     * @param msg Msg from blockchain
+     */
+    void doNotifyAllListener(String msg) {
+        this.LISTENERS.forEach(listener -> {
+            listener.callback(msg);
+        });
     }
 }

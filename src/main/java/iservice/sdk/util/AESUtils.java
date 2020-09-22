@@ -6,6 +6,7 @@ import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.SecretKeySpec;
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.security.InvalidKeyException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -18,7 +19,7 @@ public class AESUtils {
 
     private static final String DEFAULT_ALGO = "AES";
     private static final String DEFAULT_HASH = "SHA-1";
-    private static final String DEFAULT_CHARSET = "utf-8";
+    private static final String DEFAULT_CHARSET = StandardCharsets.UTF_8.toString();
 
     private static SecretKeySpec generateSecretKey(String password) {
         SecretKeySpec secretKey = null;

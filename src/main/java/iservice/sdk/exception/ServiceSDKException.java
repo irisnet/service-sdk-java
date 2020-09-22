@@ -3,7 +3,7 @@ package iservice.sdk.exception;
 /**
  * @author Yelong
  */
-public class ServiceSDKException extends Exception {
+public class ServiceSDKException extends RuntimeException {
 
     private static final long serialVersionUID = 7177887186522102117L;
 

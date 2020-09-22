@@ -3,15 +3,14 @@ package iservice.sdk.core;
 import iservice.sdk.entity.ServiceListenerOptions;
 
 /**
- * @author mitch
- * @date 2020/9/16
+ * @author Yelong
  */
 public abstract class AbstractServiceListener<T> {
 
     /**
-     * getOptions
+     * Get options of the listener
      *
-     * @return
+     * @return {@link ServiceListenerOptions}
      */
     abstract ServiceListenerOptions getOptions();
 
