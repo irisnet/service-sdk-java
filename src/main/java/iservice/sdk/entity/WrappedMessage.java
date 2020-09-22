@@ -3,7 +3,7 @@ package iservice.sdk.entity;
 import java.io.Serializable;
 
 /**
- * Created with IntelliJ IDEA.
+ *
  *
  * @author : ori
  * @date : 2020/9/21 7:26 下午

@@ -1,8 +1,8 @@
 package iservice.sdk;
 
 import com.alibaba.fastjson.JSON;
+import iservice.sdk.core.AbstractProviderListener;
 import iservice.sdk.entity.ServiceListenerOptions;
-import iservice.sdk.impl.AbstractProviderListener;
 
 /**
  * Created by mitch on 2020/9/16.

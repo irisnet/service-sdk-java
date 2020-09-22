@@ -1,4 +1,4 @@
-package iservice.sdk.impl;
+package iservice.sdk.core;
 
 import iservice.sdk.entity.ServiceClientOptions;
 import iservice.sdk.exception.WebSocketConnectException;
@@ -21,24 +21,10 @@ public final class ServiceClient {
 
     private volatile WebSocketClient webSocketClient = null;
 
-
-    /**
-     * ------------ Singleton start------------
-     **/
-    private static class ServiceClientHolder {
-        private static final ServiceClient INSTANCE = new ServiceClient();
+    ServiceClient(ServiceClientOptions options, List<AbstractServiceListener> listeners) {
+        this.options = options;
+        this.LISTENERS.addAll(listeners);
     }
-
-    private ServiceClient() {
-    }
-
-    public static ServiceClient getInstance() {
-        return ServiceClientHolder.INSTANCE;
-    }
-
-    /**
-     * ------------ Singleton end------------
-     **/
 
     public void startWebSocketClient() {
         prepareStart();
@@ -70,7 +56,11 @@ public final class ServiceClient {
         webSocketClient.send(msg);
     }
 
-    public void doNotifyAllListener(String msg) {
+    public <T> void send(T msg) {
+        webSocketClient.send(msg);
+    }
+
+    void doNotifyAllListener(String msg) {
         // TODO 创建 tx 并签名广播
         System.out.println("Sending request ...");
         System.out.println(msg);
@@ -101,4 +91,7 @@ public final class ServiceClient {
         this.LISTENERS_CACHE.clear();
     }
 
+    public WebSocketClient getWebSocketClient() {
+        return webSocketClient;
+    }
 }

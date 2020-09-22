@@ -1,9 +1,11 @@
 package iservice.sdk;
 
+import iservice.sdk.core.ServiceClient;
+import iservice.sdk.core.ServiceClientFactory;
 import iservice.sdk.entity.ServiceClientOptions;
-import iservice.sdk.impl.ServiceClient;
 
 import java.net.URI;
+import java.util.ArrayList;
 
 /**
  * Created by mitch on 2020/9/16.
@@ -15,11 +17,12 @@ public class Main {
         URI websocketURI = new URI("ws://localhost:8083/websocket/?request=e2lkOjE7cmlkOjI2O3Rva2VuOiI0MzYwNjgxMWM3MzA1Y2NjNmFiYjJiZTExNjU3OWJmZCJ9");
         options.setUri(websocketURI);
 
-        ServiceClient sc = ServiceClientBuilder.create()
+        ServiceClient serviceClient = ServiceClientFactory.getInstance().getClient();
+        ServiceClient sc = ServiceClientFactory.getInstance()
                 .setOptions(options)
                 .addListener(new TestConsumerListener())
                 .addListener(new TestProviderListener())
-                .build();
+                .getClient();
         new Thread(sc::startWebSocketClient).start();
 
         TestRequest req = new TestRequest();

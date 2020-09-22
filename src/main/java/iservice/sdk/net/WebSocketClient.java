@@ -14,11 +14,11 @@ import io.netty.handler.codec.http.HttpObjectAggregator;
 import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
 import iservice.sdk.entity.WrappedMessage;
 import iservice.sdk.exception.WebSocketConnectException;
-import iservice.sdk.impl.handler.WebSocketClientHandler;
-import iservice.sdk.impl.observer.WebSocketClientObserver;
+import iservice.sdk.handler.WebSocketClientHandler;
+import iservice.sdk.core.WebSocketClientObserver;
 
 /**
- * Created with IntelliJ IDEA.
+ *
  *
  * @author : ori
  * @date : 2020/9/21 5:46 下午
@@ -147,7 +147,12 @@ public class WebSocketClient {
         if (!isReady()) {
             throw new WebSocketConnectException("Connect is not ready...");
         }
-        channel.writeAndFlush(new TextWebSocketFrame(JSON.toJSONString(new WrappedMessage<>(msg))));
+        channel.writeAndFlush(new TextWebSocketFrame(JSON.toJSONString(createWrappedMessage(msg))));
+    }
+
+    private <T> WrappedMessage<T> createWrappedMessage(T msg) {
+
+        return new WrappedMessage<>(msg);
     }
 
 }

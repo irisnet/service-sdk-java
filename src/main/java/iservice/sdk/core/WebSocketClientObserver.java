@@ -1,18 +1,19 @@
-package iservice.sdk.impl.observer;
+package iservice.sdk.core;
 
-import iservice.sdk.impl.ServiceClient;
-import iservice.sdk.impl.observer.events.ConnectEvent;
+import iservice.sdk.net.observer.events.ConnectEvent;
 
 import java.util.Observable;
 import java.util.Observer;
 
 /**
- * Created with IntelliJ IDEA.
+ *
  *
  * @author : ori
  * @date : 2020/9/21 8:14 下午
  */
 public class WebSocketClientObserver implements Observer {
+
+    private final ServiceClient client = ServiceClientFactory.getInstance().getClient();
 
     @Override
     public void update(Observable o, Object arg) {
@@ -42,7 +43,7 @@ public class WebSocketClientObserver implements Observer {
     }
 
     private void doOnMessage(String jsonData) {
-        ServiceClient.getInstance().doNotifyAllListener(jsonData);
+        client.doNotifyAllListener(jsonData);
     }
 
     private void doOnClose() {
