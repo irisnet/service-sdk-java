@@ -23,7 +23,7 @@ import static org.junit.Assert.assertTrue;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class KeyServiceTest {
 
-    private static IKeyService keyService = ServiceClientBuilder.create().build().getKeyService();
+    private static IKeyService keyService = null; //ServiceClientBuilder.create().build().getKeyService();
     private static final String HRP = "iaa";
     private static Map<KEYS, Object> paramMap = new HashMap<>();
     private enum KEYS {

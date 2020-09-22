@@ -46,7 +46,7 @@ public class ServiceClientFactory {
 
     private void validateParam() {
         if (options == null) {
-            throw new ServiceSDKException("Param 'option' is missing!");
+//            throw new ServiceSDKException("Param 'option' is missing!");
         }
     }
 
