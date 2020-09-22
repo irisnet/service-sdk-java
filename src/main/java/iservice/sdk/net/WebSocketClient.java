@@ -14,7 +14,6 @@ import io.netty.handler.codec.http.HttpObjectAggregator;
 import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
 import iservice.sdk.entity.WrappedMessage;
 import iservice.sdk.exception.WebSocketConnectException;
-import iservice.sdk.handler.WebSocketClientHandler;
 import iservice.sdk.core.WebSocketClientObserver;
 
 /**
@@ -70,7 +69,7 @@ public class WebSocketClient {
     }
 
     private void initHandlerObserver() {
-        WebSocketClientHandler.EVENT_OBSERVABLE.addObserver(new WebSocketClientObserver());
+        WebSocketMessageHandler.EVENT_OBSERVABLE.addObserver(new WebSocketClientObserver());
     }
 
     /**
@@ -99,7 +98,7 @@ public class WebSocketClient {
                                 // HttpFile length limiter
                                 new HttpObjectAggregator(1024 * 1024 * 10),
                                 // custom websocket message handler
-                                new WebSocketClientHandler(options.getUri())
+                                new WebSocketMessageHandler(options.getUri())
                         );
                     }
                 }).option(ChannelOption.SO_KEEPALIVE, true);

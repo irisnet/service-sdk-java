@@ -25,7 +25,7 @@ public abstract class AbstractProviderListener<T, R> extends AbstractServiceList
         if (client == null) {
             client = ServiceClientFactory.getInstance().getClient().getWebSocketClient();
         }
-//        client.callService(res);
+        client.send(res);
     }
 
     @Override

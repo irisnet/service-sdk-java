@@ -16,8 +16,6 @@ public class Main {
         ServiceClientOptions options = new ServiceClientOptions();
         URI websocketURI = new URI("ws://localhost:8083/websocket/?request=e2lkOjE7cmlkOjI2O3Rva2VuOiI0MzYwNjgxMWM3MzA1Y2NjNmFiYjJiZTExNjU3OWJmZCJ9");
         options.setUri(websocketURI);
-
-        ServiceClient serviceClient = ServiceClientFactory.getInstance().getClient();
         ServiceClient sc = ServiceClientFactory.getInstance()
                 .setOptions(options)
                 .addListener(new TestConsumerListener())

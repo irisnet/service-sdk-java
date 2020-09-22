@@ -56,7 +56,7 @@ public final class ServiceClient {
         webSocketClient.send(msg);
     }
 
-    public <T> void send(T msg) {
+    <T> void send(T msg) {
         webSocketClient.send(msg);
     }
 
