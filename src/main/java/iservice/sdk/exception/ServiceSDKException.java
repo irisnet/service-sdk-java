@@ -1,7 +1,16 @@
 package iservice.sdk.exception;
 
 /**
- * Created by Yelong on 2020/9/18.
+ * @author Yelong
+ * @date 2020/9/18
  */
 public class ServiceSDKException extends RuntimeException {
+
+    public ServiceSDKException() {
+        super();
+    }
+
+    public ServiceSDKException(String message) {
+        super(message);
+    }
 }

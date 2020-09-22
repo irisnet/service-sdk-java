@@ -1,7 +1,7 @@
 package iservice.sdk.exception;
 
 /**
- * Created with IntelliJ IDEA.
+ *
  *
  * @author : ori
  * @date : 2020/9/21 4:01 上午

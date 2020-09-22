@@ -14,11 +14,10 @@ import io.netty.handler.codec.http.HttpObjectAggregator;
 import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
 import iservice.sdk.entity.WrappedMessage;
 import iservice.sdk.exception.WebSocketConnectException;
-import iservice.sdk.impl.handler.WebSocketClientHandler;
-import iservice.sdk.impl.observer.WebSocketClientObserver;
+import iservice.sdk.core.WebSocketClientObserver;
 
 /**
- * Created with IntelliJ IDEA.
+ *
  *
  * @author : ori
  * @date : 2020/9/21 5:46 下午
@@ -70,7 +69,7 @@ public class WebSocketClient {
     }
 
     private void initHandlerObserver() {
-        WebSocketClientHandler.EVENT_OBSERVABLE.addObserver(new WebSocketClientObserver());
+        WebSocketMessageHandler.EVENT_OBSERVABLE.addObserver(new WebSocketClientObserver());
     }
 
     /**
@@ -99,7 +98,7 @@ public class WebSocketClient {
                                 // HttpFile length limiter
                                 new HttpObjectAggregator(1024 * 1024 * 10),
                                 // custom websocket message handler
-                                new WebSocketClientHandler(options.getUri())
+                                new WebSocketMessageHandler(options.getUri())
                         );
                     }
                 }).option(ChannelOption.SO_KEEPALIVE, true);
@@ -147,7 +146,12 @@ public class WebSocketClient {
         if (!isReady()) {
             throw new WebSocketConnectException("Connect is not ready...");
         }
-        channel.writeAndFlush(new TextWebSocketFrame(JSON.toJSONString(new WrappedMessage<>(msg))));
+        channel.writeAndFlush(new TextWebSocketFrame(JSON.toJSONString(createWrappedMessage(msg))));
+    }
+
+    private <T> WrappedMessage<T> createWrappedMessage(T msg) {
+
+        return new WrappedMessage<>(msg);
     }
 
 }

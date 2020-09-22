@@ -1,4 +1,4 @@
-package iservice.sdk.impl.handler;
+package iservice.sdk.net;
 
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.http.DefaultHttpHeaders;
@@ -6,23 +6,23 @@ import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
 import io.netty.handler.codec.http.websocketx.WebSocketClientHandshakerFactory;
 import io.netty.handler.codec.http.websocketx.WebSocketClientProtocolHandler;
 import io.netty.handler.codec.http.websocketx.WebSocketVersion;
-import iservice.sdk.impl.observer.events.ConnectEvent;
-import iservice.sdk.impl.observer.events.ConnectEventType;
-import iservice.sdk.impl.observer.ConnectEventObservable;
+import iservice.sdk.net.observer.events.ConnectEvent;
+import iservice.sdk.net.observer.events.ConnectEventType;
+import iservice.sdk.net.observer.ConnectEventObservable;
 
 import java.net.URI;
 
 /**
- * Created with IntelliJ IDEA.
+ *
  *
  * @author : ori
  * @date : 2020/9/20 9:16 下午
  */
-public class WebSocketClientHandler extends WebSocketClientProtocolHandler {
+public class WebSocketMessageHandler extends WebSocketClientProtocolHandler {
 
     public final static ConnectEventObservable EVENT_OBSERVABLE = new ConnectEventObservable();
 
-    public WebSocketClientHandler(URI uri) {
+    public WebSocketMessageHandler(URI uri) {
         super(WebSocketClientHandshakerFactory.newHandshaker(uri, WebSocketVersion.V13, null, true, new DefaultHttpHeaders()));
     }
 

@@ -3,7 +3,7 @@ package iservice.sdk.net;
 import java.net.URI;
 
 /**
- * Created with IntelliJ IDEA.
+ *
  *
  * @author : ori
  * @date : 2020/9/21 6:04 下午
