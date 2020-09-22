@@ -2,13 +2,11 @@ package iservice.sdk.net;
 
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.http.DefaultHttpHeaders;
-import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
-import io.netty.handler.codec.http.websocketx.WebSocketClientHandshakerFactory;
-import io.netty.handler.codec.http.websocketx.WebSocketClientProtocolHandler;
-import io.netty.handler.codec.http.websocketx.WebSocketVersion;
+import io.netty.handler.codec.http.websocketx.*;
+import iservice.sdk.exception.WebSocketConnectException;
+import iservice.sdk.net.observer.ConnectEventObservable;
 import iservice.sdk.net.observer.events.ConnectEvent;
 import iservice.sdk.net.observer.events.ConnectEventType;
-import iservice.sdk.net.observer.ConnectEventObservable;
 
 import java.net.URI;
 
@@ -20,6 +18,8 @@ public class WebSocketMessageHandler extends WebSocketClientProtocolHandler {
 
     public final static ConnectEventObservable EVENT_OBSERVABLE = new ConnectEventObservable();
 
+    private StringBuffer buffer = new StringBuffer();
+
     public WebSocketMessageHandler(URI uri) {
         super(WebSocketClientHandshakerFactory.newHandshaker(uri, WebSocketVersion.V13, null, true, new DefaultHttpHeaders()));
     }
@@ -27,12 +27,36 @@ public class WebSocketMessageHandler extends WebSocketClientProtocolHandler {
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         System.out.println("Message arrived!");
-        if (msg instanceof TextWebSocketFrame) {
-            String json = ((TextWebSocketFrame) msg).text();
-            EVENT_OBSERVABLE.setChanged();
-            EVENT_OBSERVABLE.notifyObservers(new ConnectEvent(ConnectEventType.ON_MESSAGE, json));
-        }
+            if (msg instanceof TextWebSocketFrame) {
+                String content = ((TextWebSocketFrame) msg).text();
+                if (buffer.length()>0) {
+                    throw new WebSocketConnectException("TextWebSocketFrame crash!");
+                }
+                buffer.append(content);
+                if (((WebSocketFrame) msg).isFinalFragment()) {
+                    doMessageComplete();
+                }
+            } else if (msg instanceof ContinuationWebSocketFrame) {
+                if (buffer != null) {
+                    ContinuationWebSocketFrame msgFrame = (ContinuationWebSocketFrame) msg;
+                    buffer.append(msgFrame.text());
+                } else {
+                    System.err.println("Continuation frame received without initial frame.");
+                }
+                if (((WebSocketFrame) msg).isFinalFragment()) {
+                    doMessageComplete();
+                }
+            }
+
+
         super.channelRead(ctx, msg);
+    }
+
+    private void doMessageComplete() {
+        String totalMsg = buffer.toString();
+        buffer.delete(0,buffer.length());
+        EVENT_OBSERVABLE.setChanged();
+        EVENT_OBSERVABLE.notifyObservers(new ConnectEvent(ConnectEventType.ON_MESSAGE, totalMsg));
     }
 
 
