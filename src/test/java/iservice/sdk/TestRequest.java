@@ -1,11 +1,9 @@
 package iservice.sdk;
 
-import iservice.sdk.entity.BaseServiceRequest;
-
 /**
  * Created by mitch on 2020/9/16.
  */
-public class TestRequest extends BaseServiceRequest {
+public class TestRequest {
     private String s1;
     private String s2;
 

@@ -1,45 +1,31 @@
 package iservice.sdk;
 
+import iservice.sdk.core.ServiceClient;
+import iservice.sdk.core.ServiceClientFactory;
+import iservice.sdk.entity.ServiceClientOptions;
 
-import iservice.sdk.util.Bip39Utils;
-import org.bitcoinj.core.Bech32;
-import org.web3j.crypto.Bip32ECKeyPair;
-import org.web3j.crypto.Bip39Wallet;
-
-import java.math.BigInteger;
+import java.net.URI;
+import java.util.ArrayList;
 
 /**
  * Created by mitch on 2020/9/16.
  */
 public class Main {
 
-    public static void main(String[] args) {
-//        ServiceClient sc = ServiceClientBuilder.create().addListener(new TestConsumerListener()).addListener(new TestProviderListener()).build();
-//        TestRequest req = new TestRequest();
-//        req.setS1("req1");
-//        req.setS2("req2");
-//        System.out.println("----------------- Consumer -----------------");
-//        sc.callService(req);
+    public static void main(String[] args) throws Exception{
+        ServiceClientOptions options = new ServiceClientOptions();
+        URI websocketURI = new URI("ws://localhost:8083/websocket/?request=e2lkOjE7cmlkOjI2O3Rva2VuOiI0MzYwNjgxMWM3MzA1Y2NjNmFiYjJiZTExNjU3OWJmZCJ9");
+        options.setUri(websocketURI);
+        ServiceClient sc = ServiceClientFactory.getInstance()
+                .setOptions(options)
+                .addListener(new TestConsumerListener())
+                .addListener(new TestProviderListener())
+                .getClient();
+        new Thread(sc::startWebSocketClient).start();
 
-        String m = Bip39Utils.generateMnemonic();
-        System.out.println(m);
-
-        BigInteger privateKey = Bip39Utils.getPrivateKey(m);
-        System.out.println(privateKey);
-
-        BigInteger pubkey = Bip39Utils.getPublicKeyFromPrivate(privateKey);
-        System.out.println(pubkey);
-        System.out.println(pubkey.toByteArray());
-
-
-        Bech32.Bech32Data data = Bech32.decode("iaa1ewed0ds2syhv4qn6fjhx2avma0j2sp6d594tht");
-        System.out.println(data.hrp);
-        System.out.println(data.data);
-
-        System.out.println(Bech32.encode("iaa", data.data));
-
-        Bip32ECKeyPair.create(privateKey);
-        System.out.println(Bech32.encode("iaa", pubkey.toByteArray()));
-
+        TestRequest req = new TestRequest();
+        req.setS1("req1");
+        req.setS2("req2");
+        System.out.println("----------------- Consumer -----------------");
     }
 }
