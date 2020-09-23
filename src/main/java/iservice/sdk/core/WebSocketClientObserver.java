@@ -11,7 +11,7 @@ import java.util.Observer;
  */
 public class WebSocketClientObserver implements Observer {
 
-    private final ServiceClient client = ServiceClientFactory.getInstance().getClient();
+    private ServiceClient client ;
 
     @Override
     public void update(Observable o, Object arg) {
@@ -37,10 +37,11 @@ public class WebSocketClientObserver implements Observer {
     }
 
     private void doOnOpen() {
-
+        client = ServiceClientFactory.getInstance().getClient();
     }
 
     private void doOnMessage(String jsonData) {
+        System.out.println(jsonData);
         client.doNotifyAllListener(jsonData);
     }
 

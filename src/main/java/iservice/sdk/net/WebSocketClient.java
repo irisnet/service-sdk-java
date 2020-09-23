@@ -51,8 +51,6 @@ public class WebSocketClient {
             ChannelFuture channelFuture = bootstrap.connect(options.getHost(), options.getPort()).sync();
             // to hold a channel
             channel = channelFuture.channel();
-            // init Handler Observer
-            initHandlerObserver();
             // insure client will be closed
             Runtime.getRuntime().addShutdownHook(new Thread(this::close));
             channel.closeFuture().sync();
@@ -75,6 +73,8 @@ public class WebSocketClient {
      */
     private void prepareStart() {
         this.startedFlag = true;
+        // init Handler Observer
+        initHandlerObserver();
     }
 
     private void prepareClose() {
