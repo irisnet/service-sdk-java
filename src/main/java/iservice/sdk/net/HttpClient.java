@@ -34,7 +34,7 @@ public class HttpClient {
     /**
      * 通用get请求
      */
-    public static String get(String url, Map<String, String> headerMap) {
+    public String get(String url, Map<String, String> headerMap) {
         if (StringUtils.isEmpty(url)) {
             return null;
         }
@@ -46,29 +46,37 @@ public class HttpClient {
         }
         Request request = builder.build();
         try {
-            String result = HttpClientHolder.CLIENT.newCall(request).execute().body().string();
-            return result;
+            ResponseBody responseBody = HttpClientHolder.CLIENT.newCall(request).execute().body();
+            if (responseBody!= null){
+                return responseBody.string();
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
         return null;
     }
 
-    public String post(String url, String json) throws IOException {
+    public String post(String url, String json) {
         RequestBody body = RequestBody.create(JSON, json);
         Request request = new Request.Builder()
                 .url(url)
                 .post(body)
                 .build();
-        try (Response response = HttpClientHolder.CLIENT.newCall(request).execute()) {
-            return response.body() != null ? response.body().string() : null;
+        try {
+            ResponseBody responseBody = HttpClientHolder.CLIENT.newCall(request).execute().body();
+            if (responseBody!= null){
+                return responseBody.string();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+        return null;
     }
 
     /**
      * POST请求(表单提交)
      */
-    public static String postForm(String url, Map<String, String> params) {
+    public String postForm(String url, Map<String, String> params) {
         LOGGER.info("请求信息url:" + url + ",param:" + com.alibaba.fastjson.JSON.toJSONString(params));
         FormBody.Builder builder = new FormBody.Builder();
         if (params != null && !params.isEmpty()) {
@@ -82,7 +90,10 @@ public class HttpClient {
                 .post(body)
                 .build();
         try {
-            return Objects.requireNonNull(HttpClientHolder.CLIENT.newCall(request).execute().body()).string();
+            ResponseBody responseBody = HttpClientHolder.CLIENT.newCall(request).execute().body();
+            if (responseBody!= null){
+                return responseBody.string();
+            }
         } catch (IOException e) {
             LOGGER.error("Method 'postForm' failed. url:{}, params:{}", url, params);
         }
