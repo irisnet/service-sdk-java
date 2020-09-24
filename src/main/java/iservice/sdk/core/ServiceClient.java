@@ -44,7 +44,7 @@ public final class ServiceClient {
         this.options = options;
         this.LISTENERS.addAll(listeners);
         this.keyDAO = keyDAO;
-        GrpcChannel.INSTANCE.setURL(options.getUri().toString());
+        GrpcChannel.getInstance().setURL(options.getUri().toString());
         switch (this.options.getSignAlgo()) {
             case SM2:
                 throw new NotImplementedException("SM2 not implemented");

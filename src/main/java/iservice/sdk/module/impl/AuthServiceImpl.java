@@ -1,22 +1,14 @@
 package iservice.sdk.module.impl;
 
-import com.alibaba.fastjson.JSON;
 import com.google.protobuf.ByteString;
-import com.googlecode.protobuf.format.JsonFormat;
-import com.squareup.okhttp.*;
 import cosmos.auth.v1beta1.Auth;
 import cosmos.auth.v1beta1.QueryGrpc;
 import cosmos.auth.v1beta1.QueryOuterClass;
-import iservice.sdk.entity.WrappedRequest;
-import iservice.sdk.entity.WrappedResponse;
 import iservice.sdk.module.IAuthService;
 import iservice.sdk.net.GrpcChannel;
 import iservice.sdk.util.Bech32Utils;
-import org.web3j.utils.Numeric;
-import tendermint.abci.Types;
 
 import java.io.IOException;
-import java.util.Map;
 
 /**
  * @author Yelong
@@ -27,7 +19,7 @@ public class AuthServiceImpl implements IAuthService {
 
     public AuthServiceImpl() {
 
-        this.queryBlockingStub = QueryGrpc.newBlockingStub(GrpcChannel.INSTANCE.getChannel());
+        this.queryBlockingStub = QueryGrpc.newBlockingStub(GrpcChannel.getInstance().getChannel());
 
     }
 
@@ -36,8 +28,9 @@ public class AuthServiceImpl implements IAuthService {
 
         QueryOuterClass.QueryAccountRequest req = QueryOuterClass.QueryAccountRequest.newBuilder().setAddress(ByteString.copyFrom(Bech32Utils.fromBech32(address))).build();
 
-        QueryOuterClass.QueryAccountResponse account = this.queryBlockingStub.account(req);
-        System.out.println(account.toString());
-        return null;
+        QueryOuterClass.QueryAccountResponse res = this.queryBlockingStub.account(req);
+        Auth.BaseAccount baseAccount = Auth.BaseAccount.parseFrom(res.getAccount().getValue().toByteArray());
+//        System.out.println(Bech32Utils.toBech32("iaa", baseAccount.getAddress().toByteArray()));
+        return baseAccount;
     }
 }

@@ -12,6 +12,18 @@ public enum GrpcChannel {
 
     private ManagedChannel channel;
 
+    /**
+     * Get GrpcChannel instance
+     * @return
+     */
+    public static GrpcChannel getInstance() {
+        return INSTANCE;
+    }
+
+    /**
+     * Get Managed GrpcChannel
+     * @return
+     */
     public ManagedChannel getChannel() {
         return channel;
     }
