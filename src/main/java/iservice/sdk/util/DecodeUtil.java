@@ -7,9 +7,7 @@ import iservice.sdk.entity.options.ProviderListenerOptions;
 import iservice.sdk.enums.SubscribeQueryKeyEnum;
 import iservice.sdk.exception.ServiceSDKException;
 import iservice.sdk.message.*;
-import iservice.sdk.message.result.ResultEndBlock;
-import iservice.sdk.message.result.ResultEvents;
-import iservice.sdk.message.result.ServiceReqResult;
+import iservice.sdk.message.result.*;
 
 import java.util.List;
 import java.util.Objects;
@@ -24,10 +22,11 @@ public class DecodeUtil {
         json = formatJson(json);
         ServiceReqMessage x = JSON.parseObject(json, ServiceReqMessage.class);
         ServiceReqResult result = x.getResult();
-        if (!checkMessageType(result.getQuery(), options)) {
-            return null;
-        }
-        ResultEndBlock resultEndBlock = result.getData().getValue().getResult_end_block();
+//        if (!checkMessageType(result.getQuery(), options) && result.getData().getType().equals()) {
+//            return null;
+//        }
+        WebSocketResponseResultData<WebSocketResponseResultDataBlockInfo> data = result.getData();
+        ResultEndBlock resultEndBlock = data.getValue().getResult_end_block();
         List<ResultEvents> events = filterEventsByKey(options.getListenerType().getParamPrefix(), resultEndBlock.getEvents());
         ResultEvents targetEvent = events.stream().filter(event -> {
             event.getDecodeAttributes();
@@ -52,7 +51,7 @@ public class DecodeUtil {
         if (!checkMessageType(messageResult.getQuery(), options)) {
             return null;
         }
-        TxResultInfo result = messageResult.getData().getValue().get(TxResult.CLASS_NAME).getResult();
+        TxResultInfo result = messageResult.getData().getValue().getTxResult().getResult();
         List<ResultEvents> events = filterEventsByKey(options.getListenerType().getParamPrefix(), result.getEvents());
         ResultEvents targetEvent = events.stream().filter(event -> {
             event.getDecodeAttributes();
@@ -68,11 +67,7 @@ public class DecodeUtil {
     }
 
     public static String formatJson(String json) {
-//        String regex1 = "^.+?} *\\{.+?$";
-//        if (!Pattern.matches(regex1, json)) {
-//            return json;
-//        }
-        return json.replaceAll("}[ \\n]*\\{.+?$", "}");
+        return json.replaceAll("}[ \\n]*\\{[\\s\\S]+$", "}");
     }
 
     private static List<ResultEvents> filterEventsByKey(String type, List<ResultEvents> events) {

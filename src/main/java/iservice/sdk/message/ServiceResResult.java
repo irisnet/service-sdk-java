@@ -10,7 +10,7 @@ import java.util.Map;
  */
 public class ServiceResResult {
     private String query;
-    private WebSocketResponseResultData<Map<String,TxResult>> data;
+    private WebSocketResponseResultData<TxResultHolder> data;
 
     public String getQuery() {
         return query;
@@ -20,11 +20,11 @@ public class ServiceResResult {
         this.query = query;
     }
 
-    public WebSocketResponseResultData<Map<String,TxResult>> getData() {
+    public WebSocketResponseResultData<TxResultHolder> getData() {
         return data;
     }
 
-    public void setData(WebSocketResponseResultData<Map<String,TxResult>> data) {
+    public void setData(WebSocketResponseResultData<TxResultHolder> data) {
         this.data = data;
     }
 

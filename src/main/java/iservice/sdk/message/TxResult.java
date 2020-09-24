@@ -6,8 +6,6 @@ package iservice.sdk.message;
  */
 public class TxResult {
 
-    public static final String CLASS_NAME = "TxResult";
-
     private String height;
     private TxResultInfo result;
 

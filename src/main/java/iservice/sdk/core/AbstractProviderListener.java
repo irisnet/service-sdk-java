@@ -9,8 +9,6 @@ import iservice.sdk.net.GrpcChannel;
 import iservice.sdk.util.DecodeUtil;
 import org.bouncycastle.util.encoders.Hex;
 
-import java.util.List;
-
 /**
  * @author Yelong
  */
@@ -21,7 +19,7 @@ public abstract class AbstractProviderListener<T, R> extends AbstractServiceList
     @Override
     public void callback(String json) {
         T req = getReqFromJson(json);
-        if (!checkValidate(req)) {
+        if (req!= null) {
             return;
         }
         R res = onRequest(req);
