@@ -7,7 +7,7 @@ import iservice.sdk.entity.ServiceListenerOptions;
 /**
  * Created by mitch on 2020/9/16.
  */
-public class TestProviderListener extends AbstractProviderListener<TestRequest, TestResponse> {
+public class TestProviderListener extends AbstractProviderListener<TestServiceRequest, TestResponse> {
 
     @Override
     public ServiceListenerOptions getOptions() {
@@ -17,17 +17,17 @@ public class TestProviderListener extends AbstractProviderListener<TestRequest, 
     }
 
     @Override
-    protected TestRequest getReqFromJson(String json) {
-        return JSON.parseObject(json, TestRequest.class);
+    protected TestServiceRequest getReqFromJson(String json) {
+        return JSON.parseObject(json, TestServiceRequest.class);
     }
 
     @Override
-    protected boolean checkValidate(TestRequest res) {
+    protected boolean checkValidate(TestServiceRequest res) {
         return true;
     }
 
     @Override
-    public TestResponse onRequest(TestRequest req) {
+    public TestResponse onRequest(TestServiceRequest req) {
         System.out.println("----------------- Provider -----------------");
         System.out.println("Got request");
         System.out.println(req.toString());

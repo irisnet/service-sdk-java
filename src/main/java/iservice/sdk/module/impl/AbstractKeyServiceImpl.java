@@ -69,7 +69,7 @@ public abstract class AbstractKeyServiceImpl implements IKeyService {
         this.keyDAO.write(name, key);
     }
 
-    final Key getKey(String name, String password) throws ServiceSDKException {
+    public final Key getKey(String name, String password) throws ServiceSDKException {
         Key key = this.keyDAO.read(name);
         byte[] decrypted = this.keyDAO.decrypt(key.getPrivKey(), password);
         key.setPrivKey(decrypted);
