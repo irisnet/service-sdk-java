@@ -12,6 +12,7 @@ public class WrappedResponse<T> implements Serializable {
     private String jsonrpc;
     private String id;
     private T result;
+    private TxError error;
 
     public WrappedResponse() {
     }
@@ -51,6 +52,7 @@ public class WrappedResponse<T> implements Serializable {
                 "jsonrpc='" + jsonrpc + '\'' +
                 ", id='" + id + '\'' +
                 ", result=" + result +
+                ", error=" + error +
                 '}';
     }
 }

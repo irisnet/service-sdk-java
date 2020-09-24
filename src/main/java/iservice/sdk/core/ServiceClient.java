@@ -121,10 +121,11 @@ public final class ServiceClient {
         Map<String, String> params = new HashMap<>();
         params.put("tx", Base64.getEncoder().encodeToString(tx.toByteArray()));
         WrappedRequest<Map<String, String>> msg = new WrappedRequest<>(params);
-        msg.setMethod("broadcast_tx_sync");
+//        msg.setMethod("broadcast_tx_sync");
         String res = HttpClient.getInstance().post(options.getRpcURI().toString(), JSON.toJSONString(msg));
         // TODO error handler
         System.out.println(res);
+        
     }
 
     /**
