@@ -33,7 +33,7 @@ public class WebSocketMessageHandler extends WebSocketClientProtocolHandler {
                     throw new WebSocketConnectException("TextWebSocketFrame crash!");
                 }
                 buffer.append(content);
-                if (((WebSocketFrame) msg).isFinalFragment()) {
+                if (((TextWebSocketFrame) msg).isFinalFragment()) {
                     doMessageComplete();
                 }
             } else if (msg instanceof ContinuationWebSocketFrame) {
@@ -43,12 +43,10 @@ public class WebSocketMessageHandler extends WebSocketClientProtocolHandler {
                 } else {
                     System.err.println("Continuation frame received without initial frame.");
                 }
-                if (((WebSocketFrame) msg).isFinalFragment()) {
+                if (((ContinuationWebSocketFrame) msg).isFinalFragment()) {
                     doMessageComplete();
                 }
             }
-
-
         super.channelRead(ctx, msg);
     }
 

@@ -1,6 +1,5 @@
 package iservice.sdk.net;
 
-import com.alibaba.fastjson.JSON;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelFuture;
@@ -12,9 +11,8 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.codec.http.HttpClientCodec;
 import io.netty.handler.codec.http.HttpObjectAggregator;
 import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
-import iservice.sdk.entity.WrappedRequest;
-import iservice.sdk.exception.WebSocketConnectException;
 import iservice.sdk.core.WebSocketClientObserver;
+import iservice.sdk.exception.WebSocketConnectException;
 
 /**
  * @author : ori
@@ -137,16 +135,11 @@ public class WebSocketClient {
         return checkChannelActive(false);
     }
 
-    public <T> void send(T msg) {
+    public void send(String msg) {
         if (!isReady()) {
             throw new WebSocketConnectException(ERR_MSG_CHANNEL_INACTIVE);
         }
-        channel.writeAndFlush(new TextWebSocketFrame(JSON.toJSONString(createWrappedMessage(msg))));
-    }
-
-    private <T> WrappedRequest<T> createWrappedMessage(T msg) {
-
-        return new WrappedRequest<>(msg);
+        channel.writeAndFlush(new TextWebSocketFrame(msg));
     }
 
 }

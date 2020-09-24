@@ -1,8 +1,8 @@
 package iservice.sdk;
 
-import com.alibaba.fastjson.JSON;
 import iservice.sdk.core.AbstractProviderListener;
-import iservice.sdk.entity.ServiceListenerOptions;
+import iservice.sdk.entity.options.ProviderListenerOptions;
+import iservice.sdk.message.ServiceReqMessage;
 
 /**
  * Created by mitch on 2020/9/16.
@@ -10,20 +10,21 @@ import iservice.sdk.entity.ServiceListenerOptions;
 public class TestProviderListener extends AbstractProviderListener<TestServiceRequest, TestResponse> {
 
     @Override
-    public ServiceListenerOptions getOptions() {
-
-        ServiceListenerOptions options = new ServiceListenerOptions();
+    public ProviderListenerOptions getOptions() {
+        ProviderListenerOptions options = new ProviderListenerOptions();
+        options.setServiceName("test");
+        options.setAddress("iaa19edqjunszsu49uw04f4y6sfknw553cfsuzsjc5");
         return options;
     }
 
     @Override
-    protected TestServiceRequest getReqFromJson(String json) {
-        return JSON.parseObject(json, TestServiceRequest.class);
+    protected Class<TestServiceRequest> getReqClass() {
+        return TestServiceRequest.class;
     }
 
     @Override
     protected boolean checkValidate(TestServiceRequest res) {
-        return true;
+        return res != null;
     }
 
     @Override
@@ -32,8 +33,6 @@ public class TestProviderListener extends AbstractProviderListener<TestServiceRe
         System.out.println("Got request");
         System.out.println(req.toString());
         TestResponse res = new TestResponse();
-        res.setS1("res1");
-        res.setS2("res2");
         System.out.println("Sending response");
         return res;
     }

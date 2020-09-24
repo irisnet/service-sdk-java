@@ -1,36 +1,38 @@
 package iservice.sdk;
 
-import com.alibaba.fastjson.JSON;
 import iservice.sdk.core.AbstractConsumerListener;
-import iservice.sdk.entity.ServiceListenerOptions;
+import iservice.sdk.entity.options.ConsumerListenerOptions;
+import iservice.sdk.message.ServiceReqMessage;
 
 /**
  * Created by mitch on 2020/9/16.
  */
-public class TestConsumerListener extends AbstractConsumerListener<TestResponse> {
+public class TestConsumerListener extends AbstractConsumerListener<ServiceReqMessage> {
 
     @Override
-    public ServiceListenerOptions getOptions() {
-
-        ServiceListenerOptions options = new ServiceListenerOptions();
+    public ConsumerListenerOptions getOptions() {
+        ConsumerListenerOptions options = new ConsumerListenerOptions();
+        options.setAddress("iaa1ve5p4xas7ptmp367mkvlka86zszpt93y8h78yd");
+        options.setModule("service");
+        options.setSender("iaa19edqjunszsu49uw04f4y6sfknw553cfsuzsjc5");
         return options;
     }
 
     @Override
-    protected TestResponse getReqFromJson(String json) {
-        return JSON.parseObject(json, TestResponse.class);
+    protected Class<ServiceReqMessage> getReqClass() {
+        return ServiceReqMessage.class;
     }
 
     @Override
-    public void onResponse(TestResponse res) {
+    public void onResponse(ServiceReqMessage res) {
 
-        System.out.println("----------------- Consumer -----------------");
-        System.out.println("Got response");
-        System.out.println(res.toString());
+        System.out.println("----------------- Consumer start -----------------");
+        System.out.println("do response");
+        System.out.println("----------------- Consumer end -----------------");
     }
 
     @Override
-    protected boolean checkValidate(TestResponse res) {
-        return true;
+    protected boolean checkValidate(ServiceReqMessage res) {
+        return res!= null;
     }
 }

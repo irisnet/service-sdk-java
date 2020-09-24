@@ -10,6 +10,8 @@ import iservice.sdk.entity.BaseServiceRequest;
 import iservice.sdk.entity.ServiceClientOptions;
 import iservice.sdk.entity.WrappedRequest;
 import iservice.sdk.exception.WebSocketConnectException;
+import iservice.sdk.message.WrappedMessage;
+import iservice.sdk.message.params.SubscribeParam;
 import iservice.sdk.module.IAuthService;
 import iservice.sdk.module.IKeyDAO;
 import iservice.sdk.module.IKeyService;
@@ -22,7 +24,10 @@ import iservice.sdk.net.HttpClient;
 import iservice.sdk.net.WebSocketClient;
 import iservice.sdk.net.WebSocketClientOptions;
 import iservice.sdk.util.Bech32Utils;
+import iservice.sdk.util.SubscribeUtil;
 import org.apache.commons.lang3.NotImplementedException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.*;
@@ -31,6 +36,8 @@ import java.util.*;
  * @author Yelong
  */
 public final class ServiceClient {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(ServiceClient.class);
 
     private ServiceClientOptions options;
 
@@ -53,6 +60,11 @@ public final class ServiceClient {
         serviceBlockingStub = QueryGrpc.newBlockingStub(GrpcChannel.getInstance().getChannel());
     }
 
+    public void start() {
+        startWebSocketClient();
+        subscribeAllListener();
+    }
+
     /**
      * Start WebSocket Client
      */
@@ -69,7 +81,7 @@ public final class ServiceClient {
                 }
             }
         }
-        webSocketClient.start();
+        new Thread(() -> webSocketClient.start()).start();
     }
 
     /**
@@ -122,7 +134,9 @@ public final class ServiceClient {
      */
     public IKeyService getKeyService() {
 
-        if (this.keyService != null) return this.keyService;
+        if (this.keyService != null) {
+            return this.keyService;
+        }
 
         switch (this.options.getSignAlgo()) {
             case SM2:
@@ -140,8 +154,9 @@ public final class ServiceClient {
      * @return {@link IAuthService} implementation
      */
     public IAuthService getAuthService() {
-
-        if (this.authService != null) return this.authService;
+        if (this.authService != null) {
+            return this.authService;
+        }
         this.authService = new AuthServiceImpl();
         return this.authService;
     }
@@ -152,8 +167,9 @@ public final class ServiceClient {
      * @return {@link ITxService} implementation
      */
     public ITxService getTxService() {
-
-        if (this.txService != null) return this.txService;
+        if (this.txService != null) {
+            return this.txService;
+        }
         this.txService = new TxServiceImpl();
         return this.txService;
     }
@@ -165,7 +181,9 @@ public final class ServiceClient {
      * @param <T> Msg type
      */
     <T> void sendMsg(T msg) {
-        webSocketClient.send(msg);
+        // todo 业务对象的转换
+//        String s = WebsocketMessageUtils.wrapBroadcastMessageToString(msg);
+//        webSocketClient.send();
     }
 
     /**
@@ -177,5 +195,28 @@ public final class ServiceClient {
         this.LISTENERS.forEach(listener -> {
             listener.callback(msg);
         });
+    }
+
+    void subscribeAllListener() {
+        try {
+            // wait 5s for websocket client start...
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        this.LISTENERS.forEach(this::subscribe);
+    }
+
+    public void subscribe(AbstractServiceListener listener) {
+        WrappedMessage<SubscribeParam> subscribeMessage = SubscribeUtil.buildSubscribeMessage(listener);
+        String s = JSON.toJSONString(subscribeMessage);
+        LOGGER.info("sending subscribe message : {}", subscribeMessage);
+        System.out.println("sending subscribe message :"+s);
+        webSocketClient.send(s);
+    }
+
+
+    public WebSocketClient getWebSocketClient() {
+        return webSocketClient;
     }
 }
