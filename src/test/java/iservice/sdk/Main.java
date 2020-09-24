@@ -2,18 +2,17 @@ package iservice.sdk;
 
 import com.google.protobuf.Any;
 import com.google.protobuf.ByteString;
+import com.googlecode.protobuf.format.JsonFormat;
 import cosmos.base.v1beta1.CoinOuterClass;
 import cosmos.tx.v1beta1.TxOuterClass;
 import irismod.service.Service;
 import iservice.sdk.core.ServiceClient;
 import iservice.sdk.core.ServiceClientFactory;
 import iservice.sdk.entity.ServiceClientOptions;
-import iservice.sdk.net.GrpcChannel;
 import iservice.sdk.util.Bech32Utils;
-import tendermint.rpc.grpc.BroadcastAPIGrpc;
-import tendermint.rpc.grpc.Types;
 
 import java.net.URI;
+import java.util.Base64;
 
 /**
  * Created by mitch on 2020/9/16.
@@ -35,7 +34,7 @@ public class Main {
 //        System.out.println(baseAccount.getAccountNumber());
 
         ServiceClientOptions options = new ServiceClientOptions();
-        options.setUri(new URI("localhost:9090"));
+        options.setGrpcURI(new URI("localhost:9090"));
         ServiceClient client = ServiceClientFactory.getInstance().setOptions(options).getClient();
         String address = client.getKeyService().recoverKey("test", "123456", "potato below health analyst hurry arrange shift tent elevator syrup clever ladder adjust agree dentist pass best space behind badge enemy nothing twice nut", true, 0, "");
         System.out.println("Address: " + address);
@@ -58,10 +57,15 @@ public class Main {
                 .setTimeoutHeight(0)
                 .build();
 
-        TxOuterClass.TxRaw txRaw = client.getTxService().signTx(body, "test", "123456", false);
+        TxOuterClass.Tx tx = client.getTxService().signTx(body, "test", "123456", false);
 
-        BroadcastAPIGrpc.BroadcastAPIBlockingStub stub = BroadcastAPIGrpc.newBlockingStub(GrpcChannel.getInstance().getChannel());
-        Types.ResponseBroadcastTx responseBroadcastTx = stub.broadcastTx(Types.RequestBroadcastTx.newBuilder().setTx(txRaw.getBodyBytes()).build());
-        System.out.println(responseBroadcastTx.toString());
+        byte[] txBytes = tx.toByteArray();
+//        BroadcastAPIGrpc.BroadcastAPIBlockingStub stub = BroadcastAPIGrpc.newBlockingStub(GrpcChannel.getInstance().getChannel());
+//        Types.ResponseBroadcastTx responseBroadcastTx = stub.broadcastTx(Types.RequestBroadcastTx.newBuilder().setTx(txRaw.getBodyBytes()).build());
+//        System.out.println(responseBroadcastTx.toString());
+        JsonFormat jsonFormat = new JsonFormat();
+//        System.out.println(new String(txRaw.toByteArray()));
+//        System.out.println(jsonFormat.printToString(txRaw));
+        System.out.println(new String(Base64.getEncoder().encode(tx.toByteArray())));
     }
 }

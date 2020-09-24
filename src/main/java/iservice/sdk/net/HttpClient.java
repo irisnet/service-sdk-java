@@ -26,7 +26,7 @@ public class HttpClient {
     private HttpClient() {
     }
 
-    public HttpClient getInstance() {
+    public static HttpClient getInstance() {
         return HttpClientHolder.INSTANCE;
     }
 

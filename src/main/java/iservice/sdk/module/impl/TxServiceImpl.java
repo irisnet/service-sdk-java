@@ -13,10 +13,11 @@ import iservice.sdk.exception.ServiceSDKException;
 import iservice.sdk.module.IAuthService;
 import iservice.sdk.module.IKeyService;
 import iservice.sdk.module.ITxService;
+import org.apache.commons.lang3.ArrayUtils;
+import org.bitcoinj.core.ECKey;
 import org.bitcoinj.core.Sha256Hash;
 import org.web3j.crypto.ECKeyPair;
 import org.web3j.crypto.Sign;
-import org.web3j.utils.Numeric;
 
 import java.io.IOException;
 
@@ -36,16 +37,18 @@ public class TxServiceImpl implements ITxService {
     }
 
     @Override
-    public TxOuterClass.TxRaw signTx(TxOuterClass.TxBody txBody, String name, String password, boolean offline) throws ServiceSDKException, IOException {
+    public TxOuterClass.Tx signTx(TxOuterClass.TxBody txBody, String name, String password, boolean offline) throws ServiceSDKException, IOException {
 
         Key key = this.keyService.getKey(name, password);
         ECKeyPair keyPair = ECKeyPair.create(key.getPrivKey());
+
+        byte[] encodedPubkey = ECKey.publicPointFromPrivate(keyPair.getPrivateKey()).getEncoded(true);
 
         Auth.BaseAccount baseAccount = this.authService.queryAccount(key.getAddress());
         TxOuterClass.AuthInfo ai = TxOuterClass.AuthInfo.newBuilder()
                 .addSignerInfos(
                         TxOuterClass.SignerInfo.newBuilder()
-                                .setPublicKey(Crypto.PublicKey.newBuilder().setSecp256K1(ByteString.copyFrom(keyPair.getPublicKey().toByteArray())))
+                                .setPublicKey(Crypto.PublicKey.newBuilder().setSecp256K1(ByteString.copyFrom(encodedPubkey)))
                                 .setModeInfo(TxOuterClass.ModeInfo.newBuilder().setSingle(TxOuterClass.ModeInfo.Single.newBuilder().setMode(Signing.SignMode.SIGN_MODE_DIRECT)))
                                 .setSequence(baseAccount.getSequence()))
 
@@ -61,15 +64,14 @@ public class TxServiceImpl implements ITxService {
 
         byte[] hash = Sha256Hash.hash(signdoc.toByteArray());
         Sign.SignatureData signature = Sign.signMessage(hash, keyPair, false);
-        String r = Numeric.toHexString(signature.getR());
-        String s = Numeric.toHexString(signature.getS());
-        String sig = Numeric.cleanHexPrefix(r) + Numeric.cleanHexPrefix(s);
+        byte[] sigBytes = ArrayUtils.addAll(signature.getR(), signature.getS());
 
-        TxOuterClass.TxRaw txRaw = TxOuterClass.TxRaw.newBuilder()
-                .setBodyBytes(txBody.toByteString())
-                .setAuthInfoBytes(ai.toByteString())
-                .addSignatures(ByteString.copyFrom(sig.getBytes()))
+        TxOuterClass.Tx tx = TxOuterClass.Tx.newBuilder()
+                .setBody(txBody)
+                .setAuthInfo(ai)
+                .addSignatures(ByteString.copyFrom(sigBytes))
                 .build();
-        return txRaw;
+
+        return tx;
     }
 }

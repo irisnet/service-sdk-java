@@ -9,27 +9,28 @@ import java.net.URI;
  */
 public class ServiceClientOptions {
 
-    private URI uri;
+    private URI grpcURI;
+    private URI rpcURI;
 
     private SignAlgo signAlgo = SignAlgo.SECP256K1;
 
     public ServiceClientOptions() {
     }
 
-    public void setUri(URI uri) {
-        this.uri = uri;
+    public URI getRpcURI() {
+        return rpcURI;
     }
 
-    public URI getUri() {
-        return uri;
+    public void setRpcURI(URI rpcURI) {
+        this.rpcURI = rpcURI;
     }
 
-    public String getHost() {
-        return uri.getHost();
+    public void setGrpcURI(URI grpcURI) {
+        this.grpcURI = grpcURI;
     }
 
-    public int getPort() {
-        return uri.getPort();
+    public URI getGrpcURI() {
+        return grpcURI;
     }
 
     public SignAlgo getSignAlgo() {

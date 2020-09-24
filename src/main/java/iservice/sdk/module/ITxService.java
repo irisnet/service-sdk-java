@@ -21,7 +21,7 @@ public interface ITxService {
      * @return The signed tx
      * @throws ServiceSDKException if the signing failed
      */
-    TxOuterClass.TxRaw signTx(TxOuterClass.TxBody txBody, String name, String password, boolean offline) throws ServiceSDKException, IOException;
+    TxOuterClass.Tx signTx(TxOuterClass.TxBody txBody, String name, String password, boolean offline) throws ServiceSDKException, IOException;
 
 
 }
