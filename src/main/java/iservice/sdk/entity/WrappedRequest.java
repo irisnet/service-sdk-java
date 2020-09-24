@@ -9,7 +9,7 @@ import java.io.Serializable;
 public class WrappedRequest<T> implements Serializable {
     private static final long serialVersionUID = 4739712926654477976L;
     private String jsonrpc = "2.0";
-    private String id;
+    private String id = "service_client";
     private String method;
     private T params;
 

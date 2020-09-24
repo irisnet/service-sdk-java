@@ -8,7 +8,8 @@ import java.io.Serializable;
  */
 public class WrappedResponse<T> implements Serializable {
     private static final long serialVersionUID = -3117802482134801657L;
-    private String jsonrpc = "2.0";
+
+    private String jsonrpc;
     private String id;
     private T result;
 
@@ -17,6 +18,11 @@ public class WrappedResponse<T> implements Serializable {
 
     public WrappedResponse(T result) {
         this.result = result;
+    }
+
+
+    public void setJsonrpc(String jsonrpc) {
+        this.jsonrpc = jsonrpc;
     }
 
     public String getJsonrpc() {

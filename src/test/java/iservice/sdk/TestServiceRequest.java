@@ -1,5 +1,6 @@
 package iservice.sdk;
 
+import com.google.common.collect.Lists;
 import cosmos.base.v1beta1.CoinOuterClass;
 import iservice.sdk.entity.BaseServiceRequest;
 
@@ -10,35 +11,38 @@ import java.util.List;
  */
 public class TestServiceRequest extends BaseServiceRequest<TestServiceRequest.TestInput> {
 
+    public TestServiceRequest() {
+    }
 
     @Override
     public String getKeyName() {
-        return null;
+        return "test";
     }
 
     @Override
     public String getKeyPassword() {
-        return null;
+        return "123456";
     }
 
     @Override
     public String getServiceName() {
-        return null;
+        return "test";
     }
 
     @Override
     public List<String> getProviders() {
-        return null;
+
+        return Lists.newArrayList("iaa1ewed0ds2syhv4qn6fjhx2avma0j2sp6d594tht");
     }
 
     @Override
     public List<CoinOuterClass.Coin> getServiceFeeCap() {
-        return null;
+        return Lists.newArrayList(CoinOuterClass.Coin.newBuilder().setAmount("1").setDenom("stake").build());
     }
 
     @Override
     public TestInput getRequest() {
-        return null;
+        return new TestInput("1", "test", "data");
     }
 
     public class TestInput {

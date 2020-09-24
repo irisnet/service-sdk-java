@@ -20,7 +20,7 @@ public class SignBytesTest {
 
         Service.MsgCallService msg = Service.MsgCallService.newBuilder()
                 .addProviders(ByteString.copyFrom(Bech32Utils.fromBech32("iaa1ewed0ds2syhv4qn6fjhx2avma0j2sp6d594tht")))
-                .setConsumer(ByteString.copyFrom(Bech32Utils.fromBech32("iaa10pxgfknjvx48at0gwmuzql5fkce406vyv0emxx")))
+                .setConsumer(ByteString.copyFrom(Bech32Utils.fromBech32("iaa176l662tt6e3uqxu57hdxpupk972gw0y8j4aa0a")))
                 .setServiceName("test")
                 .setInput("{\"header\":{\"version\":\"1.0\",\"location\":{\"status\":\"off\"}},\"body\":{\"id\":\"1\",\"name\":\"irisnet\",\"data\":\"facedata\"}}")
                 .addServiceFeeCap(CoinOuterClass.Coin.newBuilder().setAmount("1").setDenom("stake"))
@@ -37,10 +37,11 @@ public class SignBytesTest {
                 .setTimeoutHeight(0)
                 .build();
 
+        byte[] pk = ByteString.copyFrom(Base64.getDecoder().decode("A6kp7WGG1dYQoWkH1jb7bPifDEWDZTykDDjyeeK3DJJ3")).toByteArray();
         TxOuterClass.AuthInfo ai = TxOuterClass.AuthInfo.newBuilder()
                 .addSignerInfos(
                         TxOuterClass.SignerInfo.newBuilder()
-                                .setPublicKey(Crypto.PublicKey.newBuilder().setSecp256K1(ByteString.copyFrom(Base64.getDecoder().decode("A3V1YDPI6yFMv+SQBwCMjxMVjpEebXOWSck9kzJW+vEG"))))
+                                .setPublicKey(Crypto.PublicKey.newBuilder().setSecp256K1(ByteString.copyFrom(Base64.getDecoder().decode("A6kp7WGG1dYQoWkH1jb7bPifDEWDZTykDDjyeeK3DJJ3"))))
                                 .setModeInfo(TxOuterClass.ModeInfo.newBuilder().setSingle(TxOuterClass.ModeInfo.Single.newBuilder().setMode(Signing.SignMode.SIGN_MODE_DIRECT)))
                                 .setSequence(0))
                 .setFee(TxOuterClass.Fee.newBuilder().setGasLimit(200000).addAmount(CoinOuterClass.Coin.newBuilder().setAmount("1").setDenom("stake"))).build();
@@ -48,7 +49,7 @@ public class SignBytesTest {
         TxOuterClass.SignDoc signdoc = TxOuterClass.SignDoc.newBuilder()
                 .setBodyBytes(body.toByteString())
                 .setAuthInfoBytes(ai.toByteString())
-                .setAccountNumber(9)
+                .setAccountNumber(10)
                 .setChainId("test")
                 .build();
 
