@@ -46,11 +46,18 @@ public abstract class BaseServiceRequest<T> extends BaseRequest {
     }
 
     /**
-     * Get service request input
+     * Get service request header
      *
-     * @return Service request input
+     * @return Service request header
      */
-    public abstract T getRequest();
+    public abstract RequestHeader getRequestHeader();
+
+    /**
+     * Get service request body
+     *
+     * @return Service request body
+     */
+    public abstract T getRequestBody();
 
     @Override
     public void validateParams() throws IllegalArgumentException {
@@ -64,8 +71,11 @@ public abstract class BaseServiceRequest<T> extends BaseRequest {
         if (this.getServiceFeeCap() == null || this.getServiceFeeCap().size() <= 0) {
             throw new IllegalArgumentException("Service fee caps are required");
         }
-        if (this.getRequest() == null) {
-            throw new IllegalArgumentException("Service request is required");
+        if (this.getRequestBody() == null) {
+            throw new IllegalArgumentException("Service request body is required");
+        }
+        if (this.getRequestHeader() == null) {
+            throw new IllegalArgumentException("Service request header is required");
         }
     }
 }

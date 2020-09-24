@@ -2,7 +2,6 @@ package iservice.sdk;
 
 import iservice.sdk.core.AbstractProviderListener;
 import iservice.sdk.entity.options.ProviderListenerOptions;
-import iservice.sdk.message.ServiceReqMessage;
 
 /**
  * Created by mitch on 2020/9/16.
