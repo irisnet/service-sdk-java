@@ -1,14 +1,16 @@
 package iservice.sdk;
 
-import iservice.sdk.core.ServiceClient;
-import iservice.sdk.core.ServiceClientFactory;
-import iservice.sdk.entity.Mnemonic;
-import iservice.sdk.entity.ServiceClientOptions;
-import iservice.sdk.module.IKeyService;
-import org.web3j.utils.Numeric;
+import com.google.protobuf.ByteString;
+import com.google.protobuf.Descriptors;
+import cosmos.auth.v1beta1.Auth;
+import cosmos.auth.v1beta1.QueryGrpc;
+import cosmos.auth.v1beta1.QueryOuterClass;
+import io.grpc.*;
+import iservice.sdk.module.IAuthService;
+import iservice.sdk.module.impl.AuthServiceImpl;
+import iservice.sdk.util.Bech32Utils;
 
-import java.net.URI;
-import java.util.ArrayList;
+import java.util.Map;
 
 /**
  * Created by mitch on 2020/9/16.
@@ -16,14 +18,16 @@ import java.util.ArrayList;
 public class Main {
 
     public static void main(String[] args) throws Exception {
+//        IAuthService s = new AuthServiceImpl();
+//        s.queryAccount("iaa10pxgfknjvx48at0gwmuzql5fkce406vyv0emxx");
 
-        IKeyService keyService = ServiceClientFactory.getInstance().setOptions(new ServiceClientOptions()).getClient().getKeyService();
-        String address = keyService.recoverKey("test", "123456", "potato below health analyst hurry arrange shift tent elevator syrup clever ladder adjust agree dentist pass best space behind badge enemy nothing twice nut", true, 0, "");
-        System.out.println("Address: " + address);
+        ManagedChannelBuilder<?> o = ManagedChannelBuilder.forTarget("localhost:9090").usePlaintext();
+        ManagedChannel channel = o.build();
 
-        String hex = Numeric.toHexString("test".getBytes());
-        String sig = keyService.signTx(hex, "test", "123456", false);
-        System.out.println(sig);
-
+        QueryGrpc.QueryBlockingStub queryBlockingStub = QueryGrpc.newBlockingStub(channel);
+        QueryOuterClass.QueryAccountResponse res = queryBlockingStub.account(QueryOuterClass.QueryAccountRequest.newBuilder().setAddress(ByteString.copyFrom(Bech32Utils.fromBech32("iaa10pxgfknjvx48at0gwmuzql5fkce406vyv0emxx"))).build());
+        Auth.BaseAccount baseAccount = Auth.BaseAccount.parseFrom(res.toByteArray());
+        System.out.println(Bech32Utils.toBech32("iaa", baseAccount.getAddress().toStringUtf8().getBytes()));
+        System.out.println(ByteString.copyFrom(Auth.BaseAccount.parseFrom(res.toByteArray()).getAddress().toByteArray()).toStringUtf8());
     }
 }

@@ -12,7 +12,7 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.codec.http.HttpClientCodec;
 import io.netty.handler.codec.http.HttpObjectAggregator;
 import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
-import iservice.sdk.entity.WrappedMessage;
+import iservice.sdk.entity.WrappedRequest;
 import iservice.sdk.exception.WebSocketConnectException;
 import iservice.sdk.core.WebSocketClientObserver;
 
@@ -21,6 +21,8 @@ import iservice.sdk.core.WebSocketClientObserver;
  * @date : 2020/9/21 5:46 下午
  */
 public class WebSocketClient {
+    private static final String ERR_MSG_CHANNEL_INACTIVE = "WebSocket channel inactive";
+
     private WebSocketClientOptions options;
 
     private Channel channel = null;
@@ -103,14 +105,9 @@ public class WebSocketClient {
     }
 
     public void close() {
-        if (channel == null) {
-            System.err.println("Client has not start!");
-            return;
-        } else if (!channel.isActive()) {
-            System.err.println("Client is not active! It may have closed already!");
-        }
+        if (!isReady()) return;
         prepareClose();
-        System.out.println("Channel closed.");
+        System.out.println("WebSocket channel closed");
         try {
             channel.close();
         } finally {
@@ -127,9 +124,9 @@ public class WebSocketClient {
     private boolean checkChannelActive(boolean ifThrow) {
         if (channel == null) {
             if (ifThrow) {
-                throw new WebSocketConnectException("Client has not start!");
+                throw new WebSocketConnectException(ERR_MSG_CHANNEL_INACTIVE);
             } else {
-                System.err.println("Client has not start!");
+                System.err.println(ERR_MSG_CHANNEL_INACTIVE);
                 return false;
             }
         }
@@ -142,14 +139,14 @@ public class WebSocketClient {
 
     public <T> void send(T msg) {
         if (!isReady()) {
-            throw new WebSocketConnectException("Connect is not ready...");
+            throw new WebSocketConnectException(ERR_MSG_CHANNEL_INACTIVE);
         }
         channel.writeAndFlush(new TextWebSocketFrame(JSON.toJSONString(createWrappedMessage(msg))));
     }
 
-    private <T> WrappedMessage<T> createWrappedMessage(T msg) {
+    private <T> WrappedRequest<T> createWrappedMessage(T msg) {
 
-        return new WrappedMessage<>(msg);
+        return new WrappedRequest<>(msg);
     }
 
 }

@@ -1,5 +1,12 @@
 package iservice.sdk.module.impl;
 
+import com.google.protobuf.ByteString;
+import cosmos.base.crypto.v1beta1.Crypto;
+import cosmos.base.v1beta1.CoinOuterClass;
+import cosmos.tx.signing.v1beta1.Signing;
+import cosmos.tx.v1beta1.TxOuterClass;
+import iservice.sdk.core.ServiceClient;
+import iservice.sdk.core.ServiceClientFactory;
 import iservice.sdk.entity.Key;
 import iservice.sdk.entity.Mnemonic;
 import iservice.sdk.exception.ServiceSDKException;
@@ -16,6 +23,7 @@ import java.io.File;
 import java.io.IOException;
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
+import java.util.Base64;
 
 /**
  * @author Yelong
@@ -79,17 +87,38 @@ public class DefaultKeyServiceImpl extends AbstractKeyServiceImpl {
     }
 
     @Override
-    public String signTx(String stdTx, String name, String password, boolean offline) throws ServiceSDKException {
-        // TODO implement stdTx
-        Key key = super.getKey(name, password);
-        ECKeyPair keyPair = ECKeyPair.create(key.getPrivKey());
-        byte[] bytes = Numeric.hexStringToByteArray(stdTx);
-        byte[] hash = Sha256Hash.hash(bytes);
-        Sign.SignatureData signature = Sign.signMessage(hash, keyPair, false);
-        String r = Numeric.toHexString(signature.getR());
-        String s = Numeric.toHexString(signature.getS());
-        return new StringBuilder(Numeric.cleanHexPrefix(r))
-                .append(Numeric.cleanHexPrefix(s))
-                .toString();
+    public TxOuterClass.Tx signTx(TxOuterClass.TxBody txBody, String name, String password, boolean offline) throws ServiceSDKException {
+
+//        Key key = super.getKey(name, password);
+//        ECKeyPair keyPair = ECKeyPair.create(key.getPrivKey());
+//
+//        ServiceClient serviceClient = ServiceClientFactory.getInstance().getClient();
+//        TxOuterClass.AuthInfo ai = TxOuterClass.AuthInfo.newBuilder()
+//                .addSignerInfos(
+//                        TxOuterClass.SignerInfo.newBuilder()
+//                                .setPublicKey(Crypto.PublicKey.newBuilder().setSecp256K1(ByteString.copyFrom(keyPair.getPublicKey().toByteArray())))
+//                                .setModeInfo(TxOuterClass.ModeInfo.newBuilder().setSingle(TxOuterClass.ModeInfo.Single.newBuilder().setMode(Signing.SignMode.SIGN_MODE_DIRECT)))
+//                                .setSequence(0))
+//                .setFee(TxOuterClass.Fee.newBuilder().setGasLimit(200000).addAmount(CoinOuterClass.Coin.newBuilder().setAmount("1").setDenom("stake"))).build();
+//
+//        TxOuterClass.SignDoc signdoc = TxOuterClass.SignDoc.newBuilder()
+//                .setBodyBytes(body.toByteString())
+//                .setAuthInfoBytes(ai.toByteString())
+//                .setAccountNumber(9)
+//                .setChainId("test")
+//                .build();
+//
+//
+//        // TODO implement stdTx
+//
+////        byte[] bytes = Numeric.hexStringToByteArray(stdTx);
+//        byte[] hash = Sha256Hash.hash(bytes);
+//        Sign.SignatureData signature = Sign.signMessage(hash, keyPair, false);
+//        String r = Numeric.toHexString(signature.getR());
+//        String s = Numeric.toHexString(signature.getS());
+//        return new StringBuilder(Numeric.cleanHexPrefix(r))
+//                .append(Numeric.cleanHexPrefix(s))
+//                .toString();
+        return null;
     }
 }
