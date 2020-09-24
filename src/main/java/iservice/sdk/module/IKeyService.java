@@ -1,9 +1,8 @@
 package iservice.sdk.module;
 
-import cosmos.tx.v1beta1.TxOuterClass;
+import iservice.sdk.entity.Key;
 import iservice.sdk.entity.Mnemonic;
 import iservice.sdk.exception.ServiceSDKException;
-import org.web3j.crypto.CipherException;
 
 import java.io.File;
 import java.io.IOException;
@@ -73,14 +72,12 @@ public interface IKeyService {
     String showAddress(String name) throws ServiceSDKException;
 
     /**
-     * Single sign a transaction
-     *
-     * @param txBody   TxBody to be signed
-     * @param name     Name of the key to sign the tx
+     * Get privKey by name
+     * @param name Name of the key
      * @param password Password of the key
-     * @param offline  Offline signing, default `false`
-     * @return The signed tx
-     * @throws ServiceSDKException if the signing failed
+     * @return {@link Key}
+     * @throws ServiceSDKException If error occurs
      */
-    TxOuterClass.Tx signTx(TxOuterClass.TxBody txBody, String name, String password, boolean offline) throws ServiceSDKException;
+    Key getKey(String name, String password) throws ServiceSDKException;
+
 }
