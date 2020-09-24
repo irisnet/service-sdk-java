@@ -56,7 +56,7 @@ public final class ServiceClient {
         this.options = options;
         this.LISTENERS.addAll(listeners);
         this.keyDAO = keyDAO;
-        GrpcChannel.getInstance().setURL(options.getGrpcURI().toString());
+        GrpcChannel.getInstance().setURL(options.getGrpcURI().getHost().concat(":").concat(options.getGrpcURI().getPort() + ""));
         serviceBlockingStub = QueryGrpc.newBlockingStub(GrpcChannel.getInstance().getChannel());
     }
 
@@ -69,14 +69,14 @@ public final class ServiceClient {
      * Start WebSocket Client
      */
     public void startWebSocketClient() {
-        if (options.getGrpcURI() == null) {
+        if (options.getRpcURI() == null) {
             throw new WebSocketConnectException("WebSocket uri is undefined");
         }
         if (webSocketClient == null) {
             synchronized (this) {
                 if (webSocketClient == null) {
                     WebSocketClientOptions webSocketClientOptions = new WebSocketClientOptions();
-                    webSocketClientOptions.setUri(options.getGrpcURI());
+                    webSocketClientOptions.setUri(options.getRpcURI());
                     webSocketClient = new WebSocketClient(webSocketClientOptions);
                 }
             }
@@ -121,7 +121,7 @@ public final class ServiceClient {
         Map<String, String> params = new HashMap<>();
         params.put("tx", Base64.getEncoder().encodeToString(tx.toByteArray()));
         WrappedRequest<Map<String, String>> msg = new WrappedRequest<>(params);
-//        msg.setMethod("broadcast_tx_sync");
+        msg.setMethod("broadcast_tx_sync");
         String res = HttpClient.getInstance().post(options.getRpcURI().toString(), JSON.toJSONString(msg));
         // TODO error handler
         System.out.println(res);

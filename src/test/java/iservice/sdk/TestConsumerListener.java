@@ -12,9 +12,9 @@ public class TestConsumerListener extends AbstractConsumerListener<ServiceReqMes
     @Override
     public ConsumerListenerOptions getOptions() {
         ConsumerListenerOptions options = new ConsumerListenerOptions();
-        options.setAddress("iaa1ve5p4xas7ptmp367mkvlka86zszpt93y8h78yd");
+        options.setAddress("iaa176l662tt6e3uqxu57hdxpupk972gw0y8j4aa0a");
         options.setModule("service");
-        options.setSender("iaa19edqjunszsu49uw04f4y6sfknw553cfsuzsjc5");
+        options.setSender("iaa1ewed0ds2syhv4qn6fjhx2avma0j2sp6d594tht");
         return options;
     }
 

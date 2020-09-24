@@ -18,8 +18,8 @@ public class SuperTest {
     @Test
     public void test() throws URISyntaxException, InterruptedException {
         ServiceClientOptions options = new ServiceClientOptions();
-        options.setRpcURI(new URI("ws://10.1.4.150:26657/websocket"));
-        options.setGrpcURI(new URI("http://10.1.4.150:9090"));
+        options.setRpcURI(new URI("http://10.1.4.99:26657/websocket"));
+        options.setGrpcURI(new URI("http://10.1.4.99:9090"));
         ServiceClient client = ServiceClientFactory.getInstance()
                 .setOptions(options)
                 .addListener(new TestConsumerListener())
