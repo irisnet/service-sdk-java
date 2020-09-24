@@ -3,26 +3,27 @@ package iservice.sdk.core;
 import com.alibaba.fastjson.JSON;
 import com.google.protobuf.Any;
 import com.google.protobuf.ByteString;
-import cosmos.base.crypto.v1beta1.Crypto;
-import cosmos.base.v1beta1.CoinOuterClass;
-import cosmos.tx.signing.v1beta1.Signing;
 import cosmos.tx.v1beta1.TxOuterClass;
+import irismod.service.QueryGrpc;
 import irismod.service.Service;
 import iservice.sdk.entity.BaseServiceRequest;
 import iservice.sdk.entity.ServiceClientOptions;
 import iservice.sdk.exception.WebSocketConnectException;
+import iservice.sdk.module.IAuthService;
 import iservice.sdk.module.IKeyDAO;
 import iservice.sdk.module.IKeyService;
+import iservice.sdk.module.ITxService;
+import iservice.sdk.module.impl.AuthServiceImpl;
 import iservice.sdk.module.impl.DefaultKeyServiceImpl;
+import iservice.sdk.module.impl.TxServiceImpl;
 import iservice.sdk.net.GrpcChannel;
 import iservice.sdk.net.WebSocketClient;
 import iservice.sdk.net.WebSocketClientOptions;
 import iservice.sdk.util.Bech32Utils;
 import org.apache.commons.lang3.NotImplementedException;
-import org.apache.commons.lang3.StringUtils;
 
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Base64;
 import java.util.List;
 
 /**
@@ -37,20 +38,18 @@ public final class ServiceClient {
     private IKeyDAO keyDAO;
 
     private IKeyService keyService;
+    private IAuthService authService;
+    private ITxService txService;
 
     private volatile WebSocketClient webSocketClient = null;
+    private QueryGrpc.QueryBlockingStub serviceBlockingStub;
 
     ServiceClient(ServiceClientOptions options, List<AbstractServiceListener> listeners, IKeyDAO keyDAO) {
         this.options = options;
         this.LISTENERS.addAll(listeners);
         this.keyDAO = keyDAO;
         GrpcChannel.getInstance().setURL(options.getUri().toString());
-        switch (this.options.getSignAlgo()) {
-            case SM2:
-                throw new NotImplementedException("SM2 not implemented");
-            default:
-                this.keyService = new DefaultKeyServiceImpl(this.keyDAO);
-        }
+        serviceBlockingStub = QueryGrpc.newBlockingStub(GrpcChannel.getInstance().getChannel());
     }
 
     /**
@@ -78,7 +77,7 @@ public final class ServiceClient {
      * @param req Service request
      * @param <T> Service request object type
      */
-    public <T> void callService(BaseServiceRequest<T> req) {
+    public <T> void callService(BaseServiceRequest<T> req) throws IOException {
 
 
         String inputJson = JSON.toJSONString(req.getRequest());
@@ -104,8 +103,7 @@ public final class ServiceClient {
                 .setTimeoutHeight(0)
                 .build();
 
-        this.getKeyService().signTx(body, req.getKeyName(), req.getKeyPassword(), false);
-//        webSocketClient.send(msg);
+        TxOuterClass.TxRaw txRaw = this.getTxService().signTx(body, req.getKeyName(), req.getKeyPassword(), false);
     }
 
     /**
@@ -114,7 +112,41 @@ public final class ServiceClient {
      * @return {@link IKeyService} implementation
      */
     public IKeyService getKeyService() {
+
+        if (this.keyService != null) return this.keyService;
+
+        switch (this.options.getSignAlgo()) {
+            case SM2:
+                throw new NotImplementedException("SM2 not implemented");
+            default:
+                this.keyService = new DefaultKeyServiceImpl(this.keyDAO);
+        }
+
         return this.keyService;
+    }
+
+    /**
+     * Get auth service
+     *
+     * @return {@link IAuthService} implementation
+     */
+    public IAuthService getAuthService() {
+
+        if (this.authService != null) return this.authService;
+        this.authService = new AuthServiceImpl();
+        return this.authService;
+    }
+
+    /**
+     * Get tx service
+     *
+     * @return {@link ITxService} implementation
+     */
+    public ITxService getTxService() {
+
+        if (this.txService != null) return this.txService;
+        this.txService = new TxServiceImpl();
+        return this.txService;
     }
 
     /**

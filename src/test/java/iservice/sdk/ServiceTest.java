@@ -18,6 +18,6 @@ public class ServiceTest {
         options.setUri(new URI("localhost:9090"));
         ServiceClient client = ServiceClientFactory.getInstance().setOptions(options).getClient();
         QueryGrpc.QueryBlockingStub queryBlockingStub = QueryGrpc.newBlockingStub(GrpcChannel.getInstance().getChannel());
-        queryBlockingStub.
+//        queryBlockingStub.
     }
 }
