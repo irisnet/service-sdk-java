@@ -106,7 +106,9 @@ public class WebSocketClient {
     }
 
     public void close() {
-        if (!isReady()) return;
+        if (!isReady()) {
+            return;
+        }
         prepareClose();
         try {
             channel.close();
