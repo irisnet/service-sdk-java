@@ -3,11 +3,11 @@ package iservice.sdk.entity;
 /**
  * @author Yelong
  */
-public class RequestHeader {
+public class Header {
     private String version = "1.0";
     private Location location = new Location();
 
-    public RequestHeader() {
+    public Header() {
     }
 
     public String getVersion() {

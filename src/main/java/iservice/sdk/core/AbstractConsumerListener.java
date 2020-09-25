@@ -13,7 +13,7 @@ import iservice.sdk.util.DecodeUtil;
 import org.bouncycastle.util.encoders.Hex;
 
 /**
- * @author mitch
+ * @author Yelong
  * @date 2020/9/16
  */
 public abstract class AbstractConsumerListener<T> extends AbstractServiceListener<T> {
@@ -21,9 +21,6 @@ public abstract class AbstractConsumerListener<T> extends AbstractServiceListene
     @Override
     public final void callback(String json) {
         T res = getReqFromJson(json);
-        if (!checkValidate(res)) {
-            return;
-        }
         onResponse(res);
     }
 
@@ -33,7 +30,7 @@ public abstract class AbstractConsumerListener<T> extends AbstractServiceListene
     public abstract void onResponse(T res);
 
     @Override
-    protected T getReqFromJson(String json) {
+    T getReqFromJson(String json) {
         String requestId = DecodeUtil.decodeConsumerReq(json, getOptions());
         if (requestId == null) {
             return null;

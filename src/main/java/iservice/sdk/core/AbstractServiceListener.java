@@ -27,7 +27,7 @@ public abstract class AbstractServiceListener<T> {
      * @param json request json string
      * @return T
      */
-    protected abstract T getReqFromJson(String json);
+    abstract T getReqFromJson(String json);
 
     /**
      * return class of req
@@ -36,5 +36,4 @@ public abstract class AbstractServiceListener<T> {
      */
     protected abstract Class<T> getReqClass();
 
-    protected abstract boolean checkValidate(T res);
 }

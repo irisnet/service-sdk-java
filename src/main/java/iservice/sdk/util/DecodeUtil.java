@@ -6,7 +6,10 @@ import iservice.sdk.entity.options.ConsumerListenerOptions;
 import iservice.sdk.entity.options.ProviderListenerOptions;
 import iservice.sdk.enums.SubscribeQueryKeyEnum;
 import iservice.sdk.exception.ServiceSDKException;
-import iservice.sdk.message.*;
+import iservice.sdk.message.ServiceReqMessage;
+import iservice.sdk.message.ServiceResMessage;
+import iservice.sdk.message.ServiceResResult;
+import iservice.sdk.message.TxResultInfo;
 import iservice.sdk.message.result.*;
 
 import java.util.List;
@@ -22,9 +25,9 @@ public class DecodeUtil {
         json = formatJson(json);
         ServiceReqMessage x = JSON.parseObject(json, ServiceReqMessage.class);
         ServiceReqResult result = x.getResult();
-//        if (!checkMessageType(result.getQuery(), options) && result.getData().getType().equals()) {
-//            return null;
-//        }
+        if (!checkMessageType(result.getQuery(), options)) {
+            return null;
+        }
         WebSocketResponseResultData<WebSocketResponseResultDataBlockInfo> data = result.getData();
         ResultEndBlock resultEndBlock = data.getValue().getResult_end_block();
         List<ResultEvents> events = filterEventsByKey(options.getListenerType().getParamPrefix(), resultEndBlock.getEvents());

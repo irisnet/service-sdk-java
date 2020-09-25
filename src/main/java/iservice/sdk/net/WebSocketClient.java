@@ -14,6 +14,9 @@ import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
 import iservice.sdk.core.WebSocketClientObserver;
 import iservice.sdk.exception.WebSocketConnectException;
 
+import java.net.URI;
+import java.net.URISyntaxException;
+
 /**
  * @author : ori
  * @date : 2020/9/21 5:46 下午
@@ -87,7 +90,7 @@ public class WebSocketClient {
                 .channel(NioSocketChannel.class)
                 .handler(new ChannelInitializer<SocketChannel>() {
                     @Override
-                    protected void initChannel(SocketChannel ch) {
+                    protected void initChannel(SocketChannel ch) throws URISyntaxException {
                         ch.pipeline().addLast(
                                 // you can read binary info with this plugin
 //                                    new LoggingHandler(LogLevel.INFO),
@@ -96,7 +99,7 @@ public class WebSocketClient {
                                 // HttpFile length limiter
                                 new HttpObjectAggregator(1024 * 1024 * 10),
                                 // custom websocket message handler
-                                new WebSocketMessageHandler(options.getUri())
+                                new WebSocketMessageHandler(new URI(options.getUri().toString() + "/websocket"))
                         );
                     }
                 }).option(ChannelOption.SO_KEEPALIVE, true);

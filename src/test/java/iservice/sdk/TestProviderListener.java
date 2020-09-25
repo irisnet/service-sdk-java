@@ -4,9 +4,9 @@ import iservice.sdk.core.AbstractProviderListener;
 import iservice.sdk.entity.options.ProviderListenerOptions;
 
 /**
- * Created by mitch on 2020/9/16.
+ * @author Yelong
  */
-public class TestProviderListener extends AbstractProviderListener<TestServiceRequest, TestResponse> {
+public class TestProviderListener extends AbstractProviderListener<TestServiceRequest.TestInput, TestServiceResponse.TestOutput, TestServiceResponse> {
 
     @Override
     public ProviderListenerOptions getOptions() {
@@ -17,24 +17,19 @@ public class TestProviderListener extends AbstractProviderListener<TestServiceRe
     }
 
     @Override
-    protected Class<TestServiceRequest> getReqClass() {
-        return TestServiceRequest.class;
+    protected Class<TestServiceRequest.TestInput> getReqClass() {
+        return TestServiceRequest.TestInput.class;
     }
 
     @Override
-    protected boolean checkValidate(TestServiceRequest res) {
-        return res != null;
-    }
-
-    @Override
-    public TestResponse onRequest(TestServiceRequest req) {
+    public TestServiceResponse onRequest(TestServiceRequest.TestInput req) {
         System.out.println("----------------- Provider -----------------");
         System.out.println("Got request");
         System.out.println(req.toString());
-        TestResponse res = new TestResponse();
+        TestServiceResponse.TestOutput output = new TestServiceResponse().new TestOutput("TestType", "TestData");
         System.out.println("Sending response");
+        TestServiceResponse res = new TestServiceResponse();
+        res.setBody(output);
         return res;
     }
-
-
 }

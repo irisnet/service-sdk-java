@@ -7,8 +7,8 @@ import cosmos.tx.v1beta1.TxOuterClass;
 import irismod.service.QueryGrpc;
 import irismod.service.Service;
 import iservice.sdk.entity.BaseServiceRequest;
-import iservice.sdk.entity.RequestHeader;
 import iservice.sdk.entity.ServiceClientOptions;
+import iservice.sdk.entity.ServiceMessage;
 import iservice.sdk.entity.WrappedRequest;
 import iservice.sdk.exception.WebSocketConnectException;
 import iservice.sdk.message.WrappedMessage;
@@ -61,6 +61,10 @@ public final class ServiceClient {
         serviceBlockingStub = QueryGrpc.newBlockingStub(GrpcChannel.getInstance().getChannel());
     }
 
+    public ServiceClientOptions getOptions() {
+        return options;
+    }
+
     public void start() {
         startWebSocketClient();
         subscribeAllListener();
@@ -96,7 +100,7 @@ public final class ServiceClient {
         if (req == null) throw new IllegalArgumentException("Service request is required");
         req.validateParams();
 
-        String inputJson = JSON.toJSONString(new Request<>(req.getRequestHeader(), req.getRequestBody()));
+        String inputJson = JSON.toJSONString(new ServiceMessage<>(req.getHeader(), req.getBody()));
 
         Service.MsgCallService.Builder msgBuilder = Service.MsgCallService.newBuilder();
         req.getProviders().forEach(address -> {
@@ -223,29 +227,4 @@ public final class ServiceClient {
         return webSocketClient;
     }
 
-    private class Request<T> {
-        private RequestHeader header;
-        private T body;
-
-        public Request(RequestHeader header, T body) {
-            this.header = header;
-            this.body = body;
-        }
-
-        public RequestHeader getHeader() {
-            return header;
-        }
-
-        public void setHeader(RequestHeader header) {
-            this.header = header;
-        }
-
-        public T getBody() {
-            return body;
-        }
-
-        public void setBody(T body) {
-            this.body = body;
-        }
-    }
 }

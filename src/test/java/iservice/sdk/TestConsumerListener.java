@@ -2,12 +2,11 @@ package iservice.sdk;
 
 import iservice.sdk.core.AbstractConsumerListener;
 import iservice.sdk.entity.options.ConsumerListenerOptions;
-import iservice.sdk.message.ServiceReqMessage;
 
 /**
- * Created by mitch on 2020/9/16.
+ * @author Yelong
  */
-public class TestConsumerListener extends AbstractConsumerListener<ServiceReqMessage> {
+public class TestConsumerListener extends AbstractConsumerListener<TestServiceResponse.TestOutput> {
 
     @Override
     public ConsumerListenerOptions getOptions() {
@@ -19,20 +18,16 @@ public class TestConsumerListener extends AbstractConsumerListener<ServiceReqMes
     }
 
     @Override
-    protected Class<ServiceReqMessage> getReqClass() {
-        return ServiceReqMessage.class;
+    protected Class<TestServiceResponse.TestOutput> getReqClass() {
+        return TestServiceResponse.TestOutput.class;
     }
 
     @Override
-    public void onResponse(ServiceReqMessage res) {
+    public void onResponse(TestServiceResponse.TestOutput res) {
 
         System.out.println("----------------- Consumer start -----------------");
         System.out.println("do response");
         System.out.println("----------------- Consumer end -----------------");
     }
 
-    @Override
-    protected boolean checkValidate(ServiceReqMessage res) {
-        return res!= null;
-    }
 }
