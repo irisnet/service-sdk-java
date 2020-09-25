@@ -34,13 +34,15 @@ public class SubscribeParam extends BaseParam {
      * @return
      */
     public SubscribeParam generateQueryString() {
-        StringBuffer buffer = new StringBuffer();
+        StringBuilder buffer = new StringBuilder();
         for (int i = 0; i < conditions.size(); i++) {
             if (i > 0) {
                 buffer.append(" AND ");
             }
-            buffer.append(listenerType.getParamPrefixString())
-                    .append(conditions.get(i).getConditionString());
+            if (conditions.get(i).getValue() != null){
+                buffer.append(listenerType.getParamPrefixString())
+                        .append(conditions.get(i).getConditionString());
+            }
         }
         this.query = buffer.toString();
         return this;
