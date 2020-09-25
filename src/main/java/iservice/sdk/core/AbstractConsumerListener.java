@@ -57,7 +57,7 @@ public abstract class AbstractConsumerListener<T> extends AbstractServiceListene
         );
         Service.Response response = responseResponse.getResponse();
         BusinessResponseResult responseResult = JSON.parseObject(response.getResult(), BusinessResponseResult.class);
-        if (responseResult.isSuccess()) {
+        if (!responseResult.isSuccess()) {
             throw new ServiceException(responseResult.getMessage());
         }
         return response.getOutput();
