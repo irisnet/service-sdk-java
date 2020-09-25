@@ -2,41 +2,35 @@ package iservice.sdk;
 
 import com.alibaba.fastjson.JSON;
 import iservice.sdk.core.AbstractProviderListener;
-import iservice.sdk.entity.ServiceListenerOptions;
+import iservice.sdk.entity.options.ProviderListenerOptions;
 
 /**
- * Created by mitch on 2020/9/16.
+ * @author Yelong
  */
-public class TestProviderListener extends AbstractProviderListener<TestServiceRequest, TestResponse> {
+public class TestProviderListener extends AbstractProviderListener<TestServiceRequest.TestInput, TestServiceResponse.TestOutput, TestServiceResponse> {
 
     @Override
-    public ServiceListenerOptions getOptions() {
-
-        ServiceListenerOptions options = new ServiceListenerOptions();
+    public ProviderListenerOptions getOptions() {
+        ProviderListenerOptions options = new ProviderListenerOptions();
+        options.setServiceName("test");
+        options.setAddress("iaa1ewed0ds2syhv4qn6fjhx2avma0j2sp6d594tht");
         return options;
     }
 
     @Override
-    protected TestServiceRequest getReqFromJson(String json) {
-        return JSON.parseObject(json, TestServiceRequest.class);
+    protected Class<TestServiceRequest.TestInput> getReqClass() {
+        return TestServiceRequest.TestInput.class;
     }
 
     @Override
-    protected boolean checkValidate(TestServiceRequest res) {
-        return true;
-    }
-
-    @Override
-    public TestResponse onRequest(TestServiceRequest req) {
+    public TestServiceResponse onRequest(TestServiceRequest.TestInput req) {
         System.out.println("----------------- Provider -----------------");
         System.out.println("Got request");
-        System.out.println(req.toString());
-        TestResponse res = new TestResponse();
-        res.setS1("res1");
-        res.setS2("res2");
+        System.out.println(JSON.toJSONString(req));
+        TestServiceResponse.TestOutput output = new TestServiceResponse().new TestOutput("TestType", "TestData");
         System.out.println("Sending response");
+        TestServiceResponse res = new TestServiceResponse();
+        res.setBody(output);
         return res;
     }
-
-
 }

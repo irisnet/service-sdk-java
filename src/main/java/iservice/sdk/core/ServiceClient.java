@@ -8,8 +8,11 @@ import irismod.service.QueryGrpc;
 import irismod.service.Service;
 import iservice.sdk.entity.BaseServiceRequest;
 import iservice.sdk.entity.ServiceClientOptions;
+import iservice.sdk.entity.ServiceMessage;
 import iservice.sdk.entity.WrappedRequest;
 import iservice.sdk.exception.WebSocketConnectException;
+import iservice.sdk.message.WrappedMessage;
+import iservice.sdk.message.params.SubscribeParam;
 import iservice.sdk.module.IAuthService;
 import iservice.sdk.module.IKeyDAO;
 import iservice.sdk.module.IKeyService;
@@ -22,7 +25,10 @@ import iservice.sdk.net.HttpClient;
 import iservice.sdk.net.WebSocketClient;
 import iservice.sdk.net.WebSocketClientOptions;
 import iservice.sdk.util.Bech32Utils;
+import iservice.sdk.util.SubscribeUtil;
 import org.apache.commons.lang3.NotImplementedException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.*;
@@ -31,6 +37,8 @@ import java.util.*;
  * @author Yelong
  */
 public final class ServiceClient {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(ServiceClient.class);
 
     private ServiceClientOptions options;
 
@@ -49,27 +57,36 @@ public final class ServiceClient {
         this.options = options;
         this.LISTENERS.addAll(listeners);
         this.keyDAO = keyDAO;
-        GrpcChannel.getInstance().setURL(options.getGrpcURI().toString());
+        GrpcChannel.getInstance().setURL(options.getGrpcURI().getHost().concat(":").concat(options.getGrpcURI().getPort() + ""));
         serviceBlockingStub = QueryGrpc.newBlockingStub(GrpcChannel.getInstance().getChannel());
+    }
+
+    public ServiceClientOptions getOptions() {
+        return options;
+    }
+
+    public void start() {
+        startWebSocketClient();
+        subscribeAllListener();
     }
 
     /**
      * Start WebSocket Client
      */
     public void startWebSocketClient() {
-        if (options.getGrpcURI() == null) {
+        if (options.getRpcURI() == null) {
             throw new WebSocketConnectException("WebSocket uri is undefined");
         }
         if (webSocketClient == null) {
             synchronized (this) {
                 if (webSocketClient == null) {
                     WebSocketClientOptions webSocketClientOptions = new WebSocketClientOptions();
-                    webSocketClientOptions.setUri(options.getGrpcURI());
+                    webSocketClientOptions.setUri(options.getRpcURI());
                     webSocketClient = new WebSocketClient(webSocketClientOptions);
                 }
             }
         }
-        webSocketClient.start();
+        new Thread(() -> webSocketClient.start()).start();
     }
 
     /**
@@ -80,8 +97,12 @@ public final class ServiceClient {
      */
     public <T> void callService(BaseServiceRequest<T> req) throws IOException {
 
+        if (req == null) {
+            throw new IllegalArgumentException("Service request is required");
+        }
+        req.validateParams();
 
-        String inputJson = JSON.toJSONString(req.getRequest());
+        String inputJson = JSON.toJSONString(new ServiceMessage<>(req.getHeader(), req.getBody()));
 
         Service.MsgCallService.Builder msgBuilder = Service.MsgCallService.newBuilder();
         req.getProviders().forEach(address -> {
@@ -113,6 +134,7 @@ public final class ServiceClient {
         String res = HttpClient.getInstance().post(options.getRpcURI().toString(), JSON.toJSONString(msg));
         // TODO error handler
         System.out.println(res);
+        
     }
 
     /**
@@ -122,7 +144,9 @@ public final class ServiceClient {
      */
     public IKeyService getKeyService() {
 
-        if (this.keyService != null) return this.keyService;
+        if (this.keyService != null) {
+            return this.keyService;
+        }
 
         switch (this.options.getSignAlgo()) {
             case SM2:
@@ -140,8 +164,9 @@ public final class ServiceClient {
      * @return {@link IAuthService} implementation
      */
     public IAuthService getAuthService() {
-
-        if (this.authService != null) return this.authService;
+        if (this.authService != null) {
+            return this.authService;
+        }
         this.authService = new AuthServiceImpl();
         return this.authService;
     }
@@ -152,20 +177,11 @@ public final class ServiceClient {
      * @return {@link ITxService} implementation
      */
     public ITxService getTxService() {
-
-        if (this.txService != null) return this.txService;
+        if (this.txService != null) {
+            return this.txService;
+        }
         this.txService = new TxServiceImpl();
         return this.txService;
-    }
-
-    /**
-     * Send msg to the blockchain
-     *
-     * @param msg Msg to send
-     * @param <T> Msg type
-     */
-    <T> void sendMsg(T msg) {
-        webSocketClient.send(msg);
     }
 
     /**
@@ -177,5 +193,22 @@ public final class ServiceClient {
         this.LISTENERS.forEach(listener -> {
             listener.callback(msg);
         });
+    }
+
+    void subscribeAllListener() {
+        try {
+            // wait 5s for websocket client start...
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        this.LISTENERS.forEach(this::subscribe);
+    }
+
+    public void subscribe(AbstractServiceListener listener) {
+        WrappedMessage<SubscribeParam> subscribeMessage = SubscribeUtil.buildSubscribeMessage(listener);
+        String s = JSON.toJSONString(subscribeMessage);
+        System.out.println("subscribe: "+ s);
+        webSocketClient.send(s);
     }
 }

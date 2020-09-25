@@ -3,6 +3,7 @@ package iservice.sdk;
 import com.google.common.collect.Lists;
 import cosmos.base.v1beta1.CoinOuterClass;
 import iservice.sdk.entity.BaseServiceRequest;
+import iservice.sdk.entity.Header;
 
 import java.util.List;
 
@@ -16,7 +17,7 @@ public class TestServiceRequest extends BaseServiceRequest<TestServiceRequest.Te
 
     @Override
     public String getKeyName() {
-        return "test";
+        return "consumer";
     }
 
     @Override
@@ -41,7 +42,12 @@ public class TestServiceRequest extends BaseServiceRequest<TestServiceRequest.Te
     }
 
     @Override
-    public TestInput getRequest() {
+    public Header getHeader() {
+        return new Header();
+    }
+
+    @Override
+    public TestInput getBody() {
         return new TestInput("1", "test", "data");
     }
 

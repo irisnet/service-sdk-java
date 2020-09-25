@@ -41,7 +41,6 @@ public class WebSocketClientObserver implements Observer {
     }
 
     private void doOnMessage(String jsonData) {
-        System.out.println(jsonData);
         client.doNotifyAllListener(jsonData);
     }
 

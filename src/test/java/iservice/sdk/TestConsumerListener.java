@@ -2,35 +2,31 @@ package iservice.sdk;
 
 import com.alibaba.fastjson.JSON;
 import iservice.sdk.core.AbstractConsumerListener;
-import iservice.sdk.entity.ServiceListenerOptions;
+import iservice.sdk.entity.options.ConsumerListenerOptions;
 
 /**
- * Created by mitch on 2020/9/16.
+ * @author Yelong
  */
-public class TestConsumerListener extends AbstractConsumerListener<TestResponse> {
+public class TestConsumerListener extends AbstractConsumerListener<TestServiceResponse.TestOutput> {
 
     @Override
-    public ServiceListenerOptions getOptions() {
-
-        ServiceListenerOptions options = new ServiceListenerOptions();
+    public ConsumerListenerOptions getOptions() {
+        ConsumerListenerOptions options = new ConsumerListenerOptions();
+        options.setAddress("iaa176l662tt6e3uqxu57hdxpupk972gw0y8j4aa0a");
+        options.setModule("service");
+        options.setSender("iaa1ewed0ds2syhv4qn6fjhx2avma0j2sp6d594tht");
         return options;
     }
 
     @Override
-    protected TestResponse getReqFromJson(String json) {
-        return JSON.parseObject(json, TestResponse.class);
+    protected Class<TestServiceResponse.TestOutput> getReqClass() {
+        return TestServiceResponse.TestOutput.class;
     }
 
     @Override
-    public void onResponse(TestResponse res) {
-
+    public void onResponse(TestServiceResponse.TestOutput res) {
         System.out.println("----------------- Consumer -----------------");
-        System.out.println("Got response");
-        System.out.println(res.toString());
+        System.out.println("Got response: "+ JSON.toJSONString(res));
     }
 
-    @Override
-    protected boolean checkValidate(TestResponse res) {
-        return true;
-    }
 }

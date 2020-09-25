@@ -14,24 +14,24 @@ import java.util.Map;
  */
 public class DefaultKeyDAOImpl implements IKeyDAO {
 
-    private Map<String, Key> keyMap;
+    private static Map<String, Key> KEY_MAP;
 
     public DefaultKeyDAOImpl() {
-        this.keyMap = new HashMap<>();
+        KEY_MAP = new HashMap<>();
     }
 
     @Override
     public void write(String name, Key key) throws ServiceSDKException {
-        this.keyMap.put(name, key);
+        KEY_MAP.put(name, key);
     }
 
     @Override
     public Key read(String name) {
-        return this.keyMap.get(name);
+        return KEY_MAP.get(name);
     }
 
     @Override
     public void delete(String name) throws ServiceSDKException {
-        this.keyMap.remove(name);
+        KEY_MAP.remove(name);
     }
 }

@@ -26,14 +26,13 @@ public class WebSocketMessageHandler extends WebSocketClientProtocolHandler {
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-        System.out.println("Message arrived!");
             if (msg instanceof TextWebSocketFrame) {
                 String content = ((TextWebSocketFrame) msg).text();
                 if (buffer.length()>0) {
                     throw new WebSocketConnectException("TextWebSocketFrame crash!");
                 }
                 buffer.append(content);
-                if (((WebSocketFrame) msg).isFinalFragment()) {
+                if (((TextWebSocketFrame) msg).isFinalFragment()) {
                     doMessageComplete();
                 }
             } else if (msg instanceof ContinuationWebSocketFrame) {
@@ -43,12 +42,10 @@ public class WebSocketMessageHandler extends WebSocketClientProtocolHandler {
                 } else {
                     System.err.println("Continuation frame received without initial frame.");
                 }
-                if (((WebSocketFrame) msg).isFinalFragment()) {
+                if (((ContinuationWebSocketFrame) msg).isFinalFragment()) {
                     doMessageComplete();
                 }
             }
-
-
         super.channelRead(ctx, msg);
     }
 
@@ -62,7 +59,6 @@ public class WebSocketMessageHandler extends WebSocketClientProtocolHandler {
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
-        System.out.println("connect is open!");
         EVENT_OBSERVABLE.setChanged();
         EVENT_OBSERVABLE.notifyObservers(new ConnectEvent(ConnectEventType.ON_OPEN));
         super.channelActive(ctx);
@@ -70,7 +66,6 @@ public class WebSocketMessageHandler extends WebSocketClientProtocolHandler {
 
     @Override
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
-        System.out.println("connect is closed!");
         EVENT_OBSERVABLE.setChanged();
         EVENT_OBSERVABLE.notifyObservers(new ConnectEvent(ConnectEventType.ON_CLOSE));
         super.channelInactive(ctx);
@@ -78,7 +73,7 @@ public class WebSocketMessageHandler extends WebSocketClientProtocolHandler {
 
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
-        System.out.println("channel exception");
+        cause.printStackTrace();
         EVENT_OBSERVABLE.setChanged();
         EVENT_OBSERVABLE.notifyObservers(new ConnectEvent(ConnectEventType.ON_ERROR));
         super.exceptionCaught(ctx, cause);

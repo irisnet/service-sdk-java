@@ -12,7 +12,7 @@ public abstract class AbstractServiceListener<T> {
      *
      * @return {@link ServiceListenerOptions}
      */
-    abstract ServiceListenerOptions getOptions();
+    public abstract ServiceListenerOptions getOptions();
 
     /**
      * Business method to implement.
@@ -27,7 +27,13 @@ public abstract class AbstractServiceListener<T> {
      * @param json request json string
      * @return T
      */
-    protected abstract T getReqFromJson(String json);
+    abstract T getReqFromJson(String json);
 
-    protected abstract boolean checkValidate(T res);
+    /**
+     * return class of req
+     *
+     * @return
+     */
+    protected abstract Class<T> getReqClass();
+
 }
