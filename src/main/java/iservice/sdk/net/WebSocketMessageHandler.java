@@ -7,6 +7,8 @@ import iservice.sdk.exception.WebSocketConnectException;
 import iservice.sdk.net.observer.ConnectEventObservable;
 import iservice.sdk.net.observer.events.ConnectEvent;
 import iservice.sdk.net.observer.events.ConnectEventType;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.net.URI;
 
@@ -15,6 +17,8 @@ import java.net.URI;
  * @date : 2020/9/20 9:16 下午
  */
 public class WebSocketMessageHandler extends WebSocketClientProtocolHandler {
+
+    private final Logger LOGGER = LoggerFactory.getLogger(WebSocketMessageHandler.class);
 
     public final static ConnectEventObservable EVENT_OBSERVABLE = new ConnectEventObservable();
 
@@ -59,23 +63,22 @@ public class WebSocketMessageHandler extends WebSocketClientProtocolHandler {
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
+        LOGGER.debug("Channel is active.");
         EVENT_OBSERVABLE.setChanged();
         EVENT_OBSERVABLE.notifyObservers(new ConnectEvent(ConnectEventType.ON_OPEN));
         super.channelActive(ctx);
     }
 
     @Override
-    public void channelInactive(ChannelHandlerContext ctx) throws Exception {
+    public void channelInactive(ChannelHandlerContext ctx) {
         EVENT_OBSERVABLE.setChanged();
         EVENT_OBSERVABLE.notifyObservers(new ConnectEvent(ConnectEventType.ON_CLOSE));
-        super.channelInactive(ctx);
     }
 
     @Override
-    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
+    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
         cause.printStackTrace();
         EVENT_OBSERVABLE.setChanged();
         EVENT_OBSERVABLE.notifyObservers(new ConnectEvent(ConnectEventType.ON_ERROR));
-        super.exceptionCaught(ctx, cause);
     }
 }
