@@ -1,4 +1,4 @@
-package iservice.sdk.message.result;
+package iservice.sdk.message;
 
 import java.util.List;
 import java.util.Map;

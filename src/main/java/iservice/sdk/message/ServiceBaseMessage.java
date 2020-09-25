@@ -1,7 +1,5 @@
 package iservice.sdk.message;
 
-import iservice.sdk.message.result.WebSocketErrorMessage;
-
 /**
  * @author : ori
  * @date : 2020/9/24 4:45 下午

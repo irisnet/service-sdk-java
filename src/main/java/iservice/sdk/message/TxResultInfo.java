@@ -1,7 +1,5 @@
 package iservice.sdk.message;
 
-import iservice.sdk.message.result.ResultEvents;
-
 import java.util.List;
 
 /**

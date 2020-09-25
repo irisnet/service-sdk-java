@@ -1,4 +1,4 @@
-package iservice.sdk.message.result;
+package iservice.sdk.message;
 
 /**
  * @author : ori
@@ -6,8 +6,8 @@ package iservice.sdk.message.result;
  */
 public class WebSocketResponseResultData<T> {
 
-    public static final String RES_TYPE = "tendermint/event/NewBlock";
-    public static final String REQ_TYPE = "tendermint/event/Tx";
+    public static final String REQ_TYPE = "tendermint/event/NewBlock";
+    public static final String RES_TYPE = "tendermint/event/Tx";
 
     private String type;
     private T value;

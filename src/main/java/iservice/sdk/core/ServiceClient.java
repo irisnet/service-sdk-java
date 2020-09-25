@@ -97,7 +97,9 @@ public final class ServiceClient {
      */
     public <T> void callService(BaseServiceRequest<T> req) throws IOException {
 
-        if (req == null) throw new IllegalArgumentException("Service request is required");
+        if (req == null) {
+            throw new IllegalArgumentException("Service request is required");
+        }
         req.validateParams();
 
         String inputJson = JSON.toJSONString(new ServiceMessage<>(req.getHeader(), req.getBody()));

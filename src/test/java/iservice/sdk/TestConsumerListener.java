@@ -1,5 +1,6 @@
 package iservice.sdk;
 
+import com.alibaba.fastjson.JSON;
 import iservice.sdk.core.AbstractConsumerListener;
 import iservice.sdk.entity.options.ConsumerListenerOptions;
 
@@ -24,9 +25,8 @@ public class TestConsumerListener extends AbstractConsumerListener<TestServiceRe
 
     @Override
     public void onResponse(TestServiceResponse.TestOutput res) {
-
         System.out.println("----------------- Consumer start -----------------");
-        System.out.println("do response");
+        System.out.println("do response: "+ JSON.toJSONString(res));
         System.out.println("----------------- Consumer end -----------------");
     }
 

@@ -21,6 +21,9 @@ public abstract class AbstractConsumerListener<T> extends AbstractServiceListene
     @Override
     public final void callback(String json) {
         T res = getReqFromJson(json);
+        if (res == null) {
+            return;
+        }
         onResponse(res);
     }
 

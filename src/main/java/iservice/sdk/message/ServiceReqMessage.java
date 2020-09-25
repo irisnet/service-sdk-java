@@ -1,7 +1,5 @@
 package iservice.sdk.message;
 
-import iservice.sdk.message.result.ServiceReqResult;
-
 /**
  * @author : ori
  * @date : 2020/9/23 3:00 下午

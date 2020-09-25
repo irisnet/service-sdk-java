@@ -6,11 +6,7 @@ import iservice.sdk.entity.options.ConsumerListenerOptions;
 import iservice.sdk.entity.options.ProviderListenerOptions;
 import iservice.sdk.enums.SubscribeQueryKeyEnum;
 import iservice.sdk.exception.ServiceSDKException;
-import iservice.sdk.message.ServiceReqMessage;
-import iservice.sdk.message.ServiceResMessage;
-import iservice.sdk.message.ServiceResResult;
-import iservice.sdk.message.TxResultInfo;
-import iservice.sdk.message.result.*;
+import iservice.sdk.message.*;
 
 import java.util.List;
 import java.util.Objects;
@@ -25,7 +21,7 @@ public class DecodeUtil {
         json = formatJson(json);
         ServiceReqMessage x = JSON.parseObject(json, ServiceReqMessage.class);
         ServiceReqResult result = x.getResult();
-        if (!checkMessageType(result.getQuery(), options)) {
+        if (!checkMessageType(result, options, WebSocketResponseResultData.REQ_TYPE)) {
             return null;
         }
         WebSocketResponseResultData<WebSocketResponseResultDataBlockInfo> data = result.getData();
@@ -43,15 +39,11 @@ public class DecodeUtil {
         return JSON.parseArray(requestsJson, String.class).get(0);
     }
 
-    private static boolean checkMessageType(String query, ServiceListenerOptions options) {
-        return Objects.equals(query,SubscribeUtil.buildSubscribeParam(options).getQuery());
-    }
-
     public static String decodeConsumerReq(String json, ConsumerListenerOptions options) {
         json = formatJson(json);
         ServiceResMessage message = JSON.parseObject(json, ServiceResMessage.class);
         ServiceResResult messageResult = message.getResult();
-        if (!checkMessageType(messageResult.getQuery(), options)) {
+        if (!checkMessageType(messageResult, options, WebSocketResponseResultData.RES_TYPE)) {
             return null;
         }
         TxResultInfo result = messageResult.getData().getValue().getTxResult().getResult();
@@ -67,6 +59,10 @@ public class DecodeUtil {
         }
         return targetEvent.getAttributesValueByKey("request_id");
 
+    }
+
+    private static <T> boolean checkMessageType(BaseServiceResult<T> messageResult, ServiceListenerOptions options, String requireType) {
+        return Objects.equals(messageResult.getQuery(), SubscribeUtil.buildSubscribeParam(options).getQuery()) && messageResult.getData() != null && Objects.equals(messageResult.getData().getType(), requireType);
     }
 
     public static String formatJson(String json) {
