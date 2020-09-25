@@ -73,6 +73,7 @@ public class WebSocketMessageHandler extends WebSocketClientProtocolHandler {
 
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
+        cause.printStackTrace();
         EVENT_OBSERVABLE.setChanged();
         EVENT_OBSERVABLE.notifyObservers(new ConnectEvent(ConnectEventType.ON_ERROR));
         super.exceptionCaught(ctx, cause);

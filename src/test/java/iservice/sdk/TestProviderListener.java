@@ -1,5 +1,6 @@
 package iservice.sdk;
 
+import com.alibaba.fastjson.JSON;
 import iservice.sdk.core.AbstractProviderListener;
 import iservice.sdk.entity.options.ProviderListenerOptions;
 
@@ -25,7 +26,7 @@ public class TestProviderListener extends AbstractProviderListener<TestServiceRe
     public TestServiceResponse onRequest(TestServiceRequest.TestInput req) {
         System.out.println("----------------- Provider -----------------");
         System.out.println("Got request");
-        System.out.println(req.toString());
+        System.out.println(JSON.toJSONString(req));
         TestServiceResponse.TestOutput output = new TestServiceResponse().new TestOutput("TestType", "TestData");
         System.out.println("Sending response");
         TestServiceResponse res = new TestServiceResponse();

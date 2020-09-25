@@ -1,6 +1,7 @@
 package iservice.sdk.core;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.TypeReference;
 import com.google.protobuf.Any;
 import com.google.protobuf.ByteString;
 import cosmos.tx.v1beta1.TxOuterClass;
@@ -39,7 +40,8 @@ public abstract class AbstractProviderListener<T, B, R extends BaseServiceRespon
         }
         // batch query with requests
         Service.Request sr = getRequestInputByRequest(requests);
-        T req = JSON.parseObject(sr.getInput(), getReqClass());
+        ServiceMessage<T> message = JSON.parseObject(sr.getInput(), new TypeReference<ServiceMessage<T>>() {}.getType());
+        T req = JSON.parseObject(JSON.toJSONString(message.getBody()),getReqClass());
         R res = onRequest(req);
         try {
             sendRes(res, sr);

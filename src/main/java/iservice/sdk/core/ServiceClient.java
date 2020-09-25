@@ -220,6 +220,7 @@ public final class ServiceClient {
     public void subscribe(AbstractServiceListener listener) {
         WrappedMessage<SubscribeParam> subscribeMessage = SubscribeUtil.buildSubscribeMessage(listener);
         String s = JSON.toJSONString(subscribeMessage);
+        System.out.println("subscribe: "+ s);
         webSocketClient.send(s);
     }
 }
