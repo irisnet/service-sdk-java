@@ -222,9 +222,4 @@ public final class ServiceClient {
         String s = JSON.toJSONString(subscribeMessage);
         webSocketClient.send(s);
     }
-
-    public WebSocketClient getWebSocketClient() {
-        return webSocketClient;
-    }
-
 }
