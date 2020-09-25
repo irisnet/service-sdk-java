@@ -108,7 +108,6 @@ public class WebSocketClient {
     public void close() {
         if (!isReady()) return;
         prepareClose();
-        System.out.println("WebSocket channel closed");
         try {
             channel.close();
         } finally {
