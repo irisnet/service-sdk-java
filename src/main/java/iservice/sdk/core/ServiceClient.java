@@ -185,18 +185,6 @@ public final class ServiceClient {
     }
 
     /**
-     * Send msg to the blockchain
-     *
-     * @param msg Msg to send
-     * @param <T> Msg type
-     */
-    <T> void sendMsg(T msg) {
-        // todo 业务对象的转换
-//        String s = WebsocketMessageUtils.wrapBroadcastMessageToString(msg);
-//        webSocketClient.send();
-    }
-
-    /**
      * Listening from blockchain and notify listeners
      *
      * @param msg Msg from blockchain
