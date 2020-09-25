@@ -25,9 +25,8 @@ public class TestConsumerListener extends AbstractConsumerListener<TestServiceRe
 
     @Override
     public void onResponse(TestServiceResponse.TestOutput res) {
-        System.out.println("----------------- Consumer start -----------------");
-        System.out.println("do response: "+ JSON.toJSONString(res));
-        System.out.println("----------------- Consumer end -----------------");
+        System.out.println("----------------- Consumer -----------------");
+        System.out.println("Got response: "+ JSON.toJSONString(res));
     }
 
 }
