@@ -37,10 +37,10 @@ public class SubscribeParam extends BaseParam {
     public SubscribeParam generateQueryString() {
         StringBuilder buffer = new StringBuilder();
         for (int i = 0; i < conditions.size(); i++) {
-            if (i > 0) {
-                buffer.append(" AND ");
-            }
-            if (StringUtils.isNotEmpty(conditions.get(i).getValue())){
+            if (StringUtils.isNotEmpty(conditions.get(i).getValue())) {
+                if (i > 0) {
+                    buffer.append(" AND ");
+                }
                 buffer.append(listenerType.getParamPrefixString())
                         .append(conditions.get(i).getConditionString());
             }
