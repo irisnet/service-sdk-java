@@ -42,7 +42,6 @@ public class DecodeUtilTest {
         ConsumerListenerOptions options = new ConsumerListenerOptions();
         options.setAddress("iaa1ve5p4xas7ptmp367mkvlka86zszpt93y8h78yd");
         options.setSender("iaa19edqjunszsu49uw04f4y6sfknw553cfsuzsjc5");
-        options.setModule("service");
         for (String s : stringList) {
             String res = DecodeUtil.decodeConsumerReq(s, options);
             System.out.println(res);

@@ -8,8 +8,9 @@ import iservice.sdk.enums.ListenerType;
  */
 public class ConsumerListenerOptions extends ServiceListenerOptions {
     private final ListenerType LISTENER_TYPE = ListenerType.CONSUMER;
+    private final String MODULE = "service";
     private String sender;
-    private String module;
+    private String serviceName;
 
     public ConsumerListenerOptions() {
     }
@@ -23,11 +24,15 @@ public class ConsumerListenerOptions extends ServiceListenerOptions {
     }
 
     public String getModule() {
-        return module;
+        return MODULE;
     }
 
-    public void setModule(String module) {
-        this.module = module;
+    public String getServiceName() {
+        return serviceName;
+    }
+
+    public void setServiceName(String serviceName) {
+        this.serviceName = serviceName;
     }
 
     @Override
@@ -39,7 +44,7 @@ public class ConsumerListenerOptions extends ServiceListenerOptions {
     public String toString() {
         return "ConsumerListenerOptions{" +
                 "sender='" + sender + '\'' +
-                ", module='" + module + '\'' +
+                ", module='" + MODULE + '\'' +
                 '}';
     }
 }

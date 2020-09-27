@@ -38,7 +38,7 @@ public class TestServiceRequest extends BaseServiceRequest<TestServiceRequest.Te
 
     @Override
     public List<CoinOuterClass.Coin> getServiceFeeCap() {
-        return Lists.newArrayList(CoinOuterClass.Coin.newBuilder().setAmount("1").setDenom("stake").build());
+        return Lists.newArrayList(CoinOuterClass.Coin.newBuilder().setAmount("10").setDenom("point").build());
     }
 
     @Override

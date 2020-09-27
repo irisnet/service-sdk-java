@@ -40,7 +40,8 @@ public class SubscribeUtil {
                 ConsumerListenerOptions consumerListenerOptions = (ConsumerListenerOptions) options;
                 params.addCondition(new SubscribeCondition(SubscribeQueryKeyEnum.CONSUMER).eq(consumerListenerOptions.getAddress()))
                         .addCondition(new SubscribeCondition(SubscribeQueryKeyEnum.SENDER).eq(consumerListenerOptions.getSender()))
-                        .addCondition(new SubscribeCondition(SubscribeQueryKeyEnum.MODULE).eq(consumerListenerOptions.getModule()));
+                        .addCondition(new SubscribeCondition(SubscribeQueryKeyEnum.MODULE).eq(consumerListenerOptions.getModule()))
+                        .addCondition(new SubscribeCondition(SubscribeQueryKeyEnum.SERVICE_NAME).eq(consumerListenerOptions.getServiceName()));
                 break;
             default:
         }
