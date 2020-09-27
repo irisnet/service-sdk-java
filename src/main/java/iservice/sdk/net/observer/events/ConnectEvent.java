@@ -10,6 +10,8 @@ public class ConnectEvent {
 
     private String data;
 
+    private Throwable cause;
+
     /**
      * Constructs a prototypical Event.
      *
@@ -24,11 +26,33 @@ public class ConnectEvent {
         this.data = data;
     }
 
+    public ConnectEvent(ConnectEventType eventType, Throwable cause) {
+        this.eventType = eventType;
+        this.cause = cause;
+    }
+
     public ConnectEventType getEventType() {
         return eventType;
     }
 
     public String getData() {
         return data;
+    }
+
+    public Throwable getCause() {
+        return cause;
+    }
+
+    public void setCause(Throwable cause) {
+        this.cause = cause;
+    }
+
+    @Override
+    public String toString() {
+        return "ConnectEvent{" +
+                "eventType=" + eventType +
+                ", data='" + data + '\'' +
+                ", cause=" + cause +
+                '}';
     }
 }

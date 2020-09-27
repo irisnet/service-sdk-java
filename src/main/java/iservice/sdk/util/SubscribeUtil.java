@@ -1,7 +1,7 @@
 package iservice.sdk.util;
 
 import iservice.sdk.core.AbstractServiceListener;
-import iservice.sdk.entity.ServiceListenerOptions;
+import iservice.sdk.entity.options.ServiceListenerOptions;
 import iservice.sdk.entity.options.ConsumerListenerOptions;
 import iservice.sdk.entity.options.ProviderListenerOptions;
 import iservice.sdk.enums.RpcMethod;

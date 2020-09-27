@@ -9,6 +9,8 @@ import java.net.URI;
 public class WebSocketClientOptions {
     private URI uri;
 
+    private long startTimeOut = 15 * 1000;
+
     private boolean blockStart;
 
     public URI getUri() {
@@ -41,5 +43,13 @@ public class WebSocketClientOptions {
                 "uri=" + uri +
                 ", blockStart=" + blockStart +
                 '}';
+    }
+
+    public long getStartTimeOut() {
+        return startTimeOut;
+    }
+
+    public void setStartTimeOut(long startTimeOut) {
+        this.startTimeOut = startTimeOut;
     }
 }

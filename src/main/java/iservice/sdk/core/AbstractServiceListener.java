@@ -1,6 +1,6 @@
 package iservice.sdk.core;
 
-import iservice.sdk.entity.ServiceListenerOptions;
+import iservice.sdk.entity.options.ServiceListenerOptions;
 
 /**
  * @author Yelong

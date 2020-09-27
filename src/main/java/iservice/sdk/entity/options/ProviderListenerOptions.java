@@ -1,6 +1,5 @@
 package iservice.sdk.entity.options;
 
-import iservice.sdk.entity.ServiceListenerOptions;
 import iservice.sdk.enums.ListenerType;
 
 /**

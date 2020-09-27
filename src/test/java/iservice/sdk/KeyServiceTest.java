@@ -2,7 +2,7 @@ package iservice.sdk;
 
 import iservice.sdk.core.ServiceClientFactory;
 import iservice.sdk.entity.Mnemonic;
-import iservice.sdk.entity.ServiceClientOptions;
+import iservice.sdk.entity.options.ServiceClientOptions;
 import iservice.sdk.module.IKeyService;
 import org.junit.FixMethodOrder;
 import org.junit.Test;

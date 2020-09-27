@@ -3,6 +3,7 @@ package iservice.sdk.net;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.http.DefaultHttpHeaders;
 import io.netty.handler.codec.http.websocketx.*;
+import iservice.sdk.exception.ServiceSDKException;
 import iservice.sdk.exception.WebSocketConnectException;
 import iservice.sdk.net.observer.ConnectEventObservable;
 import iservice.sdk.net.observer.events.ConnectEvent;
@@ -22,7 +23,7 @@ public class WebSocketMessageHandler extends WebSocketClientProtocolHandler {
 
     public final static ConnectEventObservable EVENT_OBSERVABLE = new ConnectEventObservable();
 
-    private StringBuffer buffer = new StringBuffer();
+    private final StringBuffer buffer = new StringBuffer();
 
     public WebSocketMessageHandler(URI uri) {
         super(WebSocketClientHandshakerFactory.newHandshaker(uri, WebSocketVersion.V13, null, true, new DefaultHttpHeaders()));
@@ -40,11 +41,11 @@ public class WebSocketMessageHandler extends WebSocketClientProtocolHandler {
                     doMessageComplete();
                 }
             } else if (msg instanceof ContinuationWebSocketFrame) {
-                if (buffer != null) {
+                if (buffer.length()>0) {
                     ContinuationWebSocketFrame msgFrame = (ContinuationWebSocketFrame) msg;
                     buffer.append(msgFrame.text());
                 } else {
-                    System.err.println("Continuation frame received without initial frame.");
+                    throw new ServiceSDKException("Continuation frame received without initial frame.");
                 }
                 if (((ContinuationWebSocketFrame) msg).isFinalFragment()) {
                     doMessageComplete();
@@ -63,22 +64,21 @@ public class WebSocketMessageHandler extends WebSocketClientProtocolHandler {
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
-        LOGGER.debug("Channel is active.");
         EVENT_OBSERVABLE.setChanged();
         EVENT_OBSERVABLE.notifyObservers(new ConnectEvent(ConnectEventType.ON_OPEN));
         super.channelActive(ctx);
     }
 
     @Override
-    public void channelInactive(ChannelHandlerContext ctx) {
+    public void channelInactive(ChannelHandlerContext ctx) throws Exception {
         EVENT_OBSERVABLE.setChanged();
         EVENT_OBSERVABLE.notifyObservers(new ConnectEvent(ConnectEventType.ON_CLOSE));
+        super.channelInactive(ctx);
     }
 
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
-        cause.printStackTrace();
         EVENT_OBSERVABLE.setChanged();
-        EVENT_OBSERVABLE.notifyObservers(new ConnectEvent(ConnectEventType.ON_ERROR));
+        EVENT_OBSERVABLE.notifyObservers(new ConnectEvent(ConnectEventType.ON_ERROR,cause));
     }
 }

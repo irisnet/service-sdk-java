@@ -1,10 +1,7 @@
 package iservice.sdk.net;
 
 import io.netty.bootstrap.Bootstrap;
-import io.netty.channel.Channel;
-import io.netty.channel.ChannelFuture;
-import io.netty.channel.ChannelInitializer;
-import io.netty.channel.ChannelOption;
+import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
@@ -16,6 +13,10 @@ import iservice.sdk.exception.WebSocketConnectException;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author : ori
@@ -24,9 +25,14 @@ import java.net.URISyntaxException;
 public class WebSocketClient {
     private static final String ERR_MSG_CHANNEL_INACTIVE = "WebSocket channel inactive";
 
-    private WebSocketClientOptions options;
+    private final ThreadPoolExecutor poolExecutor = new ThreadPoolExecutor(0, 1, 10L, TimeUnit.SECONDS,
+            new LinkedBlockingQueue<>(), r -> new Thread(r, "WebSocket Client Daemon"));
+
+    private final WebSocketClientOptions options;
 
     private Channel channel = null;
+
+    private CountDownLatch latch;
 
     /**
      * To record if the client has been started.
@@ -35,6 +41,8 @@ public class WebSocketClient {
 
     public WebSocketClient(WebSocketClientOptions options) {
         this.options = options;
+
+        Runtime.getRuntime().addShutdownHook(new Thread(this.poolExecutor::shutdown));
     }
 
     public void start() {
@@ -48,19 +56,33 @@ public class WebSocketClient {
         }
         // prepare for start
         prepareStart();
+        poolExecutor.execute(this::doConnect);
+        try {
+            latch.await(options.getStartTimeOut(), TimeUnit.MILLISECONDS);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        if (!isReady()) {
+            throw new WebSocketConnectException("WebSocket client start time out.");
+        }
+    }
+
+    private void doConnect() {
         NioEventLoopGroup workLoopGroup = new NioEventLoopGroup();
         try {
             Bootstrap bootstrap = getBootstrap(workLoopGroup);
             ChannelFuture channelFuture = bootstrap.connect(options.getHost(), options.getPort()).sync();
             // to hold a channel
             channel = channelFuture.channel();
-            // insure client will be closed
-            Runtime.getRuntime().addShutdownHook(new Thread(this::close));
+            // notify main thread that the client is start
+            latch.countDown();
             channel.closeFuture().sync();
         } catch (InterruptedException e) {
             System.err.println("Connect failed.");
             startedFlag = false;
             e.printStackTrace();
+            // if catch exceptions, tell main thread unblock immediately
+            latch.countDown();
         } finally {
             prepareClose();
             workLoopGroup.shutdownGracefully();
@@ -68,6 +90,7 @@ public class WebSocketClient {
     }
 
     private void initHandlerObserver() {
+        WebSocketMessageHandler.EVENT_OBSERVABLE.deleteObservers();
         WebSocketMessageHandler.EVENT_OBSERVABLE.addObserver(new WebSocketClientObserver());
     }
 
@@ -76,12 +99,16 @@ public class WebSocketClient {
      */
     private void prepareStart() {
         this.startedFlag = true;
+        synchronized (this) {
+            latch = new CountDownLatch(1);
+        }
         // init Handler Observer
         initHandlerObserver();
     }
 
     private void prepareClose() {
         startedFlag = false;
+        System.err.println("Websocket Client is closing...");
     }
 
     private Bootstrap getBootstrap(NioEventLoopGroup workLoopGroup) {
@@ -105,8 +132,25 @@ public class WebSocketClient {
                 }).option(ChannelOption.SO_KEEPALIVE, true);
     }
 
+    public void reconnect() {
+        // ensure channel close
+        close();
+        tryStart();
+    }
+
+    private void tryStart() {
+        while (!isReady()) {
+            try {
+                Thread.sleep(3000);
+                start();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     public void close() {
-        if (!isReady()) {
+        if (!isReady() || !startedFlag) {
             return;
         }
         prepareClose();

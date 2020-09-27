@@ -1,5 +1,8 @@
 package iservice.sdk.core;
 
+import iservice.sdk.exception.ServiceException;
+import iservice.sdk.exception.ServiceSDKException;
+import iservice.sdk.exception.WebSocketConnectException;
 import iservice.sdk.net.observer.events.ConnectEvent;
 
 import java.util.Observable;
@@ -11,7 +14,7 @@ import java.util.Observer;
  */
 public class WebSocketClientObserver implements Observer {
 
-    private ServiceClient client ;
+    private ServiceClient client = ServiceClientFactory.getInstance().getClient();
 
     @Override
     public void update(Observable o, Object arg) {
@@ -30,25 +33,34 @@ public class WebSocketClientObserver implements Observer {
                 doOnClose();
                 break;
             case ON_ERROR:
-                doOnError();
+                doOnError(event.getCause());
                 break;
             default:
         }
     }
 
     private void doOnOpen() {
-        client = ServiceClientFactory.getInstance().getClient();
     }
 
     private void doOnMessage(String jsonData) {
-        client.doNotifyAllListener(jsonData);
+        client.doNotifyListeners(jsonData);
     }
 
     private void doOnClose() {
-
+        // TODO check close event if send by user
+        client.restartWebSocketClient();
     }
 
-    private void doOnError() {
-
+    private void doOnError(Throwable cause) {
+        if (cause instanceof ServiceException) {
+            // do sth. with exception info
+            cause.printStackTrace();
+        } else if (cause instanceof ServiceSDKException) {
+            cause.printStackTrace();
+        } else if (cause instanceof WebSocketConnectException) {
+            client.restartWebSocketClient();
+        } else {
+            cause.printStackTrace();
+        }
     }
 }

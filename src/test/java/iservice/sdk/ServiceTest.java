@@ -2,7 +2,7 @@ package iservice.sdk;
 
 import iservice.sdk.core.ServiceClient;
 import iservice.sdk.core.ServiceClientFactory;
-import iservice.sdk.entity.ServiceClientOptions;
+import iservice.sdk.entity.options.ServiceClientOptions;
 
 import java.io.IOException;
 import java.net.URI;
