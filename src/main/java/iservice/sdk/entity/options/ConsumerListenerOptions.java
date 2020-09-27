@@ -10,6 +10,7 @@ public class ConsumerListenerOptions extends ServiceListenerOptions {
     private final ListenerType LISTENER_TYPE = ListenerType.CONSUMER;
     private String sender;
     private String module;
+    private String serviceName;
 
     public ConsumerListenerOptions() {
     }
@@ -28,6 +29,14 @@ public class ConsumerListenerOptions extends ServiceListenerOptions {
 
     public void setModule(String module) {
         this.module = module;
+    }
+
+    public String getServiceName() {
+        return serviceName;
+    }
+
+    public void setServiceName(String serviceName) {
+        this.serviceName = serviceName;
     }
 
     @Override
