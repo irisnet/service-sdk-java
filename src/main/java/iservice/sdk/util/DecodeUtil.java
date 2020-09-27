@@ -52,7 +52,9 @@ public class DecodeUtil {
             event.getDecodeAttributes();
             return event.compareAttribute(SubscribeQueryKeyEnum.CONSUMER.getKey(), options.getAddress())
                     && event.compareAttribute(SubscribeQueryKeyEnum.SENDER.getKey(), options.getSender())
-                    && event.compareAttribute(SubscribeQueryKeyEnum.MODULE.getKey(), options.getModule());
+                    && event.compareAttribute(SubscribeQueryKeyEnum.MODULE.getKey(), options.getModule())
+                    && event.compareAttribute(SubscribeQueryKeyEnum.SERVICE_NAME.getKey(), options.getServiceName())
+                    ;
         }).findAny().orElse(null);
         if (targetEvent == null) {
             throw new ServiceSDKException("Listener info not found! ListenerOption=" + JSON.toJSONString(options));

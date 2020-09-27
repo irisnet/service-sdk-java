@@ -27,13 +27,13 @@ public class TestServiceRequest extends BaseServiceRequest<TestServiceRequest.Te
 
     @Override
     public String getServiceName() {
-        return "test";
+        return "credit_file_query_svc";
     }
 
     @Override
     public List<String> getProviders() {
 
-        return Lists.newArrayList("iaa1ewed0ds2syhv4qn6fjhx2avma0j2sp6d594tht");
+        return Lists.newArrayList("iaa1dwlfeqh5x4982fxmdy0wzsparle7lahljm6cf7");
     }
 
     @Override
@@ -48,7 +48,7 @@ public class TestServiceRequest extends BaseServiceRequest<TestServiceRequest.Te
 
     @Override
     public TestInput getBody() {
-        return new TestInput("1", "test", "data");
+        return new TestInput("1", "credit_file_query_svc", "data");
     }
 
     public class TestInput {
