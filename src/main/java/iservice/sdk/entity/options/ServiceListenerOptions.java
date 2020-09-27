@@ -1,4 +1,4 @@
-package iservice.sdk.entity;
+package iservice.sdk.entity.options;
 
 import iservice.sdk.enums.ListenerType;
 

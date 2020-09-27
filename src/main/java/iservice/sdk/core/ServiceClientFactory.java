@@ -1,6 +1,6 @@
 package iservice.sdk.core;
 
-import iservice.sdk.entity.ServiceClientOptions;
+import iservice.sdk.entity.options.ServiceClientOptions;
 import iservice.sdk.exception.ServiceSDKException;
 import iservice.sdk.module.IKeyDAO;
 

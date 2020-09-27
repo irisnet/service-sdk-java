@@ -1,4 +1,6 @@
-package iservice.sdk.entity;
+package iservice.sdk.entity.options;
+
+import iservice.sdk.entity.SignAlgo;
 
 import java.net.URI;
 
@@ -9,8 +11,20 @@ import java.net.URI;
  */
 public class ServiceClientOptions {
 
+    /**
+     * grpc uri
+     */
     private URI grpcURI;
+    /**
+     * websocket uri & http uri
+     */
     private URI rpcURI;
+
+    /**
+     * rpc client start time out
+     * default 15 * {@link java.util.concurrent.TimeUnit#SECONDS}
+     */
+    private long rpcStartTimeout = 15 * 1000;
 
     private SignAlgo signAlgo = SignAlgo.SECP256K1;
 
@@ -41,4 +55,11 @@ public class ServiceClientOptions {
         this.signAlgo = signAlgo;
     }
 
+    public long getRpcStartTimeout() {
+        return rpcStartTimeout;
+    }
+
+    public void setRpcStartTimeout(long rpcStartTimeout) {
+        this.rpcStartTimeout = rpcStartTimeout;
+    }
 }

@@ -2,7 +2,7 @@ package iservice.sdk;
 
 import iservice.sdk.core.ServiceClientFactory;
 import iservice.sdk.entity.Key;
-import iservice.sdk.entity.ServiceClientOptions;
+import iservice.sdk.entity.options.ServiceClientOptions;
 import iservice.sdk.module.IKeyService;
 
 import java.net.URI;

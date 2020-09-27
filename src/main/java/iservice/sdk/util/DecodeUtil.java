@@ -1,7 +1,7 @@
 package iservice.sdk.util;
 
 import com.alibaba.fastjson.JSON;
-import iservice.sdk.entity.ServiceListenerOptions;
+import iservice.sdk.entity.options.ServiceListenerOptions;
 import iservice.sdk.entity.options.ConsumerListenerOptions;
 import iservice.sdk.entity.options.ProviderListenerOptions;
 import iservice.sdk.enums.SubscribeQueryKeyEnum;

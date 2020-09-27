@@ -7,7 +7,7 @@ import cosmos.tx.v1beta1.TxOuterClass;
 import irismod.service.QueryGrpc;
 import irismod.service.Service;
 import iservice.sdk.entity.BaseServiceRequest;
-import iservice.sdk.entity.ServiceClientOptions;
+import iservice.sdk.entity.options.ServiceClientOptions;
 import iservice.sdk.entity.ServiceMessage;
 import iservice.sdk.entity.WrappedRequest;
 import iservice.sdk.exception.WebSocketConnectException;
@@ -25,6 +25,7 @@ import iservice.sdk.net.HttpClient;
 import iservice.sdk.net.WebSocketClient;
 import iservice.sdk.net.WebSocketClientOptions;
 import iservice.sdk.util.Bech32Utils;
+import iservice.sdk.util.DecodeUtil;
 import iservice.sdk.util.SubscribeUtil;
 import org.apache.commons.lang3.NotImplementedException;
 import org.slf4j.Logger;
@@ -82,11 +83,17 @@ public final class ServiceClient {
                 if (webSocketClient == null) {
                     WebSocketClientOptions webSocketClientOptions = new WebSocketClientOptions();
                     webSocketClientOptions.setUri(options.getRpcURI());
+                    webSocketClientOptions.setStartTimeOut(options.getRpcStartTimeout());
                     webSocketClient = new WebSocketClient(webSocketClientOptions);
                 }
             }
         }
-        new Thread(() -> webSocketClient.start()).start();
+        webSocketClient.start();
+    }
+
+    public void restartWebSocketClient() {
+        webSocketClient.reconnect();
+        subscribeAllListener();
     }
 
     /**
@@ -134,7 +141,6 @@ public final class ServiceClient {
         String res = HttpClient.getInstance().post(options.getRpcURI().toString(), JSON.toJSONString(msg));
         // TODO error handler
         System.out.println(res);
-        
     }
 
     /**
@@ -189,26 +195,18 @@ public final class ServiceClient {
      *
      * @param msg Msg from blockchain
      */
-    void doNotifyAllListener(String msg) {
-        this.LISTENERS.forEach(listener -> {
-            listener.callback(msg);
-        });
+    void doNotifyListeners(String msg) {
+        this.LISTENERS.forEach(listener -> listener.callback(msg));
     }
 
     void subscribeAllListener() {
-        try {
-            // wait 5s for websocket client start...
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         this.LISTENERS.forEach(this::subscribe);
     }
 
     public void subscribe(AbstractServiceListener listener) {
         WrappedMessage<SubscribeParam> subscribeMessage = SubscribeUtil.buildSubscribeMessage(listener);
         String s = JSON.toJSONString(subscribeMessage);
-        System.out.println("subscribe: "+ s);
+        System.out.println("subscribe: " + s);
         webSocketClient.send(s);
     }
 }
