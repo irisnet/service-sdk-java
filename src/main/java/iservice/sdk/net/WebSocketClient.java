@@ -58,7 +58,7 @@ public class WebSocketClient {
         prepareStart();
         poolExecutor.execute(this::doConnect);
         try {
-            latch.await(options.getStartTimeOut(),TimeUnit.MILLISECONDS);
+            latch.await(options.getStartTimeOut(), TimeUnit.MILLISECONDS);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -73,11 +73,9 @@ public class WebSocketClient {
             Bootstrap bootstrap = getBootstrap(workLoopGroup);
             ChannelFuture channelFuture = bootstrap.connect(options.getHost(), options.getPort()).sync();
             // to hold a channel
-            synchronized (this) {
-                channel = channelFuture.channel();
-                // notify main thread that the client is start
-                latch.countDown();
-            }
+            channel = channelFuture.channel();
+            // notify main thread that the client is start
+            latch.countDown();
             channel.closeFuture().sync();
         } catch (InterruptedException e) {
             System.err.println("Connect failed.");
@@ -140,7 +138,7 @@ public class WebSocketClient {
         tryStart();
     }
 
-    private void tryStart(){
+    private void tryStart() {
         while (!isReady()) {
             try {
                 Thread.sleep(3000);
