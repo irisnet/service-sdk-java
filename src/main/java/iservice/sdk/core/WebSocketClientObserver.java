@@ -47,6 +47,7 @@ public class WebSocketClientObserver implements Observer {
     }
 
     private void doOnClose() {
+        // TODO check close event if send by user
         client.restartWebSocketClient();
     }
 
