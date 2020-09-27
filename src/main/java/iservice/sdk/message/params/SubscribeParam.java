@@ -2,6 +2,7 @@ package iservice.sdk.message.params;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import iservice.sdk.enums.ListenerType;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +40,7 @@ public class SubscribeParam extends BaseParam {
             if (i > 0) {
                 buffer.append(" AND ");
             }
-            if (conditions.get(i).getValue() != null){
+            if (StringUtils.isNotEmpty(conditions.get(i).getValue())){
                 buffer.append(listenerType.getParamPrefixString())
                         .append(conditions.get(i).getConditionString());
             }
