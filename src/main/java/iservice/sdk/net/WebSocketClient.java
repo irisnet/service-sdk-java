@@ -15,10 +15,7 @@ import org.slf4j.LoggerFactory;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 
 /**
  * @author : ori
@@ -29,7 +26,7 @@ public class WebSocketClient {
 
     private static final String ERR_MSG_CHANNEL_INACTIVE = "WebSocket channel inactive";
 
-    private final ThreadPoolExecutor poolExecutor = new ThreadPoolExecutor(1, 2, 10L, TimeUnit.SECONDS,
+    private final ThreadPoolExecutor poolExecutor = new ThreadPoolExecutor(2, 4, 10L, TimeUnit.SECONDS,
             new LinkedBlockingQueue<>(), r -> new Thread(r, "WebSocket Client Daemon"));
 
     private final WebSocketClientOptions options;
@@ -83,7 +80,7 @@ public class WebSocketClient {
             // notify main thread that the client is start
             latch.countDown();
             channel.closeFuture().sync();
-        } catch (InterruptedException e) {
+        } catch (Exception e) {
             System.err.println("Connect failed.");
             startedFlag = false;
             e.printStackTrace();
@@ -95,10 +92,14 @@ public class WebSocketClient {
         }
     }
 
-    private void blockUntilHandshakeFinished() {
+    private void blockUntilHandshakeFinished() throws InterruptedException, ExecutionException, TimeoutException {
         WebSocketMessageHandler webSocketHandler = channel.pipeline().get(WebSocketMessageHandler.class);
-        for(;!webSocketHandler.handshaker().isHandshakeComplete();) {
-        }
+        FutureTask<Boolean> futureTask = new FutureTask<>(() ->{
+            for(;!webSocketHandler.handshaker().isHandshakeComplete();) {
+            }
+        },Boolean.TRUE);
+        poolExecutor.submit(futureTask);
+        futureTask.get(options.getStartTimeOut(),TimeUnit.MILLISECONDS);
     }
 
     private void initHandlerObserver() {
