@@ -10,22 +10,23 @@ import io.netty.handler.codec.http.HttpObjectAggregator;
 import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
 import iservice.sdk.core.WebSocketClientObserver;
 import iservice.sdk.exception.WebSocketConnectException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 
 /**
  * @author : ori
  * @date : 2020/9/21 5:46 下午
  */
 public class WebSocketClient {
+    private final Logger LOGGER = LoggerFactory.getLogger(WebSocketClient.class);
+
     private static final String ERR_MSG_CHANNEL_INACTIVE = "WebSocket channel inactive";
 
-    private final ThreadPoolExecutor poolExecutor = new ThreadPoolExecutor(0, 1, 10L, TimeUnit.SECONDS,
+    private final ThreadPoolExecutor poolExecutor = new ThreadPoolExecutor(2, 4, 10L, TimeUnit.SECONDS,
             new LinkedBlockingQueue<>(), r -> new Thread(r, "WebSocket Client Daemon"));
 
     private final WebSocketClientOptions options;
@@ -74,10 +75,12 @@ public class WebSocketClient {
             ChannelFuture channelFuture = bootstrap.connect(options.getHost(), options.getPort()).sync();
             // to hold a channel
             channel = channelFuture.channel();
+            // waiting for handshake complete
+            blockUntilHandshakeFinished();
             // notify main thread that the client is start
             latch.countDown();
             channel.closeFuture().sync();
-        } catch (InterruptedException e) {
+        } catch (Exception e) {
             System.err.println("Connect failed.");
             startedFlag = false;
             e.printStackTrace();
@@ -87,6 +90,16 @@ public class WebSocketClient {
             prepareClose();
             workLoopGroup.shutdownGracefully();
         }
+    }
+
+    private void blockUntilHandshakeFinished() throws InterruptedException, ExecutionException, TimeoutException {
+        WebSocketMessageHandler webSocketHandler = channel.pipeline().get(WebSocketMessageHandler.class);
+        FutureTask<Boolean> futureTask = new FutureTask<>(() ->{
+            for(;!webSocketHandler.handshaker().isHandshakeComplete();) {
+            }
+        },Boolean.TRUE);
+        poolExecutor.submit(futureTask);
+        futureTask.get(options.getStartTimeOut(),TimeUnit.MILLISECONDS);
     }
 
     private void initHandlerObserver() {
@@ -187,7 +200,12 @@ public class WebSocketClient {
         if (!isReady()) {
             throw new WebSocketConnectException(ERR_MSG_CHANNEL_INACTIVE);
         }
-        channel.writeAndFlush(new TextWebSocketFrame(msg));
+        channel.writeAndFlush(new TextWebSocketFrame(msg)).addListener(future -> {
+            LOGGER.debug("Message has sent out. content:{}", msg);
+            if (future.isSuccess()) {
+                LOGGER.error("Fail to send message! content:{}", msg);
+            }
+        });
     }
 
 }
