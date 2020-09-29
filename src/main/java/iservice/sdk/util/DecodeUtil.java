@@ -64,7 +64,7 @@ public class DecodeUtil {
     }
 
     private static <T> boolean checkMessageType(BaseServiceResult<T> messageResult, ServiceListenerOptions options, String requireType) {
-        return Objects.equals(messageResult.getQuery(), SubscribeUtil.buildSubscribeParam(options).getQuery()) && messageResult.getData() != null && Objects.equals(messageResult.getData().getType(), requireType);
+        return messageResult != null && Objects.equals(messageResult.getQuery(), SubscribeUtil.buildSubscribeParam(options).getQuery()) && Objects.equals(messageResult.getData().getType(), requireType);
     }
 
     public static String formatJson(String json) {
