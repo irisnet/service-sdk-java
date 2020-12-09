@@ -17,17 +17,13 @@ import iservice.sdk.module.IAuthService;
 import iservice.sdk.module.IKeyDAO;
 import iservice.sdk.module.IKeyService;
 import iservice.sdk.module.ITxService;
-import iservice.sdk.module.impl.AuthServiceImpl;
-import iservice.sdk.module.impl.DefaultKeyServiceImpl;
-import iservice.sdk.module.impl.TxServiceImpl;
+import iservice.sdk.module.impl.*;
 import iservice.sdk.net.GrpcChannel;
 import iservice.sdk.net.HttpClient;
 import iservice.sdk.net.WebSocketClient;
 import iservice.sdk.net.WebSocketClientOptions;
 import iservice.sdk.util.Bech32Utils;
-import iservice.sdk.util.DecodeUtil;
 import iservice.sdk.util.SubscribeUtil;
-import org.apache.commons.lang3.NotImplementedException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -156,7 +152,8 @@ public final class ServiceClient {
 
         switch (this.options.getSignAlgo()) {
             case SM2:
-                throw new NotImplementedException("SM2 not implemented");
+                this.keyService = new SM2KeyServiceImpl(this.keyDAO);
+                break;
             default:
                 this.keyService = new DefaultKeyServiceImpl(this.keyDAO);
         }
@@ -186,7 +183,15 @@ public final class ServiceClient {
         if (this.txService != null) {
             return this.txService;
         }
-        this.txService = new TxServiceImpl();
+
+        switch (this.options.getSignAlgo()) {
+            case SM2:
+                this.txService = new SM2TxServiceImpl();
+                break;
+            default:
+                this.txService = new DefaultTxServiceImpl();
+        }
+
         return this.txService;
     }
 
