@@ -53,7 +53,7 @@ public class DefaultTxServiceImpl implements ITxService {
                                 .setSequence(baseAccount.getSequence()))
 
                 // TODO: Configurable
-                .setFee(TxOuterClass.Fee.newBuilder().setGasLimit(200000).addAmount(CoinOuterClass.Coin.newBuilder().setAmount("10").setDenom("stake"))).build();
+                .setFee(TxOuterClass.Fee.newBuilder().setGasLimit(200000).addAmount(CoinOuterClass.Coin.newBuilder().setAmount("10").setDenom("point"))).build();
 
         TxOuterClass.SignDoc signdoc = TxOuterClass.SignDoc.newBuilder()
                 .setBodyBytes(txBody.toByteString())

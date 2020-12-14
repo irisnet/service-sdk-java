@@ -24,6 +24,7 @@ import iservice.sdk.net.WebSocketClient;
 import iservice.sdk.net.WebSocketClientOptions;
 import iservice.sdk.util.Bech32Utils;
 import iservice.sdk.util.SubscribeUtil;
+import org.bouncycastle.crypto.CryptoException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -98,7 +99,7 @@ public final class ServiceClient {
      * @param req Service request
      * @param <T> Service request object type
      */
-    public <T> void callService(BaseServiceRequest<T> req) throws IOException {
+    public <T> void callService(BaseServiceRequest<T> req) throws IOException, CryptoException {
 
         if (req == null) {
             throw new IllegalArgumentException("Service request is required");
@@ -201,7 +202,13 @@ public final class ServiceClient {
      * @param msg Msg from blockchain
      */
     void doNotifyListeners(String msg) {
-        this.LISTENERS.forEach(listener -> listener.callback(msg));
+        this.LISTENERS.forEach(listener -> {
+            try {
+                listener.callback(msg);
+            } catch (CryptoException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     void subscribeAllListener() {

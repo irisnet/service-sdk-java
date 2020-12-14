@@ -15,6 +15,7 @@ import iservice.sdk.entity.options.ProviderListenerOptions;
 import iservice.sdk.net.GrpcChannel;
 import iservice.sdk.net.HttpClient;
 import iservice.sdk.util.DecodeUtil;
+import org.bouncycastle.crypto.CryptoException;
 import org.bouncycastle.util.encoders.Hex;
 
 import java.io.IOException;
@@ -28,12 +29,12 @@ import java.util.Map;
 public abstract class AbstractProviderListener<T, B, R extends BaseServiceResponse<B>> extends AbstractServiceListener<T> {
 
     @Override
-    public void callback(String json) {
+    public void callback(String json) throws CryptoException {
         getReqFromJson(json);
     }
 
     @Override
-    T getReqFromJson(String json) {
+    T getReqFromJson(String json) throws CryptoException {
         String requests = DecodeUtil.decodeProviderReq(json, getOptions());
         if (requests == null) {
             return null;
@@ -61,7 +62,7 @@ public abstract class AbstractProviderListener<T, B, R extends BaseServiceRespon
         return request.getRequest();
     }
 
-    private void sendRes(R res, Service.Request sr) throws IOException {
+    private void sendRes(R res, Service.Request sr) throws IOException, CryptoException {
         String outputJson = JSON.toJSONString(new ServiceMessage<>(res.getHeader(), res.getBody()));
 
         Service.MsgRespondService msg = Service.MsgRespondService.newBuilder()

@@ -12,15 +12,14 @@ import iservice.sdk.exception.ServiceSDKException;
 import iservice.sdk.module.IAuthService;
 import iservice.sdk.module.IKeyService;
 import iservice.sdk.module.ITxService;
-import iservice.sdk.util.SM2Utils.SM2KeyPair;
-import iservice.sdk.util.SM2Utils.SM2.Signature;
-import iservice.sdk.util.SM2Utils.SM2;
+import iservice.sdk.util.SM2Utils;
 import org.apache.commons.lang3.ArrayUtils;
-import org.bitcoinj.core.Sha256Hash;
 
 import java.io.IOException;
 import java.math.BigInteger;
-import org.bouncycastle.math.ec.ECPoint;
+
+import org.bouncycastle.crypto.CryptoException;
+import org.web3j.utils.Numeric;
 
 /**
  * @author Yelong
@@ -38,23 +37,19 @@ public class SM2TxServiceImpl implements ITxService {
     }
 
     @Override
-    public TxOuterClass.Tx signTx(TxOuterClass.TxBody txBody, String name, String password, boolean offline) throws ServiceSDKException, IOException {
-
+    public TxOuterClass.Tx signTx(TxOuterClass.TxBody txBody, String name, String password, boolean offline) throws ServiceSDKException, IOException, CryptoException {
         Key key = this.keyService.getKey(name, password);
-        BigInteger privKey = new BigInteger(key.getPrivKey());
-        SM2 sm2 = new SM2();
-        ECPoint pubKey = sm2.getPubKeyFromPrivKey(privKey);
-        SM2KeyPair sm2KeyPair = new SM2KeyPair(pubKey, privKey);
 
         Auth.BaseAccount baseAccount = this.authService.queryAccount(key.getAddress());
         TxOuterClass.AuthInfo ai = TxOuterClass.AuthInfo.newBuilder()
                 .addSignerInfos(
                         TxOuterClass.SignerInfo.newBuilder()
+                                //.setPublicKey(Crypto.PublicKey.newBuilder().setAnyPubkey(Any.newBuilder().setUnknownFields(ByteString.copyFrom(encodedPubkey))))
                                 .setModeInfo(TxOuterClass.ModeInfo.newBuilder().setSingle(TxOuterClass.ModeInfo.Single.newBuilder().setMode(Signing.SignMode.SIGN_MODE_DIRECT)))
                                 .setSequence(baseAccount.getSequence()))
 
                 // TODO : Configurable
-                .setFee(TxOuterClass.Fee.newBuilder().setGasLimit(200000).addAmount(CoinOuterClass.Coin.newBuilder().setAmount("10").setDenom("stake"))).build();
+                .setFee(TxOuterClass.Fee.newBuilder().setGasLimit(200000).addAmount(CoinOuterClass.Coin.newBuilder().setAmount("10").setDenom("point"))).build();
 
         TxOuterClass.SignDoc signdoc = TxOuterClass.SignDoc.newBuilder()
                 .setBodyBytes(txBody.toByteString())
@@ -63,9 +58,13 @@ public class SM2TxServiceImpl implements ITxService {
                 .setChainId("irita")
                 .build();
 
-        byte[] hash = Sha256Hash.hash(signdoc.toByteArray());
-        Signature signature = sm2.sign(new String(hash), key.getAddress(), sm2KeyPair);
-        byte[] sigBytes = ArrayUtils.addAll(signature.getR().toByteArray(), signature.getS().toByteArray());
+        BigInteger privkey = Numeric.toBigInt(key.getPrivKey());
+
+        SM2Utils sm2Utils = new SM2Utils();
+        byte[] signature = sm2Utils.sign(privkey, signdoc.toByteArray());
+
+        BigInteger[] rs = sm2Utils.getRSFromSignature(signature);
+        byte[] sigBytes = ArrayUtils.addAll(Numeric.toBytesPadded(rs[0], 32), Numeric.toBytesPadded(rs[1], 32));
 
         TxOuterClass.Tx tx = TxOuterClass.Tx.newBuilder()
                 .setBody(txBody)

@@ -1,6 +1,7 @@
 package iservice.sdk.core;
 
 import iservice.sdk.entity.options.ServiceListenerOptions;
+import org.bouncycastle.crypto.CryptoException;
 
 /**
  * @author Yelong
@@ -19,7 +20,7 @@ public abstract class AbstractServiceListener<T> {
      *
      * @param json
      */
-    public abstract void callback(String json);
+    public abstract void callback(String json) throws CryptoException;
 
     /**
      * get request object like {@link T} from json string
@@ -27,7 +28,7 @@ public abstract class AbstractServiceListener<T> {
      * @param json request json string
      * @return T
      */
-    abstract T getReqFromJson(String json);
+    abstract T getReqFromJson(String json) throws CryptoException;
 
     /**
      * return class of req

@@ -3,6 +3,7 @@ package iservice.sdk;
 import iservice.sdk.core.ServiceClient;
 import iservice.sdk.core.ServiceClientFactory;
 import iservice.sdk.entity.options.ServiceClientOptions;
+import org.bouncycastle.crypto.CryptoException;
 
 import java.io.IOException;
 import java.net.URI;
@@ -12,7 +13,7 @@ import java.net.URISyntaxException;
  * @author Yelong
  */
 public class ServiceTest {
-    public static void main(String[] args) throws URISyntaxException, IOException {
+    public static void main(String[] args) throws URISyntaxException, IOException, CryptoException {
         ServiceClientOptions options = new ServiceClientOptions();
         options.setGrpcURI(new URI("http://10.1.4.99:9090"));
         options.setRpcURI(new URI("http://10.1.4.99:26657"));
