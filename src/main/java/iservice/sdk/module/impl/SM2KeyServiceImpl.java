@@ -31,7 +31,7 @@ public class SM2KeyServiceImpl extends AbstractKeyServiceImpl {
         ECPoint pubkey = sm2Utils.getPubkeyFromPrivkey(dk.getPrivKey());
 
         byte[] encoded = pubkey.getEncoded(true);
-        byte[] hash = Hash.sha256hash160(encoded);
+        byte[] hash = Hash.sha256(encoded);
         String addr = super.toBech32(hash);
         super.saveKey(name, password, addr, dk.getPrivKeyBytes());
         return new Mnemonic(addr, mnemonic);
