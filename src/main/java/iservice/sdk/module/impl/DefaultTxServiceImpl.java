@@ -26,11 +26,17 @@ import java.io.IOException;
  */
 public class DefaultTxServiceImpl implements ITxService {
 
+    private String chain_id;
+    private String fee;
+
     private IKeyService keyService;
     private IAuthService authService;
 
-    public DefaultTxServiceImpl() {
+    public DefaultTxServiceImpl(String chain_id, String fee) {
         ServiceClient serviceClient = ServiceClientFactory.getInstance().getClient();
+
+        this.chain_id = chain_id;
+        this.fee = fee;
 
         this.keyService = serviceClient.getKeyService();
         this.authService = serviceClient.getAuthService();
@@ -52,14 +58,13 @@ public class DefaultTxServiceImpl implements ITxService {
                                 .setModeInfo(TxOuterClass.ModeInfo.newBuilder().setSingle(TxOuterClass.ModeInfo.Single.newBuilder().setMode(Signing.SignMode.SIGN_MODE_DIRECT)))
                                 .setSequence(baseAccount.getSequence()))
 
-                // TODO: Configurable
-                .setFee(TxOuterClass.Fee.newBuilder().setGasLimit(200000).addAmount(CoinOuterClass.Coin.newBuilder().setAmount("10").setDenom("point"))).build();
+                .setFee(TxOuterClass.Fee.newBuilder().setGasLimit(200000).addAmount(CoinOuterClass.Coin.newBuilder().setAmount(this.fee).setDenom("point"))).build();
 
         TxOuterClass.SignDoc signdoc = TxOuterClass.SignDoc.newBuilder()
                 .setBodyBytes(txBody.toByteString())
                 .setAuthInfoBytes(ai.toByteString())
                 .setAccountNumber(baseAccount.getAccountNumber())
-                .setChainId("irita")
+                .setChainId(this.chain_id)
                 .build();
 
         byte[] hash = Sha256Hash.hash(signdoc.toByteArray());

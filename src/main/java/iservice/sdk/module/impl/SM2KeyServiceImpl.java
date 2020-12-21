@@ -1,21 +1,17 @@
 package iservice.sdk.module.impl;
 
-import iservice.sdk.entity.Mnemonic;
-import iservice.sdk.exception.ServiceSDKException;
-import iservice.sdk.module.IKeyDAO;
-import iservice.sdk.util.Bip39Utils;
-
-import iservice.sdk.util.SM2Utils;
 import org.bitcoinj.crypto.DeterministicKey;
 import org.bouncycastle.math.ec.ECPoint;
 import org.web3j.crypto.*;
 
 import java.io.File;
-import java.math.BigInteger;
 
-/**
- * @author Yelong
- */
+import iservice.sdk.entity.Mnemonic;
+import iservice.sdk.exception.ServiceSDKException;
+import iservice.sdk.module.IKeyDAO;
+import iservice.sdk.util.Bip39Utils;
+import iservice.sdk.util.SM2Utils;
+
 public class SM2KeyServiceImpl extends AbstractKeyServiceImpl {
 
     public SM2KeyServiceImpl(IKeyDAO keyDAO) {

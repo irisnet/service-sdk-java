@@ -48,6 +48,9 @@ public final class ServiceClient {
     private IAuthService authService;
     private ITxService txService;
 
+    private String chain_id;
+    private String fee;
+
     private volatile WebSocketClient webSocketClient = null;
     private QueryGrpc.QueryBlockingStub serviceBlockingStub;
 
@@ -57,6 +60,11 @@ public final class ServiceClient {
         this.keyDAO = keyDAO;
         GrpcChannel.getInstance().setURL(options.getGrpcURI().getHost().concat(":").concat(options.getGrpcURI().getPort() + ""));
         serviceBlockingStub = QueryGrpc.newBlockingStub(GrpcChannel.getInstance().getChannel());
+    }
+
+    public void setChainIDAndFee(String chain_id, String fee) {
+        this.chain_id = chain_id;
+        this.fee = fee;
     }
 
     public ServiceClientOptions getOptions() {
@@ -187,10 +195,10 @@ public final class ServiceClient {
 
         switch (this.options.getSignAlgo()) {
             case SM2:
-                this.txService = new SM2TxServiceImpl();
+                this.txService = new SM2TxServiceImpl(this.chain_id, this.fee);
                 break;
             default:
-                this.txService = new DefaultTxServiceImpl();
+                this.txService = new DefaultTxServiceImpl(this.chain_id, this.fee);
         }
 
         return this.txService;
@@ -220,5 +228,9 @@ public final class ServiceClient {
         String s = JSON.toJSONString(subscribeMessage);
         System.out.println("subscribe: " + s);
         webSocketClient.send(s);
+    }
+
+    public void addListener(AbstractServiceListener listener) {
+        this.LISTENERS.add(listener);
     }
 }

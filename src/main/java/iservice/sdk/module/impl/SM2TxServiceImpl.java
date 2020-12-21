@@ -21,16 +21,19 @@ import java.math.BigInteger;
 import org.bouncycastle.crypto.CryptoException;
 import org.web3j.utils.Numeric;
 
-/**
- * @author Yelong
- */
 public class SM2TxServiceImpl implements ITxService {
+
+    private String chain_id;
+    private String fee;
 
     private IKeyService keyService;
     private IAuthService authService;
 
-    public SM2TxServiceImpl() {
+    public SM2TxServiceImpl(String chain_id, String fee) {
         ServiceClient serviceClient = ServiceClientFactory.getInstance().getClient();
+
+        this.chain_id = chain_id;
+        this.fee = fee;
 
         this.keyService = serviceClient.getKeyService();
         this.authService = serviceClient.getAuthService();
@@ -48,14 +51,13 @@ public class SM2TxServiceImpl implements ITxService {
                                 .setModeInfo(TxOuterClass.ModeInfo.newBuilder().setSingle(TxOuterClass.ModeInfo.Single.newBuilder().setMode(Signing.SignMode.SIGN_MODE_DIRECT)))
                                 .setSequence(baseAccount.getSequence()))
 
-                // TODO : Configurable
-                .setFee(TxOuterClass.Fee.newBuilder().setGasLimit(200000).addAmount(CoinOuterClass.Coin.newBuilder().setAmount("10").setDenom("point"))).build();
+                .setFee(TxOuterClass.Fee.newBuilder().setGasLimit(200000).addAmount(CoinOuterClass.Coin.newBuilder().setAmount(this.fee).setDenom("point"))).build();
 
         TxOuterClass.SignDoc signdoc = TxOuterClass.SignDoc.newBuilder()
                 .setBodyBytes(txBody.toByteString())
                 .setAuthInfoBytes(ai.toByteString())
                 .setAccountNumber(baseAccount.getAccountNumber())
-                .setChainId("irita")
+                .setChainId(this.chain_id)
                 .build();
 
         BigInteger privkey = Numeric.toBigInt(key.getPrivKey());

@@ -26,6 +26,7 @@ public class SuperTest {
                 .addListener(new TestConsumerListener())
                 .addListener(new TestProviderListener())
                 .getClient();
+
         client.getKeyService().recoverKey("consumer", "123456", "picnic tuna easy desert wall proof call scorpion town doctor agree domain system wealth aspect venue course pizza truck settle taxi merge easy drill", true, 0, "");
         client.getKeyService().recoverKey("provider", "123456", "wash bargain vicious basket blur assist fault august involve quit fit camp eagle supreme chef process auction surge crucial orphan ticket hundred express bike", true, 0, "");
         client.start();
