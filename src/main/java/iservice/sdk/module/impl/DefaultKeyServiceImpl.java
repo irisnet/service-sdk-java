@@ -50,6 +50,7 @@ public class DefaultKeyServiceImpl extends AbstractKeyServiceImpl {
             Credentials credentials = WalletUtils.loadJsonCredentials(password, keystore);
             ECKeyPair keyPair = credentials.getEcKeyPair();
             BigInteger privKey = keyPair.getPrivateKey();
+
             byte[] encoded = ECKey.publicPointFromPrivate(privKey).getEncoded(true);
             byte[] hash = Hash.sha256hash160(encoded);
             String addr = super.toBech32(hash);
@@ -65,14 +66,15 @@ public class DefaultKeyServiceImpl extends AbstractKeyServiceImpl {
     public String exportKeystore(String name, String keyPassword, String keystorePassword, File destinationDirectory) throws ServiceSDKException, IOException {
         Key key = super.getKey(name, keyPassword);
         ECKeyPair keyPair = ECKeyPair.create(key.getPrivKey());
-        String path;
+
+        String fileName;
         try {
-            path = WalletUtils.generateWalletFile(keystorePassword, keyPair, destinationDirectory, true);
+            fileName = WalletUtils.generateWalletFile(keystorePassword, keyPair, destinationDirectory, true);
         } catch (CipherException e) {
             e.printStackTrace();
             throw new ServiceSDKException(e.getMessage(), e);
         }
-        return path;
+        return fileName;
     }
 
 }
