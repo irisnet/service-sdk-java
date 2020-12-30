@@ -13,6 +13,13 @@ import org.bitcoinj.wallet.DeterministicKeyChain;
 import org.bitcoinj.wallet.DeterministicSeed;
 import org.bitcoinj.wallet.UnreadableWalletException;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintStream;
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 /**
@@ -72,8 +79,24 @@ public abstract class AbstractKeyServiceImpl implements IKeyService {
     public final Key getKey(String name, String password) throws ServiceSDKException {
         Key key = this.keyDAO.read(name);
         byte[] decrypted = this.keyDAO.decrypt(key.getPrivKey(), password);
-        Key key1 = new Key(key.getAddress(), decrypted);
-        return key1;
+        return new Key(key.getAddress(), decrypted);
+    }
+
+    public String writeArmorToFile(File filePath, String address, String context) {
+        String fileName = generateFileName(address);
+        try {
+            File file = new File(filePath,fileName);
+            PrintStream ps = new PrintStream(new FileOutputStream(file));
+            ps.println(context);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return fileName;
+    }
+    private String generateFileName(String address) {
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("'UTC--'yyyy-MM-dd'T'HH-mm-ss.nVV'--'");
+        ZonedDateTime now = ZonedDateTime.now(ZoneOffset.UTC);
+        return now.format(format) + address+ ".key";
     }
 
 }
