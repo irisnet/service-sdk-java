@@ -82,17 +82,14 @@ public abstract class AbstractKeyServiceImpl implements IKeyService {
         return new Key(key.getAddress(), decrypted);
     }
 
-    public String writeArmorToFile(File filePath, String address, String context) {
+    public String writeArmorToFile(File filePath, String address, String context) throws FileNotFoundException{
         String fileName = generateFileName(address);
-        try {
-            File file = new File(filePath,fileName);
-            PrintStream ps = new PrintStream(new FileOutputStream(file));
-            ps.println(context);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+        File file = new File(filePath,fileName);
+        PrintStream ps = new PrintStream(new FileOutputStream(file));
+        ps.println(context);
         return fileName;
     }
+
     private String generateFileName(String address) {
         DateTimeFormatter format = DateTimeFormatter.ofPattern("'UTC--'yyyy-MM-dd'T'HH-mm-ss.nVV'--'");
         ZonedDateTime now = ZonedDateTime.now(ZoneOffset.UTC);

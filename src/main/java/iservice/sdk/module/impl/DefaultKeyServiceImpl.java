@@ -45,16 +45,16 @@ public class DefaultKeyServiceImpl extends AbstractKeyServiceImpl {
     }
 
     @Override
-    public String importFromKeystore(String name, String password, String keystore) throws ServiceSDKException, IOException {
+    public String importFromKeystore(String name, String keyPassword, String keystorePassword, String keystore) throws ServiceSDKException, IOException {
         try {
-            Credentials credentials = WalletUtils.loadJsonCredentials(password, keystore);
+            Credentials credentials = WalletUtils.loadJsonCredentials(keystorePassword, keystore);
             ECKeyPair keyPair = credentials.getEcKeyPair();
             BigInteger privKey = keyPair.getPrivateKey();
 
             byte[] encoded = ECKey.publicPointFromPrivate(privKey).getEncoded(true);
             byte[] hash = Hash.sha256hash160(encoded);
             String addr = super.toBech32(hash);
-            super.saveKey(name, password, addr, Utils.bigIntegerToBytes(privKey, 32));
+            super.saveKey(name, keyPassword, addr, Utils.bigIntegerToBytes(privKey, 32));
             return addr;
         } catch (CipherException e) {
             e.printStackTrace();

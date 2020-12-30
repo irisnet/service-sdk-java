@@ -384,7 +384,7 @@ public class BCryptImpl {
      * @return	base64-encoded string
      * @exception IllegalArgumentException if the length is invalid
      */
-    private static String encode_base64(byte d[], int len)
+    public static String encode_base64(byte d[], int len)
             throws IllegalArgumentException {
         int off = 0;
         StringBuilder rs = new StringBuilder();

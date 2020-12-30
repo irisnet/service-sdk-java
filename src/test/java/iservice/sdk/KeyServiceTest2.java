@@ -86,14 +86,10 @@ public class KeyServiceTest2 {
 
     }
 
-//    @Test
-//    public void test6ImportKey() throws Exception {
-//
-//        BufferedReader bfr = Files.newBufferedReader(Paths.get((String) paramMap.get(KEYS.FILEPATH)));
-//        String keystore = bfr.readLine();
-//        bfr.close();
-//        String address = keyService.importFromKeystore("test1", "123456", keystore);
-//        assertNotNull(address);
-//        assertEquals("Wrong Address", paramMap.get(KEYS.ADDRESS), address);
-//    }
+    @Test
+    public void test6ImportKey() throws Exception {
+        String address = keyService.importFromKeystore("test1", "12345678", "12345678",(String) paramMap.get(KEYS.FILEPATH));
+        assertNotNull(address);
+        assertEquals("Wrong Address", paramMap.get(KEYS.ADDRESS), address);
+    }
 }

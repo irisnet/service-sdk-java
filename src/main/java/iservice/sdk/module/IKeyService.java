@@ -38,11 +38,12 @@ public interface IKeyService {
      * Imports a key from keystore
      *
      * @param name Name of the key
-     * @param password Password of the keystore
+     * @param keyPassword Password of the key
+     * @param keystorePassword Password for encrypting the keystore
      * @param keystore Keystore json
      * @return Bech32 address
      */
-    String importFromKeystore(String name, String password, String keystore) throws ServiceSDKException, IOException;
+    String importFromKeystore(String name, String keyPassword, String keystorePassword, String keystore) throws ServiceSDKException, IOException;
 
     /**
      * Exports keystore of a key
