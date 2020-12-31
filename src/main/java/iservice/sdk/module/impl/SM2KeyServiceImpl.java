@@ -30,8 +30,9 @@ public class SM2KeyServiceImpl extends AbstractKeyServiceImpl {
     private static final int LOG_ROUNDS = 12;
     private static final int REAL_SALT_BEGIN_POS = 7;
     private static final int REAL_SALT_BASE64_LEN = 22;
-    private static final String PREFIX_AMINO = "27b2937220";
     private static final String PREFIX_SALT = "$2a$12$";
+    private static final String ALGO_TYPE = "sm2";
+    private static final String PRIV_KEY_NAME = "cosmos/PrivKeySm2";
 
     public SM2KeyServiceImpl(IKeyDAO keyDAO) {
         super(keyDAO);
@@ -76,30 +77,25 @@ public class SM2KeyServiceImpl extends AbstractKeyServiceImpl {
         InputStream inputStream = new FileInputStream(keystore);
         ArmoredInputStream aIS = new ArmoredInputStream(inputStream);
         String[] headers = aIS.getArmorHeaders();
-        Hashtable<String,String> headersTable = new Hashtable<String,String> ();
+        Hashtable<String,String> headersTable = new Hashtable<>();
         for (String headersItem : headers){
             String[] itemSplit = headersItem.split(": ");
             headersTable.put(itemSplit[0], itemSplit[1]);
         }
         byte[] encBytes = new byte[77];
         aIS.read(encBytes);
-//            System.out.println(encBytes);
-//            String enc16 = bytes_String16(encBytes);
-//            System.out.println(enc16);
+
         byte[] realSaltByte = Hex.decode(headersTable.get("salt"));
-//            System.out.println(realSaltByte);
         String realSaltString = encode_base64(realSaltByte, 16);
         String salt = PREFIX_SALT + realSaltString;
+
         String keyHash = BCrypt.hashpw(keystorePassword, salt);
         byte[] keyHashByte = keyHash.getBytes(StandardCharsets.UTF_8);
         byte[] keyHashSha256 = Hash.sha256(keyHashByte);
-        SimpleBox box = new SimpleBox(keyHashSha256);
 
+        SimpleBox box = new SimpleBox(keyHashSha256);
         byte[] privKeyAmino = box.open(encBytes).get();
         byte[] privKeyTemp= Arrays.copyOfRange(privKeyAmino, 5, privKeyAmino.length);
-//        String privKey16 = bytes_String16(privKeyTemp);
-//        System.out.println(privKey16);
-//        System.out.println(privKeyTemp);
 
         BigInteger privKey = new BigInteger(1,privKeyTemp);
         SM2Utils sm2Utils = new SM2Utils();
@@ -112,57 +108,32 @@ public class SM2KeyServiceImpl extends AbstractKeyServiceImpl {
         String addr = super.toBech32(pre20);
         super.saveKey(name, keyPassword, addr, Utils.bigIntegerToBytes(privKey, 32));
         return addr;
-
     }
 
     @Override
     public String exportKeystore(String name, String keyPassword, String keystorePassword, File destinationDirectory) throws ServiceSDKException, IOException {
-
-
         Key key = super.getKey(name, keyPassword);
+        byte[] privKeyTemp = key.getPrivKey();
+        byte[] prefixAmino = getPrefixAmino(PRIV_KEY_NAME);
+        byte[] privKeyAmino = ArrayUtils.addAll(prefixAmino,privKeyTemp);
+
         String salt = BCrypt.gensalt(LOG_ROUNDS);
         String keyHash = BCrypt.hashpw(keystorePassword, salt);
         byte[] keyHashByte = keyHash.getBytes(StandardCharsets.UTF_8);
         byte[] keyHashSha256 = Hash.sha256(keyHashByte);
-        SimpleBox box = new SimpleBox(keyHashSha256);
 
-        byte[] privKeyTemp = key.getPrivKey();
-        byte[] prefixByte = Hex.decode(PREFIX_AMINO);
-        byte[] privKeyAmino = ArrayUtils.addAll(prefixByte,privKeyTemp);
+        SimpleBox box = new SimpleBox(keyHashSha256);
         byte[] encBytes = box.seal(privKeyAmino);
-//        String encString16 = Hex.toHexString(encBytes);
-//        System.out.println(encString16);
+
         ByteArrayOutputStream byteStream = new ByteArrayOutputStream();
         ArmoredOutputStreamImpl aOS = new ArmoredOutputStreamImpl(byteStream);
         String realSaltString = salt.substring(REAL_SALT_BEGIN_POS, REAL_SALT_BEGIN_POS+REAL_SALT_BASE64_LEN);
         byte[] realSaltByte = decode_base64(realSaltString, 16);
         aOS.setHeader("salt", Hex.toHexString(realSaltByte).toUpperCase());
-        aOS.setHeader("kdf","bcrypt");
-        aOS.setHeader("type","sm2");
+        aOS.setHeader("kdf", "bcrypt");
+        aOS.setHeader("type", ALGO_TYPE);
         aOS.write(encBytes);
         aOS.close();
-        //test key.getPrivkey to encBytes
-//        tempP = new byte[];
-//        tempP = privKeyTemp;
-//        System.arraycopy(privKeyTemp,0,tempP,0);
-//        tempP = Arrays.copyOfRange(privKeyTemp,0,privKeyTemp.length);
-//        System.out.println(privKeyTemp);
-//        String privKey16 = bytes_String16(privKeyTemp);
-//        String key16 = bytes_String16(keyHashSha256);
-//        String enc16 = bytes_String16(encBytes);
-//        System.out.println(privKey16);
-//        System.out.println(key16);
-//        System.out.println(encBytes);
-//        System.out.println(enc16);
-//        System.out.println(byteStream.toString().trim());
-
         return writeArmorToFile(destinationDirectory, key.getAddress(), byteStream.toString().trim());
-    }
-    public String bytes_String16(byte[] b) {
-        StringBuilder sb = new StringBuilder();
-        for(int i=0;i<b.length;i++) {
-            sb.append(String.format("%02x", b[i]));
-        }
-        return sb.toString();
     }
 }

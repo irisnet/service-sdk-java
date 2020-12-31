@@ -2,7 +2,6 @@ package iservice.sdk.module.impl;
 
 
 import org.bouncycastle.bcpg.CRC24;
-import org.bouncycastle.bcpg.HashAlgorithmTags;
 import org.bouncycastle.util.Strings;
 
 import java.io.IOException;
@@ -106,8 +105,6 @@ public class ArmoredOutputStreamImpl extends OutputStream
     String          footerStart = "-----END ";
     String          footerTail = "-----";
 
-//    String          version = "BCPG v@RELEASE_NAME@";
-
     Hashtable headers = new Hashtable();
 
     /**
@@ -123,32 +120,6 @@ public class ArmoredOutputStreamImpl extends OutputStream
         if (nl == null)
         {
             nl = "\r\n";
-        }
-
-//        setHeader(VERSION_HDR, version);
-    }
-
-    /**
-     * Constructs an armored output stream with default and custom headers.
-     *
-     * @param out the OutputStream to wrap.
-     * @param headers additional headers that add to or override the {@link #resetHeaders() default
-     *            headers}.
-     */
-    public ArmoredOutputStreamImpl(
-            OutputStream    out,
-            Hashtable       headers)
-    {
-        this(out);
-
-        Enumeration e = headers.keys();
-
-        while (e.hasMoreElements())
-        {
-            Object key = e.nextElement();
-            ArrayList headerList = new ArrayList();
-            headerList.add(headers.get(key));
-            this.headers.put(key, headerList);
         }
     }
 
@@ -183,32 +154,6 @@ public class ArmoredOutputStreamImpl extends OutputStream
         }
     }
 
-
-    /**
-     * Set an additional header entry. The current value(s) will continue to exist together
-     * with the new one. Adding a null value has no effect.
-     *
-     * @param name the name of the header entry.
-     * @param value the value of the header entry.
-     */
-    public void addHeader(
-            String name,
-            String value)
-    {
-        if (value == null || name == null)
-        {
-            return;
-        }
-        ArrayList valueList = (ArrayList)headers.get(name);
-        if (valueList == null)
-        {
-            valueList = new ArrayList();
-            headers.put(name, valueList);
-        }
-        valueList.add(value);
-    }
-
-
     /**
      * Reset the headers to only contain a Version string (if one is present)
      */
@@ -222,69 +167,6 @@ public class ArmoredOutputStreamImpl extends OutputStream
         {
             headers.put(VERSION_HDR, versions);
         }
-    }
-
-    /**
-     * Start a clear text signed message.
-     * @param hashAlgorithm
-     */
-    public void beginClearText(
-            int    hashAlgorithm)
-            throws IOException
-    {
-        String    hash;
-
-        switch (hashAlgorithm)
-        {
-            case HashAlgorithmTags.SHA1:
-                hash = "SHA1";
-                break;
-            case HashAlgorithmTags.SHA256:
-                hash = "SHA256";
-                break;
-            case HashAlgorithmTags.SHA384:
-                hash = "SHA384";
-                break;
-            case HashAlgorithmTags.SHA512:
-                hash = "SHA512";
-                break;
-            case HashAlgorithmTags.MD2:
-                hash = "MD2";
-                break;
-            case HashAlgorithmTags.MD5:
-                hash = "MD5";
-                break;
-            case HashAlgorithmTags.RIPEMD160:
-                hash = "RIPEMD160";
-                break;
-            case HashAlgorithmTags.SHA224:
-                hash = "SHA224";
-                break;
-            default:
-                throw new IOException("unknown hash algorithm tag in beginClearText: " + hashAlgorithm);
-        }
-
-        String armorHdr = "-----BEGIN PGP SIGNED MESSAGE-----" + nl;
-        String hdrs = "Hash: " + hash + nl + nl;
-
-        for (int i = 0; i != armorHdr.length(); i++)
-        {
-            out.write(armorHdr.charAt(i));
-        }
-
-        for (int i = 0; i != hdrs.length(); i++)
-        {
-            out.write(hdrs.charAt(i));
-        }
-
-        clearText = true;
-        newLine = true;
-        lastb = 0;
-    }
-
-    public void endClearText()
-    {
-        clearText = false;
     }
 
     private void writeHeaderEntry(
@@ -354,20 +236,6 @@ public class ArmoredOutputStreamImpl extends OutputStream
             }
 
             type = "TENDERMINT PRIVATE KEY";
-//            switch (tag)
-//            {
-//                case PacketTags.PUBLIC_KEY:
-//                    type = "TENDERMINT PUBLIC KEY";
-//                    break;
-//                case PacketTags.SECRET_KEY:
-//                    type = "TENDERMINT PRIVATE KEY";
-//                    break;
-//                case PacketTags.SIGNATURE:
-//                    type = "SIGNATURE";
-//                    break;
-//                default:
-//                    type = "MESSAGE";
-//            }
 
             for (int i = 0; i != headerStart.length(); i++)
             {

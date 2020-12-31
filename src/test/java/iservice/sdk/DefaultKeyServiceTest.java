@@ -2,7 +2,6 @@ package iservice.sdk;
 
 import iservice.sdk.core.ServiceClientFactory;
 import iservice.sdk.entity.Mnemonic;
-import iservice.sdk.entity.SignAlgo;
 import iservice.sdk.entity.options.ServiceClientOptions;
 import iservice.sdk.module.IKeyService;
 import org.junit.FixMethodOrder;
@@ -23,7 +22,7 @@ import static org.junit.Assert.assertTrue;
  * @author Yelong
  */
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class KeyServiceTest2 {
+public class DefaultKeyServiceTest {
 
 
 
@@ -41,7 +40,6 @@ public class KeyServiceTest2 {
         ServiceClientOptions options = new ServiceClientOptions();
         options.setGrpcURI(new URI("http://localhost:26657"));
         options.setRpcURI(new URI("http://localhost:9090"));
-        options.setSignAlgo(SignAlgo.SM2);
         keyService = ServiceClientFactory.getInstance().setOptions(options).getClient().getKeyService();
     }
 
@@ -92,4 +90,5 @@ public class KeyServiceTest2 {
         assertNotNull(address);
         assertEquals("Wrong Address", paramMap.get(KEYS.ADDRESS), address);
     }
+
 }
