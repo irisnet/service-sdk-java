@@ -202,7 +202,7 @@ public class WebSocketClient {
         }
         channel.writeAndFlush(new TextWebSocketFrame(msg)).addListener(future -> {
             LOGGER.debug("Message has sent out. content:{}", msg);
-            if (future.isSuccess()) {
+            if (!future.isSuccess()) {
                 LOGGER.error("Fail to send message! content:{}", msg);
             }
         });

@@ -2,6 +2,7 @@ package iservice.sdk.module.impl;
 
 import com.google.protobuf.ByteString;
 import cosmos.auth.v1beta1.Auth;
+import cosmos.base.crypto.v1beta1.Crypto;
 import cosmos.base.v1beta1.CoinOuterClass;
 import cosmos.tx.signing.v1beta1.Signing;
 import cosmos.tx.v1beta1.TxOuterClass;
@@ -14,12 +15,12 @@ import iservice.sdk.module.IKeyService;
 import iservice.sdk.module.ITxService;
 import iservice.sdk.util.SM2Utils;
 import org.apache.commons.lang3.ArrayUtils;
+import org.bouncycastle.crypto.CryptoException;
+import org.bouncycastle.math.ec.ECPoint;
+import org.web3j.utils.Numeric;
 
 import java.io.IOException;
 import java.math.BigInteger;
-
-import org.bouncycastle.crypto.CryptoException;
-import org.web3j.utils.Numeric;
 
 public class SM2TxServiceImpl implements ITxService {
 
@@ -43,11 +44,17 @@ public class SM2TxServiceImpl implements ITxService {
     public TxOuterClass.Tx signTx(TxOuterClass.TxBody txBody, String name, String password, boolean offline) throws ServiceSDKException, IOException, CryptoException {
         Key key = this.keyService.getKey(name, password);
 
+        BigInteger privKey = new BigInteger(1,key.getPrivKey());
+        SM2Utils sm2Utils = new SM2Utils();
+        ECPoint pubkey = sm2Utils.getPubkeyFromPrivkey(privKey);
+
+        byte[] encodedPubkey = pubkey.getEncoded(true);
+
         Auth.BaseAccount baseAccount = this.authService.queryAccount(key.getAddress());
         TxOuterClass.AuthInfo ai = TxOuterClass.AuthInfo.newBuilder()
                 .addSignerInfos(
                         TxOuterClass.SignerInfo.newBuilder()
-                                //.setPublicKey(Crypto.PublicKey.newBuilder().setAnyPubkey(Any.newBuilder().setUnknownFields(ByteString.copyFrom(encodedPubkey))))
+                                .setPublicKey(Crypto.PublicKey.newBuilder().setSm2(ByteString.copyFrom(encodedPubkey)))
                                 .setModeInfo(TxOuterClass.ModeInfo.newBuilder().setSingle(TxOuterClass.ModeInfo.Single.newBuilder().setMode(Signing.SignMode.SIGN_MODE_DIRECT)))
                                 .setSequence(baseAccount.getSequence()))
 
@@ -62,7 +69,6 @@ public class SM2TxServiceImpl implements ITxService {
 
         BigInteger privkey = Numeric.toBigInt(key.getPrivKey());
 
-        SM2Utils sm2Utils = new SM2Utils();
         byte[] signature = sm2Utils.sign(privkey, signdoc.toByteArray());
 
         BigInteger[] rs = sm2Utils.getRSFromSignature(signature);

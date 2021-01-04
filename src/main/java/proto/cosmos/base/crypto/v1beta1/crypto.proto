@@ -15,6 +15,7 @@ message PublicKey {
     bytes                   sr25519   = 3;
     PubKeyMultisigThreshold multisig  = 4;
     bytes                   secp256r1 = 5;
+    bytes                   sm2       = 6;
 
     // any_pubkey can be used for any pubkey that an app may use which is
     // not explicitly defined in the oneof

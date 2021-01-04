@@ -27,9 +27,8 @@ public class SuperTest {
                 .addListener(new TestProviderListener())
                 .getClient();
 
-        String addr = client.getKeyService().recoverKey("consumer", "123456", "liquid addict dinosaur tumble model air mansion juice purpose inherit discover project solve apology crew crack engage dawn miss foam achieve broom tenant minute", true, 0, "");
-        System.out.printf(addr);
-        client.getKeyService().recoverKey("provider", "123456", "learn inmate snake demise fall curtain wire ability quick modify reduce find casual man aerobic there order magnet leaf cloud lab super once lava", true, 0, "");
+        client.getKeyService().recoverKey("provider", "123456", "know pioneer position grape marine angle giggle access cement castle keep base minimum spoil nice excite hurdle embody police please frame fancy ritual limit", true, 0, "");
+        client.getKeyService().recoverKey("consumer", "123456", "initial erosion post trouble cabin gas purity carry system satoshi dry certain invest spatial select ostrich hour inside okay vivid stumble crawl avoid want", true, 0, "");
         client.start();
     }
 }
