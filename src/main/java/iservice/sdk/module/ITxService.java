@@ -1,16 +1,17 @@
 package iservice.sdk.module;
 
-import cosmos.tx.v1beta1.TxOuterClass;
-import iservice.sdk.exception.ServiceSDKException;
 import org.bouncycastle.crypto.CryptoException;
 
 import java.io.IOException;
+
+import cosmos.tx.v1beta1.TxOuterClass;
+import iservice.sdk.entity.options.TxOptions;
+import iservice.sdk.exception.ServiceSDKException;
 
 /**
  * @author Yelong
  */
 public interface ITxService {
-
 
     /**
      * Single sign a transaction
@@ -24,5 +25,5 @@ public interface ITxService {
      */
     TxOuterClass.Tx signTx(TxOuterClass.TxBody txBody, String name, String password, boolean offline) throws ServiceSDKException, IOException, CryptoException;
 
-
+    void setOptions(TxOptions options);
 }

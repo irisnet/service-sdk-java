@@ -18,8 +18,8 @@ public class SuperTest {
     public static void main(String[] args) throws URISyntaxException {
         ServiceClientOptions options = new ServiceClientOptions();
         options.setSignAlgo(SignAlgo.SM2);
-        options.setRpcURI(new URI("http://172.18.68.137:26657"));
-        options.setGrpcURI(new URI("http://172.18.68.137:9090"));
+        options.setRpcURI(new URI("http://localhost:26657"));
+        options.setGrpcURI(new URI("http://localhost:9090"));
         options.setRpcStartTimeout(TimeUnit.SECONDS.toMillis(7));
         ServiceClient client = ServiceClientFactory.getInstance()
                 .setOptions(options)
@@ -27,8 +27,8 @@ public class SuperTest {
                 .addListener(new TestProviderListener())
                 .getClient();
 
-        client.getKeyService().recoverKey("consumer", "123456", "picnic tuna easy desert wall proof call scorpion town doctor agree domain system wealth aspect venue course pizza truck settle taxi merge easy drill", true, 0, "");
-        client.getKeyService().recoverKey("provider", "123456", "wash bargain vicious basket blur assist fault august involve quit fit camp eagle supreme chef process auction surge crucial orphan ticket hundred express bike", true, 0, "");
+        client.getKeyService().recoverKey("provider", "123456", "know pioneer position grape marine angle giggle access cement castle keep base minimum spoil nice excite hurdle embody police please frame fancy ritual limit", true, 0, "");
+        client.getKeyService().recoverKey("consumer", "123456", "initial erosion post trouble cabin gas purity carry system satoshi dry certain invest spatial select ostrich hour inside okay vivid stumble crawl avoid want", true, 0, "");
         client.start();
     }
 }

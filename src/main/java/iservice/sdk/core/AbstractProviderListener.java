@@ -10,8 +10,10 @@ import irismod.service.QueryOuterClass;
 import irismod.service.Service;
 import iservice.sdk.entity.BaseServiceResponse;
 import iservice.sdk.entity.ServiceMessage;
+import iservice.sdk.entity.SignAlgo;
 import iservice.sdk.entity.WrappedRequest;
 import iservice.sdk.entity.options.ProviderListenerOptions;
+import iservice.sdk.entity.options.ServiceClientOptions;
 import iservice.sdk.net.GrpcChannel;
 import iservice.sdk.net.HttpClient;
 import iservice.sdk.util.DecodeUtil;
@@ -78,7 +80,9 @@ public abstract class AbstractProviderListener<T, B, R extends BaseServiceRespon
                 .setTimeoutHeight(0)
                 .build();
 
-        ServiceClient client = ServiceClientFactory.getInstance().getClient();
+        ServiceClientOptions options = new ServiceClientOptions();
+        options.setSignAlgo(SignAlgo.SM2);
+        ServiceClient client = ServiceClientFactory.getInstance().setOptions(options).getClient();
         TxOuterClass.Tx tx = client.getTxService().signTx(body, res.getKeyName(), res.getKeyPassword(), false);
 
         Map<String, String> params = new HashMap<>();

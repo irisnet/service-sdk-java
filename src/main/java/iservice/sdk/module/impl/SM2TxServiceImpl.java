@@ -1,79 +1,93 @@
 package iservice.sdk.module.impl;
 
+import org.apache.commons.lang3.ArrayUtils;
+import org.bouncycastle.crypto.CryptoException;
+import org.bouncycastle.math.ec.ECPoint;
+import org.web3j.utils.Numeric;
+
+import java.io.IOException;
+import java.math.BigInteger;
+
 import com.google.protobuf.ByteString;
 import cosmos.auth.v1beta1.Auth;
+import cosmos.base.crypto.v1beta1.Crypto;
 import cosmos.base.v1beta1.CoinOuterClass;
 import cosmos.tx.signing.v1beta1.Signing;
 import cosmos.tx.v1beta1.TxOuterClass;
+
 import iservice.sdk.core.ServiceClient;
 import iservice.sdk.core.ServiceClientFactory;
 import iservice.sdk.entity.Key;
+import iservice.sdk.entity.SignAlgo;
+import iservice.sdk.entity.options.ServiceClientOptions;
+import iservice.sdk.entity.options.TxOptions;
 import iservice.sdk.exception.ServiceSDKException;
 import iservice.sdk.module.IAuthService;
 import iservice.sdk.module.IKeyService;
 import iservice.sdk.module.ITxService;
 import iservice.sdk.util.SM2Utils;
-import org.apache.commons.lang3.ArrayUtils;
-
-import java.io.IOException;
-import java.math.BigInteger;
-
-import org.bouncycastle.crypto.CryptoException;
-import org.web3j.utils.Numeric;
 
 public class SM2TxServiceImpl implements ITxService {
 
-    private String chain_id;
-    private String fee;
+  private TxOptions options;
 
-    private IKeyService keyService;
-    private IAuthService authService;
+  private final IKeyService keyService;
+  private final IAuthService authService;
 
-    public SM2TxServiceImpl(String chain_id, String fee) {
-        ServiceClient serviceClient = ServiceClientFactory.getInstance().getClient();
+  public SM2TxServiceImpl() {
+    ServiceClientOptions options = new ServiceClientOptions();
+    options.setSignAlgo(SignAlgo.SM2);
+    ServiceClient serviceClient = ServiceClientFactory.getInstance().setOptions(options).getClient();
+    this.keyService = serviceClient.getKeyService();
+    this.authService = serviceClient.getAuthService();
+  }
 
-        this.chain_id = chain_id;
-        this.fee = fee;
+  @Override
+  public TxOuterClass.Tx signTx(TxOuterClass.TxBody txBody, String name, String password, boolean offline) throws ServiceSDKException, IOException, CryptoException {
+    Key key = this.keyService.getKey(name, password);
 
-        this.keyService = serviceClient.getKeyService();
-        this.authService = serviceClient.getAuthService();
-    }
+    BigInteger privKey = new BigInteger(1, key.getPrivKey());
+    SM2Utils sm2 = new SM2Utils();
+    ECPoint pubkey = sm2.getPubkeyFromPrivkey(privKey);
 
-    @Override
-    public TxOuterClass.Tx signTx(TxOuterClass.TxBody txBody, String name, String password, boolean offline) throws ServiceSDKException, IOException, CryptoException {
-        Key key = this.keyService.getKey(name, password);
+    byte[] encodedPubkey = pubkey.getEncoded(true);
 
-        Auth.BaseAccount baseAccount = this.authService.queryAccount(key.getAddress());
-        TxOuterClass.AuthInfo ai = TxOuterClass.AuthInfo.newBuilder()
-                .addSignerInfos(
-                        TxOuterClass.SignerInfo.newBuilder()
-                                //.setPublicKey(Crypto.PublicKey.newBuilder().setAnyPubkey(Any.newBuilder().setUnknownFields(ByteString.copyFrom(encodedPubkey))))
-                                .setModeInfo(TxOuterClass.ModeInfo.newBuilder().setSingle(TxOuterClass.ModeInfo.Single.newBuilder().setMode(Signing.SignMode.SIGN_MODE_DIRECT)))
-                                .setSequence(baseAccount.getSequence()))
+    Auth.BaseAccount baseAccount = this.authService.queryAccount(key.getAddress());
+    TxOuterClass.AuthInfo ai = TxOuterClass.AuthInfo.newBuilder()
+      .addSignerInfos(
+        TxOuterClass.SignerInfo.newBuilder()
+          .setPublicKey(Crypto.PublicKey.newBuilder().setSm2(ByteString.copyFrom(encodedPubkey)))
+          .setModeInfo(TxOuterClass.ModeInfo.newBuilder().setSingle(TxOuterClass.ModeInfo.Single.newBuilder().setMode(Signing.SignMode.SIGN_MODE_DIRECT)))
+          .setSequence(baseAccount.getSequence()))
+          .setFee(TxOuterClass.Fee.newBuilder().setGasLimit(this.options.gasLimit).addAmount(CoinOuterClass.Coin.newBuilder().setAmount(this.options.fee.amount).setDenom(this.options.fee.denom))).build();
 
-                .setFee(TxOuterClass.Fee.newBuilder().setGasLimit(200000).addAmount(CoinOuterClass.Coin.newBuilder().setAmount(this.fee).setDenom("point"))).build();
+    TxOuterClass.SignDoc signdoc = TxOuterClass.SignDoc.newBuilder()
+      .setBodyBytes(txBody.toByteString())
+      .setAuthInfoBytes(ai.toByteString())
+      .setAccountNumber(baseAccount.getAccountNumber())
+      .setChainId(this.options.chainID)
+      .build();
 
-        TxOuterClass.SignDoc signdoc = TxOuterClass.SignDoc.newBuilder()
-                .setBodyBytes(txBody.toByteString())
-                .setAuthInfoBytes(ai.toByteString())
-                .setAccountNumber(baseAccount.getAccountNumber())
-                .setChainId(this.chain_id)
-                .build();
+    byte[] signature = sm2.sign(privKey, signdoc.toByteArray());
 
-        BigInteger privkey = Numeric.toBigInt(key.getPrivKey());
+    BigInteger[] rs = sm2.getRSFromSignature(signature);
+    byte[] sigBytes = ArrayUtils.addAll(Numeric.toBytesPadded(rs[0], 32), Numeric.toBytesPadded(rs[1], 32));
 
-        SM2Utils sm2Utils = new SM2Utils();
-        byte[] signature = sm2Utils.sign(privkey, signdoc.toByteArray());
+    TxOuterClass.Tx tx = TxOuterClass.Tx.newBuilder()
+      .setBody(txBody)
+      .setAuthInfo(ai)
+      .addSignatures(ByteString.copyFrom(sigBytes))
+      .build();
 
-        BigInteger[] rs = sm2Utils.getRSFromSignature(signature);
-        byte[] sigBytes = ArrayUtils.addAll(Numeric.toBytesPadded(rs[0], 32), Numeric.toBytesPadded(rs[1], 32));
+    return tx;
+  }
 
-        TxOuterClass.Tx tx = TxOuterClass.Tx.newBuilder()
-                .setBody(txBody)
-                .setAuthInfo(ai)
-                .addSignatures(ByteString.copyFrom(sigBytes))
-                .build();
+  @Override
+  public void setOptions(TxOptions options) {
+    this.options = options;
+  }
 
-        return tx;
-    }
+  public TxOptions getOptions() {
+    return options;
+  }
 }

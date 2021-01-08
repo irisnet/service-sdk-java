@@ -14,7 +14,6 @@ import java.math.BigInteger;
 
 public class SM2Utils {
 
-    
     public ECPoint getPubkeyFromPrivkey(BigInteger privkey) {
         ECPrivateKeyParameters privkeyParameters = BCECUtil.createECPrivateKeyParameters(privkey, SM2Util.DOMAIN_PARAMS);
         ECPublicKeyParameters pubkey = BCECUtil.buildECPublicKeyByPrivateKey(privkeyParameters);
@@ -24,6 +23,12 @@ public class SM2Utils {
     public byte[] sign(BigInteger privkey, byte[] signdoc) throws CryptoException {
         ECPrivateKeyParameters privkeyParameters = BCECUtil.createECPrivateKeyParameters(privkey, SM2Util.DOMAIN_PARAMS);
         return SM2Util.sign(privkeyParameters, "1234567812345678".getBytes(), signdoc);
+    }
+
+    public boolean verify(BigInteger privkey, byte[] srcData, byte[] signature) {
+        ECPrivateKeyParameters privkeyParameters = BCECUtil.createECPrivateKeyParameters(privkey, SM2Util.DOMAIN_PARAMS);
+        ECPublicKeyParameters publicKeyParameters = BCECUtil.buildECPublicKeyByPrivateKey(privkeyParameters);
+        return SM2Util.verify(publicKeyParameters, srcData, signature);
     }
     
     public BigInteger[] getRSFromSignature(byte[] signature) throws IOException {
