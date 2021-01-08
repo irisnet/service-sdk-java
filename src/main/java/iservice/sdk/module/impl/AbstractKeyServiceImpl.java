@@ -12,7 +12,16 @@ import org.bitcoinj.crypto.HDUtils;
 import org.bitcoinj.wallet.DeterministicKeyChain;
 import org.bitcoinj.wallet.DeterministicSeed;
 import org.bitcoinj.wallet.UnreadableWalletException;
+import org.web3j.crypto.Hash;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintStream;
+import java.nio.charset.StandardCharsets;
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 /**
@@ -76,4 +85,29 @@ public abstract class AbstractKeyServiceImpl implements IKeyService {
         return key1;
     }
 
+    public String writeArmorToFile(File filePath, String address, String context) throws FileNotFoundException {
+        String fileName = generateFileName(address);
+        File file = new File(filePath,fileName);
+        PrintStream ps = new PrintStream(new FileOutputStream(file));
+        ps.println(context);
+        return fileName;
+    }
+
+    private String generateFileName(String address) {
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("'UTC--'yyyy-MM-dd'T'HH-mm-ss.nVV'--'");
+        ZonedDateTime now = ZonedDateTime.now(ZoneOffset.UTC);
+        return now.format(format) + address+ ".key";
+    }
+
+    public byte[] getPrefixAmino(String algoPrivKeyName) {
+        byte[] hash = Hash.sha256(algoPrivKeyName.getBytes(StandardCharsets.UTF_8));
+        int ptr = 0;
+        while (hash[ptr] == 0) ptr++;
+        ptr += 3;
+        while (hash[ptr] == 0) ptr++;
+        byte[] prefix = new byte[5];
+        System.arraycopy(hash, ptr, prefix, 0, 4);
+        prefix[4] = 32;
+        return prefix;
+    }
 }

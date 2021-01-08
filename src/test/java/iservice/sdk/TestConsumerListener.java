@@ -12,9 +12,9 @@ public class TestConsumerListener extends AbstractConsumerListener<TestServiceRe
     @Override
     public ConsumerListenerOptions getOptions() {
         ConsumerListenerOptions options = new ConsumerListenerOptions();
-        options.setAddress("iaa1vrh28848qh5sl4ryfvl42nv6jd6twn2fz85hm7");
-        options.setSender("iaa1dwlfeqh5x4982fxmdy0wzsparle7lahljm6cf7");
-        options.setServiceName("credit_file_query_svc");
+        options.setAddress("iaa1xnddejhrcvzlhpkp45jzxlug4m82mglaay53w0");
+        options.setSender("iaa1mxatp6h7huukny9uha8u45qkfas2f6lgpa4nhw");
+        options.setServiceName("update");
         return options;
     }
 

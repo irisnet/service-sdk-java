@@ -10,11 +10,14 @@ import irismod.service.QueryOuterClass;
 import irismod.service.Service;
 import iservice.sdk.entity.BaseServiceResponse;
 import iservice.sdk.entity.ServiceMessage;
+import iservice.sdk.entity.SignAlgo;
 import iservice.sdk.entity.WrappedRequest;
 import iservice.sdk.entity.options.ProviderListenerOptions;
+import iservice.sdk.entity.options.ServiceClientOptions;
 import iservice.sdk.net.GrpcChannel;
 import iservice.sdk.net.HttpClient;
 import iservice.sdk.util.DecodeUtil;
+import org.bouncycastle.crypto.CryptoException;
 import org.bouncycastle.util.encoders.Hex;
 
 import java.io.IOException;
@@ -28,12 +31,12 @@ import java.util.Map;
 public abstract class AbstractProviderListener<T, B, R extends BaseServiceResponse<B>> extends AbstractServiceListener<T> {
 
     @Override
-    public void callback(String json) {
+    public void callback(String json) throws CryptoException {
         getReqFromJson(json);
     }
 
     @Override
-    T getReqFromJson(String json) {
+    T getReqFromJson(String json) throws CryptoException {
         String requests = DecodeUtil.decodeProviderReq(json, getOptions());
         if (requests == null) {
             return null;
@@ -61,7 +64,7 @@ public abstract class AbstractProviderListener<T, B, R extends BaseServiceRespon
         return request.getRequest();
     }
 
-    private void sendRes(R res, Service.Request sr) throws IOException {
+    private void sendRes(R res, Service.Request sr) throws IOException, CryptoException {
         String outputJson = JSON.toJSONString(new ServiceMessage<>(res.getHeader(), res.getBody()));
 
         Service.MsgRespondService msg = Service.MsgRespondService.newBuilder()
@@ -77,7 +80,9 @@ public abstract class AbstractProviderListener<T, B, R extends BaseServiceRespon
                 .setTimeoutHeight(0)
                 .build();
 
-        ServiceClient client = ServiceClientFactory.getInstance().getClient();
+        ServiceClientOptions options = new ServiceClientOptions();
+        options.setSignAlgo(SignAlgo.SM2);
+        ServiceClient client = ServiceClientFactory.getInstance().setOptions(options).getClient();
         TxOuterClass.Tx tx = client.getTxService().signTx(body, res.getKeyName(), res.getKeyPassword(), false);
 
         Map<String, String> params = new HashMap<>();

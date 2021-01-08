@@ -12,8 +12,8 @@ public class TestProviderListener extends AbstractProviderListener<TestServiceRe
     @Override
     public ProviderListenerOptions getOptions() {
         ProviderListenerOptions options = new ProviderListenerOptions();
-        options.setServiceName("credit_file_query_svc");
-        options.setAddress("iaa1dwlfeqh5x4982fxmdy0wzsparle7lahljm6cf7");
+        options.setServiceName("update");
+        options.setAddress("iaa1mxatp6h7huukny9uha8u45qkfas2f6lgpa4nhw");
         return options;
     }
 
