@@ -20,39 +20,46 @@ public final class Crypto {
 
     /**
      * <code>bytes secp256k1 = 1;</code>
+     * @return The secp256k1.
      */
     com.google.protobuf.ByteString getSecp256K1();
 
     /**
      * <code>bytes ed25519 = 2;</code>
+     * @return The ed25519.
      */
     com.google.protobuf.ByteString getEd25519();
 
     /**
      * <code>bytes sr25519 = 3;</code>
+     * @return The sr25519.
      */
     com.google.protobuf.ByteString getSr25519();
 
     /**
      * <code>.cosmos.base.crypto.v1beta1.PubKeyMultisigThreshold multisig = 4;</code>
+     * @return Whether the multisig field is set.
      */
     boolean hasMultisig();
     /**
      * <code>.cosmos.base.crypto.v1beta1.PubKeyMultisigThreshold multisig = 4;</code>
+     * @return The multisig.
      */
-    PubKeyMultisigThreshold getMultisig();
+    cosmos.base.crypto.v1beta1.Crypto.PubKeyMultisigThreshold getMultisig();
     /**
      * <code>.cosmos.base.crypto.v1beta1.PubKeyMultisigThreshold multisig = 4;</code>
      */
-    PubKeyMultisigThresholdOrBuilder getMultisigOrBuilder();
+    cosmos.base.crypto.v1beta1.Crypto.PubKeyMultisigThresholdOrBuilder getMultisigOrBuilder();
 
     /**
      * <code>bytes secp256r1 = 5;</code>
+     * @return The secp256r1.
      */
     com.google.protobuf.ByteString getSecp256R1();
 
     /**
      * <code>bytes sm2 = 6;</code>
+     * @return The sm2.
      */
     com.google.protobuf.ByteString getSm2();
 
@@ -63,6 +70,7 @@ public final class Crypto {
      * </pre>
      *
      * <code>.google.protobuf.Any any_pubkey = 15;</code>
+     * @return Whether the anyPubkey field is set.
      */
     boolean hasAnyPubkey();
     /**
@@ -72,6 +80,7 @@ public final class Crypto {
      * </pre>
      *
      * <code>.google.protobuf.Any any_pubkey = 15;</code>
+     * @return The anyPubkey.
      */
     com.google.protobuf.Any getAnyPubkey();
     /**
@@ -84,7 +93,7 @@ public final class Crypto {
      */
     com.google.protobuf.AnyOrBuilder getAnyPubkeyOrBuilder();
 
-    public PublicKey.SumCase getSumCase();
+    public cosmos.base.crypto.v1beta1.Crypto.PublicKey.SumCase getSumCase();
   }
   /**
    * <pre>
@@ -93,7 +102,7 @@ public final class Crypto {
    *
    * Protobuf type {@code cosmos.base.crypto.v1beta1.PublicKey}
    */
-  public  static final class PublicKey extends
+  public static final class PublicKey extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:cosmos.base.crypto.v1beta1.PublicKey)
       PublicKeyOrBuilder {
@@ -105,7 +114,14 @@ public final class Crypto {
     private PublicKey() {
     }
 
-    @Override
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new PublicKey();
+    }
+
+    @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
@@ -116,9 +132,8 @@ public final class Crypto {
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       if (extensionRegistry == null) {
-        throw new NullPointerException();
+        throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -145,14 +160,14 @@ public final class Crypto {
               break;
             }
             case 34: {
-              PubKeyMultisigThreshold.Builder subBuilder = null;
+              cosmos.base.crypto.v1beta1.Crypto.PubKeyMultisigThreshold.Builder subBuilder = null;
               if (sumCase_ == 4) {
-                subBuilder = ((PubKeyMultisigThreshold) sum_).toBuilder();
+                subBuilder = ((cosmos.base.crypto.v1beta1.Crypto.PubKeyMultisigThreshold) sum_).toBuilder();
               }
               sum_ =
-                  input.readMessage(PubKeyMultisigThreshold.parser(), extensionRegistry);
+                  input.readMessage(cosmos.base.crypto.v1beta1.Crypto.PubKeyMultisigThreshold.parser(), extensionRegistry);
               if (subBuilder != null) {
-                subBuilder.mergeFrom((PubKeyMultisigThreshold) sum_);
+                subBuilder.mergeFrom((cosmos.base.crypto.v1beta1.Crypto.PubKeyMultisigThreshold) sum_);
                 sum_ = subBuilder.buildPartial();
               }
               sumCase_ = 4;
@@ -183,7 +198,7 @@ public final class Crypto {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -203,21 +218,22 @@ public final class Crypto {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return Crypto.internal_static_cosmos_base_crypto_v1beta1_PublicKey_descriptor;
+      return cosmos.base.crypto.v1beta1.Crypto.internal_static_cosmos_base_crypto_v1beta1_PublicKey_descriptor;
     }
 
-    @Override
-    protected FieldAccessorTable
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return Crypto.internal_static_cosmos_base_crypto_v1beta1_PublicKey_fieldAccessorTable
+      return cosmos.base.crypto.v1beta1.Crypto.internal_static_cosmos_base_crypto_v1beta1_PublicKey_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              PublicKey.class, Builder.class);
+              cosmos.base.crypto.v1beta1.Crypto.PublicKey.class, cosmos.base.crypto.v1beta1.Crypto.PublicKey.Builder.class);
     }
 
     private int sumCase_ = 0;
-    private Object sum_;
+    private java.lang.Object sum_;
     public enum SumCase
-        implements com.google.protobuf.Internal.EnumLite {
+        implements com.google.protobuf.Internal.EnumLite,
+            com.google.protobuf.AbstractMessage.InternalOneOfEnum {
       SECP256K1(1),
       ED25519(2),
       SR25519(3),
@@ -231,9 +247,11 @@ public final class Crypto {
         this.value = value;
       }
       /**
+       * @param value The number of the enum to look for.
+       * @return The enum associated with the given number.
        * @deprecated Use {@link #forNumber(int)} instead.
        */
-      @Deprecated
+      @java.lang.Deprecated
       public static SumCase valueOf(int value) {
         return forNumber(value);
       }
@@ -265,7 +283,9 @@ public final class Crypto {
     public static final int SECP256K1_FIELD_NUMBER = 1;
     /**
      * <code>bytes secp256k1 = 1;</code>
+     * @return The secp256k1.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString getSecp256K1() {
       if (sumCase_ == 1) {
         return (com.google.protobuf.ByteString) sum_;
@@ -276,7 +296,9 @@ public final class Crypto {
     public static final int ED25519_FIELD_NUMBER = 2;
     /**
      * <code>bytes ed25519 = 2;</code>
+     * @return The ed25519.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString getEd25519() {
       if (sumCase_ == 2) {
         return (com.google.protobuf.ByteString) sum_;
@@ -287,7 +309,9 @@ public final class Crypto {
     public static final int SR25519_FIELD_NUMBER = 3;
     /**
      * <code>bytes sr25519 = 3;</code>
+     * @return The sr25519.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString getSr25519() {
       if (sumCase_ == 3) {
         return (com.google.protobuf.ByteString) sum_;
@@ -298,33 +322,40 @@ public final class Crypto {
     public static final int MULTISIG_FIELD_NUMBER = 4;
     /**
      * <code>.cosmos.base.crypto.v1beta1.PubKeyMultisigThreshold multisig = 4;</code>
+     * @return Whether the multisig field is set.
      */
+    @java.lang.Override
     public boolean hasMultisig() {
       return sumCase_ == 4;
     }
     /**
      * <code>.cosmos.base.crypto.v1beta1.PubKeyMultisigThreshold multisig = 4;</code>
+     * @return The multisig.
      */
-    public PubKeyMultisigThreshold getMultisig() {
+    @java.lang.Override
+    public cosmos.base.crypto.v1beta1.Crypto.PubKeyMultisigThreshold getMultisig() {
       if (sumCase_ == 4) {
-         return (PubKeyMultisigThreshold) sum_;
+         return (cosmos.base.crypto.v1beta1.Crypto.PubKeyMultisigThreshold) sum_;
       }
-      return PubKeyMultisigThreshold.getDefaultInstance();
+      return cosmos.base.crypto.v1beta1.Crypto.PubKeyMultisigThreshold.getDefaultInstance();
     }
     /**
      * <code>.cosmos.base.crypto.v1beta1.PubKeyMultisigThreshold multisig = 4;</code>
      */
-    public PubKeyMultisigThresholdOrBuilder getMultisigOrBuilder() {
+    @java.lang.Override
+    public cosmos.base.crypto.v1beta1.Crypto.PubKeyMultisigThresholdOrBuilder getMultisigOrBuilder() {
       if (sumCase_ == 4) {
-         return (PubKeyMultisigThreshold) sum_;
+         return (cosmos.base.crypto.v1beta1.Crypto.PubKeyMultisigThreshold) sum_;
       }
-      return PubKeyMultisigThreshold.getDefaultInstance();
+      return cosmos.base.crypto.v1beta1.Crypto.PubKeyMultisigThreshold.getDefaultInstance();
     }
 
     public static final int SECP256R1_FIELD_NUMBER = 5;
     /**
      * <code>bytes secp256r1 = 5;</code>
+     * @return The secp256r1.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString getSecp256R1() {
       if (sumCase_ == 5) {
         return (com.google.protobuf.ByteString) sum_;
@@ -335,7 +366,9 @@ public final class Crypto {
     public static final int SM2_FIELD_NUMBER = 6;
     /**
      * <code>bytes sm2 = 6;</code>
+     * @return The sm2.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString getSm2() {
       if (sumCase_ == 6) {
         return (com.google.protobuf.ByteString) sum_;
@@ -351,7 +384,9 @@ public final class Crypto {
      * </pre>
      *
      * <code>.google.protobuf.Any any_pubkey = 15;</code>
+     * @return Whether the anyPubkey field is set.
      */
+    @java.lang.Override
     public boolean hasAnyPubkey() {
       return sumCase_ == 15;
     }
@@ -362,7 +397,9 @@ public final class Crypto {
      * </pre>
      *
      * <code>.google.protobuf.Any any_pubkey = 15;</code>
+     * @return The anyPubkey.
      */
+    @java.lang.Override
     public com.google.protobuf.Any getAnyPubkey() {
       if (sumCase_ == 15) {
          return (com.google.protobuf.Any) sum_;
@@ -377,6 +414,7 @@ public final class Crypto {
      *
      * <code>.google.protobuf.Any any_pubkey = 15;</code>
      */
+    @java.lang.Override
     public com.google.protobuf.AnyOrBuilder getAnyPubkeyOrBuilder() {
       if (sumCase_ == 15) {
          return (com.google.protobuf.Any) sum_;
@@ -385,7 +423,7 @@ public final class Crypto {
     }
 
     private byte memoizedIsInitialized = -1;
-    @Override
+    @java.lang.Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
@@ -395,7 +433,7 @@ public final class Crypto {
       return true;
     }
 
-    @Override
+    @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (sumCase_ == 1) {
@@ -411,7 +449,7 @@ public final class Crypto {
             3, (com.google.protobuf.ByteString) sum_);
       }
       if (sumCase_ == 4) {
-        output.writeMessage(4, (PubKeyMultisigThreshold) sum_);
+        output.writeMessage(4, (cosmos.base.crypto.v1beta1.Crypto.PubKeyMultisigThreshold) sum_);
       }
       if (sumCase_ == 5) {
         output.writeBytes(
@@ -427,7 +465,7 @@ public final class Crypto {
       unknownFields.writeTo(output);
     }
 
-    @Override
+    @java.lang.Override
     public int getSerializedSize() {
       int size = memoizedSize;
       if (size != -1) return size;
@@ -450,7 +488,7 @@ public final class Crypto {
       }
       if (sumCase_ == 4) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(4, (PubKeyMultisigThreshold) sum_);
+          .computeMessageSize(4, (cosmos.base.crypto.v1beta1.Crypto.PubKeyMultisigThreshold) sum_);
       }
       if (sumCase_ == 5) {
         size += com.google.protobuf.CodedOutputStream
@@ -471,57 +509,54 @@ public final class Crypto {
       return size;
     }
 
-    @Override
-    public boolean equals(final Object obj) {
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof PublicKey)) {
+      if (!(obj instanceof cosmos.base.crypto.v1beta1.Crypto.PublicKey)) {
         return super.equals(obj);
       }
-      PublicKey other = (PublicKey) obj;
+      cosmos.base.crypto.v1beta1.Crypto.PublicKey other = (cosmos.base.crypto.v1beta1.Crypto.PublicKey) obj;
 
-      boolean result = true;
-      result = result && getSumCase().equals(
-          other.getSumCase());
-      if (!result) return false;
+      if (!getSumCase().equals(other.getSumCase())) return false;
       switch (sumCase_) {
         case 1:
-          result = result && getSecp256K1()
-              .equals(other.getSecp256K1());
+          if (!getSecp256K1()
+              .equals(other.getSecp256K1())) return false;
           break;
         case 2:
-          result = result && getEd25519()
-              .equals(other.getEd25519());
+          if (!getEd25519()
+              .equals(other.getEd25519())) return false;
           break;
         case 3:
-          result = result && getSr25519()
-              .equals(other.getSr25519());
+          if (!getSr25519()
+              .equals(other.getSr25519())) return false;
           break;
         case 4:
-          result = result && getMultisig()
-              .equals(other.getMultisig());
+          if (!getMultisig()
+              .equals(other.getMultisig())) return false;
           break;
         case 5:
-          result = result && getSecp256R1()
-              .equals(other.getSecp256R1());
+          if (!getSecp256R1()
+              .equals(other.getSecp256R1())) return false;
           break;
         case 6:
-          result = result && getSm2()
-              .equals(other.getSm2());
+          if (!getSm2()
+              .equals(other.getSm2())) return false;
           break;
         case 15:
-          result = result && getAnyPubkey()
-              .equals(other.getAnyPubkey());
+          if (!getAnyPubkey()
+              .equals(other.getAnyPubkey())) return false;
           break;
         case 0:
         default:
       }
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
       if (memoizedHashCode != 0) {
         return memoizedHashCode;
@@ -565,69 +600,69 @@ public final class Crypto {
       return hash;
     }
 
-    public static PublicKey parseFrom(
+    public static cosmos.base.crypto.v1beta1.Crypto.PublicKey parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static PublicKey parseFrom(
+    public static cosmos.base.crypto.v1beta1.Crypto.PublicKey parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static PublicKey parseFrom(
+    public static cosmos.base.crypto.v1beta1.Crypto.PublicKey parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static PublicKey parseFrom(
+    public static cosmos.base.crypto.v1beta1.Crypto.PublicKey parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static PublicKey parseFrom(byte[] data)
+    public static cosmos.base.crypto.v1beta1.Crypto.PublicKey parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static PublicKey parseFrom(
+    public static cosmos.base.crypto.v1beta1.Crypto.PublicKey parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static PublicKey parseFrom(java.io.InputStream input)
+    public static cosmos.base.crypto.v1beta1.Crypto.PublicKey parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static PublicKey parseFrom(
+    public static cosmos.base.crypto.v1beta1.Crypto.PublicKey parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static PublicKey parseDelimitedFrom(java.io.InputStream input)
+    public static cosmos.base.crypto.v1beta1.Crypto.PublicKey parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static PublicKey parseDelimitedFrom(
+    public static cosmos.base.crypto.v1beta1.Crypto.PublicKey parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static PublicKey parseFrom(
+    public static cosmos.base.crypto.v1beta1.Crypto.PublicKey parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static PublicKey parseFrom(
+    public static cosmos.base.crypto.v1beta1.Crypto.PublicKey parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -635,23 +670,23 @@ public final class Crypto {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    @Override
+    @java.lang.Override
     public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(PublicKey prototype) {
+    public static Builder newBuilder(cosmos.base.crypto.v1beta1.Crypto.PublicKey prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
-    @Override
+    @java.lang.Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
           ? new Builder() : new Builder().mergeFrom(this);
     }
 
-    @Override
+    @java.lang.Override
     protected Builder newBuilderForType(
-        BuilderParent parent) {
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -665,18 +700,18 @@ public final class Crypto {
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:cosmos.base.crypto.v1beta1.PublicKey)
-        PublicKeyOrBuilder {
+        cosmos.base.crypto.v1beta1.Crypto.PublicKeyOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return Crypto.internal_static_cosmos_base_crypto_v1beta1_PublicKey_descriptor;
+        return cosmos.base.crypto.v1beta1.Crypto.internal_static_cosmos_base_crypto_v1beta1_PublicKey_descriptor;
       }
 
-      @Override
-      protected FieldAccessorTable
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return Crypto.internal_static_cosmos_base_crypto_v1beta1_PublicKey_fieldAccessorTable
+        return cosmos.base.crypto.v1beta1.Crypto.internal_static_cosmos_base_crypto_v1beta1_PublicKey_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                PublicKey.class, Builder.class);
+                cosmos.base.crypto.v1beta1.Crypto.PublicKey.class, cosmos.base.crypto.v1beta1.Crypto.PublicKey.Builder.class);
       }
 
       // Construct using cosmos.base.crypto.v1beta1.Crypto.PublicKey.newBuilder()
@@ -685,7 +720,7 @@ public final class Crypto {
       }
 
       private Builder(
-          BuilderParent parent) {
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -694,7 +729,7 @@ public final class Crypto {
                 .alwaysUseFieldBuilders) {
         }
       }
-      @Override
+      @java.lang.Override
       public Builder clear() {
         super.clear();
         sumCase_ = 0;
@@ -702,29 +737,29 @@ public final class Crypto {
         return this;
       }
 
-      @Override
+      @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return Crypto.internal_static_cosmos_base_crypto_v1beta1_PublicKey_descriptor;
+        return cosmos.base.crypto.v1beta1.Crypto.internal_static_cosmos_base_crypto_v1beta1_PublicKey_descriptor;
       }
 
-      @Override
-      public PublicKey getDefaultInstanceForType() {
-        return PublicKey.getDefaultInstance();
+      @java.lang.Override
+      public cosmos.base.crypto.v1beta1.Crypto.PublicKey getDefaultInstanceForType() {
+        return cosmos.base.crypto.v1beta1.Crypto.PublicKey.getDefaultInstance();
       }
 
-      @Override
-      public PublicKey build() {
-        PublicKey result = buildPartial();
+      @java.lang.Override
+      public cosmos.base.crypto.v1beta1.Crypto.PublicKey build() {
+        cosmos.base.crypto.v1beta1.Crypto.PublicKey result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      @Override
-      public PublicKey buildPartial() {
-        PublicKey result = new PublicKey(this);
+      @java.lang.Override
+      public cosmos.base.crypto.v1beta1.Crypto.PublicKey buildPartial() {
+        cosmos.base.crypto.v1beta1.Crypto.PublicKey result = new cosmos.base.crypto.v1beta1.Crypto.PublicKey(this);
         if (sumCase_ == 1) {
           result.sum_ = sum_;
         }
@@ -759,50 +794,50 @@ public final class Crypto {
         return result;
       }
 
-      @Override
+      @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
-      @Override
+      @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.setField(field, value);
+          java.lang.Object value) {
+        return super.setField(field, value);
       }
-      @Override
+      @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
-      @Override
+      @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
-      @Override
+      @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
       }
-      @Override
+      @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
       }
-      @Override
+      @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof PublicKey) {
-          return mergeFrom((PublicKey)other);
+        if (other instanceof cosmos.base.crypto.v1beta1.Crypto.PublicKey) {
+          return mergeFrom((cosmos.base.crypto.v1beta1.Crypto.PublicKey)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(PublicKey other) {
-        if (other == PublicKey.getDefaultInstance()) return this;
+      public Builder mergeFrom(cosmos.base.crypto.v1beta1.Crypto.PublicKey other) {
+        if (other == cosmos.base.crypto.v1beta1.Crypto.PublicKey.getDefaultInstance()) return this;
         switch (other.getSumCase()) {
           case SECP256K1: {
             setSecp256K1(other.getSecp256K1());
@@ -841,21 +876,21 @@ public final class Crypto {
         return this;
       }
 
-      @Override
+      @java.lang.Override
       public final boolean isInitialized() {
         return true;
       }
 
-      @Override
+      @java.lang.Override
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        PublicKey parsedMessage = null;
+        cosmos.base.crypto.v1beta1.Crypto.PublicKey parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (PublicKey) e.getUnfinishedMessage();
+          parsedMessage = (cosmos.base.crypto.v1beta1.Crypto.PublicKey) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -865,7 +900,7 @@ public final class Crypto {
         return this;
       }
       private int sumCase_ = 0;
-      private Object sum_;
+      private java.lang.Object sum_;
       public SumCase
           getSumCase() {
         return SumCase.forNumber(
@@ -882,6 +917,7 @@ public final class Crypto {
 
       /**
        * <code>bytes secp256k1 = 1;</code>
+       * @return The secp256k1.
        */
       public com.google.protobuf.ByteString getSecp256K1() {
         if (sumCase_ == 1) {
@@ -891,6 +927,8 @@ public final class Crypto {
       }
       /**
        * <code>bytes secp256k1 = 1;</code>
+       * @param value The secp256k1 to set.
+       * @return This builder for chaining.
        */
       public Builder setSecp256K1(com.google.protobuf.ByteString value) {
         if (value == null) {
@@ -903,6 +941,7 @@ public final class Crypto {
       }
       /**
        * <code>bytes secp256k1 = 1;</code>
+       * @return This builder for chaining.
        */
       public Builder clearSecp256K1() {
         if (sumCase_ == 1) {
@@ -915,6 +954,7 @@ public final class Crypto {
 
       /**
        * <code>bytes ed25519 = 2;</code>
+       * @return The ed25519.
        */
       public com.google.protobuf.ByteString getEd25519() {
         if (sumCase_ == 2) {
@@ -924,6 +964,8 @@ public final class Crypto {
       }
       /**
        * <code>bytes ed25519 = 2;</code>
+       * @param value The ed25519 to set.
+       * @return This builder for chaining.
        */
       public Builder setEd25519(com.google.protobuf.ByteString value) {
         if (value == null) {
@@ -936,6 +978,7 @@ public final class Crypto {
       }
       /**
        * <code>bytes ed25519 = 2;</code>
+       * @return This builder for chaining.
        */
       public Builder clearEd25519() {
         if (sumCase_ == 2) {
@@ -948,6 +991,7 @@ public final class Crypto {
 
       /**
        * <code>bytes sr25519 = 3;</code>
+       * @return The sr25519.
        */
       public com.google.protobuf.ByteString getSr25519() {
         if (sumCase_ == 3) {
@@ -957,6 +1001,8 @@ public final class Crypto {
       }
       /**
        * <code>bytes sr25519 = 3;</code>
+       * @param value The sr25519 to set.
+       * @return This builder for chaining.
        */
       public Builder setSr25519(com.google.protobuf.ByteString value) {
         if (value == null) {
@@ -969,6 +1015,7 @@ public final class Crypto {
       }
       /**
        * <code>bytes sr25519 = 3;</code>
+       * @return This builder for chaining.
        */
       public Builder clearSr25519() {
         if (sumCase_ == 3) {
@@ -980,33 +1027,37 @@ public final class Crypto {
       }
 
       private com.google.protobuf.SingleFieldBuilderV3<
-          PubKeyMultisigThreshold, PubKeyMultisigThreshold.Builder, PubKeyMultisigThresholdOrBuilder> multisigBuilder_;
+          cosmos.base.crypto.v1beta1.Crypto.PubKeyMultisigThreshold, cosmos.base.crypto.v1beta1.Crypto.PubKeyMultisigThreshold.Builder, cosmos.base.crypto.v1beta1.Crypto.PubKeyMultisigThresholdOrBuilder> multisigBuilder_;
       /**
        * <code>.cosmos.base.crypto.v1beta1.PubKeyMultisigThreshold multisig = 4;</code>
+       * @return Whether the multisig field is set.
        */
+      @java.lang.Override
       public boolean hasMultisig() {
         return sumCase_ == 4;
       }
       /**
        * <code>.cosmos.base.crypto.v1beta1.PubKeyMultisigThreshold multisig = 4;</code>
+       * @return The multisig.
        */
-      public PubKeyMultisigThreshold getMultisig() {
+      @java.lang.Override
+      public cosmos.base.crypto.v1beta1.Crypto.PubKeyMultisigThreshold getMultisig() {
         if (multisigBuilder_ == null) {
           if (sumCase_ == 4) {
-            return (PubKeyMultisigThreshold) sum_;
+            return (cosmos.base.crypto.v1beta1.Crypto.PubKeyMultisigThreshold) sum_;
           }
-          return PubKeyMultisigThreshold.getDefaultInstance();
+          return cosmos.base.crypto.v1beta1.Crypto.PubKeyMultisigThreshold.getDefaultInstance();
         } else {
           if (sumCase_ == 4) {
             return multisigBuilder_.getMessage();
           }
-          return PubKeyMultisigThreshold.getDefaultInstance();
+          return cosmos.base.crypto.v1beta1.Crypto.PubKeyMultisigThreshold.getDefaultInstance();
         }
       }
       /**
        * <code>.cosmos.base.crypto.v1beta1.PubKeyMultisigThreshold multisig = 4;</code>
        */
-      public Builder setMultisig(PubKeyMultisigThreshold value) {
+      public Builder setMultisig(cosmos.base.crypto.v1beta1.Crypto.PubKeyMultisigThreshold value) {
         if (multisigBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -1023,7 +1074,7 @@ public final class Crypto {
        * <code>.cosmos.base.crypto.v1beta1.PubKeyMultisigThreshold multisig = 4;</code>
        */
       public Builder setMultisig(
-          PubKeyMultisigThreshold.Builder builderForValue) {
+          cosmos.base.crypto.v1beta1.Crypto.PubKeyMultisigThreshold.Builder builderForValue) {
         if (multisigBuilder_ == null) {
           sum_ = builderForValue.build();
           onChanged();
@@ -1036,11 +1087,11 @@ public final class Crypto {
       /**
        * <code>.cosmos.base.crypto.v1beta1.PubKeyMultisigThreshold multisig = 4;</code>
        */
-      public Builder mergeMultisig(PubKeyMultisigThreshold value) {
+      public Builder mergeMultisig(cosmos.base.crypto.v1beta1.Crypto.PubKeyMultisigThreshold value) {
         if (multisigBuilder_ == null) {
           if (sumCase_ == 4 &&
-              sum_ != PubKeyMultisigThreshold.getDefaultInstance()) {
-            sum_ = PubKeyMultisigThreshold.newBuilder((PubKeyMultisigThreshold) sum_)
+              sum_ != cosmos.base.crypto.v1beta1.Crypto.PubKeyMultisigThreshold.getDefaultInstance()) {
+            sum_ = cosmos.base.crypto.v1beta1.Crypto.PubKeyMultisigThreshold.newBuilder((cosmos.base.crypto.v1beta1.Crypto.PubKeyMultisigThreshold) sum_)
                 .mergeFrom(value).buildPartial();
           } else {
             sum_ = value;
@@ -1077,35 +1128,36 @@ public final class Crypto {
       /**
        * <code>.cosmos.base.crypto.v1beta1.PubKeyMultisigThreshold multisig = 4;</code>
        */
-      public PubKeyMultisigThreshold.Builder getMultisigBuilder() {
+      public cosmos.base.crypto.v1beta1.Crypto.PubKeyMultisigThreshold.Builder getMultisigBuilder() {
         return getMultisigFieldBuilder().getBuilder();
       }
       /**
        * <code>.cosmos.base.crypto.v1beta1.PubKeyMultisigThreshold multisig = 4;</code>
        */
-      public PubKeyMultisigThresholdOrBuilder getMultisigOrBuilder() {
+      @java.lang.Override
+      public cosmos.base.crypto.v1beta1.Crypto.PubKeyMultisigThresholdOrBuilder getMultisigOrBuilder() {
         if ((sumCase_ == 4) && (multisigBuilder_ != null)) {
           return multisigBuilder_.getMessageOrBuilder();
         } else {
           if (sumCase_ == 4) {
-            return (PubKeyMultisigThreshold) sum_;
+            return (cosmos.base.crypto.v1beta1.Crypto.PubKeyMultisigThreshold) sum_;
           }
-          return PubKeyMultisigThreshold.getDefaultInstance();
+          return cosmos.base.crypto.v1beta1.Crypto.PubKeyMultisigThreshold.getDefaultInstance();
         }
       }
       /**
        * <code>.cosmos.base.crypto.v1beta1.PubKeyMultisigThreshold multisig = 4;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
-          PubKeyMultisigThreshold, PubKeyMultisigThreshold.Builder, PubKeyMultisigThresholdOrBuilder>
+          cosmos.base.crypto.v1beta1.Crypto.PubKeyMultisigThreshold, cosmos.base.crypto.v1beta1.Crypto.PubKeyMultisigThreshold.Builder, cosmos.base.crypto.v1beta1.Crypto.PubKeyMultisigThresholdOrBuilder> 
           getMultisigFieldBuilder() {
         if (multisigBuilder_ == null) {
           if (!(sumCase_ == 4)) {
-            sum_ = PubKeyMultisigThreshold.getDefaultInstance();
+            sum_ = cosmos.base.crypto.v1beta1.Crypto.PubKeyMultisigThreshold.getDefaultInstance();
           }
           multisigBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              PubKeyMultisigThreshold, PubKeyMultisigThreshold.Builder, PubKeyMultisigThresholdOrBuilder>(
-                  (PubKeyMultisigThreshold) sum_,
+              cosmos.base.crypto.v1beta1.Crypto.PubKeyMultisigThreshold, cosmos.base.crypto.v1beta1.Crypto.PubKeyMultisigThreshold.Builder, cosmos.base.crypto.v1beta1.Crypto.PubKeyMultisigThresholdOrBuilder>(
+                  (cosmos.base.crypto.v1beta1.Crypto.PubKeyMultisigThreshold) sum_,
                   getParentForChildren(),
                   isClean());
           sum_ = null;
@@ -1117,6 +1169,7 @@ public final class Crypto {
 
       /**
        * <code>bytes secp256r1 = 5;</code>
+       * @return The secp256r1.
        */
       public com.google.protobuf.ByteString getSecp256R1() {
         if (sumCase_ == 5) {
@@ -1126,6 +1179,8 @@ public final class Crypto {
       }
       /**
        * <code>bytes secp256r1 = 5;</code>
+       * @param value The secp256r1 to set.
+       * @return This builder for chaining.
        */
       public Builder setSecp256R1(com.google.protobuf.ByteString value) {
         if (value == null) {
@@ -1138,6 +1193,7 @@ public final class Crypto {
       }
       /**
        * <code>bytes secp256r1 = 5;</code>
+       * @return This builder for chaining.
        */
       public Builder clearSecp256R1() {
         if (sumCase_ == 5) {
@@ -1150,6 +1206,7 @@ public final class Crypto {
 
       /**
        * <code>bytes sm2 = 6;</code>
+       * @return The sm2.
        */
       public com.google.protobuf.ByteString getSm2() {
         if (sumCase_ == 6) {
@@ -1159,6 +1216,8 @@ public final class Crypto {
       }
       /**
        * <code>bytes sm2 = 6;</code>
+       * @param value The sm2 to set.
+       * @return This builder for chaining.
        */
       public Builder setSm2(com.google.protobuf.ByteString value) {
         if (value == null) {
@@ -1171,6 +1230,7 @@ public final class Crypto {
       }
       /**
        * <code>bytes sm2 = 6;</code>
+       * @return This builder for chaining.
        */
       public Builder clearSm2() {
         if (sumCase_ == 6) {
@@ -1190,7 +1250,9 @@ public final class Crypto {
        * </pre>
        *
        * <code>.google.protobuf.Any any_pubkey = 15;</code>
+       * @return Whether the anyPubkey field is set.
        */
+      @java.lang.Override
       public boolean hasAnyPubkey() {
         return sumCase_ == 15;
       }
@@ -1201,7 +1263,9 @@ public final class Crypto {
        * </pre>
        *
        * <code>.google.protobuf.Any any_pubkey = 15;</code>
+       * @return The anyPubkey.
        */
+      @java.lang.Override
       public com.google.protobuf.Any getAnyPubkey() {
         if (anyPubkeyBuilder_ == null) {
           if (sumCase_ == 15) {
@@ -1325,6 +1389,7 @@ public final class Crypto {
        *
        * <code>.google.protobuf.Any any_pubkey = 15;</code>
        */
+      @java.lang.Override
       public com.google.protobuf.AnyOrBuilder getAnyPubkeyOrBuilder() {
         if ((sumCase_ == 15) && (anyPubkeyBuilder_ != null)) {
           return anyPubkeyBuilder_.getMessageOrBuilder();
@@ -1361,13 +1426,13 @@ public final class Crypto {
         onChanged();;
         return anyPubkeyBuilder_;
       }
-      @Override
+      @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
-      @Override
+      @java.lang.Override
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
@@ -1378,18 +1443,18 @@ public final class Crypto {
     }
 
     // @@protoc_insertion_point(class_scope:cosmos.base.crypto.v1beta1.PublicKey)
-    private static final PublicKey DEFAULT_INSTANCE;
+    private static final cosmos.base.crypto.v1beta1.Crypto.PublicKey DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new PublicKey();
+      DEFAULT_INSTANCE = new cosmos.base.crypto.v1beta1.Crypto.PublicKey();
     }
 
-    public static PublicKey getDefaultInstance() {
+    public static cosmos.base.crypto.v1beta1.Crypto.PublicKey getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
     private static final com.google.protobuf.Parser<PublicKey>
         PARSER = new com.google.protobuf.AbstractParser<PublicKey>() {
-      @Override
+      @java.lang.Override
       public PublicKey parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -1402,13 +1467,13 @@ public final class Crypto {
       return PARSER;
     }
 
-    @Override
+    @java.lang.Override
     public com.google.protobuf.Parser<PublicKey> getParserForType() {
       return PARSER;
     }
 
-    @Override
-    public PublicKey getDefaultInstanceForType() {
+    @java.lang.Override
+    public cosmos.base.crypto.v1beta1.Crypto.PublicKey getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -1420,18 +1485,19 @@ public final class Crypto {
 
     /**
      * <code>uint32 threshold = 1 [(.gogoproto.customname) = "K", (.gogoproto.moretags) = "yaml:&#92;"threshold&#92;""];</code>
+     * @return The threshold.
      */
     int getThreshold();
 
     /**
      * <code>repeated .cosmos.base.crypto.v1beta1.PublicKey public_keys = 2 [(.gogoproto.customname) = "PubKeys", (.gogoproto.moretags) = "yaml:&#92;"pubkeys&#92;""];</code>
      */
-    java.util.List<PublicKey>
+    java.util.List<cosmos.base.crypto.v1beta1.Crypto.PublicKey> 
         getPublicKeysList();
     /**
      * <code>repeated .cosmos.base.crypto.v1beta1.PublicKey public_keys = 2 [(.gogoproto.customname) = "PubKeys", (.gogoproto.moretags) = "yaml:&#92;"pubkeys&#92;""];</code>
      */
-    PublicKey getPublicKeys(int index);
+    cosmos.base.crypto.v1beta1.Crypto.PublicKey getPublicKeys(int index);
     /**
      * <code>repeated .cosmos.base.crypto.v1beta1.PublicKey public_keys = 2 [(.gogoproto.customname) = "PubKeys", (.gogoproto.moretags) = "yaml:&#92;"pubkeys&#92;""];</code>
      */
@@ -1439,12 +1505,12 @@ public final class Crypto {
     /**
      * <code>repeated .cosmos.base.crypto.v1beta1.PublicKey public_keys = 2 [(.gogoproto.customname) = "PubKeys", (.gogoproto.moretags) = "yaml:&#92;"pubkeys&#92;""];</code>
      */
-    java.util.List<? extends PublicKeyOrBuilder>
+    java.util.List<? extends cosmos.base.crypto.v1beta1.Crypto.PublicKeyOrBuilder> 
         getPublicKeysOrBuilderList();
     /**
      * <code>repeated .cosmos.base.crypto.v1beta1.PublicKey public_keys = 2 [(.gogoproto.customname) = "PubKeys", (.gogoproto.moretags) = "yaml:&#92;"pubkeys&#92;""];</code>
      */
-    PublicKeyOrBuilder getPublicKeysOrBuilder(
+    cosmos.base.crypto.v1beta1.Crypto.PublicKeyOrBuilder getPublicKeysOrBuilder(
         int index);
   }
   /**
@@ -1455,7 +1521,7 @@ public final class Crypto {
    *
    * Protobuf type {@code cosmos.base.crypto.v1beta1.PubKeyMultisigThreshold}
    */
-  public  static final class PubKeyMultisigThreshold extends
+  public static final class PubKeyMultisigThreshold extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:cosmos.base.crypto.v1beta1.PubKeyMultisigThreshold)
       PubKeyMultisigThresholdOrBuilder {
@@ -1465,11 +1531,17 @@ public final class Crypto {
       super(builder);
     }
     private PubKeyMultisigThreshold() {
-      threshold_ = 0;
       publicKeys_ = java.util.Collections.emptyList();
     }
 
-    @Override
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new PubKeyMultisigThreshold();
+    }
+
+    @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
@@ -1480,7 +1552,7 @@ public final class Crypto {
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       if (extensionRegistry == null) {
-        throw new NullPointerException();
+        throw new java.lang.NullPointerException();
       }
       int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
@@ -1499,16 +1571,16 @@ public final class Crypto {
               break;
             }
             case 18: {
-              if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
-                publicKeys_ = new java.util.ArrayList<PublicKey>();
-                mutable_bitField0_ |= 0x00000002;
+              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
+                publicKeys_ = new java.util.ArrayList<cosmos.base.crypto.v1beta1.Crypto.PublicKey>();
+                mutable_bitField0_ |= 0x00000001;
               }
               publicKeys_.add(
-                  input.readMessage(PublicKey.parser(), extensionRegistry));
+                  input.readMessage(cosmos.base.crypto.v1beta1.Crypto.PublicKey.parser(), extensionRegistry));
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -1522,7 +1594,7 @@ public final class Crypto {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
-        if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+        if (((mutable_bitField0_ & 0x00000001) != 0)) {
           publicKeys_ = java.util.Collections.unmodifiableList(publicKeys_);
         }
         this.unknownFields = unknownFields.build();
@@ -1531,64 +1603,70 @@ public final class Crypto {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return Crypto.internal_static_cosmos_base_crypto_v1beta1_PubKeyMultisigThreshold_descriptor;
+      return cosmos.base.crypto.v1beta1.Crypto.internal_static_cosmos_base_crypto_v1beta1_PubKeyMultisigThreshold_descriptor;
     }
 
-    @Override
-    protected FieldAccessorTable
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return Crypto.internal_static_cosmos_base_crypto_v1beta1_PubKeyMultisigThreshold_fieldAccessorTable
+      return cosmos.base.crypto.v1beta1.Crypto.internal_static_cosmos_base_crypto_v1beta1_PubKeyMultisigThreshold_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              PubKeyMultisigThreshold.class, Builder.class);
+              cosmos.base.crypto.v1beta1.Crypto.PubKeyMultisigThreshold.class, cosmos.base.crypto.v1beta1.Crypto.PubKeyMultisigThreshold.Builder.class);
     }
 
-    private int bitField0_;
     public static final int THRESHOLD_FIELD_NUMBER = 1;
     private int threshold_;
     /**
      * <code>uint32 threshold = 1 [(.gogoproto.customname) = "K", (.gogoproto.moretags) = "yaml:&#92;"threshold&#92;""];</code>
+     * @return The threshold.
      */
+    @java.lang.Override
     public int getThreshold() {
       return threshold_;
     }
 
     public static final int PUBLIC_KEYS_FIELD_NUMBER = 2;
-    private java.util.List<PublicKey> publicKeys_;
+    private java.util.List<cosmos.base.crypto.v1beta1.Crypto.PublicKey> publicKeys_;
     /**
      * <code>repeated .cosmos.base.crypto.v1beta1.PublicKey public_keys = 2 [(.gogoproto.customname) = "PubKeys", (.gogoproto.moretags) = "yaml:&#92;"pubkeys&#92;""];</code>
      */
-    public java.util.List<PublicKey> getPublicKeysList() {
+    @java.lang.Override
+    public java.util.List<cosmos.base.crypto.v1beta1.Crypto.PublicKey> getPublicKeysList() {
       return publicKeys_;
     }
     /**
      * <code>repeated .cosmos.base.crypto.v1beta1.PublicKey public_keys = 2 [(.gogoproto.customname) = "PubKeys", (.gogoproto.moretags) = "yaml:&#92;"pubkeys&#92;""];</code>
      */
-    public java.util.List<? extends PublicKeyOrBuilder>
+    @java.lang.Override
+    public java.util.List<? extends cosmos.base.crypto.v1beta1.Crypto.PublicKeyOrBuilder> 
         getPublicKeysOrBuilderList() {
       return publicKeys_;
     }
     /**
      * <code>repeated .cosmos.base.crypto.v1beta1.PublicKey public_keys = 2 [(.gogoproto.customname) = "PubKeys", (.gogoproto.moretags) = "yaml:&#92;"pubkeys&#92;""];</code>
      */
+    @java.lang.Override
     public int getPublicKeysCount() {
       return publicKeys_.size();
     }
     /**
      * <code>repeated .cosmos.base.crypto.v1beta1.PublicKey public_keys = 2 [(.gogoproto.customname) = "PubKeys", (.gogoproto.moretags) = "yaml:&#92;"pubkeys&#92;""];</code>
      */
-    public PublicKey getPublicKeys(int index) {
+    @java.lang.Override
+    public cosmos.base.crypto.v1beta1.Crypto.PublicKey getPublicKeys(int index) {
       return publicKeys_.get(index);
     }
     /**
      * <code>repeated .cosmos.base.crypto.v1beta1.PublicKey public_keys = 2 [(.gogoproto.customname) = "PubKeys", (.gogoproto.moretags) = "yaml:&#92;"pubkeys&#92;""];</code>
      */
-    public PublicKeyOrBuilder getPublicKeysOrBuilder(
+    @java.lang.Override
+    public cosmos.base.crypto.v1beta1.Crypto.PublicKeyOrBuilder getPublicKeysOrBuilder(
         int index) {
       return publicKeys_.get(index);
     }
 
     private byte memoizedIsInitialized = -1;
-    @Override
+    @java.lang.Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
@@ -1598,7 +1676,7 @@ public final class Crypto {
       return true;
     }
 
-    @Override
+    @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (threshold_ != 0) {
@@ -1610,7 +1688,7 @@ public final class Crypto {
       unknownFields.writeTo(output);
     }
 
-    @Override
+    @java.lang.Override
     public int getSerializedSize() {
       int size = memoizedSize;
       if (size != -1) return size;
@@ -1629,26 +1707,25 @@ public final class Crypto {
       return size;
     }
 
-    @Override
-    public boolean equals(final Object obj) {
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof PubKeyMultisigThreshold)) {
+      if (!(obj instanceof cosmos.base.crypto.v1beta1.Crypto.PubKeyMultisigThreshold)) {
         return super.equals(obj);
       }
-      PubKeyMultisigThreshold other = (PubKeyMultisigThreshold) obj;
+      cosmos.base.crypto.v1beta1.Crypto.PubKeyMultisigThreshold other = (cosmos.base.crypto.v1beta1.Crypto.PubKeyMultisigThreshold) obj;
 
-      boolean result = true;
-      result = result && (getThreshold()
-          == other.getThreshold());
-      result = result && getPublicKeysList()
-          .equals(other.getPublicKeysList());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (getThreshold()
+          != other.getThreshold()) return false;
+      if (!getPublicKeysList()
+          .equals(other.getPublicKeysList())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
       if (memoizedHashCode != 0) {
         return memoizedHashCode;
@@ -1666,69 +1743,69 @@ public final class Crypto {
       return hash;
     }
 
-    public static PubKeyMultisigThreshold parseFrom(
+    public static cosmos.base.crypto.v1beta1.Crypto.PubKeyMultisigThreshold parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static PubKeyMultisigThreshold parseFrom(
+    public static cosmos.base.crypto.v1beta1.Crypto.PubKeyMultisigThreshold parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static PubKeyMultisigThreshold parseFrom(
+    public static cosmos.base.crypto.v1beta1.Crypto.PubKeyMultisigThreshold parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static PubKeyMultisigThreshold parseFrom(
+    public static cosmos.base.crypto.v1beta1.Crypto.PubKeyMultisigThreshold parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static PubKeyMultisigThreshold parseFrom(byte[] data)
+    public static cosmos.base.crypto.v1beta1.Crypto.PubKeyMultisigThreshold parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static PubKeyMultisigThreshold parseFrom(
+    public static cosmos.base.crypto.v1beta1.Crypto.PubKeyMultisigThreshold parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static PubKeyMultisigThreshold parseFrom(java.io.InputStream input)
+    public static cosmos.base.crypto.v1beta1.Crypto.PubKeyMultisigThreshold parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static PubKeyMultisigThreshold parseFrom(
+    public static cosmos.base.crypto.v1beta1.Crypto.PubKeyMultisigThreshold parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static PubKeyMultisigThreshold parseDelimitedFrom(java.io.InputStream input)
+    public static cosmos.base.crypto.v1beta1.Crypto.PubKeyMultisigThreshold parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static PubKeyMultisigThreshold parseDelimitedFrom(
+    public static cosmos.base.crypto.v1beta1.Crypto.PubKeyMultisigThreshold parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static PubKeyMultisigThreshold parseFrom(
+    public static cosmos.base.crypto.v1beta1.Crypto.PubKeyMultisigThreshold parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static PubKeyMultisigThreshold parseFrom(
+    public static cosmos.base.crypto.v1beta1.Crypto.PubKeyMultisigThreshold parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -1736,23 +1813,23 @@ public final class Crypto {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    @Override
+    @java.lang.Override
     public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(PubKeyMultisigThreshold prototype) {
+    public static Builder newBuilder(cosmos.base.crypto.v1beta1.Crypto.PubKeyMultisigThreshold prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
-    @Override
+    @java.lang.Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
           ? new Builder() : new Builder().mergeFrom(this);
     }
 
-    @Override
+    @java.lang.Override
     protected Builder newBuilderForType(
-        BuilderParent parent) {
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -1767,18 +1844,18 @@ public final class Crypto {
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:cosmos.base.crypto.v1beta1.PubKeyMultisigThreshold)
-        PubKeyMultisigThresholdOrBuilder {
+        cosmos.base.crypto.v1beta1.Crypto.PubKeyMultisigThresholdOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return Crypto.internal_static_cosmos_base_crypto_v1beta1_PubKeyMultisigThreshold_descriptor;
+        return cosmos.base.crypto.v1beta1.Crypto.internal_static_cosmos_base_crypto_v1beta1_PubKeyMultisigThreshold_descriptor;
       }
 
-      @Override
-      protected FieldAccessorTable
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return Crypto.internal_static_cosmos_base_crypto_v1beta1_PubKeyMultisigThreshold_fieldAccessorTable
+        return cosmos.base.crypto.v1beta1.Crypto.internal_static_cosmos_base_crypto_v1beta1_PubKeyMultisigThreshold_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                PubKeyMultisigThreshold.class, Builder.class);
+                cosmos.base.crypto.v1beta1.Crypto.PubKeyMultisigThreshold.class, cosmos.base.crypto.v1beta1.Crypto.PubKeyMultisigThreshold.Builder.class);
       }
 
       // Construct using cosmos.base.crypto.v1beta1.Crypto.PubKeyMultisigThreshold.newBuilder()
@@ -1787,7 +1864,7 @@ public final class Crypto {
       }
 
       private Builder(
-          BuilderParent parent) {
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -1797,104 +1874,102 @@ public final class Crypto {
           getPublicKeysFieldBuilder();
         }
       }
-      @Override
+      @java.lang.Override
       public Builder clear() {
         super.clear();
         threshold_ = 0;
 
         if (publicKeysBuilder_ == null) {
           publicKeys_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000002);
+          bitField0_ = (bitField0_ & ~0x00000001);
         } else {
           publicKeysBuilder_.clear();
         }
         return this;
       }
 
-      @Override
+      @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return Crypto.internal_static_cosmos_base_crypto_v1beta1_PubKeyMultisigThreshold_descriptor;
+        return cosmos.base.crypto.v1beta1.Crypto.internal_static_cosmos_base_crypto_v1beta1_PubKeyMultisigThreshold_descriptor;
       }
 
-      @Override
-      public PubKeyMultisigThreshold getDefaultInstanceForType() {
-        return PubKeyMultisigThreshold.getDefaultInstance();
+      @java.lang.Override
+      public cosmos.base.crypto.v1beta1.Crypto.PubKeyMultisigThreshold getDefaultInstanceForType() {
+        return cosmos.base.crypto.v1beta1.Crypto.PubKeyMultisigThreshold.getDefaultInstance();
       }
 
-      @Override
-      public PubKeyMultisigThreshold build() {
-        PubKeyMultisigThreshold result = buildPartial();
+      @java.lang.Override
+      public cosmos.base.crypto.v1beta1.Crypto.PubKeyMultisigThreshold build() {
+        cosmos.base.crypto.v1beta1.Crypto.PubKeyMultisigThreshold result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      @Override
-      public PubKeyMultisigThreshold buildPartial() {
-        PubKeyMultisigThreshold result = new PubKeyMultisigThreshold(this);
+      @java.lang.Override
+      public cosmos.base.crypto.v1beta1.Crypto.PubKeyMultisigThreshold buildPartial() {
+        cosmos.base.crypto.v1beta1.Crypto.PubKeyMultisigThreshold result = new cosmos.base.crypto.v1beta1.Crypto.PubKeyMultisigThreshold(this);
         int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
         result.threshold_ = threshold_;
         if (publicKeysBuilder_ == null) {
-          if (((bitField0_ & 0x00000002) == 0x00000002)) {
+          if (((bitField0_ & 0x00000001) != 0)) {
             publicKeys_ = java.util.Collections.unmodifiableList(publicKeys_);
-            bitField0_ = (bitField0_ & ~0x00000002);
+            bitField0_ = (bitField0_ & ~0x00000001);
           }
           result.publicKeys_ = publicKeys_;
         } else {
           result.publicKeys_ = publicKeysBuilder_.build();
         }
-        result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
       }
 
-      @Override
+      @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
-      @Override
+      @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.setField(field, value);
+          java.lang.Object value) {
+        return super.setField(field, value);
       }
-      @Override
+      @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
-      @Override
+      @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
-      @Override
+      @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
       }
-      @Override
+      @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
       }
-      @Override
+      @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof PubKeyMultisigThreshold) {
-          return mergeFrom((PubKeyMultisigThreshold)other);
+        if (other instanceof cosmos.base.crypto.v1beta1.Crypto.PubKeyMultisigThreshold) {
+          return mergeFrom((cosmos.base.crypto.v1beta1.Crypto.PubKeyMultisigThreshold)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(PubKeyMultisigThreshold other) {
-        if (other == PubKeyMultisigThreshold.getDefaultInstance()) return this;
+      public Builder mergeFrom(cosmos.base.crypto.v1beta1.Crypto.PubKeyMultisigThreshold other) {
+        if (other == cosmos.base.crypto.v1beta1.Crypto.PubKeyMultisigThreshold.getDefaultInstance()) return this;
         if (other.getThreshold() != 0) {
           setThreshold(other.getThreshold());
         }
@@ -1902,7 +1977,7 @@ public final class Crypto {
           if (!other.publicKeys_.isEmpty()) {
             if (publicKeys_.isEmpty()) {
               publicKeys_ = other.publicKeys_;
-              bitField0_ = (bitField0_ & ~0x00000002);
+              bitField0_ = (bitField0_ & ~0x00000001);
             } else {
               ensurePublicKeysIsMutable();
               publicKeys_.addAll(other.publicKeys_);
@@ -1915,7 +1990,7 @@ public final class Crypto {
               publicKeysBuilder_.dispose();
               publicKeysBuilder_ = null;
               publicKeys_ = other.publicKeys_;
-              bitField0_ = (bitField0_ & ~0x00000002);
+              bitField0_ = (bitField0_ & ~0x00000001);
               publicKeysBuilder_ = 
                 com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                    getPublicKeysFieldBuilder() : null;
@@ -1929,21 +2004,21 @@ public final class Crypto {
         return this;
       }
 
-      @Override
+      @java.lang.Override
       public final boolean isInitialized() {
         return true;
       }
 
-      @Override
+      @java.lang.Override
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        PubKeyMultisigThreshold parsedMessage = null;
+        cosmos.base.crypto.v1beta1.Crypto.PubKeyMultisigThreshold parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (PubKeyMultisigThreshold) e.getUnfinishedMessage();
+          parsedMessage = (cosmos.base.crypto.v1beta1.Crypto.PubKeyMultisigThreshold) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -1957,12 +2032,16 @@ public final class Crypto {
       private int threshold_ ;
       /**
        * <code>uint32 threshold = 1 [(.gogoproto.customname) = "K", (.gogoproto.moretags) = "yaml:&#92;"threshold&#92;""];</code>
+       * @return The threshold.
        */
+      @java.lang.Override
       public int getThreshold() {
         return threshold_;
       }
       /**
        * <code>uint32 threshold = 1 [(.gogoproto.customname) = "K", (.gogoproto.moretags) = "yaml:&#92;"threshold&#92;""];</code>
+       * @param value The threshold to set.
+       * @return This builder for chaining.
        */
       public Builder setThreshold(int value) {
         
@@ -1972,6 +2051,7 @@ public final class Crypto {
       }
       /**
        * <code>uint32 threshold = 1 [(.gogoproto.customname) = "K", (.gogoproto.moretags) = "yaml:&#92;"threshold&#92;""];</code>
+       * @return This builder for chaining.
        */
       public Builder clearThreshold() {
         
@@ -1980,22 +2060,22 @@ public final class Crypto {
         return this;
       }
 
-      private java.util.List<PublicKey> publicKeys_ =
+      private java.util.List<cosmos.base.crypto.v1beta1.Crypto.PublicKey> publicKeys_ =
         java.util.Collections.emptyList();
       private void ensurePublicKeysIsMutable() {
-        if (!((bitField0_ & 0x00000002) == 0x00000002)) {
-          publicKeys_ = new java.util.ArrayList<PublicKey>(publicKeys_);
-          bitField0_ |= 0x00000002;
+        if (!((bitField0_ & 0x00000001) != 0)) {
+          publicKeys_ = new java.util.ArrayList<cosmos.base.crypto.v1beta1.Crypto.PublicKey>(publicKeys_);
+          bitField0_ |= 0x00000001;
          }
       }
 
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          PublicKey, PublicKey.Builder, PublicKeyOrBuilder> publicKeysBuilder_;
+          cosmos.base.crypto.v1beta1.Crypto.PublicKey, cosmos.base.crypto.v1beta1.Crypto.PublicKey.Builder, cosmos.base.crypto.v1beta1.Crypto.PublicKeyOrBuilder> publicKeysBuilder_;
 
       /**
        * <code>repeated .cosmos.base.crypto.v1beta1.PublicKey public_keys = 2 [(.gogoproto.customname) = "PubKeys", (.gogoproto.moretags) = "yaml:&#92;"pubkeys&#92;""];</code>
        */
-      public java.util.List<PublicKey> getPublicKeysList() {
+      public java.util.List<cosmos.base.crypto.v1beta1.Crypto.PublicKey> getPublicKeysList() {
         if (publicKeysBuilder_ == null) {
           return java.util.Collections.unmodifiableList(publicKeys_);
         } else {
@@ -2015,7 +2095,7 @@ public final class Crypto {
       /**
        * <code>repeated .cosmos.base.crypto.v1beta1.PublicKey public_keys = 2 [(.gogoproto.customname) = "PubKeys", (.gogoproto.moretags) = "yaml:&#92;"pubkeys&#92;""];</code>
        */
-      public PublicKey getPublicKeys(int index) {
+      public cosmos.base.crypto.v1beta1.Crypto.PublicKey getPublicKeys(int index) {
         if (publicKeysBuilder_ == null) {
           return publicKeys_.get(index);
         } else {
@@ -2026,7 +2106,7 @@ public final class Crypto {
        * <code>repeated .cosmos.base.crypto.v1beta1.PublicKey public_keys = 2 [(.gogoproto.customname) = "PubKeys", (.gogoproto.moretags) = "yaml:&#92;"pubkeys&#92;""];</code>
        */
       public Builder setPublicKeys(
-          int index, PublicKey value) {
+          int index, cosmos.base.crypto.v1beta1.Crypto.PublicKey value) {
         if (publicKeysBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -2043,7 +2123,7 @@ public final class Crypto {
        * <code>repeated .cosmos.base.crypto.v1beta1.PublicKey public_keys = 2 [(.gogoproto.customname) = "PubKeys", (.gogoproto.moretags) = "yaml:&#92;"pubkeys&#92;""];</code>
        */
       public Builder setPublicKeys(
-          int index, PublicKey.Builder builderForValue) {
+          int index, cosmos.base.crypto.v1beta1.Crypto.PublicKey.Builder builderForValue) {
         if (publicKeysBuilder_ == null) {
           ensurePublicKeysIsMutable();
           publicKeys_.set(index, builderForValue.build());
@@ -2056,7 +2136,7 @@ public final class Crypto {
       /**
        * <code>repeated .cosmos.base.crypto.v1beta1.PublicKey public_keys = 2 [(.gogoproto.customname) = "PubKeys", (.gogoproto.moretags) = "yaml:&#92;"pubkeys&#92;""];</code>
        */
-      public Builder addPublicKeys(PublicKey value) {
+      public Builder addPublicKeys(cosmos.base.crypto.v1beta1.Crypto.PublicKey value) {
         if (publicKeysBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -2073,7 +2153,7 @@ public final class Crypto {
        * <code>repeated .cosmos.base.crypto.v1beta1.PublicKey public_keys = 2 [(.gogoproto.customname) = "PubKeys", (.gogoproto.moretags) = "yaml:&#92;"pubkeys&#92;""];</code>
        */
       public Builder addPublicKeys(
-          int index, PublicKey value) {
+          int index, cosmos.base.crypto.v1beta1.Crypto.PublicKey value) {
         if (publicKeysBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -2090,7 +2170,7 @@ public final class Crypto {
        * <code>repeated .cosmos.base.crypto.v1beta1.PublicKey public_keys = 2 [(.gogoproto.customname) = "PubKeys", (.gogoproto.moretags) = "yaml:&#92;"pubkeys&#92;""];</code>
        */
       public Builder addPublicKeys(
-          PublicKey.Builder builderForValue) {
+          cosmos.base.crypto.v1beta1.Crypto.PublicKey.Builder builderForValue) {
         if (publicKeysBuilder_ == null) {
           ensurePublicKeysIsMutable();
           publicKeys_.add(builderForValue.build());
@@ -2104,7 +2184,7 @@ public final class Crypto {
        * <code>repeated .cosmos.base.crypto.v1beta1.PublicKey public_keys = 2 [(.gogoproto.customname) = "PubKeys", (.gogoproto.moretags) = "yaml:&#92;"pubkeys&#92;""];</code>
        */
       public Builder addPublicKeys(
-          int index, PublicKey.Builder builderForValue) {
+          int index, cosmos.base.crypto.v1beta1.Crypto.PublicKey.Builder builderForValue) {
         if (publicKeysBuilder_ == null) {
           ensurePublicKeysIsMutable();
           publicKeys_.add(index, builderForValue.build());
@@ -2118,7 +2198,7 @@ public final class Crypto {
        * <code>repeated .cosmos.base.crypto.v1beta1.PublicKey public_keys = 2 [(.gogoproto.customname) = "PubKeys", (.gogoproto.moretags) = "yaml:&#92;"pubkeys&#92;""];</code>
        */
       public Builder addAllPublicKeys(
-          Iterable<? extends PublicKey> values) {
+          java.lang.Iterable<? extends cosmos.base.crypto.v1beta1.Crypto.PublicKey> values) {
         if (publicKeysBuilder_ == null) {
           ensurePublicKeysIsMutable();
           com.google.protobuf.AbstractMessageLite.Builder.addAll(
@@ -2135,7 +2215,7 @@ public final class Crypto {
       public Builder clearPublicKeys() {
         if (publicKeysBuilder_ == null) {
           publicKeys_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000002);
+          bitField0_ = (bitField0_ & ~0x00000001);
           onChanged();
         } else {
           publicKeysBuilder_.clear();
@@ -2158,14 +2238,14 @@ public final class Crypto {
       /**
        * <code>repeated .cosmos.base.crypto.v1beta1.PublicKey public_keys = 2 [(.gogoproto.customname) = "PubKeys", (.gogoproto.moretags) = "yaml:&#92;"pubkeys&#92;""];</code>
        */
-      public PublicKey.Builder getPublicKeysBuilder(
+      public cosmos.base.crypto.v1beta1.Crypto.PublicKey.Builder getPublicKeysBuilder(
           int index) {
         return getPublicKeysFieldBuilder().getBuilder(index);
       }
       /**
        * <code>repeated .cosmos.base.crypto.v1beta1.PublicKey public_keys = 2 [(.gogoproto.customname) = "PubKeys", (.gogoproto.moretags) = "yaml:&#92;"pubkeys&#92;""];</code>
        */
-      public PublicKeyOrBuilder getPublicKeysOrBuilder(
+      public cosmos.base.crypto.v1beta1.Crypto.PublicKeyOrBuilder getPublicKeysOrBuilder(
           int index) {
         if (publicKeysBuilder_ == null) {
           return publicKeys_.get(index);  } else {
@@ -2175,7 +2255,7 @@ public final class Crypto {
       /**
        * <code>repeated .cosmos.base.crypto.v1beta1.PublicKey public_keys = 2 [(.gogoproto.customname) = "PubKeys", (.gogoproto.moretags) = "yaml:&#92;"pubkeys&#92;""];</code>
        */
-      public java.util.List<? extends PublicKeyOrBuilder>
+      public java.util.List<? extends cosmos.base.crypto.v1beta1.Crypto.PublicKeyOrBuilder> 
            getPublicKeysOrBuilderList() {
         if (publicKeysBuilder_ != null) {
           return publicKeysBuilder_.getMessageOrBuilderList();
@@ -2186,46 +2266,46 @@ public final class Crypto {
       /**
        * <code>repeated .cosmos.base.crypto.v1beta1.PublicKey public_keys = 2 [(.gogoproto.customname) = "PubKeys", (.gogoproto.moretags) = "yaml:&#92;"pubkeys&#92;""];</code>
        */
-      public PublicKey.Builder addPublicKeysBuilder() {
+      public cosmos.base.crypto.v1beta1.Crypto.PublicKey.Builder addPublicKeysBuilder() {
         return getPublicKeysFieldBuilder().addBuilder(
-            PublicKey.getDefaultInstance());
+            cosmos.base.crypto.v1beta1.Crypto.PublicKey.getDefaultInstance());
       }
       /**
        * <code>repeated .cosmos.base.crypto.v1beta1.PublicKey public_keys = 2 [(.gogoproto.customname) = "PubKeys", (.gogoproto.moretags) = "yaml:&#92;"pubkeys&#92;""];</code>
        */
-      public PublicKey.Builder addPublicKeysBuilder(
+      public cosmos.base.crypto.v1beta1.Crypto.PublicKey.Builder addPublicKeysBuilder(
           int index) {
         return getPublicKeysFieldBuilder().addBuilder(
-            index, PublicKey.getDefaultInstance());
+            index, cosmos.base.crypto.v1beta1.Crypto.PublicKey.getDefaultInstance());
       }
       /**
        * <code>repeated .cosmos.base.crypto.v1beta1.PublicKey public_keys = 2 [(.gogoproto.customname) = "PubKeys", (.gogoproto.moretags) = "yaml:&#92;"pubkeys&#92;""];</code>
        */
-      public java.util.List<PublicKey.Builder>
+      public java.util.List<cosmos.base.crypto.v1beta1.Crypto.PublicKey.Builder> 
            getPublicKeysBuilderList() {
         return getPublicKeysFieldBuilder().getBuilderList();
       }
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          PublicKey, PublicKey.Builder, PublicKeyOrBuilder>
+          cosmos.base.crypto.v1beta1.Crypto.PublicKey, cosmos.base.crypto.v1beta1.Crypto.PublicKey.Builder, cosmos.base.crypto.v1beta1.Crypto.PublicKeyOrBuilder> 
           getPublicKeysFieldBuilder() {
         if (publicKeysBuilder_ == null) {
           publicKeysBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              PublicKey, PublicKey.Builder, PublicKeyOrBuilder>(
+              cosmos.base.crypto.v1beta1.Crypto.PublicKey, cosmos.base.crypto.v1beta1.Crypto.PublicKey.Builder, cosmos.base.crypto.v1beta1.Crypto.PublicKeyOrBuilder>(
                   publicKeys_,
-                  ((bitField0_ & 0x00000002) == 0x00000002),
+                  ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
                   isClean());
           publicKeys_ = null;
         }
         return publicKeysBuilder_;
       }
-      @Override
+      @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
-      @Override
+      @java.lang.Override
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
@@ -2236,18 +2316,18 @@ public final class Crypto {
     }
 
     // @@protoc_insertion_point(class_scope:cosmos.base.crypto.v1beta1.PubKeyMultisigThreshold)
-    private static final PubKeyMultisigThreshold DEFAULT_INSTANCE;
+    private static final cosmos.base.crypto.v1beta1.Crypto.PubKeyMultisigThreshold DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new PubKeyMultisigThreshold();
+      DEFAULT_INSTANCE = new cosmos.base.crypto.v1beta1.Crypto.PubKeyMultisigThreshold();
     }
 
-    public static PubKeyMultisigThreshold getDefaultInstance() {
+    public static cosmos.base.crypto.v1beta1.Crypto.PubKeyMultisigThreshold getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
     private static final com.google.protobuf.Parser<PubKeyMultisigThreshold>
         PARSER = new com.google.protobuf.AbstractParser<PubKeyMultisigThreshold>() {
-      @Override
+      @java.lang.Override
       public PubKeyMultisigThreshold parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -2260,13 +2340,13 @@ public final class Crypto {
       return PARSER;
     }
 
-    @Override
+    @java.lang.Override
     public com.google.protobuf.Parser<PubKeyMultisigThreshold> getParserForType() {
       return PARSER;
     }
 
-    @Override
-    public PubKeyMultisigThreshold getDefaultInstanceForType() {
+    @java.lang.Override
+    public cosmos.base.crypto.v1beta1.Crypto.PubKeyMultisigThreshold getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -2278,14 +2358,18 @@ public final class Crypto {
 
     /**
      * <code>repeated bytes signatures = 1;</code>
+     * @return A list containing the signatures.
      */
     java.util.List<com.google.protobuf.ByteString> getSignaturesList();
     /**
      * <code>repeated bytes signatures = 1;</code>
+     * @return The count of signatures.
      */
     int getSignaturesCount();
     /**
      * <code>repeated bytes signatures = 1;</code>
+     * @param index The index of the element to return.
+     * @return The signatures at the given index.
      */
     com.google.protobuf.ByteString getSignatures(int index);
   }
@@ -2298,7 +2382,7 @@ public final class Crypto {
    *
    * Protobuf type {@code cosmos.base.crypto.v1beta1.MultiSignature}
    */
-  public  static final class MultiSignature extends
+  public static final class MultiSignature extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:cosmos.base.crypto.v1beta1.MultiSignature)
       MultiSignatureOrBuilder {
@@ -2311,7 +2395,14 @@ public final class Crypto {
       signatures_ = java.util.Collections.emptyList();
     }
 
-    @Override
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new MultiSignature();
+    }
+
+    @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
@@ -2322,7 +2413,7 @@ public final class Crypto {
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       if (extensionRegistry == null) {
-        throw new NullPointerException();
+        throw new java.lang.NullPointerException();
       }
       int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
@@ -2336,7 +2427,7 @@ public final class Crypto {
               done = true;
               break;
             case 10: {
-              if (!((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
                 signatures_ = new java.util.ArrayList<com.google.protobuf.ByteString>();
                 mutable_bitField0_ |= 0x00000001;
               }
@@ -2344,7 +2435,7 @@ public final class Crypto {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -2358,8 +2449,8 @@ public final class Crypto {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
-        if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
-          signatures_ = java.util.Collections.unmodifiableList(signatures_);
+        if (((mutable_bitField0_ & 0x00000001) != 0)) {
+          signatures_ = java.util.Collections.unmodifiableList(signatures_); // C
         }
         this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
@@ -2367,41 +2458,46 @@ public final class Crypto {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return Crypto.internal_static_cosmos_base_crypto_v1beta1_MultiSignature_descriptor;
+      return cosmos.base.crypto.v1beta1.Crypto.internal_static_cosmos_base_crypto_v1beta1_MultiSignature_descriptor;
     }
 
-    @Override
-    protected FieldAccessorTable
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return Crypto.internal_static_cosmos_base_crypto_v1beta1_MultiSignature_fieldAccessorTable
+      return cosmos.base.crypto.v1beta1.Crypto.internal_static_cosmos_base_crypto_v1beta1_MultiSignature_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              MultiSignature.class, Builder.class);
+              cosmos.base.crypto.v1beta1.Crypto.MultiSignature.class, cosmos.base.crypto.v1beta1.Crypto.MultiSignature.Builder.class);
     }
 
     public static final int SIGNATURES_FIELD_NUMBER = 1;
     private java.util.List<com.google.protobuf.ByteString> signatures_;
     /**
      * <code>repeated bytes signatures = 1;</code>
+     * @return A list containing the signatures.
      */
+    @java.lang.Override
     public java.util.List<com.google.protobuf.ByteString>
         getSignaturesList() {
       return signatures_;
     }
     /**
      * <code>repeated bytes signatures = 1;</code>
+     * @return The count of signatures.
      */
     public int getSignaturesCount() {
       return signatures_.size();
     }
     /**
      * <code>repeated bytes signatures = 1;</code>
+     * @param index The index of the element to return.
+     * @return The signatures at the given index.
      */
     public com.google.protobuf.ByteString getSignatures(int index) {
       return signatures_.get(index);
     }
 
     private byte memoizedIsInitialized = -1;
-    @Override
+    @java.lang.Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
@@ -2411,7 +2507,7 @@ public final class Crypto {
       return true;
     }
 
-    @Override
+    @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       for (int i = 0; i < signatures_.size(); i++) {
@@ -2420,7 +2516,7 @@ public final class Crypto {
       unknownFields.writeTo(output);
     }
 
-    @Override
+    @java.lang.Override
     public int getSerializedSize() {
       int size = memoizedSize;
       if (size != -1) return size;
@@ -2440,24 +2536,23 @@ public final class Crypto {
       return size;
     }
 
-    @Override
-    public boolean equals(final Object obj) {
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof MultiSignature)) {
+      if (!(obj instanceof cosmos.base.crypto.v1beta1.Crypto.MultiSignature)) {
         return super.equals(obj);
       }
-      MultiSignature other = (MultiSignature) obj;
+      cosmos.base.crypto.v1beta1.Crypto.MultiSignature other = (cosmos.base.crypto.v1beta1.Crypto.MultiSignature) obj;
 
-      boolean result = true;
-      result = result && getSignaturesList()
-          .equals(other.getSignaturesList());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getSignaturesList()
+          .equals(other.getSignaturesList())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
       if (memoizedHashCode != 0) {
         return memoizedHashCode;
@@ -2473,69 +2568,69 @@ public final class Crypto {
       return hash;
     }
 
-    public static MultiSignature parseFrom(
+    public static cosmos.base.crypto.v1beta1.Crypto.MultiSignature parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static MultiSignature parseFrom(
+    public static cosmos.base.crypto.v1beta1.Crypto.MultiSignature parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static MultiSignature parseFrom(
+    public static cosmos.base.crypto.v1beta1.Crypto.MultiSignature parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static MultiSignature parseFrom(
+    public static cosmos.base.crypto.v1beta1.Crypto.MultiSignature parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static MultiSignature parseFrom(byte[] data)
+    public static cosmos.base.crypto.v1beta1.Crypto.MultiSignature parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static MultiSignature parseFrom(
+    public static cosmos.base.crypto.v1beta1.Crypto.MultiSignature parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static MultiSignature parseFrom(java.io.InputStream input)
+    public static cosmos.base.crypto.v1beta1.Crypto.MultiSignature parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static MultiSignature parseFrom(
+    public static cosmos.base.crypto.v1beta1.Crypto.MultiSignature parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static MultiSignature parseDelimitedFrom(java.io.InputStream input)
+    public static cosmos.base.crypto.v1beta1.Crypto.MultiSignature parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static MultiSignature parseDelimitedFrom(
+    public static cosmos.base.crypto.v1beta1.Crypto.MultiSignature parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static MultiSignature parseFrom(
+    public static cosmos.base.crypto.v1beta1.Crypto.MultiSignature parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static MultiSignature parseFrom(
+    public static cosmos.base.crypto.v1beta1.Crypto.MultiSignature parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -2543,23 +2638,23 @@ public final class Crypto {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    @Override
+    @java.lang.Override
     public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(MultiSignature prototype) {
+    public static Builder newBuilder(cosmos.base.crypto.v1beta1.Crypto.MultiSignature prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
-    @Override
+    @java.lang.Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
           ? new Builder() : new Builder().mergeFrom(this);
     }
 
-    @Override
+    @java.lang.Override
     protected Builder newBuilderForType(
-        BuilderParent parent) {
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -2575,18 +2670,18 @@ public final class Crypto {
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:cosmos.base.crypto.v1beta1.MultiSignature)
-        MultiSignatureOrBuilder {
+        cosmos.base.crypto.v1beta1.Crypto.MultiSignatureOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return Crypto.internal_static_cosmos_base_crypto_v1beta1_MultiSignature_descriptor;
+        return cosmos.base.crypto.v1beta1.Crypto.internal_static_cosmos_base_crypto_v1beta1_MultiSignature_descriptor;
       }
 
-      @Override
-      protected FieldAccessorTable
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return Crypto.internal_static_cosmos_base_crypto_v1beta1_MultiSignature_fieldAccessorTable
+        return cosmos.base.crypto.v1beta1.Crypto.internal_static_cosmos_base_crypto_v1beta1_MultiSignature_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                MultiSignature.class, Builder.class);
+                cosmos.base.crypto.v1beta1.Crypto.MultiSignature.class, cosmos.base.crypto.v1beta1.Crypto.MultiSignature.Builder.class);
       }
 
       // Construct using cosmos.base.crypto.v1beta1.Crypto.MultiSignature.newBuilder()
@@ -2595,7 +2690,7 @@ public final class Crypto {
       }
 
       private Builder(
-          BuilderParent parent) {
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -2604,7 +2699,7 @@ public final class Crypto {
                 .alwaysUseFieldBuilders) {
         }
       }
-      @Override
+      @java.lang.Override
       public Builder clear() {
         super.clear();
         signatures_ = java.util.Collections.emptyList();
@@ -2612,31 +2707,31 @@ public final class Crypto {
         return this;
       }
 
-      @Override
+      @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return Crypto.internal_static_cosmos_base_crypto_v1beta1_MultiSignature_descriptor;
+        return cosmos.base.crypto.v1beta1.Crypto.internal_static_cosmos_base_crypto_v1beta1_MultiSignature_descriptor;
       }
 
-      @Override
-      public MultiSignature getDefaultInstanceForType() {
-        return MultiSignature.getDefaultInstance();
+      @java.lang.Override
+      public cosmos.base.crypto.v1beta1.Crypto.MultiSignature getDefaultInstanceForType() {
+        return cosmos.base.crypto.v1beta1.Crypto.MultiSignature.getDefaultInstance();
       }
 
-      @Override
-      public MultiSignature build() {
-        MultiSignature result = buildPartial();
+      @java.lang.Override
+      public cosmos.base.crypto.v1beta1.Crypto.MultiSignature build() {
+        cosmos.base.crypto.v1beta1.Crypto.MultiSignature result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      @Override
-      public MultiSignature buildPartial() {
-        MultiSignature result = new MultiSignature(this);
+      @java.lang.Override
+      public cosmos.base.crypto.v1beta1.Crypto.MultiSignature buildPartial() {
+        cosmos.base.crypto.v1beta1.Crypto.MultiSignature result = new cosmos.base.crypto.v1beta1.Crypto.MultiSignature(this);
         int from_bitField0_ = bitField0_;
-        if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        if (((bitField0_ & 0x00000001) != 0)) {
           signatures_ = java.util.Collections.unmodifiableList(signatures_);
           bitField0_ = (bitField0_ & ~0x00000001);
         }
@@ -2645,50 +2740,50 @@ public final class Crypto {
         return result;
       }
 
-      @Override
+      @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
-      @Override
+      @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.setField(field, value);
+          java.lang.Object value) {
+        return super.setField(field, value);
       }
-      @Override
+      @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
-      @Override
+      @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
-      @Override
+      @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
       }
-      @Override
+      @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
       }
-      @Override
+      @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof MultiSignature) {
-          return mergeFrom((MultiSignature)other);
+        if (other instanceof cosmos.base.crypto.v1beta1.Crypto.MultiSignature) {
+          return mergeFrom((cosmos.base.crypto.v1beta1.Crypto.MultiSignature)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(MultiSignature other) {
-        if (other == MultiSignature.getDefaultInstance()) return this;
+      public Builder mergeFrom(cosmos.base.crypto.v1beta1.Crypto.MultiSignature other) {
+        if (other == cosmos.base.crypto.v1beta1.Crypto.MultiSignature.getDefaultInstance()) return this;
         if (!other.signatures_.isEmpty()) {
           if (signatures_.isEmpty()) {
             signatures_ = other.signatures_;
@@ -2704,21 +2799,21 @@ public final class Crypto {
         return this;
       }
 
-      @Override
+      @java.lang.Override
       public final boolean isInitialized() {
         return true;
       }
 
-      @Override
+      @java.lang.Override
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        MultiSignature parsedMessage = null;
+        cosmos.base.crypto.v1beta1.Crypto.MultiSignature parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (MultiSignature) e.getUnfinishedMessage();
+          parsedMessage = (cosmos.base.crypto.v1beta1.Crypto.MultiSignature) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -2731,32 +2826,40 @@ public final class Crypto {
 
       private java.util.List<com.google.protobuf.ByteString> signatures_ = java.util.Collections.emptyList();
       private void ensureSignaturesIsMutable() {
-        if (!((bitField0_ & 0x00000001) == 0x00000001)) {
+        if (!((bitField0_ & 0x00000001) != 0)) {
           signatures_ = new java.util.ArrayList<com.google.protobuf.ByteString>(signatures_);
           bitField0_ |= 0x00000001;
          }
       }
       /**
        * <code>repeated bytes signatures = 1;</code>
+       * @return A list containing the signatures.
        */
       public java.util.List<com.google.protobuf.ByteString>
           getSignaturesList() {
-        return java.util.Collections.unmodifiableList(signatures_);
+        return ((bitField0_ & 0x00000001) != 0) ?
+                 java.util.Collections.unmodifiableList(signatures_) : signatures_;
       }
       /**
        * <code>repeated bytes signatures = 1;</code>
+       * @return The count of signatures.
        */
       public int getSignaturesCount() {
         return signatures_.size();
       }
       /**
        * <code>repeated bytes signatures = 1;</code>
+       * @param index The index of the element to return.
+       * @return The signatures at the given index.
        */
       public com.google.protobuf.ByteString getSignatures(int index) {
         return signatures_.get(index);
       }
       /**
        * <code>repeated bytes signatures = 1;</code>
+       * @param index The index to set the value at.
+       * @param value The signatures to set.
+       * @return This builder for chaining.
        */
       public Builder setSignatures(
           int index, com.google.protobuf.ByteString value) {
@@ -2770,6 +2873,8 @@ public final class Crypto {
       }
       /**
        * <code>repeated bytes signatures = 1;</code>
+       * @param value The signatures to add.
+       * @return This builder for chaining.
        */
       public Builder addSignatures(com.google.protobuf.ByteString value) {
         if (value == null) {
@@ -2782,9 +2887,11 @@ public final class Crypto {
       }
       /**
        * <code>repeated bytes signatures = 1;</code>
+       * @param values The signatures to add.
+       * @return This builder for chaining.
        */
       public Builder addAllSignatures(
-          Iterable<? extends com.google.protobuf.ByteString> values) {
+          java.lang.Iterable<? extends com.google.protobuf.ByteString> values) {
         ensureSignaturesIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
             values, signatures_);
@@ -2793,6 +2900,7 @@ public final class Crypto {
       }
       /**
        * <code>repeated bytes signatures = 1;</code>
+       * @return This builder for chaining.
        */
       public Builder clearSignatures() {
         signatures_ = java.util.Collections.emptyList();
@@ -2800,13 +2908,13 @@ public final class Crypto {
         onChanged();
         return this;
       }
-      @Override
+      @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
-      @Override
+      @java.lang.Override
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
@@ -2817,18 +2925,18 @@ public final class Crypto {
     }
 
     // @@protoc_insertion_point(class_scope:cosmos.base.crypto.v1beta1.MultiSignature)
-    private static final MultiSignature DEFAULT_INSTANCE;
+    private static final cosmos.base.crypto.v1beta1.Crypto.MultiSignature DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new MultiSignature();
+      DEFAULT_INSTANCE = new cosmos.base.crypto.v1beta1.Crypto.MultiSignature();
     }
 
-    public static MultiSignature getDefaultInstance() {
+    public static cosmos.base.crypto.v1beta1.Crypto.MultiSignature getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
     private static final com.google.protobuf.Parser<MultiSignature>
         PARSER = new com.google.protobuf.AbstractParser<MultiSignature>() {
-      @Override
+      @java.lang.Override
       public MultiSignature parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -2841,13 +2949,13 @@ public final class Crypto {
       return PARSER;
     }
 
-    @Override
+    @java.lang.Override
     public com.google.protobuf.Parser<MultiSignature> getParserForType() {
       return PARSER;
     }
 
-    @Override
-    public MultiSignature getDefaultInstanceForType() {
+    @java.lang.Override
+    public cosmos.base.crypto.v1beta1.Crypto.MultiSignature getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -2859,11 +2967,13 @@ public final class Crypto {
 
     /**
      * <code>uint32 extra_bits_stored = 1;</code>
+     * @return The extraBitsStored.
      */
     int getExtraBitsStored();
 
     /**
      * <code>bytes elems = 2;</code>
+     * @return The elems.
      */
     com.google.protobuf.ByteString getElems();
   }
@@ -2877,7 +2987,7 @@ public final class Crypto {
    *
    * Protobuf type {@code cosmos.base.crypto.v1beta1.CompactBitArray}
    */
-  public  static final class CompactBitArray extends
+  public static final class CompactBitArray extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:cosmos.base.crypto.v1beta1.CompactBitArray)
       CompactBitArrayOrBuilder {
@@ -2887,11 +2997,17 @@ public final class Crypto {
       super(builder);
     }
     private CompactBitArray() {
-      extraBitsStored_ = 0;
       elems_ = com.google.protobuf.ByteString.EMPTY;
     }
 
-    @Override
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new CompactBitArray();
+    }
+
+    @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
@@ -2902,9 +3018,8 @@ public final class Crypto {
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       if (extensionRegistry == null) {
-        throw new NullPointerException();
+        throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -2926,7 +3041,7 @@ public final class Crypto {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -2946,22 +3061,24 @@ public final class Crypto {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return Crypto.internal_static_cosmos_base_crypto_v1beta1_CompactBitArray_descriptor;
+      return cosmos.base.crypto.v1beta1.Crypto.internal_static_cosmos_base_crypto_v1beta1_CompactBitArray_descriptor;
     }
 
-    @Override
-    protected FieldAccessorTable
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return Crypto.internal_static_cosmos_base_crypto_v1beta1_CompactBitArray_fieldAccessorTable
+      return cosmos.base.crypto.v1beta1.Crypto.internal_static_cosmos_base_crypto_v1beta1_CompactBitArray_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              CompactBitArray.class, Builder.class);
+              cosmos.base.crypto.v1beta1.Crypto.CompactBitArray.class, cosmos.base.crypto.v1beta1.Crypto.CompactBitArray.Builder.class);
     }
 
     public static final int EXTRA_BITS_STORED_FIELD_NUMBER = 1;
     private int extraBitsStored_;
     /**
      * <code>uint32 extra_bits_stored = 1;</code>
+     * @return The extraBitsStored.
      */
+    @java.lang.Override
     public int getExtraBitsStored() {
       return extraBitsStored_;
     }
@@ -2970,13 +3087,15 @@ public final class Crypto {
     private com.google.protobuf.ByteString elems_;
     /**
      * <code>bytes elems = 2;</code>
+     * @return The elems.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString getElems() {
       return elems_;
     }
 
     private byte memoizedIsInitialized = -1;
-    @Override
+    @java.lang.Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
@@ -2986,7 +3105,7 @@ public final class Crypto {
       return true;
     }
 
-    @Override
+    @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (extraBitsStored_ != 0) {
@@ -2998,7 +3117,7 @@ public final class Crypto {
       unknownFields.writeTo(output);
     }
 
-    @Override
+    @java.lang.Override
     public int getSerializedSize() {
       int size = memoizedSize;
       if (size != -1) return size;
@@ -3017,26 +3136,25 @@ public final class Crypto {
       return size;
     }
 
-    @Override
-    public boolean equals(final Object obj) {
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof CompactBitArray)) {
+      if (!(obj instanceof cosmos.base.crypto.v1beta1.Crypto.CompactBitArray)) {
         return super.equals(obj);
       }
-      CompactBitArray other = (CompactBitArray) obj;
+      cosmos.base.crypto.v1beta1.Crypto.CompactBitArray other = (cosmos.base.crypto.v1beta1.Crypto.CompactBitArray) obj;
 
-      boolean result = true;
-      result = result && (getExtraBitsStored()
-          == other.getExtraBitsStored());
-      result = result && getElems()
-          .equals(other.getElems());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (getExtraBitsStored()
+          != other.getExtraBitsStored()) return false;
+      if (!getElems()
+          .equals(other.getElems())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
       if (memoizedHashCode != 0) {
         return memoizedHashCode;
@@ -3052,69 +3170,69 @@ public final class Crypto {
       return hash;
     }
 
-    public static CompactBitArray parseFrom(
+    public static cosmos.base.crypto.v1beta1.Crypto.CompactBitArray parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static CompactBitArray parseFrom(
+    public static cosmos.base.crypto.v1beta1.Crypto.CompactBitArray parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static CompactBitArray parseFrom(
+    public static cosmos.base.crypto.v1beta1.Crypto.CompactBitArray parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static CompactBitArray parseFrom(
+    public static cosmos.base.crypto.v1beta1.Crypto.CompactBitArray parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static CompactBitArray parseFrom(byte[] data)
+    public static cosmos.base.crypto.v1beta1.Crypto.CompactBitArray parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static CompactBitArray parseFrom(
+    public static cosmos.base.crypto.v1beta1.Crypto.CompactBitArray parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static CompactBitArray parseFrom(java.io.InputStream input)
+    public static cosmos.base.crypto.v1beta1.Crypto.CompactBitArray parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static CompactBitArray parseFrom(
+    public static cosmos.base.crypto.v1beta1.Crypto.CompactBitArray parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static CompactBitArray parseDelimitedFrom(java.io.InputStream input)
+    public static cosmos.base.crypto.v1beta1.Crypto.CompactBitArray parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static CompactBitArray parseDelimitedFrom(
+    public static cosmos.base.crypto.v1beta1.Crypto.CompactBitArray parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static CompactBitArray parseFrom(
+    public static cosmos.base.crypto.v1beta1.Crypto.CompactBitArray parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static CompactBitArray parseFrom(
+    public static cosmos.base.crypto.v1beta1.Crypto.CompactBitArray parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -3122,23 +3240,23 @@ public final class Crypto {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    @Override
+    @java.lang.Override
     public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(CompactBitArray prototype) {
+    public static Builder newBuilder(cosmos.base.crypto.v1beta1.Crypto.CompactBitArray prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
-    @Override
+    @java.lang.Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
           ? new Builder() : new Builder().mergeFrom(this);
     }
 
-    @Override
+    @java.lang.Override
     protected Builder newBuilderForType(
-        BuilderParent parent) {
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -3155,18 +3273,18 @@ public final class Crypto {
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:cosmos.base.crypto.v1beta1.CompactBitArray)
-        CompactBitArrayOrBuilder {
+        cosmos.base.crypto.v1beta1.Crypto.CompactBitArrayOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return Crypto.internal_static_cosmos_base_crypto_v1beta1_CompactBitArray_descriptor;
+        return cosmos.base.crypto.v1beta1.Crypto.internal_static_cosmos_base_crypto_v1beta1_CompactBitArray_descriptor;
       }
 
-      @Override
-      protected FieldAccessorTable
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return Crypto.internal_static_cosmos_base_crypto_v1beta1_CompactBitArray_fieldAccessorTable
+        return cosmos.base.crypto.v1beta1.Crypto.internal_static_cosmos_base_crypto_v1beta1_CompactBitArray_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                CompactBitArray.class, Builder.class);
+                cosmos.base.crypto.v1beta1.Crypto.CompactBitArray.class, cosmos.base.crypto.v1beta1.Crypto.CompactBitArray.Builder.class);
       }
 
       // Construct using cosmos.base.crypto.v1beta1.Crypto.CompactBitArray.newBuilder()
@@ -3175,7 +3293,7 @@ public final class Crypto {
       }
 
       private Builder(
-          BuilderParent parent) {
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -3184,7 +3302,7 @@ public final class Crypto {
                 .alwaysUseFieldBuilders) {
         }
       }
-      @Override
+      @java.lang.Override
       public Builder clear() {
         super.clear();
         extraBitsStored_ = 0;
@@ -3194,79 +3312,79 @@ public final class Crypto {
         return this;
       }
 
-      @Override
+      @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return Crypto.internal_static_cosmos_base_crypto_v1beta1_CompactBitArray_descriptor;
+        return cosmos.base.crypto.v1beta1.Crypto.internal_static_cosmos_base_crypto_v1beta1_CompactBitArray_descriptor;
       }
 
-      @Override
-      public CompactBitArray getDefaultInstanceForType() {
-        return CompactBitArray.getDefaultInstance();
+      @java.lang.Override
+      public cosmos.base.crypto.v1beta1.Crypto.CompactBitArray getDefaultInstanceForType() {
+        return cosmos.base.crypto.v1beta1.Crypto.CompactBitArray.getDefaultInstance();
       }
 
-      @Override
-      public CompactBitArray build() {
-        CompactBitArray result = buildPartial();
+      @java.lang.Override
+      public cosmos.base.crypto.v1beta1.Crypto.CompactBitArray build() {
+        cosmos.base.crypto.v1beta1.Crypto.CompactBitArray result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      @Override
-      public CompactBitArray buildPartial() {
-        CompactBitArray result = new CompactBitArray(this);
+      @java.lang.Override
+      public cosmos.base.crypto.v1beta1.Crypto.CompactBitArray buildPartial() {
+        cosmos.base.crypto.v1beta1.Crypto.CompactBitArray result = new cosmos.base.crypto.v1beta1.Crypto.CompactBitArray(this);
         result.extraBitsStored_ = extraBitsStored_;
         result.elems_ = elems_;
         onBuilt();
         return result;
       }
 
-      @Override
+      @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
-      @Override
+      @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.setField(field, value);
+          java.lang.Object value) {
+        return super.setField(field, value);
       }
-      @Override
+      @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
-      @Override
+      @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
-      @Override
+      @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
       }
-      @Override
+      @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
       }
-      @Override
+      @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof CompactBitArray) {
-          return mergeFrom((CompactBitArray)other);
+        if (other instanceof cosmos.base.crypto.v1beta1.Crypto.CompactBitArray) {
+          return mergeFrom((cosmos.base.crypto.v1beta1.Crypto.CompactBitArray)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(CompactBitArray other) {
-        if (other == CompactBitArray.getDefaultInstance()) return this;
+      public Builder mergeFrom(cosmos.base.crypto.v1beta1.Crypto.CompactBitArray other) {
+        if (other == cosmos.base.crypto.v1beta1.Crypto.CompactBitArray.getDefaultInstance()) return this;
         if (other.getExtraBitsStored() != 0) {
           setExtraBitsStored(other.getExtraBitsStored());
         }
@@ -3278,21 +3396,21 @@ public final class Crypto {
         return this;
       }
 
-      @Override
+      @java.lang.Override
       public final boolean isInitialized() {
         return true;
       }
 
-      @Override
+      @java.lang.Override
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        CompactBitArray parsedMessage = null;
+        cosmos.base.crypto.v1beta1.Crypto.CompactBitArray parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (CompactBitArray) e.getUnfinishedMessage();
+          parsedMessage = (cosmos.base.crypto.v1beta1.Crypto.CompactBitArray) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -3305,12 +3423,16 @@ public final class Crypto {
       private int extraBitsStored_ ;
       /**
        * <code>uint32 extra_bits_stored = 1;</code>
+       * @return The extraBitsStored.
        */
+      @java.lang.Override
       public int getExtraBitsStored() {
         return extraBitsStored_;
       }
       /**
        * <code>uint32 extra_bits_stored = 1;</code>
+       * @param value The extraBitsStored to set.
+       * @return This builder for chaining.
        */
       public Builder setExtraBitsStored(int value) {
         
@@ -3320,6 +3442,7 @@ public final class Crypto {
       }
       /**
        * <code>uint32 extra_bits_stored = 1;</code>
+       * @return This builder for chaining.
        */
       public Builder clearExtraBitsStored() {
         
@@ -3331,12 +3454,16 @@ public final class Crypto {
       private com.google.protobuf.ByteString elems_ = com.google.protobuf.ByteString.EMPTY;
       /**
        * <code>bytes elems = 2;</code>
+       * @return The elems.
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString getElems() {
         return elems_;
       }
       /**
        * <code>bytes elems = 2;</code>
+       * @param value The elems to set.
+       * @return This builder for chaining.
        */
       public Builder setElems(com.google.protobuf.ByteString value) {
         if (value == null) {
@@ -3349,6 +3476,7 @@ public final class Crypto {
       }
       /**
        * <code>bytes elems = 2;</code>
+       * @return This builder for chaining.
        */
       public Builder clearElems() {
         
@@ -3356,13 +3484,13 @@ public final class Crypto {
         onChanged();
         return this;
       }
-      @Override
+      @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
-      @Override
+      @java.lang.Override
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
@@ -3373,18 +3501,18 @@ public final class Crypto {
     }
 
     // @@protoc_insertion_point(class_scope:cosmos.base.crypto.v1beta1.CompactBitArray)
-    private static final CompactBitArray DEFAULT_INSTANCE;
+    private static final cosmos.base.crypto.v1beta1.Crypto.CompactBitArray DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new CompactBitArray();
+      DEFAULT_INSTANCE = new cosmos.base.crypto.v1beta1.Crypto.CompactBitArray();
     }
 
-    public static CompactBitArray getDefaultInstance() {
+    public static cosmos.base.crypto.v1beta1.Crypto.CompactBitArray getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
     private static final com.google.protobuf.Parser<CompactBitArray>
         PARSER = new com.google.protobuf.AbstractParser<CompactBitArray>() {
-      @Override
+      @java.lang.Override
       public CompactBitArray parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -3397,13 +3525,13 @@ public final class Crypto {
       return PARSER;
     }
 
-    @Override
+    @java.lang.Override
     public com.google.protobuf.Parser<CompactBitArray> getParserForType() {
       return PARSER;
     }
 
-    @Override
-    public CompactBitArray getDefaultInstanceForType() {
+    @java.lang.Override
+    public cosmos.base.crypto.v1beta1.Crypto.CompactBitArray getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -3437,7 +3565,7 @@ public final class Crypto {
   private static  com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
-    String[] descriptorData = {
+    java.lang.String[] descriptorData = {
       "\n\'cosmos/base/crypto/v1beta1/crypto.prot" +
       "o\022\032cosmos.base.crypto.v1beta1\032\024gogoproto" +
       "/gogo.proto\032\031google/protobuf/any.proto\"\346" +
@@ -3456,44 +3584,36 @@ public final class Crypto {
       "\030\001 \001(\r\022\r\n\005elems\030\002 \001(\014:\004\230\240\037\000B+Z)github.co" +
       "m/cosmos/cosmos-sdk/crypto/typesb\006proto3"
     };
-    com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
-        new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
-          public com.google.protobuf.ExtensionRegistry assignDescriptors(
-              com.google.protobuf.Descriptors.FileDescriptor root) {
-            descriptor = root;
-            return null;
-          }
-        };
-    com.google.protobuf.Descriptors.FileDescriptor
+    descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
           com.google.protobuf.GoGoProtos.getDescriptor(),
           com.google.protobuf.AnyProto.getDescriptor(),
-        }, assigner);
+        });
     internal_static_cosmos_base_crypto_v1beta1_PublicKey_descriptor =
       getDescriptor().getMessageTypes().get(0);
     internal_static_cosmos_base_crypto_v1beta1_PublicKey_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_cosmos_base_crypto_v1beta1_PublicKey_descriptor,
-        new String[] { "Secp256K1", "Ed25519", "Sr25519", "Multisig", "Secp256R1", "Sm2", "AnyPubkey", "Sum", });
+        new java.lang.String[] { "Secp256K1", "Ed25519", "Sr25519", "Multisig", "Secp256R1", "Sm2", "AnyPubkey", "Sum", });
     internal_static_cosmos_base_crypto_v1beta1_PubKeyMultisigThreshold_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_cosmos_base_crypto_v1beta1_PubKeyMultisigThreshold_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_cosmos_base_crypto_v1beta1_PubKeyMultisigThreshold_descriptor,
-        new String[] { "Threshold", "PublicKeys", });
+        new java.lang.String[] { "Threshold", "PublicKeys", });
     internal_static_cosmos_base_crypto_v1beta1_MultiSignature_descriptor =
       getDescriptor().getMessageTypes().get(2);
     internal_static_cosmos_base_crypto_v1beta1_MultiSignature_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_cosmos_base_crypto_v1beta1_MultiSignature_descriptor,
-        new String[] { "Signatures", });
+        new java.lang.String[] { "Signatures", });
     internal_static_cosmos_base_crypto_v1beta1_CompactBitArray_descriptor =
       getDescriptor().getMessageTypes().get(3);
     internal_static_cosmos_base_crypto_v1beta1_CompactBitArray_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_cosmos_base_crypto_v1beta1_CompactBitArray_descriptor,
-        new String[] { "ExtraBitsStored", "Elems", });
+        new java.lang.String[] { "ExtraBitsStored", "Elems", });
     com.google.protobuf.ExtensionRegistry registry =
         com.google.protobuf.ExtensionRegistry.newInstance();
     registry.add(com.google.protobuf.GoGoProtos.customname);
