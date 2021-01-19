@@ -47,6 +47,12 @@ public final class Bank {
      * @return The defaultSendEnabled.
      */
     boolean getDefaultSendEnabled();
+
+    /**
+     * <code>bool unrestricted_token_transfer = 3 [(.gogoproto.moretags) = "yaml:&#92;"unrestricted_token_transfer,omitempty&#92;""];</code>
+     * @return The unrestrictedTokenTransfer.
+     */
+    boolean getUnrestrictedTokenTransfer();
   }
   /**
    * <pre>
@@ -111,6 +117,11 @@ public final class Bank {
             case 16: {
 
               defaultSendEnabled_ = input.readBool();
+              break;
+            }
+            case 24: {
+
+              unrestrictedTokenTransfer_ = input.readBool();
               break;
             }
             default: {
@@ -199,6 +210,17 @@ public final class Bank {
       return defaultSendEnabled_;
     }
 
+    public static final int UNRESTRICTED_TOKEN_TRANSFER_FIELD_NUMBER = 3;
+    private boolean unrestrictedTokenTransfer_;
+    /**
+     * <code>bool unrestricted_token_transfer = 3 [(.gogoproto.moretags) = "yaml:&#92;"unrestricted_token_transfer,omitempty&#92;""];</code>
+     * @return The unrestrictedTokenTransfer.
+     */
+    @java.lang.Override
+    public boolean getUnrestrictedTokenTransfer() {
+      return unrestrictedTokenTransfer_;
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -219,6 +241,9 @@ public final class Bank {
       if (defaultSendEnabled_ != false) {
         output.writeBool(2, defaultSendEnabled_);
       }
+      if (unrestrictedTokenTransfer_ != false) {
+        output.writeBool(3, unrestrictedTokenTransfer_);
+      }
       unknownFields.writeTo(output);
     }
 
@@ -235,6 +260,10 @@ public final class Bank {
       if (defaultSendEnabled_ != false) {
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(2, defaultSendEnabled_);
+      }
+      if (unrestrictedTokenTransfer_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(3, unrestrictedTokenTransfer_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -255,6 +284,8 @@ public final class Bank {
           .equals(other.getSendEnabledList())) return false;
       if (getDefaultSendEnabled()
           != other.getDefaultSendEnabled()) return false;
+      if (getUnrestrictedTokenTransfer()
+          != other.getUnrestrictedTokenTransfer()) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -273,6 +304,9 @@ public final class Bank {
       hash = (37 * hash) + DEFAULT_SEND_ENABLED_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
           getDefaultSendEnabled());
+      hash = (37 * hash) + UNRESTRICTED_TOKEN_TRANSFER_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getUnrestrictedTokenTransfer());
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -419,6 +453,8 @@ public final class Bank {
         }
         defaultSendEnabled_ = false;
 
+        unrestrictedTokenTransfer_ = false;
+
         return this;
       }
 
@@ -456,6 +492,7 @@ public final class Bank {
           result.sendEnabled_ = sendEnabledBuilder_.build();
         }
         result.defaultSendEnabled_ = defaultSendEnabled_;
+        result.unrestrictedTokenTransfer_ = unrestrictedTokenTransfer_;
         onBuilt();
         return result;
       }
@@ -532,6 +569,9 @@ public final class Bank {
         }
         if (other.getDefaultSendEnabled() != false) {
           setDefaultSendEnabled(other.getDefaultSendEnabled());
+        }
+        if (other.getUnrestrictedTokenTransfer() != false) {
+          setUnrestrictedTokenTransfer(other.getUnrestrictedTokenTransfer());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -833,6 +873,37 @@ public final class Bank {
         onChanged();
         return this;
       }
+
+      private boolean unrestrictedTokenTransfer_ ;
+      /**
+       * <code>bool unrestricted_token_transfer = 3 [(.gogoproto.moretags) = "yaml:&#92;"unrestricted_token_transfer,omitempty&#92;""];</code>
+       * @return The unrestrictedTokenTransfer.
+       */
+      @java.lang.Override
+      public boolean getUnrestrictedTokenTransfer() {
+        return unrestrictedTokenTransfer_;
+      }
+      /**
+       * <code>bool unrestricted_token_transfer = 3 [(.gogoproto.moretags) = "yaml:&#92;"unrestricted_token_transfer,omitempty&#92;""];</code>
+       * @param value The unrestrictedTokenTransfer to set.
+       * @return This builder for chaining.
+       */
+      public Builder setUnrestrictedTokenTransfer(boolean value) {
+        
+        unrestrictedTokenTransfer_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>bool unrestricted_token_transfer = 3 [(.gogoproto.moretags) = "yaml:&#92;"unrestricted_token_transfer,omitempty&#92;""];</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearUnrestrictedTokenTransfer() {
+        
+        unrestrictedTokenTransfer_ = false;
+        onChanged();
+        return this;
+      }
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -910,7 +981,8 @@ public final class Bank {
   }
   /**
    * <pre>
-   * SendEnabled maps coin denom to a send_enabled status (whether a denom is sendable).
+   * SendEnabled maps coin denom to a send_enabled status (whether a denom is
+   * sendable).
    * </pre>
    *
    * Protobuf type {@code cosmos.bank.v1beta1.SendEnabled}
@@ -1218,7 +1290,8 @@ public final class Bank {
     }
     /**
      * <pre>
-     * SendEnabled maps coin denom to a send_enabled status (whether a denom is sendable).
+     * SendEnabled maps coin denom to a send_enabled status (whether a denom is
+     * sendable).
      * </pre>
      *
      * Protobuf type {@code cosmos.bank.v1beta1.SendEnabled}
@@ -1538,10 +1611,16 @@ public final class Bank {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>bytes address = 1 [(.gogoproto.casttype) = "github.com/cosmos/cosmos-sdk/types.AccAddress"];</code>
+     * <code>string address = 1;</code>
      * @return The address.
      */
-    com.google.protobuf.ByteString getAddress();
+    java.lang.String getAddress();
+    /**
+     * <code>string address = 1;</code>
+     * @return The bytes for address.
+     */
+    com.google.protobuf.ByteString
+        getAddressBytes();
 
     /**
      * <code>repeated .cosmos.base.v1beta1.Coin coins = 2 [(.gogoproto.nullable) = false, (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
@@ -1584,7 +1663,7 @@ public final class Bank {
       super(builder);
     }
     private Input() {
-      address_ = com.google.protobuf.ByteString.EMPTY;
+      address_ = "";
       coins_ = java.util.Collections.emptyList();
     }
 
@@ -1620,8 +1699,9 @@ public final class Bank {
               done = true;
               break;
             case 10: {
+              java.lang.String s = input.readStringRequireUtf8();
 
-              address_ = input.readBytes();
+              address_ = s;
               break;
             }
             case 18: {
@@ -1669,14 +1749,41 @@ public final class Bank {
     }
 
     public static final int ADDRESS_FIELD_NUMBER = 1;
-    private com.google.protobuf.ByteString address_;
+    private volatile java.lang.Object address_;
     /**
-     * <code>bytes address = 1 [(.gogoproto.casttype) = "github.com/cosmos/cosmos-sdk/types.AccAddress"];</code>
+     * <code>string address = 1;</code>
      * @return The address.
      */
     @java.lang.Override
-    public com.google.protobuf.ByteString getAddress() {
-      return address_;
+    public java.lang.String getAddress() {
+      java.lang.Object ref = address_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        address_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string address = 1;</code>
+     * @return The bytes for address.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getAddressBytes() {
+      java.lang.Object ref = address_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        address_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
 
     public static final int COINS_FIELD_NUMBER = 2;
@@ -1733,8 +1840,8 @@ public final class Bank {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!address_.isEmpty()) {
-        output.writeBytes(1, address_);
+      if (!getAddressBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, address_);
       }
       for (int i = 0; i < coins_.size(); i++) {
         output.writeMessage(2, coins_.get(i));
@@ -1748,9 +1855,8 @@ public final class Bank {
       if (size != -1) return size;
 
       size = 0;
-      if (!address_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(1, address_);
+      if (!getAddressBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, address_);
       }
       for (int i = 0; i < coins_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
@@ -1930,7 +2036,7 @@ public final class Bank {
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        address_ = com.google.protobuf.ByteString.EMPTY;
+        address_ = "";
 
         if (coinsBuilder_ == null) {
           coins_ = java.util.Collections.emptyList();
@@ -2023,8 +2129,9 @@ public final class Bank {
 
       public Builder mergeFrom(cosmos.bank.v1beta1.Bank.Input other) {
         if (other == cosmos.bank.v1beta1.Bank.Input.getDefaultInstance()) return this;
-        if (other.getAddress() != com.google.protobuf.ByteString.EMPTY) {
-          setAddress(other.getAddress());
+        if (!other.getAddress().isEmpty()) {
+          address_ = other.address_;
+          onChanged();
         }
         if (coinsBuilder_ == null) {
           if (!other.coins_.isEmpty()) {
@@ -2082,21 +2189,47 @@ public final class Bank {
       }
       private int bitField0_;
 
-      private com.google.protobuf.ByteString address_ = com.google.protobuf.ByteString.EMPTY;
+      private java.lang.Object address_ = "";
       /**
-       * <code>bytes address = 1 [(.gogoproto.casttype) = "github.com/cosmos/cosmos-sdk/types.AccAddress"];</code>
+       * <code>string address = 1;</code>
        * @return The address.
        */
-      @java.lang.Override
-      public com.google.protobuf.ByteString getAddress() {
-        return address_;
+      public java.lang.String getAddress() {
+        java.lang.Object ref = address_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          address_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
       }
       /**
-       * <code>bytes address = 1 [(.gogoproto.casttype) = "github.com/cosmos/cosmos-sdk/types.AccAddress"];</code>
+       * <code>string address = 1;</code>
+       * @return The bytes for address.
+       */
+      public com.google.protobuf.ByteString
+          getAddressBytes() {
+        java.lang.Object ref = address_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          address_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string address = 1;</code>
        * @param value The address to set.
        * @return This builder for chaining.
        */
-      public Builder setAddress(com.google.protobuf.ByteString value) {
+      public Builder setAddress(
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -2106,12 +2239,28 @@ public final class Bank {
         return this;
       }
       /**
-       * <code>bytes address = 1 [(.gogoproto.casttype) = "github.com/cosmos/cosmos-sdk/types.AccAddress"];</code>
+       * <code>string address = 1;</code>
        * @return This builder for chaining.
        */
       public Builder clearAddress() {
         
         address_ = getDefaultInstance().getAddress();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string address = 1;</code>
+       * @param value The bytes for address to set.
+       * @return This builder for chaining.
+       */
+      public Builder setAddressBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        address_ = value;
         onChanged();
         return this;
       }
@@ -2413,10 +2562,16 @@ public final class Bank {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>bytes address = 1 [(.gogoproto.casttype) = "github.com/cosmos/cosmos-sdk/types.AccAddress"];</code>
+     * <code>string address = 1;</code>
      * @return The address.
      */
-    com.google.protobuf.ByteString getAddress();
+    java.lang.String getAddress();
+    /**
+     * <code>string address = 1;</code>
+     * @return The bytes for address.
+     */
+    com.google.protobuf.ByteString
+        getAddressBytes();
 
     /**
      * <code>repeated .cosmos.base.v1beta1.Coin coins = 2 [(.gogoproto.nullable) = false, (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
@@ -2459,7 +2614,7 @@ public final class Bank {
       super(builder);
     }
     private Output() {
-      address_ = com.google.protobuf.ByteString.EMPTY;
+      address_ = "";
       coins_ = java.util.Collections.emptyList();
     }
 
@@ -2495,8 +2650,9 @@ public final class Bank {
               done = true;
               break;
             case 10: {
+              java.lang.String s = input.readStringRequireUtf8();
 
-              address_ = input.readBytes();
+              address_ = s;
               break;
             }
             case 18: {
@@ -2544,14 +2700,41 @@ public final class Bank {
     }
 
     public static final int ADDRESS_FIELD_NUMBER = 1;
-    private com.google.protobuf.ByteString address_;
+    private volatile java.lang.Object address_;
     /**
-     * <code>bytes address = 1 [(.gogoproto.casttype) = "github.com/cosmos/cosmos-sdk/types.AccAddress"];</code>
+     * <code>string address = 1;</code>
      * @return The address.
      */
     @java.lang.Override
-    public com.google.protobuf.ByteString getAddress() {
-      return address_;
+    public java.lang.String getAddress() {
+      java.lang.Object ref = address_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        address_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string address = 1;</code>
+     * @return The bytes for address.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getAddressBytes() {
+      java.lang.Object ref = address_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        address_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
 
     public static final int COINS_FIELD_NUMBER = 2;
@@ -2608,8 +2791,8 @@ public final class Bank {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!address_.isEmpty()) {
-        output.writeBytes(1, address_);
+      if (!getAddressBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, address_);
       }
       for (int i = 0; i < coins_.size(); i++) {
         output.writeMessage(2, coins_.get(i));
@@ -2623,9 +2806,8 @@ public final class Bank {
       if (size != -1) return size;
 
       size = 0;
-      if (!address_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(1, address_);
+      if (!getAddressBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, address_);
       }
       for (int i = 0; i < coins_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
@@ -2805,7 +2987,7 @@ public final class Bank {
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        address_ = com.google.protobuf.ByteString.EMPTY;
+        address_ = "";
 
         if (coinsBuilder_ == null) {
           coins_ = java.util.Collections.emptyList();
@@ -2898,8 +3080,9 @@ public final class Bank {
 
       public Builder mergeFrom(cosmos.bank.v1beta1.Bank.Output other) {
         if (other == cosmos.bank.v1beta1.Bank.Output.getDefaultInstance()) return this;
-        if (other.getAddress() != com.google.protobuf.ByteString.EMPTY) {
-          setAddress(other.getAddress());
+        if (!other.getAddress().isEmpty()) {
+          address_ = other.address_;
+          onChanged();
         }
         if (coinsBuilder_ == null) {
           if (!other.coins_.isEmpty()) {
@@ -2957,21 +3140,47 @@ public final class Bank {
       }
       private int bitField0_;
 
-      private com.google.protobuf.ByteString address_ = com.google.protobuf.ByteString.EMPTY;
+      private java.lang.Object address_ = "";
       /**
-       * <code>bytes address = 1 [(.gogoproto.casttype) = "github.com/cosmos/cosmos-sdk/types.AccAddress"];</code>
+       * <code>string address = 1;</code>
        * @return The address.
        */
-      @java.lang.Override
-      public com.google.protobuf.ByteString getAddress() {
-        return address_;
+      public java.lang.String getAddress() {
+        java.lang.Object ref = address_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          address_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
       }
       /**
-       * <code>bytes address = 1 [(.gogoproto.casttype) = "github.com/cosmos/cosmos-sdk/types.AccAddress"];</code>
+       * <code>string address = 1;</code>
+       * @return The bytes for address.
+       */
+      public com.google.protobuf.ByteString
+          getAddressBytes() {
+        java.lang.Object ref = address_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          address_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string address = 1;</code>
        * @param value The address to set.
        * @return This builder for chaining.
        */
-      public Builder setAddress(com.google.protobuf.ByteString value) {
+      public Builder setAddress(
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -2981,12 +3190,28 @@ public final class Bank {
         return this;
       }
       /**
-       * <code>bytes address = 1 [(.gogoproto.casttype) = "github.com/cosmos/cosmos-sdk/types.AccAddress"];</code>
+       * <code>string address = 1;</code>
        * @return This builder for chaining.
        */
       public Builder clearAddress() {
         
         address_ = getDefaultInstance().getAddress();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string address = 1;</code>
+       * @param value The bytes for address to set.
+       * @return This builder for chaining.
+       */
+      public Builder setAddressBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        address_ = value;
         onChanged();
         return this;
       }
@@ -6591,32 +6816,32 @@ public final class Bank {
       "\n\036cosmos/bank/v1beta1/bank.proto\022\023cosmos" +
       ".bank.v1beta1\032\024gogoproto/gogo.proto\032\031cos" +
       "mos_proto/cosmos.proto\032\036cosmos/base/v1be" +
-      "ta1/coin.proto\"\262\001\n\006Params\022Y\n\014send_enable" +
+      "ta1/coin.proto\"\211\002\n\006Params\022Y\n\014send_enable" +
       "d\030\001 \003(\0132 .cosmos.bank.v1beta1.SendEnable" +
       "dB!\362\336\037\035yaml:\"send_enabled,omitempty\"\022G\n\024" +
       "default_send_enabled\030\002 \001(\010B)\362\336\037%yaml:\"de" +
-      "fault_send_enabled,omitempty\":\004\230\240\037\000\"7\n\013S" +
-      "endEnabled\022\r\n\005denom\030\001 \001(\t\022\017\n\007enabled\030\002 \001" +
-      "(\010:\010\350\240\037\001\230\240\037\000\"\255\001\n\005Input\022B\n\007address\030\001 \001(\014B" +
-      "1\372\336\037-github.com/cosmos/cosmos-sdk/types." +
-      "AccAddress\022Z\n\005coins\030\002 \003(\0132\031.cosmos.base." +
-      "v1beta1.CoinB0\310\336\037\000\252\337\037(github.com/cosmos/" +
-      "cosmos-sdk/types.Coins:\004\350\240\037\001\"\256\001\n\006Output\022" +
-      "B\n\007address\030\001 \001(\014B1\372\336\037-github.com/cosmos/" +
-      "cosmos-sdk/types.AccAddress\022Z\n\005coins\030\002 \003" +
-      "(\0132\031.cosmos.base.v1beta1.CoinB0\310\336\037\000\252\337\037(g" +
-      "ithub.com/cosmos/cosmos-sdk/types.Coins:" +
-      "\004\350\240\037\001\"\253\001\n\006Supply\022Z\n\005total\030\001 \003(\0132\031.cosmos" +
-      ".base.v1beta1.CoinB0\310\336\037\000\252\337\037(github.com/c" +
-      "osmos/cosmos-sdk/types.Coins:E\350\240\037\001\210\240\037\000\230\240" +
-      "\037\000\322\264-5*github.com/cosmos/cosmos-sdk/x/ba" +
-      "nk/exported.SupplyI\"=\n\tDenomUnit\022\r\n\005deno" +
-      "m\030\001 \001(\t\022\020\n\010exponent\030\002 \001(\r\022\017\n\007aliases\030\003 \003" +
-      "(\t\"s\n\010Metadata\022\023\n\013description\030\001 \001(\t\0223\n\013d" +
-      "enom_units\030\002 \003(\0132\036.cosmos.bank.v1beta1.D" +
-      "enomUnit\022\014\n\004base\030\003 \001(\t\022\017\n\007display\030\004 \001(\tB" +
-      "+Z)github.com/cosmos/cosmos-sdk/x/bank/t" +
-      "ypesb\006proto3"
+      "fault_send_enabled,omitempty\"\022U\n\033unrestr" +
+      "icted_token_transfer\030\003 \001(\010B0\362\336\037,yaml:\"un" +
+      "restricted_token_transfer,omitempty\":\004\230\240" +
+      "\037\000\"7\n\013SendEnabled\022\r\n\005denom\030\001 \001(\t\022\017\n\007enab" +
+      "led\030\002 \001(\010:\010\350\240\037\001\230\240\037\000\"~\n\005Input\022\017\n\007address\030" +
+      "\001 \001(\t\022Z\n\005coins\030\002 \003(\0132\031.cosmos.base.v1bet" +
+      "a1.CoinB0\310\336\037\000\252\337\037(github.com/cosmos/cosmo" +
+      "s-sdk/types.Coins:\010\350\240\037\000\210\240\037\000\"\177\n\006Output\022\017\n" +
+      "\007address\030\001 \001(\t\022Z\n\005coins\030\002 \003(\0132\031.cosmos.b" +
+      "ase.v1beta1.CoinB0\310\336\037\000\252\337\037(github.com/cos" +
+      "mos/cosmos-sdk/types.Coins:\010\350\240\037\000\210\240\037\000\"\253\001\n" +
+      "\006Supply\022Z\n\005total\030\001 \003(\0132\031.cosmos.base.v1b" +
+      "eta1.CoinB0\310\336\037\000\252\337\037(github.com/cosmos/cos" +
+      "mos-sdk/types.Coins:E\350\240\037\001\210\240\037\000\230\240\037\000\322\264-5*gi" +
+      "thub.com/cosmos/cosmos-sdk/x/bank/export" +
+      "ed.SupplyI\"=\n\tDenomUnit\022\r\n\005denom\030\001 \001(\t\022\020" +
+      "\n\010exponent\030\002 \001(\r\022\017\n\007aliases\030\003 \003(\t\"s\n\010Met" +
+      "adata\022\023\n\013description\030\001 \001(\t\0223\n\013denom_unit" +
+      "s\030\002 \003(\0132\036.cosmos.bank.v1beta1.DenomUnit\022" +
+      "\014\n\004base\030\003 \001(\t\022\017\n\007display\030\004 \001(\tB+Z)github" +
+      ".com/cosmos/cosmos-sdk/x/bank/typesb\006pro" +
+      "to3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -6630,7 +6855,7 @@ public final class Bank {
     internal_static_cosmos_bank_v1beta1_Params_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_cosmos_bank_v1beta1_Params_descriptor,
-        new java.lang.String[] { "SendEnabled", "DefaultSendEnabled", });
+        new java.lang.String[] { "SendEnabled", "DefaultSendEnabled", "UnrestrictedTokenTransfer", });
     internal_static_cosmos_bank_v1beta1_SendEnabled_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_cosmos_bank_v1beta1_SendEnabled_fieldAccessorTable = new
@@ -6671,7 +6896,6 @@ public final class Bank {
         com.google.protobuf.ExtensionRegistry.newInstance();
     registry.add(cosmos_proto.Cosmos.implementsInterface);
     registry.add(com.google.protobuf.GoGoProtos.castrepeated);
-    registry.add(com.google.protobuf.GoGoProtos.casttype);
     registry.add(com.google.protobuf.GoGoProtos.equal);
     registry.add(com.google.protobuf.GoGoProtos.goprotoGetters);
     registry.add(com.google.protobuf.GoGoProtos.goprotoStringer);

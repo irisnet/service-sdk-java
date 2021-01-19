@@ -19,16 +19,31 @@ public final class Auth {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>bytes address = 1 [(.gogoproto.casttype) = "github.com/cosmos/cosmos-sdk/types.AccAddress"];</code>
+     * <code>string address = 1;</code>
      * @return The address.
      */
-    com.google.protobuf.ByteString getAddress();
+    java.lang.String getAddress();
+    /**
+     * <code>string address = 1;</code>
+     * @return The bytes for address.
+     */
+    com.google.protobuf.ByteString
+        getAddressBytes();
 
     /**
-     * <code>bytes pub_key = 2 [(.gogoproto.jsontag) = "public_key,omitempty", (.gogoproto.moretags) = "yaml:&#92;"public_key&#92;""];</code>
+     * <code>.google.protobuf.Any pub_key = 2 [(.gogoproto.jsontag) = "public_key,omitempty", (.gogoproto.moretags) = "yaml:&#92;"public_key&#92;""];</code>
+     * @return Whether the pubKey field is set.
+     */
+    boolean hasPubKey();
+    /**
+     * <code>.google.protobuf.Any pub_key = 2 [(.gogoproto.jsontag) = "public_key,omitempty", (.gogoproto.moretags) = "yaml:&#92;"public_key&#92;""];</code>
      * @return The pubKey.
      */
-    com.google.protobuf.ByteString getPubKey();
+    com.google.protobuf.Any getPubKey();
+    /**
+     * <code>.google.protobuf.Any pub_key = 2 [(.gogoproto.jsontag) = "public_key,omitempty", (.gogoproto.moretags) = "yaml:&#92;"public_key&#92;""];</code>
+     */
+    com.google.protobuf.AnyOrBuilder getPubKeyOrBuilder();
 
     /**
      * <code>uint64 account_number = 3 [(.gogoproto.moretags) = "yaml:&#92;"account_number&#92;""];</code>
@@ -61,8 +76,7 @@ public final class Auth {
       super(builder);
     }
     private BaseAccount() {
-      address_ = com.google.protobuf.ByteString.EMPTY;
-      pubKey_ = com.google.protobuf.ByteString.EMPTY;
+      address_ = "";
     }
 
     @java.lang.Override
@@ -96,13 +110,22 @@ public final class Auth {
               done = true;
               break;
             case 10: {
+              java.lang.String s = input.readStringRequireUtf8();
 
-              address_ = input.readBytes();
+              address_ = s;
               break;
             }
             case 18: {
+              com.google.protobuf.Any.Builder subBuilder = null;
+              if (pubKey_ != null) {
+                subBuilder = pubKey_.toBuilder();
+              }
+              pubKey_ = input.readMessage(com.google.protobuf.Any.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(pubKey_);
+                pubKey_ = subBuilder.buildPartial();
+              }
 
-              pubKey_ = input.readBytes();
               break;
             }
             case 24: {
@@ -148,25 +171,67 @@ public final class Auth {
     }
 
     public static final int ADDRESS_FIELD_NUMBER = 1;
-    private com.google.protobuf.ByteString address_;
+    private volatile java.lang.Object address_;
     /**
-     * <code>bytes address = 1 [(.gogoproto.casttype) = "github.com/cosmos/cosmos-sdk/types.AccAddress"];</code>
+     * <code>string address = 1;</code>
      * @return The address.
      */
     @java.lang.Override
-    public com.google.protobuf.ByteString getAddress() {
-      return address_;
+    public java.lang.String getAddress() {
+      java.lang.Object ref = address_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        address_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string address = 1;</code>
+     * @return The bytes for address.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getAddressBytes() {
+      java.lang.Object ref = address_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        address_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
 
     public static final int PUB_KEY_FIELD_NUMBER = 2;
-    private com.google.protobuf.ByteString pubKey_;
+    private com.google.protobuf.Any pubKey_;
     /**
-     * <code>bytes pub_key = 2 [(.gogoproto.jsontag) = "public_key,omitempty", (.gogoproto.moretags) = "yaml:&#92;"public_key&#92;""];</code>
+     * <code>.google.protobuf.Any pub_key = 2 [(.gogoproto.jsontag) = "public_key,omitempty", (.gogoproto.moretags) = "yaml:&#92;"public_key&#92;""];</code>
+     * @return Whether the pubKey field is set.
+     */
+    @java.lang.Override
+    public boolean hasPubKey() {
+      return pubKey_ != null;
+    }
+    /**
+     * <code>.google.protobuf.Any pub_key = 2 [(.gogoproto.jsontag) = "public_key,omitempty", (.gogoproto.moretags) = "yaml:&#92;"public_key&#92;""];</code>
      * @return The pubKey.
      */
     @java.lang.Override
-    public com.google.protobuf.ByteString getPubKey() {
-      return pubKey_;
+    public com.google.protobuf.Any getPubKey() {
+      return pubKey_ == null ? com.google.protobuf.Any.getDefaultInstance() : pubKey_;
+    }
+    /**
+     * <code>.google.protobuf.Any pub_key = 2 [(.gogoproto.jsontag) = "public_key,omitempty", (.gogoproto.moretags) = "yaml:&#92;"public_key&#92;""];</code>
+     */
+    @java.lang.Override
+    public com.google.protobuf.AnyOrBuilder getPubKeyOrBuilder() {
+      return getPubKey();
     }
 
     public static final int ACCOUNT_NUMBER_FIELD_NUMBER = 3;
@@ -205,11 +270,11 @@ public final class Auth {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!address_.isEmpty()) {
-        output.writeBytes(1, address_);
+      if (!getAddressBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, address_);
       }
-      if (!pubKey_.isEmpty()) {
-        output.writeBytes(2, pubKey_);
+      if (pubKey_ != null) {
+        output.writeMessage(2, getPubKey());
       }
       if (accountNumber_ != 0L) {
         output.writeUInt64(3, accountNumber_);
@@ -226,13 +291,12 @@ public final class Auth {
       if (size != -1) return size;
 
       size = 0;
-      if (!address_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(1, address_);
+      if (!getAddressBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, address_);
       }
-      if (!pubKey_.isEmpty()) {
+      if (pubKey_ != null) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(2, pubKey_);
+          .computeMessageSize(2, getPubKey());
       }
       if (accountNumber_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
@@ -259,8 +323,11 @@ public final class Auth {
 
       if (!getAddress()
           .equals(other.getAddress())) return false;
-      if (!getPubKey()
-          .equals(other.getPubKey())) return false;
+      if (hasPubKey() != other.hasPubKey()) return false;
+      if (hasPubKey()) {
+        if (!getPubKey()
+            .equals(other.getPubKey())) return false;
+      }
       if (getAccountNumber()
           != other.getAccountNumber()) return false;
       if (getSequence()
@@ -278,8 +345,10 @@ public final class Auth {
       hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + ADDRESS_FIELD_NUMBER;
       hash = (53 * hash) + getAddress().hashCode();
-      hash = (37 * hash) + PUB_KEY_FIELD_NUMBER;
-      hash = (53 * hash) + getPubKey().hashCode();
+      if (hasPubKey()) {
+        hash = (37 * hash) + PUB_KEY_FIELD_NUMBER;
+        hash = (53 * hash) + getPubKey().hashCode();
+      }
       hash = (37 * hash) + ACCOUNT_NUMBER_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           getAccountNumber());
@@ -425,10 +494,14 @@ public final class Auth {
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        address_ = com.google.protobuf.ByteString.EMPTY;
+        address_ = "";
 
-        pubKey_ = com.google.protobuf.ByteString.EMPTY;
-
+        if (pubKeyBuilder_ == null) {
+          pubKey_ = null;
+        } else {
+          pubKey_ = null;
+          pubKeyBuilder_ = null;
+        }
         accountNumber_ = 0L;
 
         sequence_ = 0L;
@@ -460,7 +533,11 @@ public final class Auth {
       public cosmos.auth.v1beta1.Auth.BaseAccount buildPartial() {
         cosmos.auth.v1beta1.Auth.BaseAccount result = new cosmos.auth.v1beta1.Auth.BaseAccount(this);
         result.address_ = address_;
-        result.pubKey_ = pubKey_;
+        if (pubKeyBuilder_ == null) {
+          result.pubKey_ = pubKey_;
+        } else {
+          result.pubKey_ = pubKeyBuilder_.build();
+        }
         result.accountNumber_ = accountNumber_;
         result.sequence_ = sequence_;
         onBuilt();
@@ -511,11 +588,12 @@ public final class Auth {
 
       public Builder mergeFrom(cosmos.auth.v1beta1.Auth.BaseAccount other) {
         if (other == cosmos.auth.v1beta1.Auth.BaseAccount.getDefaultInstance()) return this;
-        if (other.getAddress() != com.google.protobuf.ByteString.EMPTY) {
-          setAddress(other.getAddress());
+        if (!other.getAddress().isEmpty()) {
+          address_ = other.address_;
+          onChanged();
         }
-        if (other.getPubKey() != com.google.protobuf.ByteString.EMPTY) {
-          setPubKey(other.getPubKey());
+        if (other.hasPubKey()) {
+          mergePubKey(other.getPubKey());
         }
         if (other.getAccountNumber() != 0L) {
           setAccountNumber(other.getAccountNumber());
@@ -552,21 +630,47 @@ public final class Auth {
         return this;
       }
 
-      private com.google.protobuf.ByteString address_ = com.google.protobuf.ByteString.EMPTY;
+      private java.lang.Object address_ = "";
       /**
-       * <code>bytes address = 1 [(.gogoproto.casttype) = "github.com/cosmos/cosmos-sdk/types.AccAddress"];</code>
+       * <code>string address = 1;</code>
        * @return The address.
        */
-      @java.lang.Override
-      public com.google.protobuf.ByteString getAddress() {
-        return address_;
+      public java.lang.String getAddress() {
+        java.lang.Object ref = address_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          address_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
       }
       /**
-       * <code>bytes address = 1 [(.gogoproto.casttype) = "github.com/cosmos/cosmos-sdk/types.AccAddress"];</code>
+       * <code>string address = 1;</code>
+       * @return The bytes for address.
+       */
+      public com.google.protobuf.ByteString
+          getAddressBytes() {
+        java.lang.Object ref = address_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          address_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string address = 1;</code>
        * @param value The address to set.
        * @return This builder for chaining.
        */
-      public Builder setAddress(com.google.protobuf.ByteString value) {
+      public Builder setAddress(
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -576,7 +680,7 @@ public final class Auth {
         return this;
       }
       /**
-       * <code>bytes address = 1 [(.gogoproto.casttype) = "github.com/cosmos/cosmos-sdk/types.AccAddress"];</code>
+       * <code>string address = 1;</code>
        * @return This builder for chaining.
        */
       public Builder clearAddress() {
@@ -585,39 +689,140 @@ public final class Auth {
         onChanged();
         return this;
       }
-
-      private com.google.protobuf.ByteString pubKey_ = com.google.protobuf.ByteString.EMPTY;
       /**
-       * <code>bytes pub_key = 2 [(.gogoproto.jsontag) = "public_key,omitempty", (.gogoproto.moretags) = "yaml:&#92;"public_key&#92;""];</code>
-       * @return The pubKey.
-       */
-      @java.lang.Override
-      public com.google.protobuf.ByteString getPubKey() {
-        return pubKey_;
-      }
-      /**
-       * <code>bytes pub_key = 2 [(.gogoproto.jsontag) = "public_key,omitempty", (.gogoproto.moretags) = "yaml:&#92;"public_key&#92;""];</code>
-       * @param value The pubKey to set.
+       * <code>string address = 1;</code>
+       * @param value The bytes for address to set.
        * @return This builder for chaining.
        */
-      public Builder setPubKey(com.google.protobuf.ByteString value) {
+      public Builder setAddressBytes(
+          com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  
-        pubKey_ = value;
+  checkByteStringIsUtf8(value);
+        
+        address_ = value;
         onChanged();
         return this;
       }
+
+      private com.google.protobuf.Any pubKey_;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.google.protobuf.Any, com.google.protobuf.Any.Builder, com.google.protobuf.AnyOrBuilder> pubKeyBuilder_;
       /**
-       * <code>bytes pub_key = 2 [(.gogoproto.jsontag) = "public_key,omitempty", (.gogoproto.moretags) = "yaml:&#92;"public_key&#92;""];</code>
-       * @return This builder for chaining.
+       * <code>.google.protobuf.Any pub_key = 2 [(.gogoproto.jsontag) = "public_key,omitempty", (.gogoproto.moretags) = "yaml:&#92;"public_key&#92;""];</code>
+       * @return Whether the pubKey field is set.
+       */
+      public boolean hasPubKey() {
+        return pubKeyBuilder_ != null || pubKey_ != null;
+      }
+      /**
+       * <code>.google.protobuf.Any pub_key = 2 [(.gogoproto.jsontag) = "public_key,omitempty", (.gogoproto.moretags) = "yaml:&#92;"public_key&#92;""];</code>
+       * @return The pubKey.
+       */
+      public com.google.protobuf.Any getPubKey() {
+        if (pubKeyBuilder_ == null) {
+          return pubKey_ == null ? com.google.protobuf.Any.getDefaultInstance() : pubKey_;
+        } else {
+          return pubKeyBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.google.protobuf.Any pub_key = 2 [(.gogoproto.jsontag) = "public_key,omitempty", (.gogoproto.moretags) = "yaml:&#92;"public_key&#92;""];</code>
+       */
+      public Builder setPubKey(com.google.protobuf.Any value) {
+        if (pubKeyBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          pubKey_ = value;
+          onChanged();
+        } else {
+          pubKeyBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.google.protobuf.Any pub_key = 2 [(.gogoproto.jsontag) = "public_key,omitempty", (.gogoproto.moretags) = "yaml:&#92;"public_key&#92;""];</code>
+       */
+      public Builder setPubKey(
+          com.google.protobuf.Any.Builder builderForValue) {
+        if (pubKeyBuilder_ == null) {
+          pubKey_ = builderForValue.build();
+          onChanged();
+        } else {
+          pubKeyBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>.google.protobuf.Any pub_key = 2 [(.gogoproto.jsontag) = "public_key,omitempty", (.gogoproto.moretags) = "yaml:&#92;"public_key&#92;""];</code>
+       */
+      public Builder mergePubKey(com.google.protobuf.Any value) {
+        if (pubKeyBuilder_ == null) {
+          if (pubKey_ != null) {
+            pubKey_ =
+              com.google.protobuf.Any.newBuilder(pubKey_).mergeFrom(value).buildPartial();
+          } else {
+            pubKey_ = value;
+          }
+          onChanged();
+        } else {
+          pubKeyBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.google.protobuf.Any pub_key = 2 [(.gogoproto.jsontag) = "public_key,omitempty", (.gogoproto.moretags) = "yaml:&#92;"public_key&#92;""];</code>
        */
       public Builder clearPubKey() {
-        
-        pubKey_ = getDefaultInstance().getPubKey();
-        onChanged();
+        if (pubKeyBuilder_ == null) {
+          pubKey_ = null;
+          onChanged();
+        } else {
+          pubKey_ = null;
+          pubKeyBuilder_ = null;
+        }
+
         return this;
+      }
+      /**
+       * <code>.google.protobuf.Any pub_key = 2 [(.gogoproto.jsontag) = "public_key,omitempty", (.gogoproto.moretags) = "yaml:&#92;"public_key&#92;""];</code>
+       */
+      public com.google.protobuf.Any.Builder getPubKeyBuilder() {
+        
+        onChanged();
+        return getPubKeyFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.google.protobuf.Any pub_key = 2 [(.gogoproto.jsontag) = "public_key,omitempty", (.gogoproto.moretags) = "yaml:&#92;"public_key&#92;""];</code>
+       */
+      public com.google.protobuf.AnyOrBuilder getPubKeyOrBuilder() {
+        if (pubKeyBuilder_ != null) {
+          return pubKeyBuilder_.getMessageOrBuilder();
+        } else {
+          return pubKey_ == null ?
+              com.google.protobuf.Any.getDefaultInstance() : pubKey_;
+        }
+      }
+      /**
+       * <code>.google.protobuf.Any pub_key = 2 [(.gogoproto.jsontag) = "public_key,omitempty", (.gogoproto.moretags) = "yaml:&#92;"public_key&#92;""];</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.google.protobuf.Any, com.google.protobuf.Any.Builder, com.google.protobuf.AnyOrBuilder> 
+          getPubKeyFieldBuilder() {
+        if (pubKeyBuilder_ == null) {
+          pubKeyBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.google.protobuf.Any, com.google.protobuf.Any.Builder, com.google.protobuf.AnyOrBuilder>(
+                  getPubKey(),
+                  getParentForChildren(),
+                  isClean());
+          pubKey_ = null;
+        }
+        return pubKeyBuilder_;
       }
 
       private long accountNumber_ ;
@@ -1766,6 +1971,12 @@ public final class Auth {
      * @return The sigVerifyCostSecp256k1.
      */
     long getSigVerifyCostSecp256K1();
+
+    /**
+     * <code>uint64 sig_verify_cost_sm2 = 6 [(.gogoproto.customname) = "SigVerifyCostSm2", (.gogoproto.moretags) = "yaml:&#92;"sig_verify_cost_sm2&#92;""];</code>
+     * @return The sigVerifyCostSm2.
+     */
+    long getSigVerifyCostSm2();
   }
   /**
    * <pre>
@@ -1839,6 +2050,11 @@ public final class Auth {
             case 40: {
 
               sigVerifyCostSecp256K1_ = input.readUInt64();
+              break;
+            }
+            case 48: {
+
+              sigVerifyCostSm2_ = input.readUInt64();
               break;
             }
             default: {
@@ -1928,6 +2144,17 @@ public final class Auth {
       return sigVerifyCostSecp256K1_;
     }
 
+    public static final int SIG_VERIFY_COST_SM2_FIELD_NUMBER = 6;
+    private long sigVerifyCostSm2_;
+    /**
+     * <code>uint64 sig_verify_cost_sm2 = 6 [(.gogoproto.customname) = "SigVerifyCostSm2", (.gogoproto.moretags) = "yaml:&#92;"sig_verify_cost_sm2&#92;""];</code>
+     * @return The sigVerifyCostSm2.
+     */
+    @java.lang.Override
+    public long getSigVerifyCostSm2() {
+      return sigVerifyCostSm2_;
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -1956,6 +2183,9 @@ public final class Auth {
       }
       if (sigVerifyCostSecp256K1_ != 0L) {
         output.writeUInt64(5, sigVerifyCostSecp256K1_);
+      }
+      if (sigVerifyCostSm2_ != 0L) {
+        output.writeUInt64(6, sigVerifyCostSm2_);
       }
       unknownFields.writeTo(output);
     }
@@ -1986,6 +2216,10 @@ public final class Auth {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt64Size(5, sigVerifyCostSecp256K1_);
       }
+      if (sigVerifyCostSm2_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt64Size(6, sigVerifyCostSm2_);
+      }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
@@ -2011,6 +2245,8 @@ public final class Auth {
           != other.getSigVerifyCostEd25519()) return false;
       if (getSigVerifyCostSecp256K1()
           != other.getSigVerifyCostSecp256K1()) return false;
+      if (getSigVerifyCostSm2()
+          != other.getSigVerifyCostSm2()) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -2037,6 +2273,9 @@ public final class Auth {
       hash = (37 * hash) + SIG_VERIFY_COST_SECP256K1_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           getSigVerifyCostSecp256K1());
+      hash = (37 * hash) + SIG_VERIFY_COST_SM2_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getSigVerifyCostSm2());
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -2184,6 +2423,8 @@ public final class Auth {
 
         sigVerifyCostSecp256K1_ = 0L;
 
+        sigVerifyCostSm2_ = 0L;
+
         return this;
       }
 
@@ -2215,6 +2456,7 @@ public final class Auth {
         result.txSizeCostPerByte_ = txSizeCostPerByte_;
         result.sigVerifyCostEd25519_ = sigVerifyCostEd25519_;
         result.sigVerifyCostSecp256K1_ = sigVerifyCostSecp256K1_;
+        result.sigVerifyCostSm2_ = sigVerifyCostSm2_;
         onBuilt();
         return result;
       }
@@ -2277,6 +2519,9 @@ public final class Auth {
         }
         if (other.getSigVerifyCostSecp256K1() != 0L) {
           setSigVerifyCostSecp256K1(other.getSigVerifyCostSecp256K1());
+        }
+        if (other.getSigVerifyCostSm2() != 0L) {
+          setSigVerifyCostSm2(other.getSigVerifyCostSm2());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -2461,6 +2706,37 @@ public final class Auth {
         onChanged();
         return this;
       }
+
+      private long sigVerifyCostSm2_ ;
+      /**
+       * <code>uint64 sig_verify_cost_sm2 = 6 [(.gogoproto.customname) = "SigVerifyCostSm2", (.gogoproto.moretags) = "yaml:&#92;"sig_verify_cost_sm2&#92;""];</code>
+       * @return The sigVerifyCostSm2.
+       */
+      @java.lang.Override
+      public long getSigVerifyCostSm2() {
+        return sigVerifyCostSm2_;
+      }
+      /**
+       * <code>uint64 sig_verify_cost_sm2 = 6 [(.gogoproto.customname) = "SigVerifyCostSm2", (.gogoproto.moretags) = "yaml:&#92;"sig_verify_cost_sm2&#92;""];</code>
+       * @param value The sigVerifyCostSm2 to set.
+       * @return This builder for chaining.
+       */
+      public Builder setSigVerifyCostSm2(long value) {
+        
+        sigVerifyCostSm2_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>uint64 sig_verify_cost_sm2 = 6 [(.gogoproto.customname) = "SigVerifyCostSm2", (.gogoproto.moretags) = "yaml:&#92;"sig_verify_cost_sm2&#92;""];</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearSigVerifyCostSm2() {
+        
+        sigVerifyCostSm2_ = 0L;
+        onChanged();
+        return this;
+      }
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -2540,34 +2816,37 @@ public final class Auth {
     java.lang.String[] descriptorData = {
       "\n\036cosmos/auth/v1beta1/auth.proto\022\023cosmos" +
       ".auth.v1beta1\032\031cosmos_proto/cosmos.proto" +
-      "\032\024gogoproto/gogo.proto\"\354\001\n\013BaseAccount\022B" +
-      "\n\007address\030\001 \001(\014B1\372\336\037-github.com/cosmos/c" +
-      "osmos-sdk/types.AccAddress\022>\n\007pub_key\030\002 " +
-      "\001(\014B-\352\336\037\024public_key,omitempty\362\336\037\021yaml:\"p" +
-      "ublic_key\"\0221\n\016account_number\030\003 \001(\004B\031\362\336\037\025" +
-      "yaml:\"account_number\"\022\020\n\010sequence\030\004 \001(\004:" +
-      "\024\210\240\037\000\230\240\037\000\322\264-\010AccountI\"\243\001\n\rModuleAccount\022" +
-      "S\n\014base_account\030\001 \001(\0132 .cosmos.auth.v1be" +
-      "ta1.BaseAccountB\033\320\336\037\001\362\336\037\023yaml:\"base_acco" +
-      "unt\"\022\014\n\004name\030\002 \001(\t\022\023\n\013permissions\030\003 \003(\t:" +
-      "\032\210\240\037\000\230\240\037\000\322\264-\016ModuleAccountI\"\377\002\n\006Params\022;" +
-      "\n\023max_memo_characters\030\001 \001(\004B\036\362\336\037\032yaml:\"m" +
-      "ax_memo_characters\"\022-\n\014tx_sig_limit\030\002 \001(" +
-      "\004B\027\362\336\037\023yaml:\"tx_sig_limit\"\022?\n\025tx_size_co" +
-      "st_per_byte\030\003 \001(\004B \362\336\037\034yaml:\"tx_size_cos" +
-      "t_per_byte\"\022[\n\027sig_verify_cost_ed25519\030\004" +
-      " \001(\004B:\342\336\037\024SigVerifyCostED25519\362\336\037\036yaml:\"" +
-      "sig_verify_cost_ed25519\"\022a\n\031sig_verify_c" +
-      "ost_secp256k1\030\005 \001(\004B>\342\336\037\026SigVerifyCostSe" +
-      "cp256k1\362\336\037 yaml:\"sig_verify_cost_secp256" +
-      "k1\":\010\350\240\037\001\230\240\037\000B+Z)github.com/cosmos/cosmo" +
-      "s-sdk/x/auth/typesb\006proto3"
+      "\032\024gogoproto/gogo.proto\032\031google/protobuf/" +
+      "any.proto\"\323\001\n\013BaseAccount\022\017\n\007address\030\001 \001" +
+      "(\t\022T\n\007pub_key\030\002 \001(\0132\024.google.protobuf.An" +
+      "yB-\352\336\037\024public_key,omitempty\362\336\037\021yaml:\"pub" +
+      "lic_key\"\0221\n\016account_number\030\003 \001(\004B\031\362\336\037\025ya" +
+      "ml:\"account_number\"\022\020\n\010sequence\030\004 \001(\004:\030\210" +
+      "\240\037\000\230\240\037\000\350\240\037\000\322\264-\010AccountI\"\243\001\n\rModuleAccoun" +
+      "t\022S\n\014base_account\030\001 \001(\0132 .cosmos.auth.v1" +
+      "beta1.BaseAccountB\033\320\336\037\001\362\336\037\023yaml:\"base_ac" +
+      "count\"\022\014\n\004name\030\002 \001(\t\022\023\n\013permissions\030\003 \003(" +
+      "\t:\032\210\240\037\000\230\240\037\000\322\264-\016ModuleAccountI\"\320\003\n\006Params" +
+      "\022;\n\023max_memo_characters\030\001 \001(\004B\036\362\336\037\032yaml:" +
+      "\"max_memo_characters\"\022-\n\014tx_sig_limit\030\002 " +
+      "\001(\004B\027\362\336\037\023yaml:\"tx_sig_limit\"\022?\n\025tx_size_" +
+      "cost_per_byte\030\003 \001(\004B \362\336\037\034yaml:\"tx_size_c" +
+      "ost_per_byte\"\022[\n\027sig_verify_cost_ed25519" +
+      "\030\004 \001(\004B:\342\336\037\024SigVerifyCostED25519\362\336\037\036yaml" +
+      ":\"sig_verify_cost_ed25519\"\022a\n\031sig_verify" +
+      "_cost_secp256k1\030\005 \001(\004B>\342\336\037\026SigVerifyCost" +
+      "Secp256k1\362\336\037 yaml:\"sig_verify_cost_secp2" +
+      "56k1\"\022O\n\023sig_verify_cost_sm2\030\006 \001(\004B2\342\336\037\020" +
+      "SigVerifyCostSm2\362\336\037\032yaml:\"sig_verify_cos" +
+      "t_sm2\":\010\350\240\037\001\230\240\037\000B+Z)github.com/cosmos/co" +
+      "smos-sdk/x/auth/typesb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
           cosmos_proto.Cosmos.getDescriptor(),
           com.google.protobuf.GoGoProtos.getDescriptor(),
+          com.google.protobuf.AnyProto.getDescriptor(),
         });
     internal_static_cosmos_auth_v1beta1_BaseAccount_descriptor =
       getDescriptor().getMessageTypes().get(0);
@@ -2586,11 +2865,10 @@ public final class Auth {
     internal_static_cosmos_auth_v1beta1_Params_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_cosmos_auth_v1beta1_Params_descriptor,
-        new java.lang.String[] { "MaxMemoCharacters", "TxSigLimit", "TxSizeCostPerByte", "SigVerifyCostEd25519", "SigVerifyCostSecp256K1", });
+        new java.lang.String[] { "MaxMemoCharacters", "TxSigLimit", "TxSizeCostPerByte", "SigVerifyCostEd25519", "SigVerifyCostSecp256K1", "SigVerifyCostSm2", });
     com.google.protobuf.ExtensionRegistry registry =
         com.google.protobuf.ExtensionRegistry.newInstance();
     registry.add(cosmos_proto.Cosmos.implementsInterface);
-    registry.add(com.google.protobuf.GoGoProtos.casttype);
     registry.add(com.google.protobuf.GoGoProtos.customname);
     registry.add(com.google.protobuf.GoGoProtos.embed);
     registry.add(com.google.protobuf.GoGoProtos.equal);
@@ -2602,6 +2880,7 @@ public final class Auth {
         .internalUpdateFileDescriptor(descriptor, registry);
     cosmos_proto.Cosmos.getDescriptor();
     com.google.protobuf.GoGoProtos.getDescriptor();
+    com.google.protobuf.AnyProto.getDescriptor();
   }
 
   // @@protoc_insertion_point(outer_class_scope)

@@ -9,8 +9,9 @@ import java.io.IOException;
 import java.math.BigInteger;
 
 import com.google.protobuf.ByteString;
+import com.google.protobuf.Any;
+import cosmos.crypto.sm2.Keys;
 import cosmos.auth.v1beta1.Auth;
-import cosmos.base.crypto.v1beta1.Crypto;
 import cosmos.base.v1beta1.CoinOuterClass;
 import cosmos.tx.signing.v1beta1.Signing;
 import cosmos.tx.v1beta1.TxOuterClass;
@@ -56,7 +57,7 @@ public class SM2TxServiceImpl implements ITxService {
     TxOuterClass.AuthInfo ai = TxOuterClass.AuthInfo.newBuilder()
       .addSignerInfos(
         TxOuterClass.SignerInfo.newBuilder()
-          .setPublicKey(Crypto.PublicKey.newBuilder().setSm2(ByteString.copyFrom(encodedPubkey)))
+          .setPublicKey(Any.pack(Keys.PubKey.newBuilder().setKey(ByteString.copyFrom(encodedPubkey)).build(), "/"))
           .setModeInfo(TxOuterClass.ModeInfo.newBuilder().setSingle(TxOuterClass.ModeInfo.Single.newBuilder().setMode(Signing.SignMode.SIGN_MODE_DIRECT)))
           .setSequence(baseAccount.getSequence()))
           .setFee(TxOuterClass.Fee.newBuilder().setGasLimit(this.options.gasLimit).addAmount(CoinOuterClass.Coin.newBuilder().setAmount(this.options.fee.amount).setDenom(this.options.fee.denom))).build();
@@ -69,6 +70,7 @@ public class SM2TxServiceImpl implements ITxService {
       .build();
 
     byte[] signature = sm2.sign(privKey, signdoc.toByteArray());
+    System.out.println(sm2.verify(pubkey, signdoc.toByteArray(), signature));
 
     BigInteger[] rs = sm2.getRSFromSignature(signature);
     byte[] sigBytes = ArrayUtils.addAll(Numeric.toBytesPadded(rs[0], 32), Numeric.toBytesPadded(rs[1], 32));

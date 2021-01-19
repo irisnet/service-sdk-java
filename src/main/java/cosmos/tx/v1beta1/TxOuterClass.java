@@ -3,6 +3,8 @@
 
 package cosmos.tx.v1beta1;
 
+import com.google.protobuf.ByteString;
+
 public final class TxOuterClass {
   private TxOuterClass() {}
   public static void registerAllExtensions(
@@ -47,8 +49,8 @@ public final class TxOuterClass {
 
     /**
      * <pre>
-     * auth_info is the authorization related content of the transaction, specifically
-     * signers, signer modes and fee
+     * auth_info is the authorization related content of the transaction,
+     * specifically signers, signer modes and fee
      * </pre>
      *
      * <code>.cosmos.tx.v1beta1.AuthInfo auth_info = 2;</code>
@@ -57,8 +59,8 @@ public final class TxOuterClass {
     boolean hasAuthInfo();
     /**
      * <pre>
-     * auth_info is the authorization related content of the transaction, specifically
-     * signers, signer modes and fee
+     * auth_info is the authorization related content of the transaction,
+     * specifically signers, signer modes and fee
      * </pre>
      *
      * <code>.cosmos.tx.v1beta1.AuthInfo auth_info = 2;</code>
@@ -67,8 +69,8 @@ public final class TxOuterClass {
     cosmos.tx.v1beta1.TxOuterClass.AuthInfo getAuthInfo();
     /**
      * <pre>
-     * auth_info is the authorization related content of the transaction, specifically
-     * signers, signer modes and fee
+     * auth_info is the authorization related content of the transaction,
+     * specifically signers, signer modes and fee
      * </pre>
      *
      * <code>.cosmos.tx.v1beta1.AuthInfo auth_info = 2;</code>
@@ -77,8 +79,9 @@ public final class TxOuterClass {
 
     /**
      * <pre>
-     * signatures is a list of signatures that matches the length and order of AuthInfo's signer_infos to
-     * allow connecting signature meta information like public key and signing mode by position.
+     * signatures is a list of signatures that matches the length and order of
+     * AuthInfo's signer_infos to allow connecting signature meta information like
+     * public key and signing mode by position.
      * </pre>
      *
      * <code>repeated bytes signatures = 3;</code>
@@ -87,8 +90,9 @@ public final class TxOuterClass {
     java.util.List<com.google.protobuf.ByteString> getSignaturesList();
     /**
      * <pre>
-     * signatures is a list of signatures that matches the length and order of AuthInfo's signer_infos to
-     * allow connecting signature meta information like public key and signing mode by position.
+     * signatures is a list of signatures that matches the length and order of
+     * AuthInfo's signer_infos to allow connecting signature meta information like
+     * public key and signing mode by position.
      * </pre>
      *
      * <code>repeated bytes signatures = 3;</code>
@@ -97,8 +101,9 @@ public final class TxOuterClass {
     int getSignaturesCount();
     /**
      * <pre>
-     * signatures is a list of signatures that matches the length and order of AuthInfo's signer_infos to
-     * allow connecting signature meta information like public key and signing mode by position.
+     * signatures is a list of signatures that matches the length and order of
+     * AuthInfo's signer_infos to allow connecting signature meta information like
+     * public key and signing mode by position.
      * </pre>
      *
      * <code>repeated bytes signatures = 3;</code>
@@ -269,8 +274,8 @@ public final class TxOuterClass {
     private cosmos.tx.v1beta1.TxOuterClass.AuthInfo authInfo_;
     /**
      * <pre>
-     * auth_info is the authorization related content of the transaction, specifically
-     * signers, signer modes and fee
+     * auth_info is the authorization related content of the transaction,
+     * specifically signers, signer modes and fee
      * </pre>
      *
      * <code>.cosmos.tx.v1beta1.AuthInfo auth_info = 2;</code>
@@ -282,8 +287,8 @@ public final class TxOuterClass {
     }
     /**
      * <pre>
-     * auth_info is the authorization related content of the transaction, specifically
-     * signers, signer modes and fee
+     * auth_info is the authorization related content of the transaction,
+     * specifically signers, signer modes and fee
      * </pre>
      *
      * <code>.cosmos.tx.v1beta1.AuthInfo auth_info = 2;</code>
@@ -295,8 +300,8 @@ public final class TxOuterClass {
     }
     /**
      * <pre>
-     * auth_info is the authorization related content of the transaction, specifically
-     * signers, signer modes and fee
+     * auth_info is the authorization related content of the transaction,
+     * specifically signers, signer modes and fee
      * </pre>
      *
      * <code>.cosmos.tx.v1beta1.AuthInfo auth_info = 2;</code>
@@ -310,8 +315,9 @@ public final class TxOuterClass {
     private java.util.List<com.google.protobuf.ByteString> signatures_;
     /**
      * <pre>
-     * signatures is a list of signatures that matches the length and order of AuthInfo's signer_infos to
-     * allow connecting signature meta information like public key and signing mode by position.
+     * signatures is a list of signatures that matches the length and order of
+     * AuthInfo's signer_infos to allow connecting signature meta information like
+     * public key and signing mode by position.
      * </pre>
      *
      * <code>repeated bytes signatures = 3;</code>
@@ -324,8 +330,9 @@ public final class TxOuterClass {
     }
     /**
      * <pre>
-     * signatures is a list of signatures that matches the length and order of AuthInfo's signer_infos to
-     * allow connecting signature meta information like public key and signing mode by position.
+     * signatures is a list of signatures that matches the length and order of
+     * AuthInfo's signer_infos to allow connecting signature meta information like
+     * public key and signing mode by position.
      * </pre>
      *
      * <code>repeated bytes signatures = 3;</code>
@@ -336,8 +343,9 @@ public final class TxOuterClass {
     }
     /**
      * <pre>
-     * signatures is a list of signatures that matches the length and order of AuthInfo's signer_infos to
-     * allow connecting signature meta information like public key and signing mode by position.
+     * signatures is a list of signatures that matches the length and order of
+     * AuthInfo's signer_infos to allow connecting signature meta information like
+     * public key and signing mode by position.
      * </pre>
      *
      * <code>repeated bytes signatures = 3;</code>
@@ -894,8 +902,8 @@ public final class TxOuterClass {
           cosmos.tx.v1beta1.TxOuterClass.AuthInfo, cosmos.tx.v1beta1.TxOuterClass.AuthInfo.Builder, cosmos.tx.v1beta1.TxOuterClass.AuthInfoOrBuilder> authInfoBuilder_;
       /**
        * <pre>
-       * auth_info is the authorization related content of the transaction, specifically
-       * signers, signer modes and fee
+       * auth_info is the authorization related content of the transaction,
+       * specifically signers, signer modes and fee
        * </pre>
        *
        * <code>.cosmos.tx.v1beta1.AuthInfo auth_info = 2;</code>
@@ -906,8 +914,8 @@ public final class TxOuterClass {
       }
       /**
        * <pre>
-       * auth_info is the authorization related content of the transaction, specifically
-       * signers, signer modes and fee
+       * auth_info is the authorization related content of the transaction,
+       * specifically signers, signer modes and fee
        * </pre>
        *
        * <code>.cosmos.tx.v1beta1.AuthInfo auth_info = 2;</code>
@@ -922,8 +930,8 @@ public final class TxOuterClass {
       }
       /**
        * <pre>
-       * auth_info is the authorization related content of the transaction, specifically
-       * signers, signer modes and fee
+       * auth_info is the authorization related content of the transaction,
+       * specifically signers, signer modes and fee
        * </pre>
        *
        * <code>.cosmos.tx.v1beta1.AuthInfo auth_info = 2;</code>
@@ -943,8 +951,8 @@ public final class TxOuterClass {
       }
       /**
        * <pre>
-       * auth_info is the authorization related content of the transaction, specifically
-       * signers, signer modes and fee
+       * auth_info is the authorization related content of the transaction,
+       * specifically signers, signer modes and fee
        * </pre>
        *
        * <code>.cosmos.tx.v1beta1.AuthInfo auth_info = 2;</code>
@@ -962,8 +970,8 @@ public final class TxOuterClass {
       }
       /**
        * <pre>
-       * auth_info is the authorization related content of the transaction, specifically
-       * signers, signer modes and fee
+       * auth_info is the authorization related content of the transaction,
+       * specifically signers, signer modes and fee
        * </pre>
        *
        * <code>.cosmos.tx.v1beta1.AuthInfo auth_info = 2;</code>
@@ -985,8 +993,8 @@ public final class TxOuterClass {
       }
       /**
        * <pre>
-       * auth_info is the authorization related content of the transaction, specifically
-       * signers, signer modes and fee
+       * auth_info is the authorization related content of the transaction,
+       * specifically signers, signer modes and fee
        * </pre>
        *
        * <code>.cosmos.tx.v1beta1.AuthInfo auth_info = 2;</code>
@@ -1004,8 +1012,8 @@ public final class TxOuterClass {
       }
       /**
        * <pre>
-       * auth_info is the authorization related content of the transaction, specifically
-       * signers, signer modes and fee
+       * auth_info is the authorization related content of the transaction,
+       * specifically signers, signer modes and fee
        * </pre>
        *
        * <code>.cosmos.tx.v1beta1.AuthInfo auth_info = 2;</code>
@@ -1017,8 +1025,8 @@ public final class TxOuterClass {
       }
       /**
        * <pre>
-       * auth_info is the authorization related content of the transaction, specifically
-       * signers, signer modes and fee
+       * auth_info is the authorization related content of the transaction,
+       * specifically signers, signer modes and fee
        * </pre>
        *
        * <code>.cosmos.tx.v1beta1.AuthInfo auth_info = 2;</code>
@@ -1033,8 +1041,8 @@ public final class TxOuterClass {
       }
       /**
        * <pre>
-       * auth_info is the authorization related content of the transaction, specifically
-       * signers, signer modes and fee
+       * auth_info is the authorization related content of the transaction,
+       * specifically signers, signer modes and fee
        * </pre>
        *
        * <code>.cosmos.tx.v1beta1.AuthInfo auth_info = 2;</code>
@@ -1062,8 +1070,9 @@ public final class TxOuterClass {
       }
       /**
        * <pre>
-       * signatures is a list of signatures that matches the length and order of AuthInfo's signer_infos to
-       * allow connecting signature meta information like public key and signing mode by position.
+       * signatures is a list of signatures that matches the length and order of
+       * AuthInfo's signer_infos to allow connecting signature meta information like
+       * public key and signing mode by position.
        * </pre>
        *
        * <code>repeated bytes signatures = 3;</code>
@@ -1076,8 +1085,9 @@ public final class TxOuterClass {
       }
       /**
        * <pre>
-       * signatures is a list of signatures that matches the length and order of AuthInfo's signer_infos to
-       * allow connecting signature meta information like public key and signing mode by position.
+       * signatures is a list of signatures that matches the length and order of
+       * AuthInfo's signer_infos to allow connecting signature meta information like
+       * public key and signing mode by position.
        * </pre>
        *
        * <code>repeated bytes signatures = 3;</code>
@@ -1088,8 +1098,9 @@ public final class TxOuterClass {
       }
       /**
        * <pre>
-       * signatures is a list of signatures that matches the length and order of AuthInfo's signer_infos to
-       * allow connecting signature meta information like public key and signing mode by position.
+       * signatures is a list of signatures that matches the length and order of
+       * AuthInfo's signer_infos to allow connecting signature meta information like
+       * public key and signing mode by position.
        * </pre>
        *
        * <code>repeated bytes signatures = 3;</code>
@@ -1101,8 +1112,9 @@ public final class TxOuterClass {
       }
       /**
        * <pre>
-       * signatures is a list of signatures that matches the length and order of AuthInfo's signer_infos to
-       * allow connecting signature meta information like public key and signing mode by position.
+       * signatures is a list of signatures that matches the length and order of
+       * AuthInfo's signer_infos to allow connecting signature meta information like
+       * public key and signing mode by position.
        * </pre>
        *
        * <code>repeated bytes signatures = 3;</code>
@@ -1122,8 +1134,9 @@ public final class TxOuterClass {
       }
       /**
        * <pre>
-       * signatures is a list of signatures that matches the length and order of AuthInfo's signer_infos to
-       * allow connecting signature meta information like public key and signing mode by position.
+       * signatures is a list of signatures that matches the length and order of
+       * AuthInfo's signer_infos to allow connecting signature meta information like
+       * public key and signing mode by position.
        * </pre>
        *
        * <code>repeated bytes signatures = 3;</code>
@@ -1141,8 +1154,9 @@ public final class TxOuterClass {
       }
       /**
        * <pre>
-       * signatures is a list of signatures that matches the length and order of AuthInfo's signer_infos to
-       * allow connecting signature meta information like public key and signing mode by position.
+       * signatures is a list of signatures that matches the length and order of
+       * AuthInfo's signer_infos to allow connecting signature meta information like
+       * public key and signing mode by position.
        * </pre>
        *
        * <code>repeated bytes signatures = 3;</code>
@@ -1159,8 +1173,9 @@ public final class TxOuterClass {
       }
       /**
        * <pre>
-       * signatures is a list of signatures that matches the length and order of AuthInfo's signer_infos to
-       * allow connecting signature meta information like public key and signing mode by position.
+       * signatures is a list of signatures that matches the length and order of
+       * AuthInfo's signer_infos to allow connecting signature meta information like
+       * public key and signing mode by position.
        * </pre>
        *
        * <code>repeated bytes signatures = 3;</code>
@@ -1231,7 +1246,8 @@ public final class TxOuterClass {
 
     /**
      * <pre>
-     * body_bytes is a protobuf serialization of a TxBody that matches the representation in SignDoc.
+     * body_bytes is a protobuf serialization of a TxBody that matches the
+     * representation in SignDoc.
      * </pre>
      *
      * <code>bytes body_bytes = 1;</code>
@@ -1241,7 +1257,8 @@ public final class TxOuterClass {
 
     /**
      * <pre>
-     * auth_info_bytes is a protobuf serialization of an AuthInfo that matches the representation in SignDoc.
+     * auth_info_bytes is a protobuf serialization of an AuthInfo that matches the
+     * representation in SignDoc.
      * </pre>
      *
      * <code>bytes auth_info_bytes = 2;</code>
@@ -1251,8 +1268,9 @@ public final class TxOuterClass {
 
     /**
      * <pre>
-     * signatures is a list of signatures that matches the length and order of AuthInfo's signer_infos to
-     * allow connecting signature meta information like public key and signing mode by position.
+     * signatures is a list of signatures that matches the length and order of
+     * AuthInfo's signer_infos to allow connecting signature meta information like
+     * public key and signing mode by position.
      * </pre>
      *
      * <code>repeated bytes signatures = 3;</code>
@@ -1261,8 +1279,9 @@ public final class TxOuterClass {
     java.util.List<com.google.protobuf.ByteString> getSignaturesList();
     /**
      * <pre>
-     * signatures is a list of signatures that matches the length and order of AuthInfo's signer_infos to
-     * allow connecting signature meta information like public key and signing mode by position.
+     * signatures is a list of signatures that matches the length and order of
+     * AuthInfo's signer_infos to allow connecting signature meta information like
+     * public key and signing mode by position.
      * </pre>
      *
      * <code>repeated bytes signatures = 3;</code>
@@ -1271,8 +1290,9 @@ public final class TxOuterClass {
     int getSignaturesCount();
     /**
      * <pre>
-     * signatures is a list of signatures that matches the length and order of AuthInfo's signer_infos to
-     * allow connecting signature meta information like public key and signing mode by position.
+     * signatures is a list of signatures that matches the length and order of
+     * AuthInfo's signer_infos to allow connecting signature meta information like
+     * public key and signing mode by position.
      * </pre>
      *
      * <code>repeated bytes signatures = 3;</code>
@@ -1283,10 +1303,11 @@ public final class TxOuterClass {
   }
   /**
    * <pre>
-   * TxRaw is a variant of Tx that pins the signer's exact binary representation of body and
-   * auth_info. This is used for signing, broadcasting and verification. The binary
-   * `serialize(tx: TxRaw)` is stored in Tendermint and the hash `sha256(serialize(tx: TxRaw))`
-   * becomes the "txhash", commonly used as the transaction ID.
+   * TxRaw is a variant of Tx that pins the signer's exact binary representation
+   * of body and auth_info. This is used for signing, broadcasting and
+   * verification. The binary `serialize(tx: TxRaw)` is stored in Tendermint and
+   * the hash `sha256(serialize(tx: TxRaw))` becomes the "txhash", commonly used
+   * as the transaction ID.
    * </pre>
    *
    * Protobuf type {@code cosmos.tx.v1beta1.TxRaw}
@@ -1394,7 +1415,8 @@ public final class TxOuterClass {
     private com.google.protobuf.ByteString bodyBytes_;
     /**
      * <pre>
-     * body_bytes is a protobuf serialization of a TxBody that matches the representation in SignDoc.
+     * body_bytes is a protobuf serialization of a TxBody that matches the
+     * representation in SignDoc.
      * </pre>
      *
      * <code>bytes body_bytes = 1;</code>
@@ -1409,7 +1431,8 @@ public final class TxOuterClass {
     private com.google.protobuf.ByteString authInfoBytes_;
     /**
      * <pre>
-     * auth_info_bytes is a protobuf serialization of an AuthInfo that matches the representation in SignDoc.
+     * auth_info_bytes is a protobuf serialization of an AuthInfo that matches the
+     * representation in SignDoc.
      * </pre>
      *
      * <code>bytes auth_info_bytes = 2;</code>
@@ -1424,8 +1447,9 @@ public final class TxOuterClass {
     private java.util.List<com.google.protobuf.ByteString> signatures_;
     /**
      * <pre>
-     * signatures is a list of signatures that matches the length and order of AuthInfo's signer_infos to
-     * allow connecting signature meta information like public key and signing mode by position.
+     * signatures is a list of signatures that matches the length and order of
+     * AuthInfo's signer_infos to allow connecting signature meta information like
+     * public key and signing mode by position.
      * </pre>
      *
      * <code>repeated bytes signatures = 3;</code>
@@ -1438,8 +1462,9 @@ public final class TxOuterClass {
     }
     /**
      * <pre>
-     * signatures is a list of signatures that matches the length and order of AuthInfo's signer_infos to
-     * allow connecting signature meta information like public key and signing mode by position.
+     * signatures is a list of signatures that matches the length and order of
+     * AuthInfo's signer_infos to allow connecting signature meta information like
+     * public key and signing mode by position.
      * </pre>
      *
      * <code>repeated bytes signatures = 3;</code>
@@ -1450,8 +1475,9 @@ public final class TxOuterClass {
     }
     /**
      * <pre>
-     * signatures is a list of signatures that matches the length and order of AuthInfo's signer_infos to
-     * allow connecting signature meta information like public key and signing mode by position.
+     * signatures is a list of signatures that matches the length and order of
+     * AuthInfo's signer_infos to allow connecting signature meta information like
+     * public key and signing mode by position.
      * </pre>
      *
      * <code>repeated bytes signatures = 3;</code>
@@ -1648,10 +1674,11 @@ public final class TxOuterClass {
     }
     /**
      * <pre>
-     * TxRaw is a variant of Tx that pins the signer's exact binary representation of body and
-     * auth_info. This is used for signing, broadcasting and verification. The binary
-     * `serialize(tx: TxRaw)` is stored in Tendermint and the hash `sha256(serialize(tx: TxRaw))`
-     * becomes the "txhash", commonly used as the transaction ID.
+     * TxRaw is a variant of Tx that pins the signer's exact binary representation
+     * of body and auth_info. This is used for signing, broadcasting and
+     * verification. The binary `serialize(tx: TxRaw)` is stored in Tendermint and
+     * the hash `sha256(serialize(tx: TxRaw))` becomes the "txhash", commonly used
+     * as the transaction ID.
      * </pre>
      *
      * Protobuf type {@code cosmos.tx.v1beta1.TxRaw}
@@ -1828,7 +1855,8 @@ public final class TxOuterClass {
       private com.google.protobuf.ByteString bodyBytes_ = com.google.protobuf.ByteString.EMPTY;
       /**
        * <pre>
-       * body_bytes is a protobuf serialization of a TxBody that matches the representation in SignDoc.
+       * body_bytes is a protobuf serialization of a TxBody that matches the
+       * representation in SignDoc.
        * </pre>
        *
        * <code>bytes body_bytes = 1;</code>
@@ -1840,7 +1868,8 @@ public final class TxOuterClass {
       }
       /**
        * <pre>
-       * body_bytes is a protobuf serialization of a TxBody that matches the representation in SignDoc.
+       * body_bytes is a protobuf serialization of a TxBody that matches the
+       * representation in SignDoc.
        * </pre>
        *
        * <code>bytes body_bytes = 1;</code>
@@ -1858,7 +1887,8 @@ public final class TxOuterClass {
       }
       /**
        * <pre>
-       * body_bytes is a protobuf serialization of a TxBody that matches the representation in SignDoc.
+       * body_bytes is a protobuf serialization of a TxBody that matches the
+       * representation in SignDoc.
        * </pre>
        *
        * <code>bytes body_bytes = 1;</code>
@@ -1874,7 +1904,8 @@ public final class TxOuterClass {
       private com.google.protobuf.ByteString authInfoBytes_ = com.google.protobuf.ByteString.EMPTY;
       /**
        * <pre>
-       * auth_info_bytes is a protobuf serialization of an AuthInfo that matches the representation in SignDoc.
+       * auth_info_bytes is a protobuf serialization of an AuthInfo that matches the
+       * representation in SignDoc.
        * </pre>
        *
        * <code>bytes auth_info_bytes = 2;</code>
@@ -1886,7 +1917,8 @@ public final class TxOuterClass {
       }
       /**
        * <pre>
-       * auth_info_bytes is a protobuf serialization of an AuthInfo that matches the representation in SignDoc.
+       * auth_info_bytes is a protobuf serialization of an AuthInfo that matches the
+       * representation in SignDoc.
        * </pre>
        *
        * <code>bytes auth_info_bytes = 2;</code>
@@ -1904,7 +1936,8 @@ public final class TxOuterClass {
       }
       /**
        * <pre>
-       * auth_info_bytes is a protobuf serialization of an AuthInfo that matches the representation in SignDoc.
+       * auth_info_bytes is a protobuf serialization of an AuthInfo that matches the
+       * representation in SignDoc.
        * </pre>
        *
        * <code>bytes auth_info_bytes = 2;</code>
@@ -1926,8 +1959,9 @@ public final class TxOuterClass {
       }
       /**
        * <pre>
-       * signatures is a list of signatures that matches the length and order of AuthInfo's signer_infos to
-       * allow connecting signature meta information like public key and signing mode by position.
+       * signatures is a list of signatures that matches the length and order of
+       * AuthInfo's signer_infos to allow connecting signature meta information like
+       * public key and signing mode by position.
        * </pre>
        *
        * <code>repeated bytes signatures = 3;</code>
@@ -1940,8 +1974,9 @@ public final class TxOuterClass {
       }
       /**
        * <pre>
-       * signatures is a list of signatures that matches the length and order of AuthInfo's signer_infos to
-       * allow connecting signature meta information like public key and signing mode by position.
+       * signatures is a list of signatures that matches the length and order of
+       * AuthInfo's signer_infos to allow connecting signature meta information like
+       * public key and signing mode by position.
        * </pre>
        *
        * <code>repeated bytes signatures = 3;</code>
@@ -1952,8 +1987,9 @@ public final class TxOuterClass {
       }
       /**
        * <pre>
-       * signatures is a list of signatures that matches the length and order of AuthInfo's signer_infos to
-       * allow connecting signature meta information like public key and signing mode by position.
+       * signatures is a list of signatures that matches the length and order of
+       * AuthInfo's signer_infos to allow connecting signature meta information like
+       * public key and signing mode by position.
        * </pre>
        *
        * <code>repeated bytes signatures = 3;</code>
@@ -1965,8 +2001,9 @@ public final class TxOuterClass {
       }
       /**
        * <pre>
-       * signatures is a list of signatures that matches the length and order of AuthInfo's signer_infos to
-       * allow connecting signature meta information like public key and signing mode by position.
+       * signatures is a list of signatures that matches the length and order of
+       * AuthInfo's signer_infos to allow connecting signature meta information like
+       * public key and signing mode by position.
        * </pre>
        *
        * <code>repeated bytes signatures = 3;</code>
@@ -1986,8 +2023,9 @@ public final class TxOuterClass {
       }
       /**
        * <pre>
-       * signatures is a list of signatures that matches the length and order of AuthInfo's signer_infos to
-       * allow connecting signature meta information like public key and signing mode by position.
+       * signatures is a list of signatures that matches the length and order of
+       * AuthInfo's signer_infos to allow connecting signature meta information like
+       * public key and signing mode by position.
        * </pre>
        *
        * <code>repeated bytes signatures = 3;</code>
@@ -2005,8 +2043,9 @@ public final class TxOuterClass {
       }
       /**
        * <pre>
-       * signatures is a list of signatures that matches the length and order of AuthInfo's signer_infos to
-       * allow connecting signature meta information like public key and signing mode by position.
+       * signatures is a list of signatures that matches the length and order of
+       * AuthInfo's signer_infos to allow connecting signature meta information like
+       * public key and signing mode by position.
        * </pre>
        *
        * <code>repeated bytes signatures = 3;</code>
@@ -2023,8 +2062,9 @@ public final class TxOuterClass {
       }
       /**
        * <pre>
-       * signatures is a list of signatures that matches the length and order of AuthInfo's signer_infos to
-       * allow connecting signature meta information like public key and signing mode by position.
+       * signatures is a list of signatures that matches the length and order of
+       * AuthInfo's signer_infos to allow connecting signature meta information like
+       * public key and signing mode by position.
        * </pre>
        *
        * <code>repeated bytes signatures = 3;</code>
@@ -2095,7 +2135,8 @@ public final class TxOuterClass {
 
     /**
      * <pre>
-     * body_bytes is protobuf serialization of a TxBody that matches the representation in TxRaw.
+     * body_bytes is protobuf serialization of a TxBody that matches the
+     * representation in TxRaw.
      * </pre>
      *
      * <code>bytes body_bytes = 1;</code>
@@ -2105,7 +2146,8 @@ public final class TxOuterClass {
 
     /**
      * <pre>
-     * auth_info_bytes is a protobuf serialization of an AuthInfo that matches the representation in TxRaw.
+     * auth_info_bytes is a protobuf serialization of an AuthInfo that matches the
+     * representation in TxRaw.
      * </pre>
      *
      * <code>bytes auth_info_bytes = 2;</code>
@@ -2256,7 +2298,8 @@ public final class TxOuterClass {
     private com.google.protobuf.ByteString bodyBytes_;
     /**
      * <pre>
-     * body_bytes is protobuf serialization of a TxBody that matches the representation in TxRaw.
+     * body_bytes is protobuf serialization of a TxBody that matches the
+     * representation in TxRaw.
      * </pre>
      *
      * <code>bytes body_bytes = 1;</code>
@@ -2271,7 +2314,8 @@ public final class TxOuterClass {
     private com.google.protobuf.ByteString authInfoBytes_;
     /**
      * <pre>
-     * auth_info_bytes is a protobuf serialization of an AuthInfo that matches the representation in TxRaw.
+     * auth_info_bytes is a protobuf serialization of an AuthInfo that matches the
+     * representation in TxRaw.
      * </pre>
      *
      * <code>bytes auth_info_bytes = 2;</code>
@@ -2708,7 +2752,8 @@ public final class TxOuterClass {
       private com.google.protobuf.ByteString bodyBytes_ = com.google.protobuf.ByteString.EMPTY;
       /**
        * <pre>
-       * body_bytes is protobuf serialization of a TxBody that matches the representation in TxRaw.
+       * body_bytes is protobuf serialization of a TxBody that matches the
+       * representation in TxRaw.
        * </pre>
        *
        * <code>bytes body_bytes = 1;</code>
@@ -2720,7 +2765,8 @@ public final class TxOuterClass {
       }
       /**
        * <pre>
-       * body_bytes is protobuf serialization of a TxBody that matches the representation in TxRaw.
+       * body_bytes is protobuf serialization of a TxBody that matches the
+       * representation in TxRaw.
        * </pre>
        *
        * <code>bytes body_bytes = 1;</code>
@@ -2738,7 +2784,8 @@ public final class TxOuterClass {
       }
       /**
        * <pre>
-       * body_bytes is protobuf serialization of a TxBody that matches the representation in TxRaw.
+       * body_bytes is protobuf serialization of a TxBody that matches the
+       * representation in TxRaw.
        * </pre>
        *
        * <code>bytes body_bytes = 1;</code>
@@ -2754,7 +2801,8 @@ public final class TxOuterClass {
       private com.google.protobuf.ByteString authInfoBytes_ = com.google.protobuf.ByteString.EMPTY;
       /**
        * <pre>
-       * auth_info_bytes is a protobuf serialization of an AuthInfo that matches the representation in TxRaw.
+       * auth_info_bytes is a protobuf serialization of an AuthInfo that matches the
+       * representation in TxRaw.
        * </pre>
        *
        * <code>bytes auth_info_bytes = 2;</code>
@@ -2766,7 +2814,8 @@ public final class TxOuterClass {
       }
       /**
        * <pre>
-       * auth_info_bytes is a protobuf serialization of an AuthInfo that matches the representation in TxRaw.
+       * auth_info_bytes is a protobuf serialization of an AuthInfo that matches the
+       * representation in TxRaw.
        * </pre>
        *
        * <code>bytes auth_info_bytes = 2;</code>
@@ -2784,7 +2833,8 @@ public final class TxOuterClass {
       }
       /**
        * <pre>
-       * auth_info_bytes is a protobuf serialization of an AuthInfo that matches the representation in TxRaw.
+       * auth_info_bytes is a protobuf serialization of an AuthInfo that matches the
+       * representation in TxRaw.
        * </pre>
        *
        * <code>bytes auth_info_bytes = 2;</code>
@@ -3004,11 +3054,13 @@ public final class TxOuterClass {
 
     /**
      * <pre>
-     * messages is a list of messages to be executed. The required signers of those messages define
-     * the number and order of elements in AuthInfo's signer_infos and Tx's signatures.
-     * Each required signer address is added to the list only the first time it occurs.
-     * By convention, the first required signer (usually from the first message) is referred
-     * to as the primary signer and pays the fee for the whole transaction.
+     * messages is a list of messages to be executed. The required signers of
+     * those messages define the number and order of elements in AuthInfo's
+     * signer_infos and Tx's signatures. Each required signer address is added to
+     * the list only the first time it occurs.
+     * By convention, the first required signer (usually from the first message)
+     * is referred to as the primary signer and pays the fee for the whole
+     * transaction.
      * </pre>
      *
      * <code>repeated .google.protobuf.Any messages = 1;</code>
@@ -3017,11 +3069,13 @@ public final class TxOuterClass {
         getMessagesList();
     /**
      * <pre>
-     * messages is a list of messages to be executed. The required signers of those messages define
-     * the number and order of elements in AuthInfo's signer_infos and Tx's signatures.
-     * Each required signer address is added to the list only the first time it occurs.
-     * By convention, the first required signer (usually from the first message) is referred
-     * to as the primary signer and pays the fee for the whole transaction.
+     * messages is a list of messages to be executed. The required signers of
+     * those messages define the number and order of elements in AuthInfo's
+     * signer_infos and Tx's signatures. Each required signer address is added to
+     * the list only the first time it occurs.
+     * By convention, the first required signer (usually from the first message)
+     * is referred to as the primary signer and pays the fee for the whole
+     * transaction.
      * </pre>
      *
      * <code>repeated .google.protobuf.Any messages = 1;</code>
@@ -3029,11 +3083,13 @@ public final class TxOuterClass {
     com.google.protobuf.Any getMessages(int index);
     /**
      * <pre>
-     * messages is a list of messages to be executed. The required signers of those messages define
-     * the number and order of elements in AuthInfo's signer_infos and Tx's signatures.
-     * Each required signer address is added to the list only the first time it occurs.
-     * By convention, the first required signer (usually from the first message) is referred
-     * to as the primary signer and pays the fee for the whole transaction.
+     * messages is a list of messages to be executed. The required signers of
+     * those messages define the number and order of elements in AuthInfo's
+     * signer_infos and Tx's signatures. Each required signer address is added to
+     * the list only the first time it occurs.
+     * By convention, the first required signer (usually from the first message)
+     * is referred to as the primary signer and pays the fee for the whole
+     * transaction.
      * </pre>
      *
      * <code>repeated .google.protobuf.Any messages = 1;</code>
@@ -3041,11 +3097,13 @@ public final class TxOuterClass {
     int getMessagesCount();
     /**
      * <pre>
-     * messages is a list of messages to be executed. The required signers of those messages define
-     * the number and order of elements in AuthInfo's signer_infos and Tx's signatures.
-     * Each required signer address is added to the list only the first time it occurs.
-     * By convention, the first required signer (usually from the first message) is referred
-     * to as the primary signer and pays the fee for the whole transaction.
+     * messages is a list of messages to be executed. The required signers of
+     * those messages define the number and order of elements in AuthInfo's
+     * signer_infos and Tx's signatures. Each required signer address is added to
+     * the list only the first time it occurs.
+     * By convention, the first required signer (usually from the first message)
+     * is referred to as the primary signer and pays the fee for the whole
+     * transaction.
      * </pre>
      *
      * <code>repeated .google.protobuf.Any messages = 1;</code>
@@ -3054,11 +3112,13 @@ public final class TxOuterClass {
         getMessagesOrBuilderList();
     /**
      * <pre>
-     * messages is a list of messages to be executed. The required signers of those messages define
-     * the number and order of elements in AuthInfo's signer_infos and Tx's signatures.
-     * Each required signer address is added to the list only the first time it occurs.
-     * By convention, the first required signer (usually from the first message) is referred
-     * to as the primary signer and pays the fee for the whole transaction.
+     * messages is a list of messages to be executed. The required signers of
+     * those messages define the number and order of elements in AuthInfo's
+     * signer_infos and Tx's signatures. Each required signer address is added to
+     * the list only the first time it occurs.
+     * By convention, the first required signer (usually from the first message)
+     * is referred to as the primary signer and pays the fee for the whole
+     * transaction.
      * </pre>
      *
      * <code>repeated .google.protobuf.Any messages = 1;</code>
@@ -3342,11 +3402,13 @@ public final class TxOuterClass {
     private java.util.List<com.google.protobuf.Any> messages_;
     /**
      * <pre>
-     * messages is a list of messages to be executed. The required signers of those messages define
-     * the number and order of elements in AuthInfo's signer_infos and Tx's signatures.
-     * Each required signer address is added to the list only the first time it occurs.
-     * By convention, the first required signer (usually from the first message) is referred
-     * to as the primary signer and pays the fee for the whole transaction.
+     * messages is a list of messages to be executed. The required signers of
+     * those messages define the number and order of elements in AuthInfo's
+     * signer_infos and Tx's signatures. Each required signer address is added to
+     * the list only the first time it occurs.
+     * By convention, the first required signer (usually from the first message)
+     * is referred to as the primary signer and pays the fee for the whole
+     * transaction.
      * </pre>
      *
      * <code>repeated .google.protobuf.Any messages = 1;</code>
@@ -3357,11 +3419,13 @@ public final class TxOuterClass {
     }
     /**
      * <pre>
-     * messages is a list of messages to be executed. The required signers of those messages define
-     * the number and order of elements in AuthInfo's signer_infos and Tx's signatures.
-     * Each required signer address is added to the list only the first time it occurs.
-     * By convention, the first required signer (usually from the first message) is referred
-     * to as the primary signer and pays the fee for the whole transaction.
+     * messages is a list of messages to be executed. The required signers of
+     * those messages define the number and order of elements in AuthInfo's
+     * signer_infos and Tx's signatures. Each required signer address is added to
+     * the list only the first time it occurs.
+     * By convention, the first required signer (usually from the first message)
+     * is referred to as the primary signer and pays the fee for the whole
+     * transaction.
      * </pre>
      *
      * <code>repeated .google.protobuf.Any messages = 1;</code>
@@ -3373,11 +3437,13 @@ public final class TxOuterClass {
     }
     /**
      * <pre>
-     * messages is a list of messages to be executed. The required signers of those messages define
-     * the number and order of elements in AuthInfo's signer_infos and Tx's signatures.
-     * Each required signer address is added to the list only the first time it occurs.
-     * By convention, the first required signer (usually from the first message) is referred
-     * to as the primary signer and pays the fee for the whole transaction.
+     * messages is a list of messages to be executed. The required signers of
+     * those messages define the number and order of elements in AuthInfo's
+     * signer_infos and Tx's signatures. Each required signer address is added to
+     * the list only the first time it occurs.
+     * By convention, the first required signer (usually from the first message)
+     * is referred to as the primary signer and pays the fee for the whole
+     * transaction.
      * </pre>
      *
      * <code>repeated .google.protobuf.Any messages = 1;</code>
@@ -3388,11 +3454,13 @@ public final class TxOuterClass {
     }
     /**
      * <pre>
-     * messages is a list of messages to be executed. The required signers of those messages define
-     * the number and order of elements in AuthInfo's signer_infos and Tx's signatures.
-     * Each required signer address is added to the list only the first time it occurs.
-     * By convention, the first required signer (usually from the first message) is referred
-     * to as the primary signer and pays the fee for the whole transaction.
+     * messages is a list of messages to be executed. The required signers of
+     * those messages define the number and order of elements in AuthInfo's
+     * signer_infos and Tx's signatures. Each required signer address is added to
+     * the list only the first time it occurs.
+     * By convention, the first required signer (usually from the first message)
+     * is referred to as the primary signer and pays the fee for the whole
+     * transaction.
      * </pre>
      *
      * <code>repeated .google.protobuf.Any messages = 1;</code>
@@ -3403,11 +3471,13 @@ public final class TxOuterClass {
     }
     /**
      * <pre>
-     * messages is a list of messages to be executed. The required signers of those messages define
-     * the number and order of elements in AuthInfo's signer_infos and Tx's signatures.
-     * Each required signer address is added to the list only the first time it occurs.
-     * By convention, the first required signer (usually from the first message) is referred
-     * to as the primary signer and pays the fee for the whole transaction.
+     * messages is a list of messages to be executed. The required signers of
+     * those messages define the number and order of elements in AuthInfo's
+     * signer_infos and Tx's signatures. Each required signer address is added to
+     * the list only the first time it occurs.
+     * By convention, the first required signer (usually from the first message)
+     * is referred to as the primary signer and pays the fee for the whole
+     * transaction.
      * </pre>
      *
      * <code>repeated .google.protobuf.Any messages = 1;</code>
@@ -4125,11 +4195,13 @@ public final class TxOuterClass {
 
       /**
        * <pre>
-       * messages is a list of messages to be executed. The required signers of those messages define
-       * the number and order of elements in AuthInfo's signer_infos and Tx's signatures.
-       * Each required signer address is added to the list only the first time it occurs.
-       * By convention, the first required signer (usually from the first message) is referred
-       * to as the primary signer and pays the fee for the whole transaction.
+       * messages is a list of messages to be executed. The required signers of
+       * those messages define the number and order of elements in AuthInfo's
+       * signer_infos and Tx's signatures. Each required signer address is added to
+       * the list only the first time it occurs.
+       * By convention, the first required signer (usually from the first message)
+       * is referred to as the primary signer and pays the fee for the whole
+       * transaction.
        * </pre>
        *
        * <code>repeated .google.protobuf.Any messages = 1;</code>
@@ -4143,11 +4215,13 @@ public final class TxOuterClass {
       }
       /**
        * <pre>
-       * messages is a list of messages to be executed. The required signers of those messages define
-       * the number and order of elements in AuthInfo's signer_infos and Tx's signatures.
-       * Each required signer address is added to the list only the first time it occurs.
-       * By convention, the first required signer (usually from the first message) is referred
-       * to as the primary signer and pays the fee for the whole transaction.
+       * messages is a list of messages to be executed. The required signers of
+       * those messages define the number and order of elements in AuthInfo's
+       * signer_infos and Tx's signatures. Each required signer address is added to
+       * the list only the first time it occurs.
+       * By convention, the first required signer (usually from the first message)
+       * is referred to as the primary signer and pays the fee for the whole
+       * transaction.
        * </pre>
        *
        * <code>repeated .google.protobuf.Any messages = 1;</code>
@@ -4161,11 +4235,13 @@ public final class TxOuterClass {
       }
       /**
        * <pre>
-       * messages is a list of messages to be executed. The required signers of those messages define
-       * the number and order of elements in AuthInfo's signer_infos and Tx's signatures.
-       * Each required signer address is added to the list only the first time it occurs.
-       * By convention, the first required signer (usually from the first message) is referred
-       * to as the primary signer and pays the fee for the whole transaction.
+       * messages is a list of messages to be executed. The required signers of
+       * those messages define the number and order of elements in AuthInfo's
+       * signer_infos and Tx's signatures. Each required signer address is added to
+       * the list only the first time it occurs.
+       * By convention, the first required signer (usually from the first message)
+       * is referred to as the primary signer and pays the fee for the whole
+       * transaction.
        * </pre>
        *
        * <code>repeated .google.protobuf.Any messages = 1;</code>
@@ -4179,11 +4255,13 @@ public final class TxOuterClass {
       }
       /**
        * <pre>
-       * messages is a list of messages to be executed. The required signers of those messages define
-       * the number and order of elements in AuthInfo's signer_infos and Tx's signatures.
-       * Each required signer address is added to the list only the first time it occurs.
-       * By convention, the first required signer (usually from the first message) is referred
-       * to as the primary signer and pays the fee for the whole transaction.
+       * messages is a list of messages to be executed. The required signers of
+       * those messages define the number and order of elements in AuthInfo's
+       * signer_infos and Tx's signatures. Each required signer address is added to
+       * the list only the first time it occurs.
+       * By convention, the first required signer (usually from the first message)
+       * is referred to as the primary signer and pays the fee for the whole
+       * transaction.
        * </pre>
        *
        * <code>repeated .google.protobuf.Any messages = 1;</code>
@@ -4204,11 +4282,13 @@ public final class TxOuterClass {
       }
       /**
        * <pre>
-       * messages is a list of messages to be executed. The required signers of those messages define
-       * the number and order of elements in AuthInfo's signer_infos and Tx's signatures.
-       * Each required signer address is added to the list only the first time it occurs.
-       * By convention, the first required signer (usually from the first message) is referred
-       * to as the primary signer and pays the fee for the whole transaction.
+       * messages is a list of messages to be executed. The required signers of
+       * those messages define the number and order of elements in AuthInfo's
+       * signer_infos and Tx's signatures. Each required signer address is added to
+       * the list only the first time it occurs.
+       * By convention, the first required signer (usually from the first message)
+       * is referred to as the primary signer and pays the fee for the whole
+       * transaction.
        * </pre>
        *
        * <code>repeated .google.protobuf.Any messages = 1;</code>
@@ -4226,11 +4306,13 @@ public final class TxOuterClass {
       }
       /**
        * <pre>
-       * messages is a list of messages to be executed. The required signers of those messages define
-       * the number and order of elements in AuthInfo's signer_infos and Tx's signatures.
-       * Each required signer address is added to the list only the first time it occurs.
-       * By convention, the first required signer (usually from the first message) is referred
-       * to as the primary signer and pays the fee for the whole transaction.
+       * messages is a list of messages to be executed. The required signers of
+       * those messages define the number and order of elements in AuthInfo's
+       * signer_infos and Tx's signatures. Each required signer address is added to
+       * the list only the first time it occurs.
+       * By convention, the first required signer (usually from the first message)
+       * is referred to as the primary signer and pays the fee for the whole
+       * transaction.
        * </pre>
        *
        * <code>repeated .google.protobuf.Any messages = 1;</code>
@@ -4250,11 +4332,13 @@ public final class TxOuterClass {
       }
       /**
        * <pre>
-       * messages is a list of messages to be executed. The required signers of those messages define
-       * the number and order of elements in AuthInfo's signer_infos and Tx's signatures.
-       * Each required signer address is added to the list only the first time it occurs.
-       * By convention, the first required signer (usually from the first message) is referred
-       * to as the primary signer and pays the fee for the whole transaction.
+       * messages is a list of messages to be executed. The required signers of
+       * those messages define the number and order of elements in AuthInfo's
+       * signer_infos and Tx's signatures. Each required signer address is added to
+       * the list only the first time it occurs.
+       * By convention, the first required signer (usually from the first message)
+       * is referred to as the primary signer and pays the fee for the whole
+       * transaction.
        * </pre>
        *
        * <code>repeated .google.protobuf.Any messages = 1;</code>
@@ -4275,11 +4359,13 @@ public final class TxOuterClass {
       }
       /**
        * <pre>
-       * messages is a list of messages to be executed. The required signers of those messages define
-       * the number and order of elements in AuthInfo's signer_infos and Tx's signatures.
-       * Each required signer address is added to the list only the first time it occurs.
-       * By convention, the first required signer (usually from the first message) is referred
-       * to as the primary signer and pays the fee for the whole transaction.
+       * messages is a list of messages to be executed. The required signers of
+       * those messages define the number and order of elements in AuthInfo's
+       * signer_infos and Tx's signatures. Each required signer address is added to
+       * the list only the first time it occurs.
+       * By convention, the first required signer (usually from the first message)
+       * is referred to as the primary signer and pays the fee for the whole
+       * transaction.
        * </pre>
        *
        * <code>repeated .google.protobuf.Any messages = 1;</code>
@@ -4297,11 +4383,13 @@ public final class TxOuterClass {
       }
       /**
        * <pre>
-       * messages is a list of messages to be executed. The required signers of those messages define
-       * the number and order of elements in AuthInfo's signer_infos and Tx's signatures.
-       * Each required signer address is added to the list only the first time it occurs.
-       * By convention, the first required signer (usually from the first message) is referred
-       * to as the primary signer and pays the fee for the whole transaction.
+       * messages is a list of messages to be executed. The required signers of
+       * those messages define the number and order of elements in AuthInfo's
+       * signer_infos and Tx's signatures. Each required signer address is added to
+       * the list only the first time it occurs.
+       * By convention, the first required signer (usually from the first message)
+       * is referred to as the primary signer and pays the fee for the whole
+       * transaction.
        * </pre>
        *
        * <code>repeated .google.protobuf.Any messages = 1;</code>
@@ -4319,11 +4407,13 @@ public final class TxOuterClass {
       }
       /**
        * <pre>
-       * messages is a list of messages to be executed. The required signers of those messages define
-       * the number and order of elements in AuthInfo's signer_infos and Tx's signatures.
-       * Each required signer address is added to the list only the first time it occurs.
-       * By convention, the first required signer (usually from the first message) is referred
-       * to as the primary signer and pays the fee for the whole transaction.
+       * messages is a list of messages to be executed. The required signers of
+       * those messages define the number and order of elements in AuthInfo's
+       * signer_infos and Tx's signatures. Each required signer address is added to
+       * the list only the first time it occurs.
+       * By convention, the first required signer (usually from the first message)
+       * is referred to as the primary signer and pays the fee for the whole
+       * transaction.
        * </pre>
        *
        * <code>repeated .google.protobuf.Any messages = 1;</code>
@@ -4342,11 +4432,13 @@ public final class TxOuterClass {
       }
       /**
        * <pre>
-       * messages is a list of messages to be executed. The required signers of those messages define
-       * the number and order of elements in AuthInfo's signer_infos and Tx's signatures.
-       * Each required signer address is added to the list only the first time it occurs.
-       * By convention, the first required signer (usually from the first message) is referred
-       * to as the primary signer and pays the fee for the whole transaction.
+       * messages is a list of messages to be executed. The required signers of
+       * those messages define the number and order of elements in AuthInfo's
+       * signer_infos and Tx's signatures. Each required signer address is added to
+       * the list only the first time it occurs.
+       * By convention, the first required signer (usually from the first message)
+       * is referred to as the primary signer and pays the fee for the whole
+       * transaction.
        * </pre>
        *
        * <code>repeated .google.protobuf.Any messages = 1;</code>
@@ -4363,11 +4455,13 @@ public final class TxOuterClass {
       }
       /**
        * <pre>
-       * messages is a list of messages to be executed. The required signers of those messages define
-       * the number and order of elements in AuthInfo's signer_infos and Tx's signatures.
-       * Each required signer address is added to the list only the first time it occurs.
-       * By convention, the first required signer (usually from the first message) is referred
-       * to as the primary signer and pays the fee for the whole transaction.
+       * messages is a list of messages to be executed. The required signers of
+       * those messages define the number and order of elements in AuthInfo's
+       * signer_infos and Tx's signatures. Each required signer address is added to
+       * the list only the first time it occurs.
+       * By convention, the first required signer (usually from the first message)
+       * is referred to as the primary signer and pays the fee for the whole
+       * transaction.
        * </pre>
        *
        * <code>repeated .google.protobuf.Any messages = 1;</code>
@@ -4384,11 +4478,13 @@ public final class TxOuterClass {
       }
       /**
        * <pre>
-       * messages is a list of messages to be executed. The required signers of those messages define
-       * the number and order of elements in AuthInfo's signer_infos and Tx's signatures.
-       * Each required signer address is added to the list only the first time it occurs.
-       * By convention, the first required signer (usually from the first message) is referred
-       * to as the primary signer and pays the fee for the whole transaction.
+       * messages is a list of messages to be executed. The required signers of
+       * those messages define the number and order of elements in AuthInfo's
+       * signer_infos and Tx's signatures. Each required signer address is added to
+       * the list only the first time it occurs.
+       * By convention, the first required signer (usually from the first message)
+       * is referred to as the primary signer and pays the fee for the whole
+       * transaction.
        * </pre>
        *
        * <code>repeated .google.protobuf.Any messages = 1;</code>
@@ -4399,11 +4495,13 @@ public final class TxOuterClass {
       }
       /**
        * <pre>
-       * messages is a list of messages to be executed. The required signers of those messages define
-       * the number and order of elements in AuthInfo's signer_infos and Tx's signatures.
-       * Each required signer address is added to the list only the first time it occurs.
-       * By convention, the first required signer (usually from the first message) is referred
-       * to as the primary signer and pays the fee for the whole transaction.
+       * messages is a list of messages to be executed. The required signers of
+       * those messages define the number and order of elements in AuthInfo's
+       * signer_infos and Tx's signatures. Each required signer address is added to
+       * the list only the first time it occurs.
+       * By convention, the first required signer (usually from the first message)
+       * is referred to as the primary signer and pays the fee for the whole
+       * transaction.
        * </pre>
        *
        * <code>repeated .google.protobuf.Any messages = 1;</code>
@@ -4417,11 +4515,13 @@ public final class TxOuterClass {
       }
       /**
        * <pre>
-       * messages is a list of messages to be executed. The required signers of those messages define
-       * the number and order of elements in AuthInfo's signer_infos and Tx's signatures.
-       * Each required signer address is added to the list only the first time it occurs.
-       * By convention, the first required signer (usually from the first message) is referred
-       * to as the primary signer and pays the fee for the whole transaction.
+       * messages is a list of messages to be executed. The required signers of
+       * those messages define the number and order of elements in AuthInfo's
+       * signer_infos and Tx's signatures. Each required signer address is added to
+       * the list only the first time it occurs.
+       * By convention, the first required signer (usually from the first message)
+       * is referred to as the primary signer and pays the fee for the whole
+       * transaction.
        * </pre>
        *
        * <code>repeated .google.protobuf.Any messages = 1;</code>
@@ -4436,11 +4536,13 @@ public final class TxOuterClass {
       }
       /**
        * <pre>
-       * messages is a list of messages to be executed. The required signers of those messages define
-       * the number and order of elements in AuthInfo's signer_infos and Tx's signatures.
-       * Each required signer address is added to the list only the first time it occurs.
-       * By convention, the first required signer (usually from the first message) is referred
-       * to as the primary signer and pays the fee for the whole transaction.
+       * messages is a list of messages to be executed. The required signers of
+       * those messages define the number and order of elements in AuthInfo's
+       * signer_infos and Tx's signatures. Each required signer address is added to
+       * the list only the first time it occurs.
+       * By convention, the first required signer (usually from the first message)
+       * is referred to as the primary signer and pays the fee for the whole
+       * transaction.
        * </pre>
        *
        * <code>repeated .google.protobuf.Any messages = 1;</code>
@@ -4451,11 +4553,13 @@ public final class TxOuterClass {
       }
       /**
        * <pre>
-       * messages is a list of messages to be executed. The required signers of those messages define
-       * the number and order of elements in AuthInfo's signer_infos and Tx's signatures.
-       * Each required signer address is added to the list only the first time it occurs.
-       * By convention, the first required signer (usually from the first message) is referred
-       * to as the primary signer and pays the fee for the whole transaction.
+       * messages is a list of messages to be executed. The required signers of
+       * those messages define the number and order of elements in AuthInfo's
+       * signer_infos and Tx's signatures. Each required signer address is added to
+       * the list only the first time it occurs.
+       * By convention, the first required signer (usually from the first message)
+       * is referred to as the primary signer and pays the fee for the whole
+       * transaction.
        * </pre>
        *
        * <code>repeated .google.protobuf.Any messages = 1;</code>
@@ -4467,11 +4571,13 @@ public final class TxOuterClass {
       }
       /**
        * <pre>
-       * messages is a list of messages to be executed. The required signers of those messages define
-       * the number and order of elements in AuthInfo's signer_infos and Tx's signatures.
-       * Each required signer address is added to the list only the first time it occurs.
-       * By convention, the first required signer (usually from the first message) is referred
-       * to as the primary signer and pays the fee for the whole transaction.
+       * messages is a list of messages to be executed. The required signers of
+       * those messages define the number and order of elements in AuthInfo's
+       * signer_infos and Tx's signatures. Each required signer address is added to
+       * the list only the first time it occurs.
+       * By convention, the first required signer (usually from the first message)
+       * is referred to as the primary signer and pays the fee for the whole
+       * transaction.
        * </pre>
        *
        * <code>repeated .google.protobuf.Any messages = 1;</code>
@@ -5392,8 +5498,9 @@ public final class TxOuterClass {
     /**
      * <pre>
      * signer_infos defines the signing modes for the required signers. The number
-     * and order of elements must match the required signers from TxBody's messages.
-     * The first element is the primary signer and the one which pays the fee.
+     * and order of elements must match the required signers from TxBody's
+     * messages. The first element is the primary signer and the one which pays
+     * the fee.
      * </pre>
      *
      * <code>repeated .cosmos.tx.v1beta1.SignerInfo signer_infos = 1;</code>
@@ -5403,8 +5510,9 @@ public final class TxOuterClass {
     /**
      * <pre>
      * signer_infos defines the signing modes for the required signers. The number
-     * and order of elements must match the required signers from TxBody's messages.
-     * The first element is the primary signer and the one which pays the fee.
+     * and order of elements must match the required signers from TxBody's
+     * messages. The first element is the primary signer and the one which pays
+     * the fee.
      * </pre>
      *
      * <code>repeated .cosmos.tx.v1beta1.SignerInfo signer_infos = 1;</code>
@@ -5413,8 +5521,9 @@ public final class TxOuterClass {
     /**
      * <pre>
      * signer_infos defines the signing modes for the required signers. The number
-     * and order of elements must match the required signers from TxBody's messages.
-     * The first element is the primary signer and the one which pays the fee.
+     * and order of elements must match the required signers from TxBody's
+     * messages. The first element is the primary signer and the one which pays
+     * the fee.
      * </pre>
      *
      * <code>repeated .cosmos.tx.v1beta1.SignerInfo signer_infos = 1;</code>
@@ -5423,8 +5532,9 @@ public final class TxOuterClass {
     /**
      * <pre>
      * signer_infos defines the signing modes for the required signers. The number
-     * and order of elements must match the required signers from TxBody's messages.
-     * The first element is the primary signer and the one which pays the fee.
+     * and order of elements must match the required signers from TxBody's
+     * messages. The first element is the primary signer and the one which pays
+     * the fee.
      * </pre>
      *
      * <code>repeated .cosmos.tx.v1beta1.SignerInfo signer_infos = 1;</code>
@@ -5434,8 +5544,9 @@ public final class TxOuterClass {
     /**
      * <pre>
      * signer_infos defines the signing modes for the required signers. The number
-     * and order of elements must match the required signers from TxBody's messages.
-     * The first element is the primary signer and the one which pays the fee.
+     * and order of elements must match the required signers from TxBody's
+     * messages. The first element is the primary signer and the one which pays
+     * the fee.
      * </pre>
      *
      * <code>repeated .cosmos.tx.v1beta1.SignerInfo signer_infos = 1;</code>
@@ -5481,7 +5592,8 @@ public final class TxOuterClass {
   }
   /**
    * <pre>
-   * AuthInfo describes the fee and signer modes that are used to sign a transaction.
+   * AuthInfo describes the fee and signer modes that are used to sign a
+   * transaction.
    * </pre>
    *
    * Protobuf type {@code cosmos.tx.v1beta1.AuthInfo}
@@ -5592,8 +5704,9 @@ public final class TxOuterClass {
     /**
      * <pre>
      * signer_infos defines the signing modes for the required signers. The number
-     * and order of elements must match the required signers from TxBody's messages.
-     * The first element is the primary signer and the one which pays the fee.
+     * and order of elements must match the required signers from TxBody's
+     * messages. The first element is the primary signer and the one which pays
+     * the fee.
      * </pre>
      *
      * <code>repeated .cosmos.tx.v1beta1.SignerInfo signer_infos = 1;</code>
@@ -5605,8 +5718,9 @@ public final class TxOuterClass {
     /**
      * <pre>
      * signer_infos defines the signing modes for the required signers. The number
-     * and order of elements must match the required signers from TxBody's messages.
-     * The first element is the primary signer and the one which pays the fee.
+     * and order of elements must match the required signers from TxBody's
+     * messages. The first element is the primary signer and the one which pays
+     * the fee.
      * </pre>
      *
      * <code>repeated .cosmos.tx.v1beta1.SignerInfo signer_infos = 1;</code>
@@ -5619,8 +5733,9 @@ public final class TxOuterClass {
     /**
      * <pre>
      * signer_infos defines the signing modes for the required signers. The number
-     * and order of elements must match the required signers from TxBody's messages.
-     * The first element is the primary signer and the one which pays the fee.
+     * and order of elements must match the required signers from TxBody's
+     * messages. The first element is the primary signer and the one which pays
+     * the fee.
      * </pre>
      *
      * <code>repeated .cosmos.tx.v1beta1.SignerInfo signer_infos = 1;</code>
@@ -5632,8 +5747,9 @@ public final class TxOuterClass {
     /**
      * <pre>
      * signer_infos defines the signing modes for the required signers. The number
-     * and order of elements must match the required signers from TxBody's messages.
-     * The first element is the primary signer and the one which pays the fee.
+     * and order of elements must match the required signers from TxBody's
+     * messages. The first element is the primary signer and the one which pays
+     * the fee.
      * </pre>
      *
      * <code>repeated .cosmos.tx.v1beta1.SignerInfo signer_infos = 1;</code>
@@ -5645,8 +5761,9 @@ public final class TxOuterClass {
     /**
      * <pre>
      * signer_infos defines the signing modes for the required signers. The number
-     * and order of elements must match the required signers from TxBody's messages.
-     * The first element is the primary signer and the one which pays the fee.
+     * and order of elements must match the required signers from TxBody's
+     * messages. The first element is the primary signer and the one which pays
+     * the fee.
      * </pre>
      *
      * <code>repeated .cosmos.tx.v1beta1.SignerInfo signer_infos = 1;</code>
@@ -5879,7 +5996,8 @@ public final class TxOuterClass {
     }
     /**
      * <pre>
-     * AuthInfo describes the fee and signer modes that are used to sign a transaction.
+     * AuthInfo describes the fee and signer modes that are used to sign a
+     * transaction.
      * </pre>
      *
      * Protobuf type {@code cosmos.tx.v1beta1.AuthInfo}
@@ -6095,8 +6213,9 @@ public final class TxOuterClass {
       /**
        * <pre>
        * signer_infos defines the signing modes for the required signers. The number
-       * and order of elements must match the required signers from TxBody's messages.
-       * The first element is the primary signer and the one which pays the fee.
+       * and order of elements must match the required signers from TxBody's
+       * messages. The first element is the primary signer and the one which pays
+       * the fee.
        * </pre>
        *
        * <code>repeated .cosmos.tx.v1beta1.SignerInfo signer_infos = 1;</code>
@@ -6111,8 +6230,9 @@ public final class TxOuterClass {
       /**
        * <pre>
        * signer_infos defines the signing modes for the required signers. The number
-       * and order of elements must match the required signers from TxBody's messages.
-       * The first element is the primary signer and the one which pays the fee.
+       * and order of elements must match the required signers from TxBody's
+       * messages. The first element is the primary signer and the one which pays
+       * the fee.
        * </pre>
        *
        * <code>repeated .cosmos.tx.v1beta1.SignerInfo signer_infos = 1;</code>
@@ -6127,8 +6247,9 @@ public final class TxOuterClass {
       /**
        * <pre>
        * signer_infos defines the signing modes for the required signers. The number
-       * and order of elements must match the required signers from TxBody's messages.
-       * The first element is the primary signer and the one which pays the fee.
+       * and order of elements must match the required signers from TxBody's
+       * messages. The first element is the primary signer and the one which pays
+       * the fee.
        * </pre>
        *
        * <code>repeated .cosmos.tx.v1beta1.SignerInfo signer_infos = 1;</code>
@@ -6143,8 +6264,9 @@ public final class TxOuterClass {
       /**
        * <pre>
        * signer_infos defines the signing modes for the required signers. The number
-       * and order of elements must match the required signers from TxBody's messages.
-       * The first element is the primary signer and the one which pays the fee.
+       * and order of elements must match the required signers from TxBody's
+       * messages. The first element is the primary signer and the one which pays
+       * the fee.
        * </pre>
        *
        * <code>repeated .cosmos.tx.v1beta1.SignerInfo signer_infos = 1;</code>
@@ -6166,8 +6288,9 @@ public final class TxOuterClass {
       /**
        * <pre>
        * signer_infos defines the signing modes for the required signers. The number
-       * and order of elements must match the required signers from TxBody's messages.
-       * The first element is the primary signer and the one which pays the fee.
+       * and order of elements must match the required signers from TxBody's
+       * messages. The first element is the primary signer and the one which pays
+       * the fee.
        * </pre>
        *
        * <code>repeated .cosmos.tx.v1beta1.SignerInfo signer_infos = 1;</code>
@@ -6186,8 +6309,9 @@ public final class TxOuterClass {
       /**
        * <pre>
        * signer_infos defines the signing modes for the required signers. The number
-       * and order of elements must match the required signers from TxBody's messages.
-       * The first element is the primary signer and the one which pays the fee.
+       * and order of elements must match the required signers from TxBody's
+       * messages. The first element is the primary signer and the one which pays
+       * the fee.
        * </pre>
        *
        * <code>repeated .cosmos.tx.v1beta1.SignerInfo signer_infos = 1;</code>
@@ -6208,8 +6332,9 @@ public final class TxOuterClass {
       /**
        * <pre>
        * signer_infos defines the signing modes for the required signers. The number
-       * and order of elements must match the required signers from TxBody's messages.
-       * The first element is the primary signer and the one which pays the fee.
+       * and order of elements must match the required signers from TxBody's
+       * messages. The first element is the primary signer and the one which pays
+       * the fee.
        * </pre>
        *
        * <code>repeated .cosmos.tx.v1beta1.SignerInfo signer_infos = 1;</code>
@@ -6231,8 +6356,9 @@ public final class TxOuterClass {
       /**
        * <pre>
        * signer_infos defines the signing modes for the required signers. The number
-       * and order of elements must match the required signers from TxBody's messages.
-       * The first element is the primary signer and the one which pays the fee.
+       * and order of elements must match the required signers from TxBody's
+       * messages. The first element is the primary signer and the one which pays
+       * the fee.
        * </pre>
        *
        * <code>repeated .cosmos.tx.v1beta1.SignerInfo signer_infos = 1;</code>
@@ -6251,8 +6377,9 @@ public final class TxOuterClass {
       /**
        * <pre>
        * signer_infos defines the signing modes for the required signers. The number
-       * and order of elements must match the required signers from TxBody's messages.
-       * The first element is the primary signer and the one which pays the fee.
+       * and order of elements must match the required signers from TxBody's
+       * messages. The first element is the primary signer and the one which pays
+       * the fee.
        * </pre>
        *
        * <code>repeated .cosmos.tx.v1beta1.SignerInfo signer_infos = 1;</code>
@@ -6271,8 +6398,9 @@ public final class TxOuterClass {
       /**
        * <pre>
        * signer_infos defines the signing modes for the required signers. The number
-       * and order of elements must match the required signers from TxBody's messages.
-       * The first element is the primary signer and the one which pays the fee.
+       * and order of elements must match the required signers from TxBody's
+       * messages. The first element is the primary signer and the one which pays
+       * the fee.
        * </pre>
        *
        * <code>repeated .cosmos.tx.v1beta1.SignerInfo signer_infos = 1;</code>
@@ -6292,8 +6420,9 @@ public final class TxOuterClass {
       /**
        * <pre>
        * signer_infos defines the signing modes for the required signers. The number
-       * and order of elements must match the required signers from TxBody's messages.
-       * The first element is the primary signer and the one which pays the fee.
+       * and order of elements must match the required signers from TxBody's
+       * messages. The first element is the primary signer and the one which pays
+       * the fee.
        * </pre>
        *
        * <code>repeated .cosmos.tx.v1beta1.SignerInfo signer_infos = 1;</code>
@@ -6311,8 +6440,9 @@ public final class TxOuterClass {
       /**
        * <pre>
        * signer_infos defines the signing modes for the required signers. The number
-       * and order of elements must match the required signers from TxBody's messages.
-       * The first element is the primary signer and the one which pays the fee.
+       * and order of elements must match the required signers from TxBody's
+       * messages. The first element is the primary signer and the one which pays
+       * the fee.
        * </pre>
        *
        * <code>repeated .cosmos.tx.v1beta1.SignerInfo signer_infos = 1;</code>
@@ -6330,8 +6460,9 @@ public final class TxOuterClass {
       /**
        * <pre>
        * signer_infos defines the signing modes for the required signers. The number
-       * and order of elements must match the required signers from TxBody's messages.
-       * The first element is the primary signer and the one which pays the fee.
+       * and order of elements must match the required signers from TxBody's
+       * messages. The first element is the primary signer and the one which pays
+       * the fee.
        * </pre>
        *
        * <code>repeated .cosmos.tx.v1beta1.SignerInfo signer_infos = 1;</code>
@@ -6343,8 +6474,9 @@ public final class TxOuterClass {
       /**
        * <pre>
        * signer_infos defines the signing modes for the required signers. The number
-       * and order of elements must match the required signers from TxBody's messages.
-       * The first element is the primary signer and the one which pays the fee.
+       * and order of elements must match the required signers from TxBody's
+       * messages. The first element is the primary signer and the one which pays
+       * the fee.
        * </pre>
        *
        * <code>repeated .cosmos.tx.v1beta1.SignerInfo signer_infos = 1;</code>
@@ -6359,8 +6491,9 @@ public final class TxOuterClass {
       /**
        * <pre>
        * signer_infos defines the signing modes for the required signers. The number
-       * and order of elements must match the required signers from TxBody's messages.
-       * The first element is the primary signer and the one which pays the fee.
+       * and order of elements must match the required signers from TxBody's
+       * messages. The first element is the primary signer and the one which pays
+       * the fee.
        * </pre>
        *
        * <code>repeated .cosmos.tx.v1beta1.SignerInfo signer_infos = 1;</code>
@@ -6376,8 +6509,9 @@ public final class TxOuterClass {
       /**
        * <pre>
        * signer_infos defines the signing modes for the required signers. The number
-       * and order of elements must match the required signers from TxBody's messages.
-       * The first element is the primary signer and the one which pays the fee.
+       * and order of elements must match the required signers from TxBody's
+       * messages. The first element is the primary signer and the one which pays
+       * the fee.
        * </pre>
        *
        * <code>repeated .cosmos.tx.v1beta1.SignerInfo signer_infos = 1;</code>
@@ -6389,8 +6523,9 @@ public final class TxOuterClass {
       /**
        * <pre>
        * signer_infos defines the signing modes for the required signers. The number
-       * and order of elements must match the required signers from TxBody's messages.
-       * The first element is the primary signer and the one which pays the fee.
+       * and order of elements must match the required signers from TxBody's
+       * messages. The first element is the primary signer and the one which pays
+       * the fee.
        * </pre>
        *
        * <code>repeated .cosmos.tx.v1beta1.SignerInfo signer_infos = 1;</code>
@@ -6403,8 +6538,9 @@ public final class TxOuterClass {
       /**
        * <pre>
        * signer_infos defines the signing modes for the required signers. The number
-       * and order of elements must match the required signers from TxBody's messages.
-       * The first element is the primary signer and the one which pays the fee.
+       * and order of elements must match the required signers from TxBody's
+       * messages. The first element is the primary signer and the one which pays
+       * the fee.
        * </pre>
        *
        * <code>repeated .cosmos.tx.v1beta1.SignerInfo signer_infos = 1;</code>
@@ -6673,7 +6809,7 @@ public final class TxOuterClass {
      * signer address for this position and lookup the public key.
      * </pre>
      *
-     * <code>.cosmos.base.crypto.v1beta1.PublicKey public_key = 1;</code>
+     * <code>.google.protobuf.Any public_key = 1;</code>
      * @return Whether the publicKey field is set.
      */
     boolean hasPublicKey();
@@ -6684,10 +6820,10 @@ public final class TxOuterClass {
      * signer address for this position and lookup the public key.
      * </pre>
      *
-     * <code>.cosmos.base.crypto.v1beta1.PublicKey public_key = 1;</code>
+     * <code>.google.protobuf.Any public_key = 1;</code>
      * @return The publicKey.
      */
-    cosmos.base.crypto.v1beta1.Crypto.PublicKey getPublicKey();
+    com.google.protobuf.Any getPublicKey();
     /**
      * <pre>
      * public_key is the public key of the signer. It is optional for accounts
@@ -6695,9 +6831,9 @@ public final class TxOuterClass {
      * signer address for this position and lookup the public key.
      * </pre>
      *
-     * <code>.cosmos.base.crypto.v1beta1.PublicKey public_key = 1;</code>
+     * <code>.google.protobuf.Any public_key = 1;</code>
      */
-    cosmos.base.crypto.v1beta1.Crypto.PublicKeyOrBuilder getPublicKeyOrBuilder();
+    com.google.protobuf.AnyOrBuilder getPublicKeyOrBuilder();
 
     /**
      * <pre>
@@ -6732,8 +6868,8 @@ public final class TxOuterClass {
     /**
      * <pre>
      * sequence is the sequence of the account, which describes the
-     * number of committed transactions signed by a given address. It is used to prevent
-     * replay attacks.
+     * number of committed transactions signed by a given address. It is used to
+     * prevent replay attacks.
      * </pre>
      *
      * <code>uint64 sequence = 3;</code>
@@ -6743,7 +6879,8 @@ public final class TxOuterClass {
   }
   /**
    * <pre>
-   * SignerInfo describes the public key and signing mode of a single top-level signer.
+   * SignerInfo describes the public key and signing mode of a single top-level
+   * signer.
    * </pre>
    *
    * Protobuf type {@code cosmos.tx.v1beta1.SignerInfo}
@@ -6791,11 +6928,11 @@ public final class TxOuterClass {
               done = true;
               break;
             case 10: {
-              cosmos.base.crypto.v1beta1.Crypto.PublicKey.Builder subBuilder = null;
+              com.google.protobuf.Any.Builder subBuilder = null;
               if (publicKey_ != null) {
                 subBuilder = publicKey_.toBuilder();
               }
-              publicKey_ = input.readMessage(cosmos.base.crypto.v1beta1.Crypto.PublicKey.parser(), extensionRegistry);
+              publicKey_ = input.readMessage(com.google.protobuf.Any.parser(), extensionRegistry);
               if (subBuilder != null) {
                 subBuilder.mergeFrom(publicKey_);
                 publicKey_ = subBuilder.buildPartial();
@@ -6854,7 +6991,7 @@ public final class TxOuterClass {
     }
 
     public static final int PUBLIC_KEY_FIELD_NUMBER = 1;
-    private cosmos.base.crypto.v1beta1.Crypto.PublicKey publicKey_;
+    private com.google.protobuf.Any publicKey_;
     /**
      * <pre>
      * public_key is the public key of the signer. It is optional for accounts
@@ -6862,7 +6999,7 @@ public final class TxOuterClass {
      * signer address for this position and lookup the public key.
      * </pre>
      *
-     * <code>.cosmos.base.crypto.v1beta1.PublicKey public_key = 1;</code>
+     * <code>.google.protobuf.Any public_key = 1;</code>
      * @return Whether the publicKey field is set.
      */
     @java.lang.Override
@@ -6876,12 +7013,12 @@ public final class TxOuterClass {
      * signer address for this position and lookup the public key.
      * </pre>
      *
-     * <code>.cosmos.base.crypto.v1beta1.PublicKey public_key = 1;</code>
+     * <code>.google.protobuf.Any public_key = 1;</code>
      * @return The publicKey.
      */
     @java.lang.Override
-    public cosmos.base.crypto.v1beta1.Crypto.PublicKey getPublicKey() {
-      return publicKey_ == null ? cosmos.base.crypto.v1beta1.Crypto.PublicKey.getDefaultInstance() : publicKey_;
+    public com.google.protobuf.Any getPublicKey() {
+      return publicKey_ == null ? com.google.protobuf.Any.getDefaultInstance() : publicKey_;
     }
     /**
      * <pre>
@@ -6890,10 +7027,10 @@ public final class TxOuterClass {
      * signer address for this position and lookup the public key.
      * </pre>
      *
-     * <code>.cosmos.base.crypto.v1beta1.PublicKey public_key = 1;</code>
+     * <code>.google.protobuf.Any public_key = 1;</code>
      */
     @java.lang.Override
-    public cosmos.base.crypto.v1beta1.Crypto.PublicKeyOrBuilder getPublicKeyOrBuilder() {
+    public com.google.protobuf.AnyOrBuilder getPublicKeyOrBuilder() {
       return getPublicKey();
     }
 
@@ -6943,8 +7080,8 @@ public final class TxOuterClass {
     /**
      * <pre>
      * sequence is the sequence of the account, which describes the
-     * number of committed transactions signed by a given address. It is used to prevent
-     * replay attacks.
+     * number of committed transactions signed by a given address. It is used to
+     * prevent replay attacks.
      * </pre>
      *
      * <code>uint64 sequence = 3;</code>
@@ -7145,7 +7282,8 @@ public final class TxOuterClass {
     }
     /**
      * <pre>
-     * SignerInfo describes the public key and signing mode of a single top-level signer.
+     * SignerInfo describes the public key and signing mode of a single top-level
+     * signer.
      * </pre>
      *
      * Protobuf type {@code cosmos.tx.v1beta1.SignerInfo}
@@ -7322,9 +7460,9 @@ public final class TxOuterClass {
         return this;
       }
 
-      private cosmos.base.crypto.v1beta1.Crypto.PublicKey publicKey_;
+      private com.google.protobuf.Any publicKey_;
       private com.google.protobuf.SingleFieldBuilderV3<
-          cosmos.base.crypto.v1beta1.Crypto.PublicKey, cosmos.base.crypto.v1beta1.Crypto.PublicKey.Builder, cosmos.base.crypto.v1beta1.Crypto.PublicKeyOrBuilder> publicKeyBuilder_;
+          com.google.protobuf.Any, com.google.protobuf.Any.Builder, com.google.protobuf.AnyOrBuilder> publicKeyBuilder_;
       /**
        * <pre>
        * public_key is the public key of the signer. It is optional for accounts
@@ -7332,7 +7470,7 @@ public final class TxOuterClass {
        * signer address for this position and lookup the public key.
        * </pre>
        *
-       * <code>.cosmos.base.crypto.v1beta1.PublicKey public_key = 1;</code>
+       * <code>.google.protobuf.Any public_key = 1;</code>
        * @return Whether the publicKey field is set.
        */
       public boolean hasPublicKey() {
@@ -7345,12 +7483,12 @@ public final class TxOuterClass {
        * signer address for this position and lookup the public key.
        * </pre>
        *
-       * <code>.cosmos.base.crypto.v1beta1.PublicKey public_key = 1;</code>
+       * <code>.google.protobuf.Any public_key = 1;</code>
        * @return The publicKey.
        */
-      public cosmos.base.crypto.v1beta1.Crypto.PublicKey getPublicKey() {
+      public com.google.protobuf.Any getPublicKey() {
         if (publicKeyBuilder_ == null) {
-          return publicKey_ == null ? cosmos.base.crypto.v1beta1.Crypto.PublicKey.getDefaultInstance() : publicKey_;
+          return publicKey_ == null ? com.google.protobuf.Any.getDefaultInstance() : publicKey_;
         } else {
           return publicKeyBuilder_.getMessage();
         }
@@ -7362,9 +7500,9 @@ public final class TxOuterClass {
        * signer address for this position and lookup the public key.
        * </pre>
        *
-       * <code>.cosmos.base.crypto.v1beta1.PublicKey public_key = 1;</code>
+       * <code>.google.protobuf.Any public_key = 1;</code>
        */
-      public Builder setPublicKey(cosmos.base.crypto.v1beta1.Crypto.PublicKey value) {
+      public Builder setPublicKey(com.google.protobuf.Any value) {
         if (publicKeyBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -7384,10 +7522,10 @@ public final class TxOuterClass {
        * signer address for this position and lookup the public key.
        * </pre>
        *
-       * <code>.cosmos.base.crypto.v1beta1.PublicKey public_key = 1;</code>
+       * <code>.google.protobuf.Any public_key = 1;</code>
        */
       public Builder setPublicKey(
-          cosmos.base.crypto.v1beta1.Crypto.PublicKey.Builder builderForValue) {
+          com.google.protobuf.Any.Builder builderForValue) {
         if (publicKeyBuilder_ == null) {
           publicKey_ = builderForValue.build();
           onChanged();
@@ -7404,13 +7542,13 @@ public final class TxOuterClass {
        * signer address for this position and lookup the public key.
        * </pre>
        *
-       * <code>.cosmos.base.crypto.v1beta1.PublicKey public_key = 1;</code>
+       * <code>.google.protobuf.Any public_key = 1;</code>
        */
-      public Builder mergePublicKey(cosmos.base.crypto.v1beta1.Crypto.PublicKey value) {
+      public Builder mergePublicKey(com.google.protobuf.Any value) {
         if (publicKeyBuilder_ == null) {
           if (publicKey_ != null) {
             publicKey_ =
-              cosmos.base.crypto.v1beta1.Crypto.PublicKey.newBuilder(publicKey_).mergeFrom(value).buildPartial();
+              com.google.protobuf.Any.newBuilder(publicKey_).mergeFrom(value).buildPartial();
           } else {
             publicKey_ = value;
           }
@@ -7428,7 +7566,7 @@ public final class TxOuterClass {
        * signer address for this position and lookup the public key.
        * </pre>
        *
-       * <code>.cosmos.base.crypto.v1beta1.PublicKey public_key = 1;</code>
+       * <code>.google.protobuf.Any public_key = 1;</code>
        */
       public Builder clearPublicKey() {
         if (publicKeyBuilder_ == null) {
@@ -7448,9 +7586,9 @@ public final class TxOuterClass {
        * signer address for this position and lookup the public key.
        * </pre>
        *
-       * <code>.cosmos.base.crypto.v1beta1.PublicKey public_key = 1;</code>
+       * <code>.google.protobuf.Any public_key = 1;</code>
        */
-      public cosmos.base.crypto.v1beta1.Crypto.PublicKey.Builder getPublicKeyBuilder() {
+      public com.google.protobuf.Any.Builder getPublicKeyBuilder() {
         
         onChanged();
         return getPublicKeyFieldBuilder().getBuilder();
@@ -7462,14 +7600,14 @@ public final class TxOuterClass {
        * signer address for this position and lookup the public key.
        * </pre>
        *
-       * <code>.cosmos.base.crypto.v1beta1.PublicKey public_key = 1;</code>
+       * <code>.google.protobuf.Any public_key = 1;</code>
        */
-      public cosmos.base.crypto.v1beta1.Crypto.PublicKeyOrBuilder getPublicKeyOrBuilder() {
+      public com.google.protobuf.AnyOrBuilder getPublicKeyOrBuilder() {
         if (publicKeyBuilder_ != null) {
           return publicKeyBuilder_.getMessageOrBuilder();
         } else {
           return publicKey_ == null ?
-              cosmos.base.crypto.v1beta1.Crypto.PublicKey.getDefaultInstance() : publicKey_;
+              com.google.protobuf.Any.getDefaultInstance() : publicKey_;
         }
       }
       /**
@@ -7479,14 +7617,14 @@ public final class TxOuterClass {
        * signer address for this position and lookup the public key.
        * </pre>
        *
-       * <code>.cosmos.base.crypto.v1beta1.PublicKey public_key = 1;</code>
+       * <code>.google.protobuf.Any public_key = 1;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
-          cosmos.base.crypto.v1beta1.Crypto.PublicKey, cosmos.base.crypto.v1beta1.Crypto.PublicKey.Builder, cosmos.base.crypto.v1beta1.Crypto.PublicKeyOrBuilder> 
+          com.google.protobuf.Any, com.google.protobuf.Any.Builder, com.google.protobuf.AnyOrBuilder> 
           getPublicKeyFieldBuilder() {
         if (publicKeyBuilder_ == null) {
           publicKeyBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              cosmos.base.crypto.v1beta1.Crypto.PublicKey, cosmos.base.crypto.v1beta1.Crypto.PublicKey.Builder, cosmos.base.crypto.v1beta1.Crypto.PublicKeyOrBuilder>(
+              com.google.protobuf.Any, com.google.protobuf.Any.Builder, com.google.protobuf.AnyOrBuilder>(
                   getPublicKey(),
                   getParentForChildren(),
                   isClean());
@@ -7663,8 +7801,8 @@ public final class TxOuterClass {
       /**
        * <pre>
        * sequence is the sequence of the account, which describes the
-       * number of committed transactions signed by a given address. It is used to prevent
-       * replay attacks.
+       * number of committed transactions signed by a given address. It is used to
+       * prevent replay attacks.
        * </pre>
        *
        * <code>uint64 sequence = 3;</code>
@@ -7677,8 +7815,8 @@ public final class TxOuterClass {
       /**
        * <pre>
        * sequence is the sequence of the account, which describes the
-       * number of committed transactions signed by a given address. It is used to prevent
-       * replay attacks.
+       * number of committed transactions signed by a given address. It is used to
+       * prevent replay attacks.
        * </pre>
        *
        * <code>uint64 sequence = 3;</code>
@@ -7694,8 +7832,8 @@ public final class TxOuterClass {
       /**
        * <pre>
        * sequence is the sequence of the account, which describes the
-       * number of committed transactions signed by a given address. It is used to prevent
-       * replay attacks.
+       * number of committed transactions signed by a given address. It is used to
+       * prevent replay attacks.
        * </pre>
        *
        * <code>uint64 sequence = 3;</code>
@@ -7955,7 +8093,8 @@ public final class TxOuterClass {
     /**
      * <pre>
      * Single is the mode info for a single signer. It is structured as a message
-     * to allow for additional fields such as locale for SIGN_MODE_TEXTUAL in the future
+     * to allow for additional fields such as locale for SIGN_MODE_TEXTUAL in the
+     * future
      * </pre>
      *
      * Protobuf type {@code cosmos.tx.v1beta1.ModeInfo.Single}
@@ -8225,7 +8364,8 @@ public final class TxOuterClass {
       /**
        * <pre>
        * Single is the mode info for a single signer. It is structured as a message
-       * to allow for additional fields such as locale for SIGN_MODE_TEXTUAL in the future
+       * to allow for additional fields such as locale for SIGN_MODE_TEXTUAL in the
+       * future
        * </pre>
        *
        * Protobuf type {@code cosmos.tx.v1beta1.ModeInfo.Single}
@@ -8509,7 +8649,7 @@ public final class TxOuterClass {
        * bitarray specifies which keys within the multisig are signing
        * </pre>
        *
-       * <code>.cosmos.base.crypto.v1beta1.CompactBitArray bitarray = 1;</code>
+       * <code>.cosmos.crypto.multisig.v1beta1.CompactBitArray bitarray = 1;</code>
        * @return Whether the bitarray field is set.
        */
       boolean hasBitarray();
@@ -8518,18 +8658,18 @@ public final class TxOuterClass {
        * bitarray specifies which keys within the multisig are signing
        * </pre>
        *
-       * <code>.cosmos.base.crypto.v1beta1.CompactBitArray bitarray = 1;</code>
+       * <code>.cosmos.crypto.multisig.v1beta1.CompactBitArray bitarray = 1;</code>
        * @return The bitarray.
        */
-      cosmos.base.crypto.v1beta1.Crypto.CompactBitArray getBitarray();
+      cosmos.crypto.multisig.v1beta1.Multisig.CompactBitArray getBitarray();
       /**
        * <pre>
        * bitarray specifies which keys within the multisig are signing
        * </pre>
        *
-       * <code>.cosmos.base.crypto.v1beta1.CompactBitArray bitarray = 1;</code>
+       * <code>.cosmos.crypto.multisig.v1beta1.CompactBitArray bitarray = 1;</code>
        */
-      cosmos.base.crypto.v1beta1.Crypto.CompactBitArrayOrBuilder getBitarrayOrBuilder();
+      cosmos.crypto.multisig.v1beta1.Multisig.CompactBitArrayOrBuilder getBitarrayOrBuilder();
 
       /**
        * <pre>
@@ -8632,11 +8772,11 @@ public final class TxOuterClass {
                 done = true;
                 break;
               case 10: {
-                cosmos.base.crypto.v1beta1.Crypto.CompactBitArray.Builder subBuilder = null;
+                cosmos.crypto.multisig.v1beta1.Multisig.CompactBitArray.Builder subBuilder = null;
                 if (bitarray_ != null) {
                   subBuilder = bitarray_.toBuilder();
                 }
-                bitarray_ = input.readMessage(cosmos.base.crypto.v1beta1.Crypto.CompactBitArray.parser(), extensionRegistry);
+                bitarray_ = input.readMessage(cosmos.crypto.multisig.v1beta1.Multisig.CompactBitArray.parser(), extensionRegistry);
                 if (subBuilder != null) {
                   subBuilder.mergeFrom(bitarray_);
                   bitarray_ = subBuilder.buildPartial();
@@ -8689,13 +8829,13 @@ public final class TxOuterClass {
       }
 
       public static final int BITARRAY_FIELD_NUMBER = 1;
-      private cosmos.base.crypto.v1beta1.Crypto.CompactBitArray bitarray_;
+      private cosmos.crypto.multisig.v1beta1.Multisig.CompactBitArray bitarray_;
       /**
        * <pre>
        * bitarray specifies which keys within the multisig are signing
        * </pre>
        *
-       * <code>.cosmos.base.crypto.v1beta1.CompactBitArray bitarray = 1;</code>
+       * <code>.cosmos.crypto.multisig.v1beta1.CompactBitArray bitarray = 1;</code>
        * @return Whether the bitarray field is set.
        */
       @java.lang.Override
@@ -8707,22 +8847,22 @@ public final class TxOuterClass {
        * bitarray specifies which keys within the multisig are signing
        * </pre>
        *
-       * <code>.cosmos.base.crypto.v1beta1.CompactBitArray bitarray = 1;</code>
+       * <code>.cosmos.crypto.multisig.v1beta1.CompactBitArray bitarray = 1;</code>
        * @return The bitarray.
        */
       @java.lang.Override
-      public cosmos.base.crypto.v1beta1.Crypto.CompactBitArray getBitarray() {
-        return bitarray_ == null ? cosmos.base.crypto.v1beta1.Crypto.CompactBitArray.getDefaultInstance() : bitarray_;
+      public cosmos.crypto.multisig.v1beta1.Multisig.CompactBitArray getBitarray() {
+        return bitarray_ == null ? cosmos.crypto.multisig.v1beta1.Multisig.CompactBitArray.getDefaultInstance() : bitarray_;
       }
       /**
        * <pre>
        * bitarray specifies which keys within the multisig are signing
        * </pre>
        *
-       * <code>.cosmos.base.crypto.v1beta1.CompactBitArray bitarray = 1;</code>
+       * <code>.cosmos.crypto.multisig.v1beta1.CompactBitArray bitarray = 1;</code>
        */
       @java.lang.Override
-      public cosmos.base.crypto.v1beta1.Crypto.CompactBitArrayOrBuilder getBitarrayOrBuilder() {
+      public cosmos.crypto.multisig.v1beta1.Multisig.CompactBitArrayOrBuilder getBitarrayOrBuilder() {
         return getBitarray();
       }
 
@@ -9167,15 +9307,15 @@ public final class TxOuterClass {
         }
         private int bitField0_;
 
-        private cosmos.base.crypto.v1beta1.Crypto.CompactBitArray bitarray_;
+        private cosmos.crypto.multisig.v1beta1.Multisig.CompactBitArray bitarray_;
         private com.google.protobuf.SingleFieldBuilderV3<
-            cosmos.base.crypto.v1beta1.Crypto.CompactBitArray, cosmos.base.crypto.v1beta1.Crypto.CompactBitArray.Builder, cosmos.base.crypto.v1beta1.Crypto.CompactBitArrayOrBuilder> bitarrayBuilder_;
+            cosmos.crypto.multisig.v1beta1.Multisig.CompactBitArray, cosmos.crypto.multisig.v1beta1.Multisig.CompactBitArray.Builder, cosmos.crypto.multisig.v1beta1.Multisig.CompactBitArrayOrBuilder> bitarrayBuilder_;
         /**
          * <pre>
          * bitarray specifies which keys within the multisig are signing
          * </pre>
          *
-         * <code>.cosmos.base.crypto.v1beta1.CompactBitArray bitarray = 1;</code>
+         * <code>.cosmos.crypto.multisig.v1beta1.CompactBitArray bitarray = 1;</code>
          * @return Whether the bitarray field is set.
          */
         public boolean hasBitarray() {
@@ -9186,12 +9326,12 @@ public final class TxOuterClass {
          * bitarray specifies which keys within the multisig are signing
          * </pre>
          *
-         * <code>.cosmos.base.crypto.v1beta1.CompactBitArray bitarray = 1;</code>
+         * <code>.cosmos.crypto.multisig.v1beta1.CompactBitArray bitarray = 1;</code>
          * @return The bitarray.
          */
-        public cosmos.base.crypto.v1beta1.Crypto.CompactBitArray getBitarray() {
+        public cosmos.crypto.multisig.v1beta1.Multisig.CompactBitArray getBitarray() {
           if (bitarrayBuilder_ == null) {
-            return bitarray_ == null ? cosmos.base.crypto.v1beta1.Crypto.CompactBitArray.getDefaultInstance() : bitarray_;
+            return bitarray_ == null ? cosmos.crypto.multisig.v1beta1.Multisig.CompactBitArray.getDefaultInstance() : bitarray_;
           } else {
             return bitarrayBuilder_.getMessage();
           }
@@ -9201,9 +9341,9 @@ public final class TxOuterClass {
          * bitarray specifies which keys within the multisig are signing
          * </pre>
          *
-         * <code>.cosmos.base.crypto.v1beta1.CompactBitArray bitarray = 1;</code>
+         * <code>.cosmos.crypto.multisig.v1beta1.CompactBitArray bitarray = 1;</code>
          */
-        public Builder setBitarray(cosmos.base.crypto.v1beta1.Crypto.CompactBitArray value) {
+        public Builder setBitarray(cosmos.crypto.multisig.v1beta1.Multisig.CompactBitArray value) {
           if (bitarrayBuilder_ == null) {
             if (value == null) {
               throw new NullPointerException();
@@ -9221,10 +9361,10 @@ public final class TxOuterClass {
          * bitarray specifies which keys within the multisig are signing
          * </pre>
          *
-         * <code>.cosmos.base.crypto.v1beta1.CompactBitArray bitarray = 1;</code>
+         * <code>.cosmos.crypto.multisig.v1beta1.CompactBitArray bitarray = 1;</code>
          */
         public Builder setBitarray(
-            cosmos.base.crypto.v1beta1.Crypto.CompactBitArray.Builder builderForValue) {
+            cosmos.crypto.multisig.v1beta1.Multisig.CompactBitArray.Builder builderForValue) {
           if (bitarrayBuilder_ == null) {
             bitarray_ = builderForValue.build();
             onChanged();
@@ -9239,13 +9379,13 @@ public final class TxOuterClass {
          * bitarray specifies which keys within the multisig are signing
          * </pre>
          *
-         * <code>.cosmos.base.crypto.v1beta1.CompactBitArray bitarray = 1;</code>
+         * <code>.cosmos.crypto.multisig.v1beta1.CompactBitArray bitarray = 1;</code>
          */
-        public Builder mergeBitarray(cosmos.base.crypto.v1beta1.Crypto.CompactBitArray value) {
+        public Builder mergeBitarray(cosmos.crypto.multisig.v1beta1.Multisig.CompactBitArray value) {
           if (bitarrayBuilder_ == null) {
             if (bitarray_ != null) {
               bitarray_ =
-                cosmos.base.crypto.v1beta1.Crypto.CompactBitArray.newBuilder(bitarray_).mergeFrom(value).buildPartial();
+                cosmos.crypto.multisig.v1beta1.Multisig.CompactBitArray.newBuilder(bitarray_).mergeFrom(value).buildPartial();
             } else {
               bitarray_ = value;
             }
@@ -9261,7 +9401,7 @@ public final class TxOuterClass {
          * bitarray specifies which keys within the multisig are signing
          * </pre>
          *
-         * <code>.cosmos.base.crypto.v1beta1.CompactBitArray bitarray = 1;</code>
+         * <code>.cosmos.crypto.multisig.v1beta1.CompactBitArray bitarray = 1;</code>
          */
         public Builder clearBitarray() {
           if (bitarrayBuilder_ == null) {
@@ -9279,9 +9419,9 @@ public final class TxOuterClass {
          * bitarray specifies which keys within the multisig are signing
          * </pre>
          *
-         * <code>.cosmos.base.crypto.v1beta1.CompactBitArray bitarray = 1;</code>
+         * <code>.cosmos.crypto.multisig.v1beta1.CompactBitArray bitarray = 1;</code>
          */
-        public cosmos.base.crypto.v1beta1.Crypto.CompactBitArray.Builder getBitarrayBuilder() {
+        public cosmos.crypto.multisig.v1beta1.Multisig.CompactBitArray.Builder getBitarrayBuilder() {
           
           onChanged();
           return getBitarrayFieldBuilder().getBuilder();
@@ -9291,14 +9431,14 @@ public final class TxOuterClass {
          * bitarray specifies which keys within the multisig are signing
          * </pre>
          *
-         * <code>.cosmos.base.crypto.v1beta1.CompactBitArray bitarray = 1;</code>
+         * <code>.cosmos.crypto.multisig.v1beta1.CompactBitArray bitarray = 1;</code>
          */
-        public cosmos.base.crypto.v1beta1.Crypto.CompactBitArrayOrBuilder getBitarrayOrBuilder() {
+        public cosmos.crypto.multisig.v1beta1.Multisig.CompactBitArrayOrBuilder getBitarrayOrBuilder() {
           if (bitarrayBuilder_ != null) {
             return bitarrayBuilder_.getMessageOrBuilder();
           } else {
             return bitarray_ == null ?
-                cosmos.base.crypto.v1beta1.Crypto.CompactBitArray.getDefaultInstance() : bitarray_;
+                cosmos.crypto.multisig.v1beta1.Multisig.CompactBitArray.getDefaultInstance() : bitarray_;
           }
         }
         /**
@@ -9306,14 +9446,14 @@ public final class TxOuterClass {
          * bitarray specifies which keys within the multisig are signing
          * </pre>
          *
-         * <code>.cosmos.base.crypto.v1beta1.CompactBitArray bitarray = 1;</code>
+         * <code>.cosmos.crypto.multisig.v1beta1.CompactBitArray bitarray = 1;</code>
          */
         private com.google.protobuf.SingleFieldBuilderV3<
-            cosmos.base.crypto.v1beta1.Crypto.CompactBitArray, cosmos.base.crypto.v1beta1.Crypto.CompactBitArray.Builder, cosmos.base.crypto.v1beta1.Crypto.CompactBitArrayOrBuilder> 
+            cosmos.crypto.multisig.v1beta1.Multisig.CompactBitArray, cosmos.crypto.multisig.v1beta1.Multisig.CompactBitArray.Builder, cosmos.crypto.multisig.v1beta1.Multisig.CompactBitArrayOrBuilder> 
             getBitarrayFieldBuilder() {
           if (bitarrayBuilder_ == null) {
             bitarrayBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-                cosmos.base.crypto.v1beta1.Crypto.CompactBitArray, cosmos.base.crypto.v1beta1.Crypto.CompactBitArray.Builder, cosmos.base.crypto.v1beta1.Crypto.CompactBitArrayOrBuilder>(
+                cosmos.crypto.multisig.v1beta1.Multisig.CompactBitArray, cosmos.crypto.multisig.v1beta1.Multisig.CompactBitArray.Builder, cosmos.crypto.multisig.v1beta1.Multisig.CompactBitArrayOrBuilder>(
                     getBitarray(),
                     getParentForChildren(),
                     isClean());
@@ -10668,6 +10808,54 @@ public final class TxOuterClass {
      * @return The gasLimit.
      */
     long getGasLimit();
+
+    /**
+     * <pre>
+     * if unset, the first signer is responsible for paying the fees. If set, the specified account must pay the fees.
+     * the payer must be a tx signer (and thus have signed this field in AuthInfo).
+     * setting this field does *not* change the ordering of required signers for the transaction.
+     * </pre>
+     *
+     * <code>string payer = 3;</code>
+     * @return The payer.
+     */
+    java.lang.String getPayer();
+    /**
+     * <pre>
+     * if unset, the first signer is responsible for paying the fees. If set, the specified account must pay the fees.
+     * the payer must be a tx signer (and thus have signed this field in AuthInfo).
+     * setting this field does *not* change the ordering of required signers for the transaction.
+     * </pre>
+     *
+     * <code>string payer = 3;</code>
+     * @return The bytes for payer.
+     */
+    com.google.protobuf.ByteString
+        getPayerBytes();
+
+    /**
+     * <pre>
+     * if set, the fee payer (either the first signer or the value of the payer field) requests that a fee grant be used
+     * to pay fees instead of the fee payer's own balance. If an appropriate fee grant does not exist or the chain does
+     * not support fee grants, this will fail
+     * </pre>
+     *
+     * <code>string granter = 4;</code>
+     * @return The granter.
+     */
+    java.lang.String getGranter();
+    /**
+     * <pre>
+     * if set, the fee payer (either the first signer or the value of the payer field) requests that a fee grant be used
+     * to pay fees instead of the fee payer's own balance. If an appropriate fee grant does not exist or the chain does
+     * not support fee grants, this will fail
+     * </pre>
+     *
+     * <code>string granter = 4;</code>
+     * @return The bytes for granter.
+     */
+    com.google.protobuf.ByteString
+        getGranterBytes();
   }
   /**
    * <pre>
@@ -10689,6 +10877,8 @@ public final class TxOuterClass {
     }
     private Fee() {
       amount_ = java.util.Collections.emptyList();
+      payer_ = "";
+      granter_ = "";
     }
 
     @java.lang.Override
@@ -10734,6 +10924,18 @@ public final class TxOuterClass {
             case 16: {
 
               gasLimit_ = input.readUInt64();
+              break;
+            }
+            case 26: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              payer_ = s;
+              break;
+            }
+            case 34: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              granter_ = s;
               break;
             }
             default: {
@@ -10847,6 +11049,106 @@ public final class TxOuterClass {
       return gasLimit_;
     }
 
+    public static final int PAYER_FIELD_NUMBER = 3;
+    private volatile java.lang.Object payer_;
+    /**
+     * <pre>
+     * if unset, the first signer is responsible for paying the fees. If set, the specified account must pay the fees.
+     * the payer must be a tx signer (and thus have signed this field in AuthInfo).
+     * setting this field does *not* change the ordering of required signers for the transaction.
+     * </pre>
+     *
+     * <code>string payer = 3;</code>
+     * @return The payer.
+     */
+    @java.lang.Override
+    public java.lang.String getPayer() {
+      java.lang.Object ref = payer_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        payer_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * if unset, the first signer is responsible for paying the fees. If set, the specified account must pay the fees.
+     * the payer must be a tx signer (and thus have signed this field in AuthInfo).
+     * setting this field does *not* change the ordering of required signers for the transaction.
+     * </pre>
+     *
+     * <code>string payer = 3;</code>
+     * @return The bytes for payer.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getPayerBytes() {
+      java.lang.Object ref = payer_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        payer_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int GRANTER_FIELD_NUMBER = 4;
+    private volatile java.lang.Object granter_;
+    /**
+     * <pre>
+     * if set, the fee payer (either the first signer or the value of the payer field) requests that a fee grant be used
+     * to pay fees instead of the fee payer's own balance. If an appropriate fee grant does not exist or the chain does
+     * not support fee grants, this will fail
+     * </pre>
+     *
+     * <code>string granter = 4;</code>
+     * @return The granter.
+     */
+    @java.lang.Override
+    public java.lang.String getGranter() {
+      java.lang.Object ref = granter_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        granter_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * if set, the fee payer (either the first signer or the value of the payer field) requests that a fee grant be used
+     * to pay fees instead of the fee payer's own balance. If an appropriate fee grant does not exist or the chain does
+     * not support fee grants, this will fail
+     * </pre>
+     *
+     * <code>string granter = 4;</code>
+     * @return The bytes for granter.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getGranterBytes() {
+      java.lang.Object ref = granter_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        granter_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -10867,6 +11169,12 @@ public final class TxOuterClass {
       if (gasLimit_ != 0L) {
         output.writeUInt64(2, gasLimit_);
       }
+      if (!getPayerBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, payer_);
+      }
+      if (!getGranterBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, granter_);
+      }
       unknownFields.writeTo(output);
     }
 
@@ -10883,6 +11191,12 @@ public final class TxOuterClass {
       if (gasLimit_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt64Size(2, gasLimit_);
+      }
+      if (!getPayerBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, payer_);
+      }
+      if (!getGranterBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, granter_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -10903,6 +11217,10 @@ public final class TxOuterClass {
           .equals(other.getAmountList())) return false;
       if (getGasLimit()
           != other.getGasLimit()) return false;
+      if (!getPayer()
+          .equals(other.getPayer())) return false;
+      if (!getGranter()
+          .equals(other.getGranter())) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -10921,6 +11239,10 @@ public final class TxOuterClass {
       hash = (37 * hash) + GAS_LIMIT_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           getGasLimit());
+      hash = (37 * hash) + PAYER_FIELD_NUMBER;
+      hash = (53 * hash) + getPayer().hashCode();
+      hash = (37 * hash) + GRANTER_FIELD_NUMBER;
+      hash = (53 * hash) + getGranter().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -11069,6 +11391,10 @@ public final class TxOuterClass {
         }
         gasLimit_ = 0L;
 
+        payer_ = "";
+
+        granter_ = "";
+
         return this;
       }
 
@@ -11106,6 +11432,8 @@ public final class TxOuterClass {
           result.amount_ = amountBuilder_.build();
         }
         result.gasLimit_ = gasLimit_;
+        result.payer_ = payer_;
+        result.granter_ = granter_;
         onBuilt();
         return result;
       }
@@ -11182,6 +11510,14 @@ public final class TxOuterClass {
         }
         if (other.getGasLimit() != 0L) {
           setGasLimit(other.getGasLimit());
+        }
+        if (!other.getPayer().isEmpty()) {
+          payer_ = other.payer_;
+          onChanged();
+        }
+        if (!other.getGranter().isEmpty()) {
+          granter_ = other.granter_;
+          onChanged();
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -11570,6 +11906,218 @@ public final class TxOuterClass {
         onChanged();
         return this;
       }
+
+      private java.lang.Object payer_ = "";
+      /**
+       * <pre>
+       * if unset, the first signer is responsible for paying the fees. If set, the specified account must pay the fees.
+       * the payer must be a tx signer (and thus have signed this field in AuthInfo).
+       * setting this field does *not* change the ordering of required signers for the transaction.
+       * </pre>
+       *
+       * <code>string payer = 3;</code>
+       * @return The payer.
+       */
+      public java.lang.String getPayer() {
+        java.lang.Object ref = payer_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          payer_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       * if unset, the first signer is responsible for paying the fees. If set, the specified account must pay the fees.
+       * the payer must be a tx signer (and thus have signed this field in AuthInfo).
+       * setting this field does *not* change the ordering of required signers for the transaction.
+       * </pre>
+       *
+       * <code>string payer = 3;</code>
+       * @return The bytes for payer.
+       */
+      public com.google.protobuf.ByteString
+          getPayerBytes() {
+        java.lang.Object ref = payer_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          payer_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * if unset, the first signer is responsible for paying the fees. If set, the specified account must pay the fees.
+       * the payer must be a tx signer (and thus have signed this field in AuthInfo).
+       * setting this field does *not* change the ordering of required signers for the transaction.
+       * </pre>
+       *
+       * <code>string payer = 3;</code>
+       * @param value The payer to set.
+       * @return This builder for chaining.
+       */
+      public Builder setPayer(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        payer_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * if unset, the first signer is responsible for paying the fees. If set, the specified account must pay the fees.
+       * the payer must be a tx signer (and thus have signed this field in AuthInfo).
+       * setting this field does *not* change the ordering of required signers for the transaction.
+       * </pre>
+       *
+       * <code>string payer = 3;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearPayer() {
+        
+        payer_ = getDefaultInstance().getPayer();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * if unset, the first signer is responsible for paying the fees. If set, the specified account must pay the fees.
+       * the payer must be a tx signer (and thus have signed this field in AuthInfo).
+       * setting this field does *not* change the ordering of required signers for the transaction.
+       * </pre>
+       *
+       * <code>string payer = 3;</code>
+       * @param value The bytes for payer to set.
+       * @return This builder for chaining.
+       */
+      public Builder setPayerBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        payer_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object granter_ = "";
+      /**
+       * <pre>
+       * if set, the fee payer (either the first signer or the value of the payer field) requests that a fee grant be used
+       * to pay fees instead of the fee payer's own balance. If an appropriate fee grant does not exist or the chain does
+       * not support fee grants, this will fail
+       * </pre>
+       *
+       * <code>string granter = 4;</code>
+       * @return The granter.
+       */
+      public java.lang.String getGranter() {
+        java.lang.Object ref = granter_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          granter_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       * if set, the fee payer (either the first signer or the value of the payer field) requests that a fee grant be used
+       * to pay fees instead of the fee payer's own balance. If an appropriate fee grant does not exist or the chain does
+       * not support fee grants, this will fail
+       * </pre>
+       *
+       * <code>string granter = 4;</code>
+       * @return The bytes for granter.
+       */
+      public com.google.protobuf.ByteString
+          getGranterBytes() {
+        java.lang.Object ref = granter_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          granter_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * if set, the fee payer (either the first signer or the value of the payer field) requests that a fee grant be used
+       * to pay fees instead of the fee payer's own balance. If an appropriate fee grant does not exist or the chain does
+       * not support fee grants, this will fail
+       * </pre>
+       *
+       * <code>string granter = 4;</code>
+       * @param value The granter to set.
+       * @return This builder for chaining.
+       */
+      public Builder setGranter(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        granter_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * if set, the fee payer (either the first signer or the value of the payer field) requests that a fee grant be used
+       * to pay fees instead of the fee payer's own balance. If an appropriate fee grant does not exist or the chain does
+       * not support fee grants, this will fail
+       * </pre>
+       *
+       * <code>string granter = 4;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearGranter() {
+        
+        granter_ = getDefaultInstance().getGranter();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * if set, the fee payer (either the first signer or the value of the payer field) requests that a fee grant be used
+       * to pay fees instead of the fee payer's own balance. If an appropriate fee grant does not exist or the chain does
+       * not support fee grants, this will fail
+       * </pre>
+       *
+       * <code>string granter = 4;</code>
+       * @param value The bytes for granter to set.
+       * @return This builder for chaining.
+       */
+      public Builder setGranterBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        granter_ = value;
+        onChanged();
+        return this;
+      }
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -11683,47 +12231,48 @@ public final class TxOuterClass {
   static {
     java.lang.String[] descriptorData = {
       "\n\032cosmos/tx/v1beta1/tx.proto\022\021cosmos.tx." +
-      "v1beta1\032\024gogoproto/gogo.proto\032\'cosmos/ba" +
-      "se/crypto/v1beta1/crypto.proto\032\036cosmos/b" +
-      "ase/v1beta1/coin.proto\032\'cosmos/tx/signin" +
-      "g/v1beta1/signing.proto\032\031google/protobuf" +
-      "/any.proto\"q\n\002Tx\022\'\n\004body\030\001 \001(\0132\031.cosmos." +
-      "tx.v1beta1.TxBody\022.\n\tauth_info\030\002 \001(\0132\033.c" +
-      "osmos.tx.v1beta1.AuthInfo\022\022\n\nsignatures\030" +
-      "\003 \003(\014\"H\n\005TxRaw\022\022\n\nbody_bytes\030\001 \001(\014\022\027\n\017au" +
-      "th_info_bytes\030\002 \001(\014\022\022\n\nsignatures\030\003 \003(\014\"" +
-      "`\n\007SignDoc\022\022\n\nbody_bytes\030\001 \001(\014\022\027\n\017auth_i" +
-      "nfo_bytes\030\002 \001(\014\022\020\n\010chain_id\030\003 \001(\t\022\026\n\016acc" +
-      "ount_number\030\004 \001(\004\"\307\001\n\006TxBody\022&\n\010messages" +
-      "\030\001 \003(\0132\024.google.protobuf.Any\022\014\n\004memo\030\002 \001" +
-      "(\t\022\026\n\016timeout_height\030\003 \001(\004\0220\n\021extension_" +
-      "options\030\377\007 \003(\0132\024.google.protobuf.Any\022=\n\036" +
-      "non_critical_extension_options\030\377\017 \003(\0132\024." +
-      "google.protobuf.Any\"d\n\010AuthInfo\0223\n\014signe" +
-      "r_infos\030\001 \003(\0132\035.cosmos.tx.v1beta1.Signer" +
-      "Info\022#\n\003fee\030\002 \001(\0132\026.cosmos.tx.v1beta1.Fe" +
-      "e\"\211\001\n\nSignerInfo\0229\n\npublic_key\030\001 \001(\0132%.c" +
-      "osmos.base.crypto.v1beta1.PublicKey\022.\n\tm" +
-      "ode_info\030\002 \001(\0132\033.cosmos.tx.v1beta1.ModeI" +
-      "nfo\022\020\n\010sequence\030\003 \001(\004\"\261\002\n\010ModeInfo\0224\n\006si" +
-      "ngle\030\001 \001(\0132\".cosmos.tx.v1beta1.ModeInfo." +
-      "SingleH\000\0222\n\005multi\030\002 \001(\0132!.cosmos.tx.v1be" +
-      "ta1.ModeInfo.MultiH\000\032;\n\006Single\0221\n\004mode\030\001" +
-      " \001(\0162#.cosmos.tx.signing.v1beta1.SignMod" +
-      "e\032w\n\005Multi\022=\n\010bitarray\030\001 \001(\0132+.cosmos.ba" +
-      "se.crypto.v1beta1.CompactBitArray\022/\n\nmod" +
-      "e_infos\030\002 \003(\0132\033.cosmos.tx.v1beta1.ModeIn" +
-      "foB\005\n\003sum\"u\n\003Fee\022[\n\006amount\030\001 \003(\0132\031.cosmo" +
-      "s.base.v1beta1.CoinB0\310\336\037\000\252\337\037(github.com/" +
-      "cosmos/cosmos-sdk/types.Coins\022\021\n\tgas_lim" +
-      "it\030\002 \001(\004B\'Z%github.com/cosmos/cosmos-sdk" +
-      "/types/txb\006proto3"
+      "v1beta1\032\024gogoproto/gogo.proto\032-cosmos/cr" +
+      "ypto/multisig/v1beta1/multisig.proto\032\036co" +
+      "smos/base/v1beta1/coin.proto\032\'cosmos/tx/" +
+      "signing/v1beta1/signing.proto\032\031google/pr" +
+      "otobuf/any.proto\"q\n\002Tx\022\'\n\004body\030\001 \001(\0132\031.c" +
+      "osmos.tx.v1beta1.TxBody\022.\n\tauth_info\030\002 \001" +
+      "(\0132\033.cosmos.tx.v1beta1.AuthInfo\022\022\n\nsigna" +
+      "tures\030\003 \003(\014\"H\n\005TxRaw\022\022\n\nbody_bytes\030\001 \001(\014" +
+      "\022\027\n\017auth_info_bytes\030\002 \001(\014\022\022\n\nsignatures\030" +
+      "\003 \003(\014\"`\n\007SignDoc\022\022\n\nbody_bytes\030\001 \001(\014\022\027\n\017" +
+      "auth_info_bytes\030\002 \001(\014\022\020\n\010chain_id\030\003 \001(\t\022" +
+      "\026\n\016account_number\030\004 \001(\004\"\307\001\n\006TxBody\022&\n\010me" +
+      "ssages\030\001 \003(\0132\024.google.protobuf.Any\022\014\n\004me" +
+      "mo\030\002 \001(\t\022\026\n\016timeout_height\030\003 \001(\004\0220\n\021exte" +
+      "nsion_options\030\377\007 \003(\0132\024.google.protobuf.A" +
+      "ny\022=\n\036non_critical_extension_options\030\377\017 " +
+      "\003(\0132\024.google.protobuf.Any\"d\n\010AuthInfo\0223\n" +
+      "\014signer_infos\030\001 \003(\0132\035.cosmos.tx.v1beta1." +
+      "SignerInfo\022#\n\003fee\030\002 \001(\0132\026.cosmos.tx.v1be" +
+      "ta1.Fee\"x\n\nSignerInfo\022(\n\npublic_key\030\001 \001(" +
+      "\0132\024.google.protobuf.Any\022.\n\tmode_info\030\002 \001" +
+      "(\0132\033.cosmos.tx.v1beta1.ModeInfo\022\020\n\010seque" +
+      "nce\030\003 \001(\004\"\265\002\n\010ModeInfo\0224\n\006single\030\001 \001(\0132\"" +
+      ".cosmos.tx.v1beta1.ModeInfo.SingleH\000\0222\n\005" +
+      "multi\030\002 \001(\0132!.cosmos.tx.v1beta1.ModeInfo" +
+      ".MultiH\000\032;\n\006Single\0221\n\004mode\030\001 \001(\0162#.cosmo" +
+      "s.tx.signing.v1beta1.SignMode\032{\n\005Multi\022A" +
+      "\n\010bitarray\030\001 \001(\0132/.cosmos.crypto.multisi" +
+      "g.v1beta1.CompactBitArray\022/\n\nmode_infos\030" +
+      "\002 \003(\0132\033.cosmos.tx.v1beta1.ModeInfoB\005\n\003su" +
+      "m\"\225\001\n\003Fee\022[\n\006amount\030\001 \003(\0132\031.cosmos.base." +
+      "v1beta1.CoinB0\310\336\037\000\252\337\037(github.com/cosmos/" +
+      "cosmos-sdk/types.Coins\022\021\n\tgas_limit\030\002 \001(" +
+      "\004\022\r\n\005payer\030\003 \001(\t\022\017\n\007granter\030\004 \001(\tB\'Z%git" +
+      "hub.com/cosmos/cosmos-sdk/types/txb\006prot" +
+      "o3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
           com.google.protobuf.GoGoProtos.getDescriptor(),
-          cosmos.base.crypto.v1beta1.Crypto.getDescriptor(),
+          cosmos.crypto.multisig.v1beta1.Multisig.getDescriptor(),
           cosmos.base.v1beta1.CoinOuterClass.getDescriptor(),
           cosmos.tx.signing.v1beta1.Signing.getDescriptor(),
           com.google.protobuf.AnyProto.getDescriptor(),
@@ -11787,7 +12336,7 @@ public final class TxOuterClass {
     internal_static_cosmos_tx_v1beta1_Fee_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_cosmos_tx_v1beta1_Fee_descriptor,
-        new java.lang.String[] { "Amount", "GasLimit", });
+        new java.lang.String[] { "Amount", "GasLimit", "Payer", "Granter", });
     com.google.protobuf.ExtensionRegistry registry =
         com.google.protobuf.ExtensionRegistry.newInstance();
     registry.add(com.google.protobuf.GoGoProtos.castrepeated);
@@ -11795,7 +12344,7 @@ public final class TxOuterClass {
     com.google.protobuf.Descriptors.FileDescriptor
         .internalUpdateFileDescriptor(descriptor, registry);
     com.google.protobuf.GoGoProtos.getDescriptor();
-    cosmos.base.crypto.v1beta1.Crypto.getDescriptor();
+    cosmos.crypto.multisig.v1beta1.Multisig.getDescriptor();
     cosmos.base.v1beta1.CoinOuterClass.getDescriptor();
     cosmos.tx.signing.v1beta1.Signing.getDescriptor();
     com.google.protobuf.AnyProto.getDescriptor();

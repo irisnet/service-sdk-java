@@ -56,8 +56,9 @@ public final class Pagination {
     /**
      * <pre>
      * count_total is set to true  to indicate that the result set should include
-     * a count of the total number of items available for pagination in UIs. count_total
-     * is only respected when offset is used. It is ignored when key is set.
+     * a count of the total number of items available for pagination in UIs.
+     * count_total is only respected when offset is used. It is ignored when key
+     * is set.
      * </pre>
      *
      * <code>bool count_total = 4;</code>
@@ -227,8 +228,9 @@ public final class Pagination {
     /**
      * <pre>
      * count_total is set to true  to indicate that the result set should include
-     * a count of the total number of items available for pagination in UIs. count_total
-     * is only respected when offset is used. It is ignored when key is set.
+     * a count of the total number of items available for pagination in UIs.
+     * count_total is only respected when offset is used. It is ignored when key
+     * is set.
      * </pre>
      *
      * <code>bool count_total = 4;</code>
@@ -755,8 +757,9 @@ public final class Pagination {
       /**
        * <pre>
        * count_total is set to true  to indicate that the result set should include
-       * a count of the total number of items available for pagination in UIs. count_total
-       * is only respected when offset is used. It is ignored when key is set.
+       * a count of the total number of items available for pagination in UIs.
+       * count_total is only respected when offset is used. It is ignored when key
+       * is set.
        * </pre>
        *
        * <code>bool count_total = 4;</code>
@@ -769,8 +772,9 @@ public final class Pagination {
       /**
        * <pre>
        * count_total is set to true  to indicate that the result set should include
-       * a count of the total number of items available for pagination in UIs. count_total
-       * is only respected when offset is used. It is ignored when key is set.
+       * a count of the total number of items available for pagination in UIs.
+       * count_total is only respected when offset is used. It is ignored when key
+       * is set.
        * </pre>
        *
        * <code>bool count_total = 4;</code>
@@ -786,8 +790,9 @@ public final class Pagination {
       /**
        * <pre>
        * count_total is set to true  to indicate that the result set should include
-       * a count of the total number of items available for pagination in UIs. count_total
-       * is only respected when offset is used. It is ignored when key is set.
+       * a count of the total number of items available for pagination in UIs.
+       * count_total is only respected when offset is used. It is ignored when key
+       * is set.
        * </pre>
        *
        * <code>bool count_total = 4;</code>
@@ -880,8 +885,8 @@ public final class Pagination {
   }
   /**
    * <pre>
-   * PageResponse is to be embedded in gRPC response messages where the corresponding
-   * request message has used PageRequest.
+   * PageResponse is to be embedded in gRPC response messages where the
+   * corresponding request message has used PageRequest.
    *  message SomeResponse {
    *          repeated Bar results = 1;
    *          PageResponse page = 2;
@@ -1176,8 +1181,8 @@ public final class Pagination {
     }
     /**
      * <pre>
-     * PageResponse is to be embedded in gRPC response messages where the corresponding
-     * request message has used PageRequest.
+     * PageResponse is to be embedded in gRPC response messages where the
+     * corresponding request message has used PageRequest.
      *  message SomeResponse {
      *          repeated Bar results = 1;
      *          PageResponse page = 2;

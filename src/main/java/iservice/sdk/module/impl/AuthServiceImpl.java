@@ -26,7 +26,7 @@ public class AuthServiceImpl implements IAuthService {
     @Override
     public Auth.BaseAccount queryAccount(String address) throws IOException {
 
-        QueryOuterClass.QueryAccountRequest req = QueryOuterClass.QueryAccountRequest.newBuilder().setAddress(ByteString.copyFrom(Bech32Utils.fromBech32(address))).build();
+        QueryOuterClass.QueryAccountRequest req = QueryOuterClass.QueryAccountRequest.newBuilder().setAddress(address).build();
 
         QueryOuterClass.QueryAccountResponse res = this.queryBlockingStub.account(req);
         Auth.BaseAccount baseAccount = Auth.BaseAccount.parseFrom(res.getAccount().getValue().toByteArray());
