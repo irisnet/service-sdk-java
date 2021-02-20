@@ -1,6 +1,5 @@
 package iservice.sdk.core;
 
-import iservice.sdk.entity.options.TxOptions;
 import org.bouncycastle.crypto.CryptoException;
 import org.apache.log4j.Logger;
 import com.alibaba.fastjson.JSON;
@@ -9,11 +8,11 @@ import java.io.IOException;
 import java.util.*;
 
 import com.google.protobuf.Any;
-import com.google.protobuf.ByteString;
 import cosmos.tx.v1beta1.TxOuterClass;
 import irismod.service.QueryGrpc;
-import irismod.service.Service;
+import irismod.service.Tx;
 
+import iservice.sdk.entity.options.TxOptions;
 import iservice.sdk.entity.BaseServiceRequest;
 import iservice.sdk.entity.options.ServiceClientOptions;
 import iservice.sdk.entity.ServiceMessage;
@@ -30,7 +29,6 @@ import iservice.sdk.net.GrpcChannel;
 import iservice.sdk.net.HttpClient;
 import iservice.sdk.net.WebSocketClient;
 import iservice.sdk.net.WebSocketClientOptions;
-import iservice.sdk.util.Bech32Utils;
 import iservice.sdk.util.SubscribeUtil;
 
 /**
@@ -115,12 +113,12 @@ public final class ServiceClient {
 
     String inputJson = JSON.toJSONString(new ServiceMessage<>(req.getHeader(), req.getBody()));
 
-    Service.MsgCallService.Builder msgBuilder = Service.MsgCallService.newBuilder();
+    Tx.MsgCallService.Builder msgBuilder = Tx.MsgCallService.newBuilder();
     req.getProviders().forEach(address -> {
-      msgBuilder.addProviders(ByteString.copyFrom(Bech32Utils.fromBech32(address)));
+      msgBuilder.addProviders(address);
     });
 
-    msgBuilder.setConsumer(ByteString.copyFrom(Bech32Utils.fromBech32(this.getKeyService().showAddress(req.getKeyName()))))
+    msgBuilder.setConsumer(this.getKeyService().showAddress(req.getKeyName()))
       .setServiceName(req.getServiceName())
       .setInput(inputJson)
       .addAllServiceFeeCap(req.getServiceFeeCap())

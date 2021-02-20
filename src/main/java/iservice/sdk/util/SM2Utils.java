@@ -25,9 +25,8 @@ public class SM2Utils {
         return SM2Util.sign(privkeyParameters, "1234567812345678".getBytes(), signdoc);
     }
 
-    public boolean verify(BigInteger privkey, byte[] srcData, byte[] signature) {
-        ECPrivateKeyParameters privkeyParameters = BCECUtil.createECPrivateKeyParameters(privkey, SM2Util.DOMAIN_PARAMS);
-        ECPublicKeyParameters publicKeyParameters = BCECUtil.buildECPublicKeyByPrivateKey(privkeyParameters);
+    public boolean verify(ECPoint pubkey, byte[] srcData, byte[] signature) {
+        ECPublicKeyParameters publicKeyParameters = BCECUtil.createECPublicKeyParameters(pubkey.getXCoord().toBigInteger(), pubkey.getYCoord().toBigInteger(), SM2Util.CURVE, SM2Util.DOMAIN_PARAMS);
         return SM2Util.verify(publicKeyParameters, srcData, signature);
     }
     

@@ -23,10 +23,20 @@ public final class QueryOuterClass {
      * address defines the address to query for.
      * </pre>
      *
-     * <code>bytes address = 1 [(.gogoproto.casttype) = "github.com/cosmos/cosmos-sdk/types.AccAddress"];</code>
+     * <code>string address = 1;</code>
      * @return The address.
      */
-    com.google.protobuf.ByteString getAddress();
+    java.lang.String getAddress();
+    /**
+     * <pre>
+     * address defines the address to query for.
+     * </pre>
+     *
+     * <code>string address = 1;</code>
+     * @return The bytes for address.
+     */
+    com.google.protobuf.ByteString
+        getAddressBytes();
   }
   /**
    * <pre>
@@ -45,7 +55,7 @@ public final class QueryOuterClass {
       super(builder);
     }
     private QueryAccountRequest() {
-      address_ = com.google.protobuf.ByteString.EMPTY;
+      address_ = "";
     }
 
     @java.lang.Override
@@ -79,8 +89,9 @@ public final class QueryOuterClass {
               done = true;
               break;
             case 10: {
+              java.lang.String s = input.readStringRequireUtf8();
 
-              address_ = input.readBytes();
+              address_ = s;
               break;
             }
             default: {
@@ -116,18 +127,49 @@ public final class QueryOuterClass {
     }
 
     public static final int ADDRESS_FIELD_NUMBER = 1;
-    private com.google.protobuf.ByteString address_;
+    private volatile java.lang.Object address_;
     /**
      * <pre>
      * address defines the address to query for.
      * </pre>
      *
-     * <code>bytes address = 1 [(.gogoproto.casttype) = "github.com/cosmos/cosmos-sdk/types.AccAddress"];</code>
+     * <code>string address = 1;</code>
      * @return The address.
      */
     @java.lang.Override
-    public com.google.protobuf.ByteString getAddress() {
-      return address_;
+    public java.lang.String getAddress() {
+      java.lang.Object ref = address_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        address_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * address defines the address to query for.
+     * </pre>
+     *
+     * <code>string address = 1;</code>
+     * @return The bytes for address.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getAddressBytes() {
+      java.lang.Object ref = address_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        address_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
 
     private byte memoizedIsInitialized = -1;
@@ -144,8 +186,8 @@ public final class QueryOuterClass {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!address_.isEmpty()) {
-        output.writeBytes(1, address_);
+      if (!getAddressBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, address_);
       }
       unknownFields.writeTo(output);
     }
@@ -156,9 +198,8 @@ public final class QueryOuterClass {
       if (size != -1) return size;
 
       size = 0;
-      if (!address_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(1, address_);
+      if (!getAddressBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, address_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -327,7 +368,7 @@ public final class QueryOuterClass {
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        address_ = com.google.protobuf.ByteString.EMPTY;
+        address_ = "";
 
         return this;
       }
@@ -404,8 +445,9 @@ public final class QueryOuterClass {
 
       public Builder mergeFrom(cosmos.auth.v1beta1.QueryOuterClass.QueryAccountRequest other) {
         if (other == cosmos.auth.v1beta1.QueryOuterClass.QueryAccountRequest.getDefaultInstance()) return this;
-        if (other.getAddress() != com.google.protobuf.ByteString.EMPTY) {
-          setAddress(other.getAddress());
+        if (!other.getAddress().isEmpty()) {
+          address_ = other.address_;
+          onChanged();
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -436,29 +478,59 @@ public final class QueryOuterClass {
         return this;
       }
 
-      private com.google.protobuf.ByteString address_ = com.google.protobuf.ByteString.EMPTY;
+      private java.lang.Object address_ = "";
       /**
        * <pre>
        * address defines the address to query for.
        * </pre>
        *
-       * <code>bytes address = 1 [(.gogoproto.casttype) = "github.com/cosmos/cosmos-sdk/types.AccAddress"];</code>
+       * <code>string address = 1;</code>
        * @return The address.
        */
-      @java.lang.Override
-      public com.google.protobuf.ByteString getAddress() {
-        return address_;
+      public java.lang.String getAddress() {
+        java.lang.Object ref = address_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          address_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
       }
       /**
        * <pre>
        * address defines the address to query for.
        * </pre>
        *
-       * <code>bytes address = 1 [(.gogoproto.casttype) = "github.com/cosmos/cosmos-sdk/types.AccAddress"];</code>
+       * <code>string address = 1;</code>
+       * @return The bytes for address.
+       */
+      public com.google.protobuf.ByteString
+          getAddressBytes() {
+        java.lang.Object ref = address_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          address_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * address defines the address to query for.
+       * </pre>
+       *
+       * <code>string address = 1;</code>
        * @param value The address to set.
        * @return This builder for chaining.
        */
-      public Builder setAddress(com.google.protobuf.ByteString value) {
+      public Builder setAddress(
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -472,12 +544,32 @@ public final class QueryOuterClass {
        * address defines the address to query for.
        * </pre>
        *
-       * <code>bytes address = 1 [(.gogoproto.casttype) = "github.com/cosmos/cosmos-sdk/types.AccAddress"];</code>
+       * <code>string address = 1;</code>
        * @return This builder for chaining.
        */
       public Builder clearAddress() {
         
         address_ = getDefaultInstance().getAddress();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * address defines the address to query for.
+       * </pre>
+       *
+       * <code>string address = 1;</code>
+       * @param value The bytes for address to set.
+       * @return This builder for chaining.
+       */
+      public Builder setAddressBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        address_ = value;
         onChanged();
         return this;
       }
@@ -2371,22 +2463,21 @@ public final class QueryOuterClass {
       "s.auth.v1beta1\032\024gogoproto/gogo.proto\032\031go" +
       "ogle/protobuf/any.proto\032\034google/api/anno" +
       "tations.proto\032\036cosmos/auth/v1beta1/auth." +
-      "proto\032\031cosmos_proto/cosmos.proto\"Y\n\023Quer" +
-      "yAccountRequest\022B\n\007address\030\001 \001(\014B1\372\336\037-gi" +
-      "thub.com/cosmos/cosmos-sdk/types.AccAddr" +
-      "ess\"K\n\024QueryAccountResponse\0223\n\007account\030\001" +
-      " \001(\0132\024.google.protobuf.AnyB\014\312\264-\010AccountI" +
-      "\"\024\n\022QueryParamsRequest\"H\n\023QueryParamsRes" +
-      "ponse\0221\n\006params\030\001 \001(\0132\033.cosmos.auth.v1be" +
-      "ta1.ParamsB\004\310\336\037\0002\234\002\n\005Query\022\217\001\n\007Account\022(" +
-      ".cosmos.auth.v1beta1.QueryAccountRequest" +
-      "\032).cosmos.auth.v1beta1.QueryAccountRespo" +
-      "nse\"/\202\323\344\223\002)\022\'/cosmos/auth/v1beta1/accoun" +
-      "ts/{address}\022\200\001\n\006Params\022\'.cosmos.auth.v1" +
-      "beta1.QueryParamsRequest\032(.cosmos.auth.v" +
-      "1beta1.QueryParamsResponse\"#\202\323\344\223\002\035\022\033/cos" +
-      "mos/auth/v1beta1/paramsB+Z)github.com/co" +
-      "smos/cosmos-sdk/x/auth/typesb\006proto3"
+      "proto\032\031cosmos_proto/cosmos.proto\"0\n\023Quer" +
+      "yAccountRequest\022\017\n\007address\030\001 \001(\t:\010\350\240\037\000\210\240" +
+      "\037\000\"K\n\024QueryAccountResponse\0223\n\007account\030\001 " +
+      "\001(\0132\024.google.protobuf.AnyB\014\312\264-\010AccountI\"" +
+      "\024\n\022QueryParamsRequest\"H\n\023QueryParamsResp" +
+      "onse\0221\n\006params\030\001 \001(\0132\033.cosmos.auth.v1bet" +
+      "a1.ParamsB\004\310\336\037\0002\234\002\n\005Query\022\217\001\n\007Account\022(." +
+      "cosmos.auth.v1beta1.QueryAccountRequest\032" +
+      ").cosmos.auth.v1beta1.QueryAccountRespon" +
+      "se\"/\202\323\344\223\002)\022\'/cosmos/auth/v1beta1/account" +
+      "s/{address}\022\200\001\n\006Params\022\'.cosmos.auth.v1b" +
+      "eta1.QueryParamsRequest\032(.cosmos.auth.v1" +
+      "beta1.QueryParamsResponse\"#\202\323\344\223\002\035\022\033/cosm" +
+      "os/auth/v1beta1/paramsB+Z)github.com/cos" +
+      "mos/cosmos-sdk/x/auth/typesb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -2424,7 +2515,8 @@ public final class QueryOuterClass {
     com.google.protobuf.ExtensionRegistry registry =
         com.google.protobuf.ExtensionRegistry.newInstance();
     registry.add(cosmos_proto.Cosmos.acceptsInterface);
-    registry.add(com.google.protobuf.GoGoProtos.casttype);
+    registry.add(com.google.protobuf.GoGoProtos.equal);
+    registry.add(com.google.protobuf.GoGoProtos.goprotoGetters);
     registry.add(com.google.protobuf.GoGoProtos.nullable);
     registry.add(com.google.api.AnnotationsProto.http);
     com.google.protobuf.Descriptors.FileDescriptor
