@@ -1,22 +1,15 @@
 package iservice.sdk.core;
 
-import org.bouncycastle.crypto.CryptoException;
-import org.apache.log4j.Logger;
 import com.alibaba.fastjson.JSON;
-
-import java.io.IOException;
-import java.util.*;
-
 import com.google.protobuf.Any;
 import cosmos.tx.v1beta1.TxOuterClass;
 import irismod.service.QueryGrpc;
 import irismod.service.Tx;
-
-import iservice.sdk.entity.options.TxOptions;
 import iservice.sdk.entity.BaseServiceRequest;
-import iservice.sdk.entity.options.ServiceClientOptions;
 import iservice.sdk.entity.ServiceMessage;
 import iservice.sdk.entity.WrappedRequest;
+import iservice.sdk.entity.options.ServiceClientOptions;
+import iservice.sdk.entity.options.TxOptions;
 import iservice.sdk.exception.WebSocketConnectException;
 import iservice.sdk.message.WrappedMessage;
 import iservice.sdk.message.params.SubscribeParam;
@@ -30,6 +23,11 @@ import iservice.sdk.net.HttpClient;
 import iservice.sdk.net.WebSocketClient;
 import iservice.sdk.net.WebSocketClientOptions;
 import iservice.sdk.util.SubscribeUtil;
+import org.apache.log4j.Logger;
+import org.bouncycastle.crypto.CryptoException;
+
+import java.io.IOException;
+import java.util.*;
 
 /**
  * @author Yelong
@@ -138,7 +136,7 @@ public final class ServiceClient {
 
     Map<String, String> params = new HashMap<>();
     params.put("tx", Base64.getEncoder().encodeToString(tx.toByteArray()));
-    WrappedRequest<Map<String, String>> msg = new WrappedRequest<>(params);
+    WrappedRequest<Map> msg = new WrappedRequest<>(params);
     msg.setMethod("broadcast_tx_sync");
     String res = HttpClient.getInstance().post(options.getRpcURI().toString(), JSON.toJSONString(msg));
     // TODO error handler
