@@ -60,7 +60,7 @@ package iservice.sdk.module.impl;
 public class BCryptImpl {
 
     // Table for Base64 encoding
-    static private final char base64_code[] = {
+    static private final char[] base64_code = {
             '.', '/', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J',
             'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V',
             'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h',
@@ -70,7 +70,7 @@ public class BCryptImpl {
     };
 
     // Table for Base64 decoding
-    static private final byte index_64[] = {
+    static private final byte[] index_64 = {
             -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
             -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
             -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
@@ -96,7 +96,7 @@ public class BCryptImpl {
      * @return	base64-encoded string
      * @exception IllegalArgumentException if the length is invalid
      */
-    public static String encode_base64(byte d[], int len)
+    public static String encode_base64(byte[] d, int len)
             throws IllegalArgumentException {
         int off = 0;
         StringBuilder rs = new StringBuilder();
@@ -154,7 +154,7 @@ public class BCryptImpl {
             throws IllegalArgumentException {
         StringBuilder rs = new StringBuilder();
         int off = 0, slen = s.length(), olen = 0;
-        byte ret[];
+        byte[] ret;
         byte c1, c2, c3, c4, o;
 
         if (maxolen <= 0)
