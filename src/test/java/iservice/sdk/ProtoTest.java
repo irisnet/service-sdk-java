@@ -9,6 +9,6 @@ public class ProtoTest {
     @Test
     public void testCoin() {
         CoinOuterClass.Coin coin = CoinOuterClass.Coin.newBuilder().setAmount("10").setDenom("iris").build();
-        Assert.assertEquals(coin.toByteArray().length, 9);
+        Assert.assertEquals(coin.toByteArray().length, 10);
     }
 }
