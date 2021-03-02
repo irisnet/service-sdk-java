@@ -1,5 +1,20 @@
 package iservice.sdk.module.impl;
 
+import com.google.protobuf.Any;
+import com.google.protobuf.ByteString;
+import cosmos.auth.v1beta1.Auth;
+import cosmos.base.v1beta1.CoinOuterClass;
+import cosmos.crypto.secp256k1.Keys;
+import cosmos.tx.signing.v1beta1.Signing;
+import cosmos.tx.v1beta1.TxOuterClass;
+import iservice.sdk.core.ServiceClient;
+import iservice.sdk.core.ServiceClientFactory;
+import iservice.sdk.entity.Key;
+import iservice.sdk.entity.options.TxOptions;
+import iservice.sdk.exception.ServiceSDKException;
+import iservice.sdk.module.IAuthService;
+import iservice.sdk.module.IKeyService;
+import iservice.sdk.module.ITxService;
 import org.apache.commons.lang3.ArrayUtils;
 import org.bitcoinj.core.ECKey;
 import org.bitcoinj.core.Sha256Hash;
@@ -7,22 +22,6 @@ import org.web3j.crypto.ECKeyPair;
 import org.web3j.crypto.Sign;
 
 import java.io.IOException;
-
-import com.google.protobuf.ByteString;
-import cosmos.auth.v1beta1.Auth;
-import cosmos.base.crypto.v1beta1.Crypto;
-import cosmos.base.v1beta1.CoinOuterClass;
-import cosmos.tx.signing.v1beta1.Signing;
-import cosmos.tx.v1beta1.TxOuterClass;
-
-import iservice.sdk.entity.options.TxOptions;
-import iservice.sdk.core.ServiceClient;
-import iservice.sdk.core.ServiceClientFactory;
-import iservice.sdk.entity.Key;
-import iservice.sdk.exception.ServiceSDKException;
-import iservice.sdk.module.IAuthService;
-import iservice.sdk.module.IKeyService;
-import iservice.sdk.module.ITxService;
 
 /**
  * @author Yelong
@@ -52,7 +51,7 @@ public class DefaultTxServiceImpl implements ITxService {
     TxOuterClass.AuthInfo ai = TxOuterClass.AuthInfo.newBuilder()
       .addSignerInfos(
         TxOuterClass.SignerInfo.newBuilder()
-          .setPublicKey(Crypto.PublicKey.newBuilder().setSecp256K1(ByteString.copyFrom(encodedPubkey)))
+          .setPublicKey(Any.pack(Keys.PubKey.newBuilder().setKey(ByteString.copyFrom(encodedPubkey)).build(), "/"))
           .setModeInfo(TxOuterClass.ModeInfo.newBuilder().setSingle(TxOuterClass.ModeInfo.Single.newBuilder().setMode(Signing.SignMode.SIGN_MODE_DIRECT)))
           .setSequence(baseAccount.getSequence()))
 
