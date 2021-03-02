@@ -29,7 +29,7 @@ public class SM2KeyServiceTest {
 
     private static IKeyService keyService ;
     private static final String HRP = "iaa";
-    private static Map<KEYS, Object> paramMap = new HashMap<>();
+    private static final Map<KEYS, Object> paramMap = new HashMap<>();
     private enum KEYS {
         ADDRESS,
         MNEMONIC,

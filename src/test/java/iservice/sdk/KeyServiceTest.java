@@ -10,6 +10,8 @@ import org.junit.runners.MethodSorters;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.HashMap;
@@ -25,18 +27,25 @@ import static org.junit.Assert.assertTrue;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class KeyServiceTest {
 
-    private static IKeyService keyService = ServiceClientFactory.getInstance().setOptions(new ServiceClientOptions()).getClient().getKeyService();
+    private static IKeyService keyService;
     private static final String HRP = "iaa";
-    private static Map<KEYS, Object> paramMap = new HashMap<>();
+    private static final Map<KEYS, Object> paramMap = new HashMap<>();
     private enum KEYS {
         ADDRESS,
         MNEMONIC,
         FILEPATH
     }
 
+    private void init() throws URISyntaxException {
+        ServiceClientOptions options = new ServiceClientOptions();
+        options.setGrpcURI(new URI("http://localhost:26657"));
+        options.setRpcURI(new URI("http://localhost:9090"));
+        keyService = ServiceClientFactory.getInstance().setOptions(options).getClient().getKeyService();
+    }
+
     @Test
     public void test1AddKey() throws Exception {
-
+        init();
         Mnemonic mnemonic = keyService.addKey("test", "123456");
         assertNotNull(mnemonic.getAddress());
         assertNotNull(mnemonic.getMnemonic());
@@ -78,7 +87,7 @@ public class KeyServiceTest {
         BufferedReader bfr = Files.newBufferedReader(Paths.get((String) paramMap.get(KEYS.FILEPATH)));
         String keystore = bfr.readLine();
         bfr.close();
-        String address = keyService.importFromKeystore("test1", "123456", "123456", keystore);
+        String address = keyService.importFromKeystore("test", "123456", "123456", (String) paramMap.get(KEYS.FILEPATH));
         assertNotNull(address);
         assertEquals("Wrong Address", paramMap.get(KEYS.ADDRESS), address);
     }
