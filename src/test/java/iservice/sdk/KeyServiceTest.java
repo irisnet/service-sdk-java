@@ -2,6 +2,7 @@ package iservice.sdk;
 
 import iservice.sdk.core.ServiceClientFactory;
 import iservice.sdk.entity.Mnemonic;
+import iservice.sdk.entity.SignAlgo;
 import iservice.sdk.entity.options.ServiceClientOptions;
 import iservice.sdk.module.IKeyService;
 import org.junit.FixMethodOrder;
@@ -56,7 +57,7 @@ public class KeyServiceTest {
     }
 
     @Test
-    public void test2RecoverKey() throws Exception {
+    public void test2RecoverKey() {
         String address = keyService.recoverKey("test1", "123456", (String) paramMap.get(KEYS.MNEMONIC), true, 0, "");
         assertNotNull(address);
         assertTrue("Wrong HRP", address.startsWith(HRP));
@@ -64,7 +65,7 @@ public class KeyServiceTest {
     }
 
     @Test
-    public void test3ShowAddress() throws Exception {
+    public void test3ShowAddress() {
         String address = keyService.showAddress("test1");
         assertNotNull(address);
         assertEquals("Wrong Address", paramMap.get(KEYS.ADDRESS), address);
