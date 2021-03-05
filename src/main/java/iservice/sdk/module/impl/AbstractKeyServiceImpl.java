@@ -81,8 +81,7 @@ public abstract class AbstractKeyServiceImpl implements IKeyService {
     public final Key getKey(String name, String password) throws ServiceSDKException {
         Key key = this.keyDAO.read(name);
         byte[] decrypted = this.keyDAO.decrypt(key.getPrivKey(), password);
-        Key key1 = new Key(key.getAddress(), decrypted);
-        return key1;
+        return new Key(key.getAddress(), decrypted);
     }
 
     public String writeArmorToFile(File filePath, String address, String context) throws FileNotFoundException {

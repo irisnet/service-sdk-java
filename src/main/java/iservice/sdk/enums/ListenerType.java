@@ -12,7 +12,7 @@ public enum ListenerType {
     /**
      * consumer
      */
-    CONSUMER("message")
+    CONSUMER("response_service")
     ;
     private final String DOT = ".";
     private final String PARAM_PREFIX;

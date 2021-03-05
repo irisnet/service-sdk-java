@@ -5,24 +5,18 @@ package iservice.sdk.enums;
  * @date : 2020/9/23 7:03 下午
  */
 public enum SubscribeQueryKeyEnum {
-
-    /**
-     * ---------------------common
-     */
-    SERVICE_NAME("service_name"),
-
     /**
      * ---------------for provider
      */
+    SERVICE_NAME("service_name"),
     PROVIDER("provider"),
 
 
     /**
      * ---------------for consumer
      */
-    MODULE("module"),
-    SENDER("sender"),
     CONSUMER("consumer"),
+    REQUEST_CONTEXT_ID("request_context_id"),
     ;
     private final String key;
 

@@ -13,7 +13,7 @@ public class TestConsumerListener2 extends AbstractConsumerListener<TestServiceR
     public ConsumerListenerOptions getOptions() {
         ConsumerListenerOptions options = new ConsumerListenerOptions();
         options.setAddress("iaa1vrh28848qh5sl4ryfvl42nv6jd6twn2fz85hm7");
-        options.setSender("iaa1dwlfeqh5x4982fxmdy0wzsparle7lahljm6cf7");
+        options.setRequestContextID("50A59F536789F785D0DF48EB81BBADBFE2C1F4C02A75AF22D4545EE5D8D9870C0000000000000000");
         options.setServiceName("cross_region_open_account_query_svc");
         return options;
     }

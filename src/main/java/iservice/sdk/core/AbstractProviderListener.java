@@ -1,13 +1,21 @@
 package iservice.sdk.core;
 
+import org.bouncycastle.crypto.CryptoException;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
+
+import java.io.IOException;
+import java.util.Base64;
+import java.util.HashMap;
+import java.util.Map;
+
 import com.google.protobuf.Any;
-import com.google.protobuf.ByteString;
 import cosmos.tx.v1beta1.TxOuterClass;
 import irismod.service.QueryGrpc;
 import irismod.service.QueryOuterClass;
 import irismod.service.Service;
+import irismod.service.Tx;
+
 import iservice.sdk.entity.BaseServiceResponse;
 import iservice.sdk.entity.ServiceMessage;
 import iservice.sdk.entity.SignAlgo;
@@ -17,13 +25,6 @@ import iservice.sdk.entity.options.ServiceClientOptions;
 import iservice.sdk.net.GrpcChannel;
 import iservice.sdk.net.HttpClient;
 import iservice.sdk.util.DecodeUtil;
-import org.bouncycastle.crypto.CryptoException;
-import org.bouncycastle.util.encoders.Hex;
-
-import java.io.IOException;
-import java.util.Base64;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * @author Yelong
@@ -59,7 +60,7 @@ public abstract class AbstractProviderListener<T, B, R extends BaseServiceRespon
                 = QueryGrpc.newBlockingStub(GrpcChannel.getInstance().getChannel());
         QueryOuterClass.QueryRequestResponse request = queryBlockingStub.request(
                 QueryOuterClass.QueryRequestRequest.newBuilder()
-                        .setRequestId(ByteString.copyFrom(Hex.decode(requestId)))
+                        .setRequestId(requestId)
                         .build());
         return request.getRequest();
     }
@@ -67,7 +68,7 @@ public abstract class AbstractProviderListener<T, B, R extends BaseServiceRespon
     private void sendRes(R res, Service.Request sr) throws IOException, CryptoException {
         String outputJson = JSON.toJSONString(new ServiceMessage<>(res.getHeader(), res.getBody()));
 
-        Service.MsgRespondService msg = Service.MsgRespondService.newBuilder()
+        Tx.MsgRespondService msg = Tx.MsgRespondService.newBuilder()
                 .setRequestId(sr.getId())
                 .setOutput(outputJson)
                 .setResult("{\"code\": 200, \"message\": \"success\"}")
@@ -77,7 +78,7 @@ public abstract class AbstractProviderListener<T, B, R extends BaseServiceRespon
         TxOuterClass.TxBody body = TxOuterClass.TxBody.newBuilder()
                 .addMessages(Any.pack(msg, "/"))
                 .setMemo("")
-                .setTimeoutHeight(0)
+                .setTimeoutHeight(12)
                 .build();
 
         ServiceClientOptions options = new ServiceClientOptions();

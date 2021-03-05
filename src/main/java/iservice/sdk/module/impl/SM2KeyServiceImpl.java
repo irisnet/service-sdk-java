@@ -70,7 +70,7 @@ public class SM2KeyServiceImpl extends AbstractKeyServiceImpl {
     return addr;
   }
   @Override
-  public String importFromKeystore(String name, String keyPassword, String keystorePassword, String keystore) throws ServiceSDKException, IOException, NoSuchElementException {
+  public String importFromKeystore(String name, String keyPassword, String keystorePassword, String keystore) throws ServiceSDKException, IOException {
 
     InputStream inputStream = new FileInputStream(keystore);
     ArmoredInputStream aIS = new ArmoredInputStream(inputStream);
@@ -81,6 +81,7 @@ public class SM2KeyServiceImpl extends AbstractKeyServiceImpl {
       headersTable.put(itemSplit[0], itemSplit[1]);
     }
     byte[] encBytes = new byte[77];
+    aIS.read(encBytes);
 
     byte[] realSaltByte = Hex.decode(headersTable.get("salt"));
     String realSaltString = encode_base64(realSaltByte, 16);

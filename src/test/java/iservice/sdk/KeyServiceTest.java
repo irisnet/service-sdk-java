@@ -2,19 +2,15 @@ package iservice.sdk;
 
 import iservice.sdk.core.ServiceClientFactory;
 import iservice.sdk.entity.Mnemonic;
-import iservice.sdk.entity.SignAlgo;
 import iservice.sdk.entity.options.ServiceClientOptions;
 import iservice.sdk.module.IKeyService;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -85,9 +81,6 @@ public class KeyServiceTest {
 
     @Test
     public void test6ImporttKey() throws Exception {
-        BufferedReader bfr = Files.newBufferedReader(Paths.get((String) paramMap.get(KEYS.FILEPATH)));
-        String keystore = bfr.readLine();
-        bfr.close();
         String address = keyService.importFromKeystore("test", "123456", "123456", (String) paramMap.get(KEYS.FILEPATH));
         assertNotNull(address);
         assertEquals("Wrong Address", paramMap.get(KEYS.ADDRESS), address);

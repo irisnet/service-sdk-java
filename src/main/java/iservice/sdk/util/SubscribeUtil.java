@@ -39,9 +39,7 @@ public class SubscribeUtil {
             case CONSUMER:
                 ConsumerListenerOptions consumerListenerOptions = (ConsumerListenerOptions) options;
                 params.addCondition(new SubscribeCondition(SubscribeQueryKeyEnum.CONSUMER).eq(consumerListenerOptions.getAddress()))
-                        .addCondition(new SubscribeCondition(SubscribeQueryKeyEnum.SENDER).eq(consumerListenerOptions.getSender()))
-                        .addCondition(new SubscribeCondition(SubscribeQueryKeyEnum.MODULE).eq(consumerListenerOptions.getModule()))
-                        .addCondition(new SubscribeCondition(SubscribeQueryKeyEnum.SERVICE_NAME).eq(consumerListenerOptions.getServiceName()));
+                        .addCondition(new SubscribeCondition(SubscribeQueryKeyEnum.REQUEST_CONTEXT_ID).eq(consumerListenerOptions.getRequestContextID()));
                 break;
             default:
         }

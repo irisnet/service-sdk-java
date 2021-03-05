@@ -13,7 +13,7 @@ public class TestConsumerListener extends AbstractConsumerListener<TestServiceRe
     public ConsumerListenerOptions getOptions() {
         ConsumerListenerOptions options = new ConsumerListenerOptions();
         options.setAddress("iaa1xnddejhrcvzlhpkp45jzxlug4m82mglaay53w0");
-        options.setSender("iaa1mxatp6h7huukny9uha8u45qkfas2f6lgpa4nhw");
+        options.setRequestContextID("50A59F536789F785D0DF48EB81BBADBFE2C1F4C02A75AF22D4545EE5D8D9870C0000000000000000");
         options.setServiceName("update");
         return options;
     }
