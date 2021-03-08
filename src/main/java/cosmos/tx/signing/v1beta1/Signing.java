@@ -25,7 +25,8 @@ public final class Signing {
       implements com.google.protobuf.ProtocolMessageEnum {
     /**
      * <pre>
-     * SIGN_MODE_UNSPECIFIED specifies an unknown signing mode and will be rejected
+     * SIGN_MODE_UNSPECIFIED specifies an unknown signing mode and will be
+     * rejected
      * </pre>
      *
      * <code>SIGN_MODE_UNSPECIFIED = 0;</code>
@@ -33,8 +34,8 @@ public final class Signing {
     SIGN_MODE_UNSPECIFIED(0),
     /**
      * <pre>
-     * SIGN_MODE_DIRECT specifies a signing mode which uses SignDoc and is verified
-     * with raw bytes from Tx
+     * SIGN_MODE_DIRECT specifies a signing mode which uses SignDoc and is
+     * verified with raw bytes from Tx
      * </pre>
      *
      * <code>SIGN_MODE_DIRECT = 1;</code>
@@ -42,8 +43,9 @@ public final class Signing {
     SIGN_MODE_DIRECT(1),
     /**
      * <pre>
-     * SIGN_MODE_TEXTUAL is a future signing mode that will verify some human-readable
-     * textual representation on top of the binary representation from SIGN_MODE_DIRECT
+     * SIGN_MODE_TEXTUAL is a future signing mode that will verify some
+     * human-readable textual representation on top of the binary representation
+     * from SIGN_MODE_DIRECT
      * </pre>
      *
      * <code>SIGN_MODE_TEXTUAL = 2;</code>
@@ -63,7 +65,8 @@ public final class Signing {
 
     /**
      * <pre>
-     * SIGN_MODE_UNSPECIFIED specifies an unknown signing mode and will be rejected
+     * SIGN_MODE_UNSPECIFIED specifies an unknown signing mode and will be
+     * rejected
      * </pre>
      *
      * <code>SIGN_MODE_UNSPECIFIED = 0;</code>
@@ -71,8 +74,8 @@ public final class Signing {
     public static final int SIGN_MODE_UNSPECIFIED_VALUE = 0;
     /**
      * <pre>
-     * SIGN_MODE_DIRECT specifies a signing mode which uses SignDoc and is verified
-     * with raw bytes from Tx
+     * SIGN_MODE_DIRECT specifies a signing mode which uses SignDoc and is
+     * verified with raw bytes from Tx
      * </pre>
      *
      * <code>SIGN_MODE_DIRECT = 1;</code>
@@ -80,8 +83,9 @@ public final class Signing {
     public static final int SIGN_MODE_DIRECT_VALUE = 1;
     /**
      * <pre>
-     * SIGN_MODE_TEXTUAL is a future signing mode that will verify some human-readable
-     * textual representation on top of the binary representation from SIGN_MODE_DIRECT
+     * SIGN_MODE_TEXTUAL is a future signing mode that will verify some
+     * human-readable textual representation on top of the binary representation
+     * from SIGN_MODE_DIRECT
      * </pre>
      *
      * <code>SIGN_MODE_TEXTUAL = 2;</code>
@@ -1104,7 +1108,7 @@ public final class Signing {
      * public_key is the public key of the signer
      * </pre>
      *
-     * <code>.cosmos.base.crypto.v1beta1.PublicKey public_key = 1;</code>
+     * <code>.google.protobuf.Any public_key = 1;</code>
      * @return Whether the publicKey field is set.
      */
     boolean hasPublicKey();
@@ -1113,18 +1117,18 @@ public final class Signing {
      * public_key is the public key of the signer
      * </pre>
      *
-     * <code>.cosmos.base.crypto.v1beta1.PublicKey public_key = 1;</code>
+     * <code>.google.protobuf.Any public_key = 1;</code>
      * @return The publicKey.
      */
-    cosmos.base.crypto.v1beta1.Crypto.PublicKey getPublicKey();
+    com.google.protobuf.Any getPublicKey();
     /**
      * <pre>
      * public_key is the public key of the signer
      * </pre>
      *
-     * <code>.cosmos.base.crypto.v1beta1.PublicKey public_key = 1;</code>
+     * <code>.google.protobuf.Any public_key = 1;</code>
      */
-    cosmos.base.crypto.v1beta1.Crypto.PublicKeyOrBuilder getPublicKeyOrBuilder();
+    com.google.protobuf.AnyOrBuilder getPublicKeyOrBuilder();
 
     /**
      * <code>.cosmos.tx.signing.v1beta1.SignatureDescriptor.Data data = 2;</code>
@@ -1155,9 +1159,10 @@ public final class Signing {
   }
   /**
    * <pre>
-   * SignatureDescriptor is a convenience type which represents the full data for a
-   * signature including the public key of the signer, signing modes and the signature
-   * itself. It is primarily used for coordinating signatures between clients.
+   * SignatureDescriptor is a convenience type which represents the full data for
+   * a signature including the public key of the signer, signing modes and the
+   * signature itself. It is primarily used for coordinating signatures between
+   * clients.
    * </pre>
    *
    * Protobuf type {@code cosmos.tx.signing.v1beta1.SignatureDescriptor}
@@ -1205,11 +1210,11 @@ public final class Signing {
               done = true;
               break;
             case 10: {
-              cosmos.base.crypto.v1beta1.Crypto.PublicKey.Builder subBuilder = null;
+              com.google.protobuf.Any.Builder subBuilder = null;
               if (publicKey_ != null) {
                 subBuilder = publicKey_.toBuilder();
               }
-              publicKey_ = input.readMessage(cosmos.base.crypto.v1beta1.Crypto.PublicKey.parser(), extensionRegistry);
+              publicKey_ = input.readMessage(com.google.protobuf.Any.parser(), extensionRegistry);
               if (subBuilder != null) {
                 subBuilder.mergeFrom(publicKey_);
                 publicKey_ = subBuilder.buildPartial();
@@ -2108,7 +2113,7 @@ public final class Signing {
          * bitarray specifies which keys within the multisig are signing
          * </pre>
          *
-         * <code>.cosmos.base.crypto.v1beta1.CompactBitArray bitarray = 1;</code>
+         * <code>.cosmos.crypto.multisig.v1beta1.CompactBitArray bitarray = 1;</code>
          * @return Whether the bitarray field is set.
          */
         boolean hasBitarray();
@@ -2117,18 +2122,18 @@ public final class Signing {
          * bitarray specifies which keys within the multisig are signing
          * </pre>
          *
-         * <code>.cosmos.base.crypto.v1beta1.CompactBitArray bitarray = 1;</code>
+         * <code>.cosmos.crypto.multisig.v1beta1.CompactBitArray bitarray = 1;</code>
          * @return The bitarray.
          */
-        cosmos.base.crypto.v1beta1.Crypto.CompactBitArray getBitarray();
+        cosmos.crypto.multisig.v1beta1.Multisig.CompactBitArray getBitarray();
         /**
          * <pre>
          * bitarray specifies which keys within the multisig are signing
          * </pre>
          *
-         * <code>.cosmos.base.crypto.v1beta1.CompactBitArray bitarray = 1;</code>
+         * <code>.cosmos.crypto.multisig.v1beta1.CompactBitArray bitarray = 1;</code>
          */
-        cosmos.base.crypto.v1beta1.Crypto.CompactBitArrayOrBuilder getBitarrayOrBuilder();
+        cosmos.crypto.multisig.v1beta1.Multisig.CompactBitArrayOrBuilder getBitarrayOrBuilder();
 
         /**
          * <pre>
@@ -2226,11 +2231,11 @@ public final class Signing {
                   done = true;
                   break;
                 case 10: {
-                  cosmos.base.crypto.v1beta1.Crypto.CompactBitArray.Builder subBuilder = null;
+                  cosmos.crypto.multisig.v1beta1.Multisig.CompactBitArray.Builder subBuilder = null;
                   if (bitarray_ != null) {
                     subBuilder = bitarray_.toBuilder();
                   }
-                  bitarray_ = input.readMessage(cosmos.base.crypto.v1beta1.Crypto.CompactBitArray.parser(), extensionRegistry);
+                  bitarray_ = input.readMessage(cosmos.crypto.multisig.v1beta1.Multisig.CompactBitArray.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(bitarray_);
                     bitarray_ = subBuilder.buildPartial();
@@ -2283,13 +2288,13 @@ public final class Signing {
         }
 
         public static final int BITARRAY_FIELD_NUMBER = 1;
-        private cosmos.base.crypto.v1beta1.Crypto.CompactBitArray bitarray_;
+        private cosmos.crypto.multisig.v1beta1.Multisig.CompactBitArray bitarray_;
         /**
          * <pre>
          * bitarray specifies which keys within the multisig are signing
          * </pre>
          *
-         * <code>.cosmos.base.crypto.v1beta1.CompactBitArray bitarray = 1;</code>
+         * <code>.cosmos.crypto.multisig.v1beta1.CompactBitArray bitarray = 1;</code>
          * @return Whether the bitarray field is set.
          */
         @java.lang.Override
@@ -2301,22 +2306,22 @@ public final class Signing {
          * bitarray specifies which keys within the multisig are signing
          * </pre>
          *
-         * <code>.cosmos.base.crypto.v1beta1.CompactBitArray bitarray = 1;</code>
+         * <code>.cosmos.crypto.multisig.v1beta1.CompactBitArray bitarray = 1;</code>
          * @return The bitarray.
          */
         @java.lang.Override
-        public cosmos.base.crypto.v1beta1.Crypto.CompactBitArray getBitarray() {
-          return bitarray_ == null ? cosmos.base.crypto.v1beta1.Crypto.CompactBitArray.getDefaultInstance() : bitarray_;
+        public cosmos.crypto.multisig.v1beta1.Multisig.CompactBitArray getBitarray() {
+          return bitarray_ == null ? cosmos.crypto.multisig.v1beta1.Multisig.CompactBitArray.getDefaultInstance() : bitarray_;
         }
         /**
          * <pre>
          * bitarray specifies which keys within the multisig are signing
          * </pre>
          *
-         * <code>.cosmos.base.crypto.v1beta1.CompactBitArray bitarray = 1;</code>
+         * <code>.cosmos.crypto.multisig.v1beta1.CompactBitArray bitarray = 1;</code>
          */
         @java.lang.Override
-        public cosmos.base.crypto.v1beta1.Crypto.CompactBitArrayOrBuilder getBitarrayOrBuilder() {
+        public cosmos.crypto.multisig.v1beta1.Multisig.CompactBitArrayOrBuilder getBitarrayOrBuilder() {
           return getBitarray();
         }
 
@@ -2756,15 +2761,15 @@ public final class Signing {
           }
           private int bitField0_;
 
-          private cosmos.base.crypto.v1beta1.Crypto.CompactBitArray bitarray_;
+          private cosmos.crypto.multisig.v1beta1.Multisig.CompactBitArray bitarray_;
           private com.google.protobuf.SingleFieldBuilderV3<
-              cosmos.base.crypto.v1beta1.Crypto.CompactBitArray, cosmos.base.crypto.v1beta1.Crypto.CompactBitArray.Builder, cosmos.base.crypto.v1beta1.Crypto.CompactBitArrayOrBuilder> bitarrayBuilder_;
+              cosmos.crypto.multisig.v1beta1.Multisig.CompactBitArray, cosmos.crypto.multisig.v1beta1.Multisig.CompactBitArray.Builder, cosmos.crypto.multisig.v1beta1.Multisig.CompactBitArrayOrBuilder> bitarrayBuilder_;
           /**
            * <pre>
            * bitarray specifies which keys within the multisig are signing
            * </pre>
            *
-           * <code>.cosmos.base.crypto.v1beta1.CompactBitArray bitarray = 1;</code>
+           * <code>.cosmos.crypto.multisig.v1beta1.CompactBitArray bitarray = 1;</code>
            * @return Whether the bitarray field is set.
            */
           public boolean hasBitarray() {
@@ -2775,12 +2780,12 @@ public final class Signing {
            * bitarray specifies which keys within the multisig are signing
            * </pre>
            *
-           * <code>.cosmos.base.crypto.v1beta1.CompactBitArray bitarray = 1;</code>
+           * <code>.cosmos.crypto.multisig.v1beta1.CompactBitArray bitarray = 1;</code>
            * @return The bitarray.
            */
-          public cosmos.base.crypto.v1beta1.Crypto.CompactBitArray getBitarray() {
+          public cosmos.crypto.multisig.v1beta1.Multisig.CompactBitArray getBitarray() {
             if (bitarrayBuilder_ == null) {
-              return bitarray_ == null ? cosmos.base.crypto.v1beta1.Crypto.CompactBitArray.getDefaultInstance() : bitarray_;
+              return bitarray_ == null ? cosmos.crypto.multisig.v1beta1.Multisig.CompactBitArray.getDefaultInstance() : bitarray_;
             } else {
               return bitarrayBuilder_.getMessage();
             }
@@ -2790,9 +2795,9 @@ public final class Signing {
            * bitarray specifies which keys within the multisig are signing
            * </pre>
            *
-           * <code>.cosmos.base.crypto.v1beta1.CompactBitArray bitarray = 1;</code>
+           * <code>.cosmos.crypto.multisig.v1beta1.CompactBitArray bitarray = 1;</code>
            */
-          public Builder setBitarray(cosmos.base.crypto.v1beta1.Crypto.CompactBitArray value) {
+          public Builder setBitarray(cosmos.crypto.multisig.v1beta1.Multisig.CompactBitArray value) {
             if (bitarrayBuilder_ == null) {
               if (value == null) {
                 throw new NullPointerException();
@@ -2810,10 +2815,10 @@ public final class Signing {
            * bitarray specifies which keys within the multisig are signing
            * </pre>
            *
-           * <code>.cosmos.base.crypto.v1beta1.CompactBitArray bitarray = 1;</code>
+           * <code>.cosmos.crypto.multisig.v1beta1.CompactBitArray bitarray = 1;</code>
            */
           public Builder setBitarray(
-              cosmos.base.crypto.v1beta1.Crypto.CompactBitArray.Builder builderForValue) {
+              cosmos.crypto.multisig.v1beta1.Multisig.CompactBitArray.Builder builderForValue) {
             if (bitarrayBuilder_ == null) {
               bitarray_ = builderForValue.build();
               onChanged();
@@ -2828,13 +2833,13 @@ public final class Signing {
            * bitarray specifies which keys within the multisig are signing
            * </pre>
            *
-           * <code>.cosmos.base.crypto.v1beta1.CompactBitArray bitarray = 1;</code>
+           * <code>.cosmos.crypto.multisig.v1beta1.CompactBitArray bitarray = 1;</code>
            */
-          public Builder mergeBitarray(cosmos.base.crypto.v1beta1.Crypto.CompactBitArray value) {
+          public Builder mergeBitarray(cosmos.crypto.multisig.v1beta1.Multisig.CompactBitArray value) {
             if (bitarrayBuilder_ == null) {
               if (bitarray_ != null) {
                 bitarray_ =
-                  cosmos.base.crypto.v1beta1.Crypto.CompactBitArray.newBuilder(bitarray_).mergeFrom(value).buildPartial();
+                  cosmos.crypto.multisig.v1beta1.Multisig.CompactBitArray.newBuilder(bitarray_).mergeFrom(value).buildPartial();
               } else {
                 bitarray_ = value;
               }
@@ -2850,7 +2855,7 @@ public final class Signing {
            * bitarray specifies which keys within the multisig are signing
            * </pre>
            *
-           * <code>.cosmos.base.crypto.v1beta1.CompactBitArray bitarray = 1;</code>
+           * <code>.cosmos.crypto.multisig.v1beta1.CompactBitArray bitarray = 1;</code>
            */
           public Builder clearBitarray() {
             if (bitarrayBuilder_ == null) {
@@ -2868,9 +2873,9 @@ public final class Signing {
            * bitarray specifies which keys within the multisig are signing
            * </pre>
            *
-           * <code>.cosmos.base.crypto.v1beta1.CompactBitArray bitarray = 1;</code>
+           * <code>.cosmos.crypto.multisig.v1beta1.CompactBitArray bitarray = 1;</code>
            */
-          public cosmos.base.crypto.v1beta1.Crypto.CompactBitArray.Builder getBitarrayBuilder() {
+          public cosmos.crypto.multisig.v1beta1.Multisig.CompactBitArray.Builder getBitarrayBuilder() {
             
             onChanged();
             return getBitarrayFieldBuilder().getBuilder();
@@ -2880,14 +2885,14 @@ public final class Signing {
            * bitarray specifies which keys within the multisig are signing
            * </pre>
            *
-           * <code>.cosmos.base.crypto.v1beta1.CompactBitArray bitarray = 1;</code>
+           * <code>.cosmos.crypto.multisig.v1beta1.CompactBitArray bitarray = 1;</code>
            */
-          public cosmos.base.crypto.v1beta1.Crypto.CompactBitArrayOrBuilder getBitarrayOrBuilder() {
+          public cosmos.crypto.multisig.v1beta1.Multisig.CompactBitArrayOrBuilder getBitarrayOrBuilder() {
             if (bitarrayBuilder_ != null) {
               return bitarrayBuilder_.getMessageOrBuilder();
             } else {
               return bitarray_ == null ?
-                  cosmos.base.crypto.v1beta1.Crypto.CompactBitArray.getDefaultInstance() : bitarray_;
+                  cosmos.crypto.multisig.v1beta1.Multisig.CompactBitArray.getDefaultInstance() : bitarray_;
             }
           }
           /**
@@ -2895,14 +2900,14 @@ public final class Signing {
            * bitarray specifies which keys within the multisig are signing
            * </pre>
            *
-           * <code>.cosmos.base.crypto.v1beta1.CompactBitArray bitarray = 1;</code>
+           * <code>.cosmos.crypto.multisig.v1beta1.CompactBitArray bitarray = 1;</code>
            */
           private com.google.protobuf.SingleFieldBuilderV3<
-              cosmos.base.crypto.v1beta1.Crypto.CompactBitArray, cosmos.base.crypto.v1beta1.Crypto.CompactBitArray.Builder, cosmos.base.crypto.v1beta1.Crypto.CompactBitArrayOrBuilder> 
+              cosmos.crypto.multisig.v1beta1.Multisig.CompactBitArray, cosmos.crypto.multisig.v1beta1.Multisig.CompactBitArray.Builder, cosmos.crypto.multisig.v1beta1.Multisig.CompactBitArrayOrBuilder> 
               getBitarrayFieldBuilder() {
             if (bitarrayBuilder_ == null) {
               bitarrayBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-                  cosmos.base.crypto.v1beta1.Crypto.CompactBitArray, cosmos.base.crypto.v1beta1.Crypto.CompactBitArray.Builder, cosmos.base.crypto.v1beta1.Crypto.CompactBitArrayOrBuilder>(
+                  cosmos.crypto.multisig.v1beta1.Multisig.CompactBitArray, cosmos.crypto.multisig.v1beta1.Multisig.CompactBitArray.Builder, cosmos.crypto.multisig.v1beta1.Multisig.CompactBitArrayOrBuilder>(
                       getBitarray(),
                       getParentForChildren(),
                       isClean());
@@ -4182,13 +4187,13 @@ public final class Signing {
     }
 
     public static final int PUBLIC_KEY_FIELD_NUMBER = 1;
-    private cosmos.base.crypto.v1beta1.Crypto.PublicKey publicKey_;
+    private com.google.protobuf.Any publicKey_;
     /**
      * <pre>
      * public_key is the public key of the signer
      * </pre>
      *
-     * <code>.cosmos.base.crypto.v1beta1.PublicKey public_key = 1;</code>
+     * <code>.google.protobuf.Any public_key = 1;</code>
      * @return Whether the publicKey field is set.
      */
     @java.lang.Override
@@ -4200,22 +4205,22 @@ public final class Signing {
      * public_key is the public key of the signer
      * </pre>
      *
-     * <code>.cosmos.base.crypto.v1beta1.PublicKey public_key = 1;</code>
+     * <code>.google.protobuf.Any public_key = 1;</code>
      * @return The publicKey.
      */
     @java.lang.Override
-    public cosmos.base.crypto.v1beta1.Crypto.PublicKey getPublicKey() {
-      return publicKey_ == null ? cosmos.base.crypto.v1beta1.Crypto.PublicKey.getDefaultInstance() : publicKey_;
+    public com.google.protobuf.Any getPublicKey() {
+      return publicKey_ == null ? com.google.protobuf.Any.getDefaultInstance() : publicKey_;
     }
     /**
      * <pre>
      * public_key is the public key of the signer
      * </pre>
      *
-     * <code>.cosmos.base.crypto.v1beta1.PublicKey public_key = 1;</code>
+     * <code>.google.protobuf.Any public_key = 1;</code>
      */
     @java.lang.Override
-    public cosmos.base.crypto.v1beta1.Crypto.PublicKeyOrBuilder getPublicKeyOrBuilder() {
+    public com.google.protobuf.AnyOrBuilder getPublicKeyOrBuilder() {
       return getPublicKey();
     }
 
@@ -4452,9 +4457,10 @@ public final class Signing {
     }
     /**
      * <pre>
-     * SignatureDescriptor is a convenience type which represents the full data for a
-     * signature including the public key of the signer, signing modes and the signature
-     * itself. It is primarily used for coordinating signatures between clients.
+     * SignatureDescriptor is a convenience type which represents the full data for
+     * a signature including the public key of the signer, signing modes and the
+     * signature itself. It is primarily used for coordinating signatures between
+     * clients.
      * </pre>
      *
      * Protobuf type {@code cosmos.tx.signing.v1beta1.SignatureDescriptor}
@@ -4631,15 +4637,15 @@ public final class Signing {
         return this;
       }
 
-      private cosmos.base.crypto.v1beta1.Crypto.PublicKey publicKey_;
+      private com.google.protobuf.Any publicKey_;
       private com.google.protobuf.SingleFieldBuilderV3<
-          cosmos.base.crypto.v1beta1.Crypto.PublicKey, cosmos.base.crypto.v1beta1.Crypto.PublicKey.Builder, cosmos.base.crypto.v1beta1.Crypto.PublicKeyOrBuilder> publicKeyBuilder_;
+          com.google.protobuf.Any, com.google.protobuf.Any.Builder, com.google.protobuf.AnyOrBuilder> publicKeyBuilder_;
       /**
        * <pre>
        * public_key is the public key of the signer
        * </pre>
        *
-       * <code>.cosmos.base.crypto.v1beta1.PublicKey public_key = 1;</code>
+       * <code>.google.protobuf.Any public_key = 1;</code>
        * @return Whether the publicKey field is set.
        */
       public boolean hasPublicKey() {
@@ -4650,12 +4656,12 @@ public final class Signing {
        * public_key is the public key of the signer
        * </pre>
        *
-       * <code>.cosmos.base.crypto.v1beta1.PublicKey public_key = 1;</code>
+       * <code>.google.protobuf.Any public_key = 1;</code>
        * @return The publicKey.
        */
-      public cosmos.base.crypto.v1beta1.Crypto.PublicKey getPublicKey() {
+      public com.google.protobuf.Any getPublicKey() {
         if (publicKeyBuilder_ == null) {
-          return publicKey_ == null ? cosmos.base.crypto.v1beta1.Crypto.PublicKey.getDefaultInstance() : publicKey_;
+          return publicKey_ == null ? com.google.protobuf.Any.getDefaultInstance() : publicKey_;
         } else {
           return publicKeyBuilder_.getMessage();
         }
@@ -4665,9 +4671,9 @@ public final class Signing {
        * public_key is the public key of the signer
        * </pre>
        *
-       * <code>.cosmos.base.crypto.v1beta1.PublicKey public_key = 1;</code>
+       * <code>.google.protobuf.Any public_key = 1;</code>
        */
-      public Builder setPublicKey(cosmos.base.crypto.v1beta1.Crypto.PublicKey value) {
+      public Builder setPublicKey(com.google.protobuf.Any value) {
         if (publicKeyBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -4685,10 +4691,10 @@ public final class Signing {
        * public_key is the public key of the signer
        * </pre>
        *
-       * <code>.cosmos.base.crypto.v1beta1.PublicKey public_key = 1;</code>
+       * <code>.google.protobuf.Any public_key = 1;</code>
        */
       public Builder setPublicKey(
-          cosmos.base.crypto.v1beta1.Crypto.PublicKey.Builder builderForValue) {
+          com.google.protobuf.Any.Builder builderForValue) {
         if (publicKeyBuilder_ == null) {
           publicKey_ = builderForValue.build();
           onChanged();
@@ -4703,13 +4709,13 @@ public final class Signing {
        * public_key is the public key of the signer
        * </pre>
        *
-       * <code>.cosmos.base.crypto.v1beta1.PublicKey public_key = 1;</code>
+       * <code>.google.protobuf.Any public_key = 1;</code>
        */
-      public Builder mergePublicKey(cosmos.base.crypto.v1beta1.Crypto.PublicKey value) {
+      public Builder mergePublicKey(com.google.protobuf.Any value) {
         if (publicKeyBuilder_ == null) {
           if (publicKey_ != null) {
             publicKey_ =
-              cosmos.base.crypto.v1beta1.Crypto.PublicKey.newBuilder(publicKey_).mergeFrom(value).buildPartial();
+              com.google.protobuf.Any.newBuilder(publicKey_).mergeFrom(value).buildPartial();
           } else {
             publicKey_ = value;
           }
@@ -4725,7 +4731,7 @@ public final class Signing {
        * public_key is the public key of the signer
        * </pre>
        *
-       * <code>.cosmos.base.crypto.v1beta1.PublicKey public_key = 1;</code>
+       * <code>.google.protobuf.Any public_key = 1;</code>
        */
       public Builder clearPublicKey() {
         if (publicKeyBuilder_ == null) {
@@ -4743,9 +4749,9 @@ public final class Signing {
        * public_key is the public key of the signer
        * </pre>
        *
-       * <code>.cosmos.base.crypto.v1beta1.PublicKey public_key = 1;</code>
+       * <code>.google.protobuf.Any public_key = 1;</code>
        */
-      public cosmos.base.crypto.v1beta1.Crypto.PublicKey.Builder getPublicKeyBuilder() {
+      public com.google.protobuf.Any.Builder getPublicKeyBuilder() {
         
         onChanged();
         return getPublicKeyFieldBuilder().getBuilder();
@@ -4755,14 +4761,14 @@ public final class Signing {
        * public_key is the public key of the signer
        * </pre>
        *
-       * <code>.cosmos.base.crypto.v1beta1.PublicKey public_key = 1;</code>
+       * <code>.google.protobuf.Any public_key = 1;</code>
        */
-      public cosmos.base.crypto.v1beta1.Crypto.PublicKeyOrBuilder getPublicKeyOrBuilder() {
+      public com.google.protobuf.AnyOrBuilder getPublicKeyOrBuilder() {
         if (publicKeyBuilder_ != null) {
           return publicKeyBuilder_.getMessageOrBuilder();
         } else {
           return publicKey_ == null ?
-              cosmos.base.crypto.v1beta1.Crypto.PublicKey.getDefaultInstance() : publicKey_;
+              com.google.protobuf.Any.getDefaultInstance() : publicKey_;
         }
       }
       /**
@@ -4770,14 +4776,14 @@ public final class Signing {
        * public_key is the public key of the signer
        * </pre>
        *
-       * <code>.cosmos.base.crypto.v1beta1.PublicKey public_key = 1;</code>
+       * <code>.google.protobuf.Any public_key = 1;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
-          cosmos.base.crypto.v1beta1.Crypto.PublicKey, cosmos.base.crypto.v1beta1.Crypto.PublicKey.Builder, cosmos.base.crypto.v1beta1.Crypto.PublicKeyOrBuilder> 
+          com.google.protobuf.Any, com.google.protobuf.Any.Builder, com.google.protobuf.AnyOrBuilder> 
           getPublicKeyFieldBuilder() {
         if (publicKeyBuilder_ == null) {
           publicKeyBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              cosmos.base.crypto.v1beta1.Crypto.PublicKey, cosmos.base.crypto.v1beta1.Crypto.PublicKey.Builder, cosmos.base.crypto.v1beta1.Crypto.PublicKeyOrBuilder>(
+              com.google.protobuf.Any, com.google.protobuf.Any.Builder, com.google.protobuf.AnyOrBuilder>(
                   getPublicKey(),
                   getParentForChildren(),
                   isClean());
@@ -5041,34 +5047,35 @@ public final class Signing {
   static {
     java.lang.String[] descriptorData = {
       "\n\'cosmos/tx/signing/v1beta1/signing.prot" +
-      "o\022\031cosmos.tx.signing.v1beta1\032\'cosmos/bas" +
-      "e/crypto/v1beta1/crypto.proto\"Z\n\024Signatu" +
-      "reDescriptors\022B\n\nsignatures\030\001 \003(\0132..cosm" +
-      "os.tx.signing.v1beta1.SignatureDescripto" +
-      "r\"\261\004\n\023SignatureDescriptor\0229\n\npublic_key\030" +
-      "\001 \001(\0132%.cosmos.base.crypto.v1beta1.Publi" +
-      "cKey\022A\n\004data\030\002 \001(\01323.cosmos.tx.signing.v" +
-      "1beta1.SignatureDescriptor.Data\022\020\n\010seque" +
-      "nce\030\003 \001(\004\032\211\003\n\004Data\022L\n\006single\030\001 \001(\0132:.cos" +
+      "o\022\031cosmos.tx.signing.v1beta1\032-cosmos/cry" +
+      "pto/multisig/v1beta1/multisig.proto\032\031goo" +
+      "gle/protobuf/any.proto\"Z\n\024SignatureDescr" +
+      "iptors\022B\n\nsignatures\030\001 \003(\0132..cosmos.tx.s" +
+      "igning.v1beta1.SignatureDescriptor\"\244\004\n\023S" +
+      "ignatureDescriptor\022(\n\npublic_key\030\001 \001(\0132\024" +
+      ".google.protobuf.Any\022A\n\004data\030\002 \001(\01323.cos" +
       "mos.tx.signing.v1beta1.SignatureDescript" +
-      "or.Data.SingleH\000\022J\n\005multi\030\002 \001(\01329.cosmos" +
-      ".tx.signing.v1beta1.SignatureDescriptor." +
-      "Data.MultiH\000\032N\n\006Single\0221\n\004mode\030\001 \001(\0162#.c" +
-      "osmos.tx.signing.v1beta1.SignMode\022\021\n\tsig" +
-      "nature\030\002 \001(\014\032\217\001\n\005Multi\022=\n\010bitarray\030\001 \001(\013" +
-      "2+.cosmos.base.crypto.v1beta1.CompactBit" +
-      "Array\022G\n\nsignatures\030\002 \003(\01323.cosmos.tx.si" +
-      "gning.v1beta1.SignatureDescriptor.DataB\005" +
-      "\n\003sum*s\n\010SignMode\022\031\n\025SIGN_MODE_UNSPECIFI" +
-      "ED\020\000\022\024\n\020SIGN_MODE_DIRECT\020\001\022\025\n\021SIGN_MODE_" +
-      "TEXTUAL\020\002\022\037\n\033SIGN_MODE_LEGACY_AMINO_JSON" +
-      "\020\177B/Z-github.com/cosmos/cosmos-sdk/types" +
-      "/tx/signingb\006proto3"
+      "or.Data\022\020\n\010sequence\030\003 \001(\004\032\215\003\n\004Data\022L\n\006si" +
+      "ngle\030\001 \001(\0132:.cosmos.tx.signing.v1beta1.S" +
+      "ignatureDescriptor.Data.SingleH\000\022J\n\005mult" +
+      "i\030\002 \001(\01329.cosmos.tx.signing.v1beta1.Sign" +
+      "atureDescriptor.Data.MultiH\000\032N\n\006Single\0221" +
+      "\n\004mode\030\001 \001(\0162#.cosmos.tx.signing.v1beta1" +
+      ".SignMode\022\021\n\tsignature\030\002 \001(\014\032\223\001\n\005Multi\022A" +
+      "\n\010bitarray\030\001 \001(\0132/.cosmos.crypto.multisi" +
+      "g.v1beta1.CompactBitArray\022G\n\nsignatures\030" +
+      "\002 \003(\01323.cosmos.tx.signing.v1beta1.Signat" +
+      "ureDescriptor.DataB\005\n\003sum*s\n\010SignMode\022\031\n" +
+      "\025SIGN_MODE_UNSPECIFIED\020\000\022\024\n\020SIGN_MODE_DI" +
+      "RECT\020\001\022\025\n\021SIGN_MODE_TEXTUAL\020\002\022\037\n\033SIGN_MO" +
+      "DE_LEGACY_AMINO_JSON\020\177B/Z-github.com/cos" +
+      "mos/cosmos-sdk/types/tx/signingb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
-          cosmos.base.crypto.v1beta1.Crypto.getDescriptor(),
+          cosmos.crypto.multisig.v1beta1.Multisig.getDescriptor(),
+          com.google.protobuf.AnyProto.getDescriptor(),
         });
     internal_static_cosmos_tx_signing_v1beta1_SignatureDescriptors_descriptor =
       getDescriptor().getMessageTypes().get(0);
@@ -5100,7 +5107,8 @@ public final class Signing {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_cosmos_tx_signing_v1beta1_SignatureDescriptor_Data_Multi_descriptor,
         new java.lang.String[] { "Bitarray", "Signatures", });
-    cosmos.base.crypto.v1beta1.Crypto.getDescriptor();
+    cosmos.crypto.multisig.v1beta1.Multisig.getDescriptor();
+    com.google.protobuf.AnyProto.getDescriptor();
   }
 
   // @@protoc_insertion_point(outer_class_scope)

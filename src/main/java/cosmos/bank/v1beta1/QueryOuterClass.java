@@ -23,10 +23,20 @@ public final class QueryOuterClass {
      * address is the address to query balances for.
      * </pre>
      *
-     * <code>bytes address = 1 [(.gogoproto.casttype) = "github.com/cosmos/cosmos-sdk/types.AccAddress"];</code>
+     * <code>string address = 1;</code>
      * @return The address.
      */
-    com.google.protobuf.ByteString getAddress();
+    java.lang.String getAddress();
+    /**
+     * <pre>
+     * address is the address to query balances for.
+     * </pre>
+     *
+     * <code>string address = 1;</code>
+     * @return The bytes for address.
+     */
+    com.google.protobuf.ByteString
+        getAddressBytes();
 
     /**
      * <pre>
@@ -65,7 +75,7 @@ public final class QueryOuterClass {
       super(builder);
     }
     private QueryBalanceRequest() {
-      address_ = com.google.protobuf.ByteString.EMPTY;
+      address_ = "";
       denom_ = "";
     }
 
@@ -100,8 +110,9 @@ public final class QueryOuterClass {
               done = true;
               break;
             case 10: {
+              java.lang.String s = input.readStringRequireUtf8();
 
-              address_ = input.readBytes();
+              address_ = s;
               break;
             }
             case 18: {
@@ -143,18 +154,49 @@ public final class QueryOuterClass {
     }
 
     public static final int ADDRESS_FIELD_NUMBER = 1;
-    private com.google.protobuf.ByteString address_;
+    private volatile java.lang.Object address_;
     /**
      * <pre>
      * address is the address to query balances for.
      * </pre>
      *
-     * <code>bytes address = 1 [(.gogoproto.casttype) = "github.com/cosmos/cosmos-sdk/types.AccAddress"];</code>
+     * <code>string address = 1;</code>
      * @return The address.
      */
     @java.lang.Override
-    public com.google.protobuf.ByteString getAddress() {
-      return address_;
+    public java.lang.String getAddress() {
+      java.lang.Object ref = address_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        address_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * address is the address to query balances for.
+     * </pre>
+     *
+     * <code>string address = 1;</code>
+     * @return The bytes for address.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getAddressBytes() {
+      java.lang.Object ref = address_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        address_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
 
     public static final int DENOM_FIELD_NUMBER = 2;
@@ -217,8 +259,8 @@ public final class QueryOuterClass {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!address_.isEmpty()) {
-        output.writeBytes(1, address_);
+      if (!getAddressBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, address_);
       }
       if (!getDenomBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, denom_);
@@ -232,9 +274,8 @@ public final class QueryOuterClass {
       if (size != -1) return size;
 
       size = 0;
-      if (!address_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(1, address_);
+      if (!getAddressBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, address_);
       }
       if (!getDenomBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, denom_);
@@ -410,7 +451,7 @@ public final class QueryOuterClass {
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        address_ = com.google.protobuf.ByteString.EMPTY;
+        address_ = "";
 
         denom_ = "";
 
@@ -490,8 +531,9 @@ public final class QueryOuterClass {
 
       public Builder mergeFrom(cosmos.bank.v1beta1.QueryOuterClass.QueryBalanceRequest other) {
         if (other == cosmos.bank.v1beta1.QueryOuterClass.QueryBalanceRequest.getDefaultInstance()) return this;
-        if (other.getAddress() != com.google.protobuf.ByteString.EMPTY) {
-          setAddress(other.getAddress());
+        if (!other.getAddress().isEmpty()) {
+          address_ = other.address_;
+          onChanged();
         }
         if (!other.getDenom().isEmpty()) {
           denom_ = other.denom_;
@@ -526,29 +568,59 @@ public final class QueryOuterClass {
         return this;
       }
 
-      private com.google.protobuf.ByteString address_ = com.google.protobuf.ByteString.EMPTY;
+      private java.lang.Object address_ = "";
       /**
        * <pre>
        * address is the address to query balances for.
        * </pre>
        *
-       * <code>bytes address = 1 [(.gogoproto.casttype) = "github.com/cosmos/cosmos-sdk/types.AccAddress"];</code>
+       * <code>string address = 1;</code>
        * @return The address.
        */
-      @java.lang.Override
-      public com.google.protobuf.ByteString getAddress() {
-        return address_;
+      public java.lang.String getAddress() {
+        java.lang.Object ref = address_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          address_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
       }
       /**
        * <pre>
        * address is the address to query balances for.
        * </pre>
        *
-       * <code>bytes address = 1 [(.gogoproto.casttype) = "github.com/cosmos/cosmos-sdk/types.AccAddress"];</code>
+       * <code>string address = 1;</code>
+       * @return The bytes for address.
+       */
+      public com.google.protobuf.ByteString
+          getAddressBytes() {
+        java.lang.Object ref = address_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          address_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * address is the address to query balances for.
+       * </pre>
+       *
+       * <code>string address = 1;</code>
        * @param value The address to set.
        * @return This builder for chaining.
        */
-      public Builder setAddress(com.google.protobuf.ByteString value) {
+      public Builder setAddress(
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -562,12 +634,32 @@ public final class QueryOuterClass {
        * address is the address to query balances for.
        * </pre>
        *
-       * <code>bytes address = 1 [(.gogoproto.casttype) = "github.com/cosmos/cosmos-sdk/types.AccAddress"];</code>
+       * <code>string address = 1;</code>
        * @return This builder for chaining.
        */
       public Builder clearAddress() {
         
         address_ = getDefaultInstance().getAddress();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * address is the address to query balances for.
+       * </pre>
+       *
+       * <code>string address = 1;</code>
+       * @param value The bytes for address to set.
+       * @return This builder for chaining.
+       */
+      public Builder setAddressBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        address_ = value;
         onChanged();
         return this;
       }
@@ -1418,10 +1510,20 @@ public final class QueryOuterClass {
      * address is the address to query balances for.
      * </pre>
      *
-     * <code>bytes address = 1 [(.gogoproto.casttype) = "github.com/cosmos/cosmos-sdk/types.AccAddress"];</code>
+     * <code>string address = 1;</code>
      * @return The address.
      */
-    com.google.protobuf.ByteString getAddress();
+    java.lang.String getAddress();
+    /**
+     * <pre>
+     * address is the address to query balances for.
+     * </pre>
+     *
+     * <code>string address = 1;</code>
+     * @return The bytes for address.
+     */
+    com.google.protobuf.ByteString
+        getAddressBytes();
 
     /**
      * <pre>
@@ -1467,7 +1569,7 @@ public final class QueryOuterClass {
       super(builder);
     }
     private QueryAllBalancesRequest() {
-      address_ = com.google.protobuf.ByteString.EMPTY;
+      address_ = "";
     }
 
     @java.lang.Override
@@ -1501,8 +1603,9 @@ public final class QueryOuterClass {
               done = true;
               break;
             case 10: {
+              java.lang.String s = input.readStringRequireUtf8();
 
-              address_ = input.readBytes();
+              address_ = s;
               break;
             }
             case 18: {
@@ -1551,18 +1654,49 @@ public final class QueryOuterClass {
     }
 
     public static final int ADDRESS_FIELD_NUMBER = 1;
-    private com.google.protobuf.ByteString address_;
+    private volatile java.lang.Object address_;
     /**
      * <pre>
      * address is the address to query balances for.
      * </pre>
      *
-     * <code>bytes address = 1 [(.gogoproto.casttype) = "github.com/cosmos/cosmos-sdk/types.AccAddress"];</code>
+     * <code>string address = 1;</code>
      * @return The address.
      */
     @java.lang.Override
-    public com.google.protobuf.ByteString getAddress() {
-      return address_;
+    public java.lang.String getAddress() {
+      java.lang.Object ref = address_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        address_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * address is the address to query balances for.
+     * </pre>
+     *
+     * <code>string address = 1;</code>
+     * @return The bytes for address.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getAddressBytes() {
+      java.lang.Object ref = address_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        address_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
 
     public static final int PAGINATION_FIELD_NUMBER = 2;
@@ -1617,8 +1751,8 @@ public final class QueryOuterClass {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!address_.isEmpty()) {
-        output.writeBytes(1, address_);
+      if (!getAddressBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, address_);
       }
       if (pagination_ != null) {
         output.writeMessage(2, getPagination());
@@ -1632,9 +1766,8 @@ public final class QueryOuterClass {
       if (size != -1) return size;
 
       size = 0;
-      if (!address_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(1, address_);
+      if (!getAddressBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, address_);
       }
       if (pagination_ != null) {
         size += com.google.protobuf.CodedOutputStream
@@ -1816,7 +1949,7 @@ public final class QueryOuterClass {
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        address_ = com.google.protobuf.ByteString.EMPTY;
+        address_ = "";
 
         if (paginationBuilder_ == null) {
           pagination_ = null;
@@ -1904,8 +2037,9 @@ public final class QueryOuterClass {
 
       public Builder mergeFrom(cosmos.bank.v1beta1.QueryOuterClass.QueryAllBalancesRequest other) {
         if (other == cosmos.bank.v1beta1.QueryOuterClass.QueryAllBalancesRequest.getDefaultInstance()) return this;
-        if (other.getAddress() != com.google.protobuf.ByteString.EMPTY) {
-          setAddress(other.getAddress());
+        if (!other.getAddress().isEmpty()) {
+          address_ = other.address_;
+          onChanged();
         }
         if (other.hasPagination()) {
           mergePagination(other.getPagination());
@@ -1939,29 +2073,59 @@ public final class QueryOuterClass {
         return this;
       }
 
-      private com.google.protobuf.ByteString address_ = com.google.protobuf.ByteString.EMPTY;
+      private java.lang.Object address_ = "";
       /**
        * <pre>
        * address is the address to query balances for.
        * </pre>
        *
-       * <code>bytes address = 1 [(.gogoproto.casttype) = "github.com/cosmos/cosmos-sdk/types.AccAddress"];</code>
+       * <code>string address = 1;</code>
        * @return The address.
        */
-      @java.lang.Override
-      public com.google.protobuf.ByteString getAddress() {
-        return address_;
+      public java.lang.String getAddress() {
+        java.lang.Object ref = address_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          address_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
       }
       /**
        * <pre>
        * address is the address to query balances for.
        * </pre>
        *
-       * <code>bytes address = 1 [(.gogoproto.casttype) = "github.com/cosmos/cosmos-sdk/types.AccAddress"];</code>
+       * <code>string address = 1;</code>
+       * @return The bytes for address.
+       */
+      public com.google.protobuf.ByteString
+          getAddressBytes() {
+        java.lang.Object ref = address_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          address_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * address is the address to query balances for.
+       * </pre>
+       *
+       * <code>string address = 1;</code>
        * @param value The address to set.
        * @return This builder for chaining.
        */
-      public Builder setAddress(com.google.protobuf.ByteString value) {
+      public Builder setAddress(
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -1975,12 +2139,32 @@ public final class QueryOuterClass {
        * address is the address to query balances for.
        * </pre>
        *
-       * <code>bytes address = 1 [(.gogoproto.casttype) = "github.com/cosmos/cosmos-sdk/types.AccAddress"];</code>
+       * <code>string address = 1;</code>
        * @return This builder for chaining.
        */
       public Builder clearAddress() {
         
         address_ = getDefaultInstance().getAddress();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * address is the address to query balances for.
+       * </pre>
+       *
+       * <code>string address = 1;</code>
+       * @param value The bytes for address to set.
+       * @return This builder for chaining.
+       */
+      public Builder setAddressBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        address_ = value;
         onChanged();
         return this;
       }
@@ -2269,7 +2453,8 @@ public final class QueryOuterClass {
   }
   /**
    * <pre>
-   * QueryAllBalancesResponse is the response type for the Query/AllBalances RPC method.
+   * QueryAllBalancesResponse is the response type for the Query/AllBalances RPC
+   * method.
    * </pre>
    *
    * Protobuf type {@code cosmos.bank.v1beta1.QueryAllBalancesResponse}
@@ -2648,7 +2833,8 @@ public final class QueryOuterClass {
     }
     /**
      * <pre>
-     * QueryAllBalancesResponse is the response type for the Query/AllBalances RPC method.
+     * QueryAllBalancesResponse is the response type for the Query/AllBalances RPC
+     * method.
      * </pre>
      *
      * Protobuf type {@code cosmos.bank.v1beta1.QueryAllBalancesResponse}
@@ -3374,7 +3560,8 @@ public final class QueryOuterClass {
   }
   /**
    * <pre>
-   * QueryTotalSupplyRequest is the request type for the Query/TotalSupply RPC method.
+   * QueryTotalSupplyRequest is the request type for the Query/TotalSupply RPC
+   * method.
    * </pre>
    *
    * Protobuf type {@code cosmos.bank.v1beta1.QueryTotalSupplyRequest}
@@ -3599,7 +3786,8 @@ public final class QueryOuterClass {
     }
     /**
      * <pre>
-     * QueryTotalSupplyRequest is the request type for the Query/TotalSupply RPC method.
+     * QueryTotalSupplyRequest is the request type for the Query/TotalSupply RPC
+     * method.
      * </pre>
      *
      * Protobuf type {@code cosmos.bank.v1beta1.QueryTotalSupplyRequest}
@@ -3844,7 +4032,8 @@ public final class QueryOuterClass {
   }
   /**
    * <pre>
-   * QueryTotalSupplyResponse is the response type for the Query/TotalSupply RPC method
+   * QueryTotalSupplyResponse is the response type for the Query/TotalSupply RPC
+   * method
    * </pre>
    *
    * Protobuf type {@code cosmos.bank.v1beta1.QueryTotalSupplyResponse}
@@ -4156,7 +4345,8 @@ public final class QueryOuterClass {
     }
     /**
      * <pre>
-     * QueryTotalSupplyResponse is the response type for the Query/TotalSupply RPC method
+     * QueryTotalSupplyResponse is the response type for the Query/TotalSupply RPC
+     * method
      * </pre>
      *
      * Protobuf type {@code cosmos.bank.v1beta1.QueryTotalSupplyResponse}
@@ -7123,59 +7313,56 @@ public final class QueryOuterClass {
   static {
     java.lang.String[] descriptorData = {
       "\n\037cosmos/bank/v1beta1/query.proto\022\023cosmo" +
-      "s.bank.v1beta1\032*cosmos/base/query/v1beta" +
-      "1/pagination.proto\032\024gogoproto/gogo.proto" +
-      "\032\034google/api/annotations.proto\032\036cosmos/b" +
-      "ase/v1beta1/coin.proto\032\036cosmos/bank/v1be" +
-      "ta1/bank.proto\"h\n\023QueryBalanceRequest\022B\n" +
-      "\007address\030\001 \001(\014B1\372\336\037-github.com/cosmos/co" +
-      "smos-sdk/types.AccAddress\022\r\n\005denom\030\002 \001(\t" +
-      "\"B\n\024QueryBalanceResponse\022*\n\007balance\030\001 \001(" +
-      "\0132\031.cosmos.base.v1beta1.Coin\"\231\001\n\027QueryAl" +
-      "lBalancesRequest\022B\n\007address\030\001 \001(\014B1\372\336\037-g" +
-      "ithub.com/cosmos/cosmos-sdk/types.AccAdd" +
-      "ress\022:\n\npagination\030\002 \001(\0132&.cosmos.base.q" +
-      "uery.v1beta1.PageRequest\"\266\001\n\030QueryAllBal" +
-      "ancesResponse\022]\n\010balances\030\001 \003(\0132\031.cosmos" +
-      ".base.v1beta1.CoinB0\310\336\037\000\252\337\037(github.com/c" +
-      "osmos/cosmos-sdk/types.Coins\022;\n\npaginati" +
-      "on\030\002 \001(\0132\'.cosmos.base.query.v1beta1.Pag" +
-      "eResponse\"\031\n\027QueryTotalSupplyRequest\"w\n\030" +
-      "QueryTotalSupplyResponse\022[\n\006supply\030\001 \003(\013" +
-      "2\031.cosmos.base.v1beta1.CoinB0\310\336\037\000\252\337\037(git" +
-      "hub.com/cosmos/cosmos-sdk/types.Coins\"%\n" +
-      "\024QuerySupplyOfRequest\022\r\n\005denom\030\001 \001(\t\"H\n\025" +
-      "QuerySupplyOfResponse\022/\n\006amount\030\001 \001(\0132\031." +
-      "cosmos.base.v1beta1.CoinB\004\310\336\037\000\"\024\n\022QueryP" +
-      "aramsRequest\"H\n\023QueryParamsResponse\0221\n\006p" +
-      "arams\030\001 \001(\0132\033.cosmos.bank.v1beta1.Params" +
-      "B\004\310\336\037\0002\345\005\n\005Query\022\227\001\n\007Balance\022(.cosmos.ba" +
-      "nk.v1beta1.QueryBalanceRequest\032).cosmos." +
-      "bank.v1beta1.QueryBalanceResponse\"7\202\323\344\223\002" +
-      "1\022//cosmos/bank/v1beta1/balances/{addres" +
-      "s}/{denom}\022\233\001\n\013AllBalances\022,.cosmos.bank" +
-      ".v1beta1.QueryAllBalancesRequest\032-.cosmo" +
-      "s.bank.v1beta1.QueryAllBalancesResponse\"" +
-      "/\202\323\344\223\002)\022\'/cosmos/bank/v1beta1/balances/{" +
-      "address}\022\217\001\n\013TotalSupply\022,.cosmos.bank.v" +
-      "1beta1.QueryTotalSupplyRequest\032-.cosmos." +
-      "bank.v1beta1.QueryTotalSupplyResponse\"#\202" +
-      "\323\344\223\002\035\022\033/cosmos/bank/v1beta1/supply\022\216\001\n\010S" +
-      "upplyOf\022).cosmos.bank.v1beta1.QuerySuppl" +
-      "yOfRequest\032*.cosmos.bank.v1beta1.QuerySu" +
-      "pplyOfResponse\"+\202\323\344\223\002%\022#/cosmos/bank/v1b" +
-      "eta1/supply/{denom}\022\200\001\n\006Params\022\'.cosmos." +
-      "bank.v1beta1.QueryParamsRequest\032(.cosmos" +
-      ".bank.v1beta1.QueryParamsResponse\"#\202\323\344\223\002" +
-      "\035\022\033/cosmos/bank/v1beta1/paramsB+Z)github" +
-      ".com/cosmos/cosmos-sdk/x/bank/typesb\006pro" +
-      "to3"
+      "s.bank.v1beta1\032\035cosmos_proto/pagination." +
+      "proto\032\024gogoproto/gogo.proto\032\034google/api/" +
+      "annotations.proto\032\036cosmos/base/v1beta1/c" +
+      "oin.proto\032\036cosmos/bank/v1beta1/bank.prot" +
+      "o\"?\n\023QueryBalanceRequest\022\017\n\007address\030\001 \001(" +
+      "\t\022\r\n\005denom\030\002 \001(\t:\010\350\240\037\000\210\240\037\000\"B\n\024QueryBalan" +
+      "ceResponse\022*\n\007balance\030\001 \001(\0132\031.cosmos.bas" +
+      "e.v1beta1.Coin\"p\n\027QueryAllBalancesReques" +
+      "t\022\017\n\007address\030\001 \001(\t\022:\n\npagination\030\002 \001(\0132&" +
+      ".cosmos.base.query.v1beta1.PageRequest:\010" +
+      "\350\240\037\000\210\240\037\000\"\266\001\n\030QueryAllBalancesResponse\022]\n" +
+      "\010balances\030\001 \003(\0132\031.cosmos.base.v1beta1.Co" +
+      "inB0\310\336\037\000\252\337\037(github.com/cosmos/cosmos-sdk" +
+      "/types.Coins\022;\n\npagination\030\002 \001(\0132\'.cosmo" +
+      "s.base.query.v1beta1.PageResponse\"\031\n\027Que" +
+      "ryTotalSupplyRequest\"w\n\030QueryTotalSupply" +
+      "Response\022[\n\006supply\030\001 \003(\0132\031.cosmos.base.v" +
+      "1beta1.CoinB0\310\336\037\000\252\337\037(github.com/cosmos/c" +
+      "osmos-sdk/types.Coins\"%\n\024QuerySupplyOfRe" +
+      "quest\022\r\n\005denom\030\001 \001(\t\"H\n\025QuerySupplyOfRes" +
+      "ponse\022/\n\006amount\030\001 \001(\0132\031.cosmos.base.v1be" +
+      "ta1.CoinB\004\310\336\037\000\"\024\n\022QueryParamsRequest\"H\n\023" +
+      "QueryParamsResponse\0221\n\006params\030\001 \001(\0132\033.co" +
+      "smos.bank.v1beta1.ParamsB\004\310\336\037\0002\345\005\n\005Query" +
+      "\022\227\001\n\007Balance\022(.cosmos.bank.v1beta1.Query" +
+      "BalanceRequest\032).cosmos.bank.v1beta1.Que" +
+      "ryBalanceResponse\"7\202\323\344\223\0021\022//cosmos/bank/" +
+      "v1beta1/balances/{address}/{denom}\022\233\001\n\013A" +
+      "llBalances\022,.cosmos.bank.v1beta1.QueryAl" +
+      "lBalancesRequest\032-.cosmos.bank.v1beta1.Q" +
+      "ueryAllBalancesResponse\"/\202\323\344\223\002)\022\'/cosmos" +
+      "/bank/v1beta1/balances/{address}\022\217\001\n\013Tot" +
+      "alSupply\022,.cosmos.bank.v1beta1.QueryTota" +
+      "lSupplyRequest\032-.cosmos.bank.v1beta1.Que" +
+      "ryTotalSupplyResponse\"#\202\323\344\223\002\035\022\033/cosmos/b" +
+      "ank/v1beta1/supply\022\216\001\n\010SupplyOf\022).cosmos" +
+      ".bank.v1beta1.QuerySupplyOfRequest\032*.cos" +
+      "mos.bank.v1beta1.QuerySupplyOfResponse\"+" +
+      "\202\323\344\223\002%\022#/cosmos/bank/v1beta1/supply/{den" +
+      "om}\022\200\001\n\006Params\022\'.cosmos.bank.v1beta1.Que" +
+      "ryParamsRequest\032(.cosmos.bank.v1beta1.Qu" +
+      "eryParamsResponse\"#\202\323\344\223\002\035\022\033/cosmos/bank/" +
+      "v1beta1/paramsB+Z)github.com/cosmos/cosm" +
+      "os-sdk/x/bank/typesb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
           cosmos.base.query.v1beta1.Pagination.getDescriptor(),
-//          com.google.protobuf.GoGoProtos.getDescriptor(),
+          com.google.protobuf.GoGoProtos.getDescriptor(),
           com.google.api.AnnotationsProto.getDescriptor(),
           cosmos.base.v1beta1.CoinOuterClass.getDescriptor(),
           cosmos.bank.v1beta1.Bank.getDescriptor(),
@@ -7242,14 +7429,15 @@ public final class QueryOuterClass {
         new java.lang.String[] { "Params", });
     com.google.protobuf.ExtensionRegistry registry =
         com.google.protobuf.ExtensionRegistry.newInstance();
-//    registry.add(com.google.protobuf.GoGoProtos.castrepeated);
-//    registry.add(com.google.protobuf.GoGoProtos.casttype);
-//    registry.add(com.google.protobuf.GoGoProtos.nullable);
+    registry.add(com.google.protobuf.GoGoProtos.castrepeated);
+    registry.add(com.google.protobuf.GoGoProtos.equal);
+    registry.add(com.google.protobuf.GoGoProtos.goprotoGetters);
+    registry.add(com.google.protobuf.GoGoProtos.nullable);
     registry.add(com.google.api.AnnotationsProto.http);
     com.google.protobuf.Descriptors.FileDescriptor
         .internalUpdateFileDescriptor(descriptor, registry);
     cosmos.base.query.v1beta1.Pagination.getDescriptor();
-//    com.google.protobuf.GoGoProtos.getDescriptor();
+    com.google.protobuf.GoGoProtos.getDescriptor();
     com.google.api.AnnotationsProto.getDescriptor();
     cosmos.base.v1beta1.CoinOuterClass.getDescriptor();
     cosmos.bank.v1beta1.Bank.getDescriptor();
