@@ -7313,50 +7313,50 @@ public final class QueryOuterClass {
   static {
     java.lang.String[] descriptorData = {
       "\n\037cosmos/bank/v1beta1/query.proto\022\023cosmo" +
-      "s.bank.v1beta1\032\035cosmos_proto/pagination." +
-      "proto\032\024gogoproto/gogo.proto\032\034google/api/" +
-      "annotations.proto\032\036cosmos/base/v1beta1/c" +
-      "oin.proto\032\036cosmos/bank/v1beta1/bank.prot" +
-      "o\"?\n\023QueryBalanceRequest\022\017\n\007address\030\001 \001(" +
-      "\t\022\r\n\005denom\030\002 \001(\t:\010\350\240\037\000\210\240\037\000\"B\n\024QueryBalan" +
-      "ceResponse\022*\n\007balance\030\001 \001(\0132\031.cosmos.bas" +
-      "e.v1beta1.Coin\"p\n\027QueryAllBalancesReques" +
-      "t\022\017\n\007address\030\001 \001(\t\022:\n\npagination\030\002 \001(\0132&" +
-      ".cosmos.base.query.v1beta1.PageRequest:\010" +
-      "\350\240\037\000\210\240\037\000\"\266\001\n\030QueryAllBalancesResponse\022]\n" +
-      "\010balances\030\001 \003(\0132\031.cosmos.base.v1beta1.Co" +
-      "inB0\310\336\037\000\252\337\037(github.com/cosmos/cosmos-sdk" +
-      "/types.Coins\022;\n\npagination\030\002 \001(\0132\'.cosmo" +
-      "s.base.query.v1beta1.PageResponse\"\031\n\027Que" +
-      "ryTotalSupplyRequest\"w\n\030QueryTotalSupply" +
-      "Response\022[\n\006supply\030\001 \003(\0132\031.cosmos.base.v" +
-      "1beta1.CoinB0\310\336\037\000\252\337\037(github.com/cosmos/c" +
-      "osmos-sdk/types.Coins\"%\n\024QuerySupplyOfRe" +
-      "quest\022\r\n\005denom\030\001 \001(\t\"H\n\025QuerySupplyOfRes" +
-      "ponse\022/\n\006amount\030\001 \001(\0132\031.cosmos.base.v1be" +
-      "ta1.CoinB\004\310\336\037\000\"\024\n\022QueryParamsRequest\"H\n\023" +
-      "QueryParamsResponse\0221\n\006params\030\001 \001(\0132\033.co" +
-      "smos.bank.v1beta1.ParamsB\004\310\336\037\0002\345\005\n\005Query" +
-      "\022\227\001\n\007Balance\022(.cosmos.bank.v1beta1.Query" +
-      "BalanceRequest\032).cosmos.bank.v1beta1.Que" +
-      "ryBalanceResponse\"7\202\323\344\223\0021\022//cosmos/bank/" +
-      "v1beta1/balances/{address}/{denom}\022\233\001\n\013A" +
-      "llBalances\022,.cosmos.bank.v1beta1.QueryAl" +
-      "lBalancesRequest\032-.cosmos.bank.v1beta1.Q" +
-      "ueryAllBalancesResponse\"/\202\323\344\223\002)\022\'/cosmos" +
-      "/bank/v1beta1/balances/{address}\022\217\001\n\013Tot" +
-      "alSupply\022,.cosmos.bank.v1beta1.QueryTota" +
-      "lSupplyRequest\032-.cosmos.bank.v1beta1.Que" +
-      "ryTotalSupplyResponse\"#\202\323\344\223\002\035\022\033/cosmos/b" +
-      "ank/v1beta1/supply\022\216\001\n\010SupplyOf\022).cosmos" +
-      ".bank.v1beta1.QuerySupplyOfRequest\032*.cos" +
-      "mos.bank.v1beta1.QuerySupplyOfResponse\"+" +
-      "\202\323\344\223\002%\022#/cosmos/bank/v1beta1/supply/{den" +
-      "om}\022\200\001\n\006Params\022\'.cosmos.bank.v1beta1.Que" +
-      "ryParamsRequest\032(.cosmos.bank.v1beta1.Qu" +
-      "eryParamsResponse\"#\202\323\344\223\002\035\022\033/cosmos/bank/" +
-      "v1beta1/paramsB+Z)github.com/cosmos/cosm" +
-      "os-sdk/x/bank/typesb\006proto3"
+      "s.bank.v1beta1\032*cosmos/base/query/v1beta" +
+      "1/pagination.proto\032\024gogoproto/gogo.proto" +
+      "\032\034google/api/annotations.proto\032\036cosmos/b" +
+      "ase/v1beta1/coin.proto\032\036cosmos/bank/v1be" +
+      "ta1/bank.proto\"?\n\023QueryBalanceRequest\022\017\n" +
+      "\007address\030\001 \001(\t\022\r\n\005denom\030\002 \001(\t:\010\350\240\037\000\210\240\037\000\"" +
+      "B\n\024QueryBalanceResponse\022*\n\007balance\030\001 \001(\013" +
+      "2\031.cosmos.base.v1beta1.Coin\"p\n\027QueryAllB" +
+      "alancesRequest\022\017\n\007address\030\001 \001(\t\022:\n\npagin" +
+      "ation\030\002 \001(\0132&.cosmos.base.query.v1beta1." +
+      "PageRequest:\010\350\240\037\000\210\240\037\000\"\266\001\n\030QueryAllBalanc" +
+      "esResponse\022]\n\010balances\030\001 \003(\0132\031.cosmos.ba" +
+      "se.v1beta1.CoinB0\310\336\037\000\252\337\037(github.com/cosm" +
+      "os/cosmos-sdk/types.Coins\022;\n\npagination\030" +
+      "\002 \001(\0132\'.cosmos.base.query.v1beta1.PageRe" +
+      "sponse\"\031\n\027QueryTotalSupplyRequest\"w\n\030Que" +
+      "ryTotalSupplyResponse\022[\n\006supply\030\001 \003(\0132\031." +
+      "cosmos.base.v1beta1.CoinB0\310\336\037\000\252\337\037(github" +
+      ".com/cosmos/cosmos-sdk/types.Coins\"%\n\024Qu" +
+      "erySupplyOfRequest\022\r\n\005denom\030\001 \001(\t\"H\n\025Que" +
+      "rySupplyOfResponse\022/\n\006amount\030\001 \001(\0132\031.cos" +
+      "mos.base.v1beta1.CoinB\004\310\336\037\000\"\024\n\022QueryPara" +
+      "msRequest\"H\n\023QueryParamsResponse\0221\n\006para" +
+      "ms\030\001 \001(\0132\033.cosmos.bank.v1beta1.ParamsB\004\310" +
+      "\336\037\0002\345\005\n\005Query\022\227\001\n\007Balance\022(.cosmos.bank." +
+      "v1beta1.QueryBalanceRequest\032).cosmos.ban" +
+      "k.v1beta1.QueryBalanceResponse\"7\202\323\344\223\0021\022/" +
+      "/cosmos/bank/v1beta1/balances/{address}/" +
+      "{denom}\022\233\001\n\013AllBalances\022,.cosmos.bank.v1" +
+      "beta1.QueryAllBalancesRequest\032-.cosmos.b" +
+      "ank.v1beta1.QueryAllBalancesResponse\"/\202\323" +
+      "\344\223\002)\022\'/cosmos/bank/v1beta1/balances/{add" +
+      "ress}\022\217\001\n\013TotalSupply\022,.cosmos.bank.v1be" +
+      "ta1.QueryTotalSupplyRequest\032-.cosmos.ban" +
+      "k.v1beta1.QueryTotalSupplyResponse\"#\202\323\344\223" +
+      "\002\035\022\033/cosmos/bank/v1beta1/supply\022\216\001\n\010Supp" +
+      "lyOf\022).cosmos.bank.v1beta1.QuerySupplyOf" +
+      "Request\032*.cosmos.bank.v1beta1.QuerySuppl" +
+      "yOfResponse\"+\202\323\344\223\002%\022#/cosmos/bank/v1beta" +
+      "1/supply/{denom}\022\200\001\n\006Params\022\'.cosmos.ban" +
+      "k.v1beta1.QueryParamsRequest\032(.cosmos.ba" +
+      "nk.v1beta1.QueryParamsResponse\"#\202\323\344\223\002\035\022\033" +
+      "/cosmos/bank/v1beta1/paramsB+Z)github.co" +
+      "m/cosmos/cosmos-sdk/x/bank/typesb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
