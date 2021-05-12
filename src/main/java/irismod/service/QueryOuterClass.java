@@ -18902,116 +18902,117 @@ public final class QueryOuterClass {
   static {
     java.lang.String[] descriptorData = {
       "\n\023service/query.proto\022\017irismod.service\032\036" +
-      "cosmos/base/v1beta1/coin.proto\032*cosmos/b" +
-      "ase/query/v1beta1/pagination.proto\032\024gogo" +
-      "proto/gogo.proto\032\034google/api/annotations" +
-      ".proto\032\025service/service.proto\".\n\026QueryDe" +
-      "finitionRequest\022\024\n\014service_name\030\001 \001(\t\"Y\n" +
-      "\027QueryDefinitionResponse\022>\n\022service_defi" +
-      "nition\030\001 \001(\0132\".irismod.service.ServiceDe" +
-      "finition\"=\n\023QueryBindingRequest\022\024\n\014servi" +
-      "ce_name\030\001 \001(\t\022\020\n\010provider\030\002 \001(\t\"P\n\024Query" +
-      "BindingResponse\0228\n\017service_binding\030\001 \001(\013" +
-      "2\037.irismod.service.ServiceBinding\"w\n\024Que" +
-      "ryBindingsRequest\022\024\n\014service_name\030\001 \001(\t\022" +
-      "\r\n\005owner\030\002 \001(\t\022:\n\npagination\030\003 \001(\0132&.cos" +
-      "mos.base.query.v1beta1.PageRequest\"\217\001\n\025Q" +
-      "ueryBindingsResponse\0229\n\020service_bindings" +
-      "\030\001 \003(\0132\037.irismod.service.ServiceBinding\022" +
-      ";\n\npagination\030\002 \001(\0132\'.cosmos.base.query." +
-      "v1beta1.PageResponse\",\n\033QueryWithdrawAdd" +
-      "ressRequest\022\r\n\005owner\030\001 \001(\t\"8\n\034QueryWithd" +
-      "rawAddressResponse\022\030\n\020withdraw_address\030\001" +
-      " \001(\t\"8\n\032QueryRequestContextRequest\022\032\n\022re" +
-      "quest_context_id\030\001 \001(\t\"W\n\033QueryRequestCo" +
-      "ntextResponse\0228\n\017request_context\030\001 \001(\0132\037" +
-      ".irismod.service.RequestContext\")\n\023Query" +
-      "RequestRequest\022\022\n\nrequest_id\030\001 \001(\t\"A\n\024Qu" +
-      "eryRequestResponse\022)\n\007request\030\001 \001(\0132\030.ir" +
-      "ismod.service.Request\"z\n\024QueryRequestsRe" +
-      "quest\022\024\n\014service_name\030\001 \001(\t\022\020\n\010provider\030" +
-      "\002 \001(\t\022:\n\npagination\030\003 \001(\0132&.cosmos.base." +
-      "query.v1beta1.PageRequest\"\200\001\n\025QueryReque" +
-      "stsResponse\022*\n\010requests\030\001 \003(\0132\030.irismod." +
-      "service.Request\022;\n\npagination\030\002 \001(\0132\'.co" +
-      "smos.base.query.v1beta1.PageResponse\"\215\001\n" +
-      "\034QueryRequestsByReqCtxRequest\022\032\n\022request" +
-      "_context_id\030\001 \001(\t\022\025\n\rbatch_counter\030\002 \001(\004" +
-      "\022:\n\npagination\030\003 \001(\0132&.cosmos.base.query" +
-      ".v1beta1.PageRequest\"\210\001\n\035QueryRequestsBy" +
-      "ReqCtxResponse\022*\n\010requests\030\001 \003(\0132\030.irism" +
-      "od.service.Request\022;\n\npagination\030\002 \001(\0132\'" +
-      ".cosmos.base.query.v1beta1.PageResponse\"" +
-      "*\n\024QueryResponseRequest\022\022\n\nrequest_id\030\001 " +
-      "\001(\t\"D\n\025QueryResponseResponse\022+\n\010response" +
-      "\030\001 \001(\0132\031.irismod.service.Response\"\206\001\n\025Qu" +
-      "eryResponsesRequest\022\032\n\022request_context_i" +
-      "d\030\001 \001(\t\022\025\n\rbatch_counter\030\002 \001(\004\022:\n\npagina" +
-      "tion\030\003 \001(\0132&.cosmos.base.query.v1beta1.P" +
-      "ageRequest\"\203\001\n\026QueryResponsesResponse\022,\n" +
-      "\tresponses\030\001 \003(\0132\031.irismod.service.Respo" +
-      "nse\022;\n\npagination\030\002 \001(\0132\'.cosmos.base.qu" +
-      "ery.v1beta1.PageResponse\"*\n\026QueryEarnedF" +
-      "eesRequest\022\020\n\010provider\030\001 \001(\t\"\212\001\n\027QueryEa" +
-      "rnedFeesResponse\022o\n\004fees\030\001 \003(\0132\031.cosmos." +
-      "base.v1beta1.CoinBF\310\336\037\000\252\337\037(github.com/co" +
-      "smos/cosmos-sdk/types.Coins\362\336\037\022yaml:\"ser" +
-      "vice_fee\"\")\n\022QuerySchemaRequest\022\023\n\013schem" +
-      "a_name\030\001 \001(\t\"%\n\023QuerySchemaResponse\022\016\n\006s" +
-      "chema\030\001 \001(\t\"\024\n\022QueryParamsRequest\"z\n\023Que" +
-      "ryParamsResponse\022-\n\006params\030\001 \001(\0132\027.irism" +
-      "od.service.ParamsB\004\310\336\037\000\0224\n\003res\030\002 \001(\0132\'.c" +
-      "osmos.base.query.v1beta1.PageResponse2\256\017" +
-      "\n\005Query\022\224\001\n\nDefinition\022\'.irismod.service" +
-      ".QueryDefinitionRequest\032(.irismod.servic" +
-      "e.QueryDefinitionResponse\"3\202\323\344\223\002-\022+/iris" +
-      "mod/service/definitions/{service_name}\022\223" +
-      "\001\n\007Binding\022$.irismod.service.QueryBindin" +
-      "gRequest\032%.irismod.service.QueryBindingR" +
-      "esponse\";\202\323\344\223\0025\0223/irismod/service/bindin" +
-      "gs/{service_name}/{provider}\022\213\001\n\010Binding" +
-      "s\022%.irismod.service.QueryBindingsRequest" +
-      "\032&.irismod.service.QueryBindingsResponse" +
-      "\"0\202\323\344\223\002*\022(/irismod/service/bindings/{ser" +
-      "vice_name}\022\250\001\n\017WithdrawAddress\022,.irismod" +
-      ".service.QueryWithdrawAddressRequest\032-.i" +
-      "rismod.service.QueryWithdrawAddressRespo" +
-      "nse\"8\202\323\344\223\0022\0220/irismod/service/owners/{ow" +
-      "ner}/withdraw-address\022\243\001\n\016RequestContext" +
-      "\022+.irismod.service.QueryRequestContextRe" +
-      "quest\032,.irismod.service.QueryRequestCont" +
-      "extResponse\"6\202\323\344\223\0020\022./irismod/service/co" +
-      "ntexts/{request_context_id}\022\206\001\n\007Request\022" +
-      "$.irismod.service.QueryRequestRequest\032%." +
-      "irismod.service.QueryRequestResponse\".\202\323" +
-      "\344\223\002(\022&/irismod/service/requests/{request" +
-      "_id}\022\226\001\n\010Requests\022%.irismod.service.Quer" +
-      "yRequestsRequest\032&.irismod.service.Query" +
-      "RequestsResponse\";\202\323\344\223\0025\0223/irismod/servi" +
-      "ce/requests/{service_name}/{provider}\022\271\001" +
-      "\n\020RequestsByReqCtx\022-.irismod.service.Que" +
-      "ryRequestsByReqCtxRequest\032..irismod.serv" +
-      "ice.QueryRequestsByReqCtxResponse\"F\202\323\344\223\002" +
-      "@\022>/irismod/service/requests/{request_co" +
-      "ntext_id}/{batch_counter}\022\212\001\n\010Response\022%" +
-      ".irismod.service.QueryResponseRequest\032&." +
-      "irismod.service.QueryResponseResponse\"/\202" +
-      "\323\344\223\002)\022\'/irismod/service/responses/{reque" +
-      "st_id}\022\245\001\n\tResponses\022&.irismod.service.Q" +
-      "ueryResponsesRequest\032\'.irismod.service.Q" +
-      "ueryResponsesResponse\"G\202\323\344\223\002A\022?/irismod/" +
-      "service/responses/{request_context_id}/{" +
-      "batch_counter}\022\211\001\n\nEarnedFees\022\'.irismod." +
-      "service.QueryEarnedFeesRequest\032(.irismod" +
-      ".service.QueryEarnedFeesResponse\"(\202\323\344\223\002\"" +
-      "\022 /irismod/service/fees/{provider}\022\203\001\n\006S" +
-      "chema\022#.irismod.service.QuerySchemaReque" +
-      "st\032$.irismod.service.QuerySchemaResponse" +
-      "\".\202\323\344\223\002(\022&/irismod/service/schemas/{sche" +
-      "ma_name}\022t\n\006Params\022#.irismod.service.Que" +
-      "ryParamsRequest\032$.irismod.service.QueryP" +
-      "aramsResponse\"\037\202\323\344\223\002\031\022\027/irismod/service/" +
-      "paramsb\006proto3"
+      "cosmos/base/v1beta1/coin.proto\032\035cosmos_p" +
+      "roto/pagination.proto\032\024gogoproto/gogo.pr" +
+      "oto\032\034google/api/annotations.proto\032\025servi" +
+      "ce/service.proto\".\n\026QueryDefinitionReque" +
+      "st\022\024\n\014service_name\030\001 \001(\t\"Y\n\027QueryDefinit" +
+      "ionResponse\022>\n\022service_definition\030\001 \001(\0132" +
+      "\".irismod.service.ServiceDefinition\"=\n\023Q" +
+      "ueryBindingRequest\022\024\n\014service_name\030\001 \001(\t" +
+      "\022\020\n\010provider\030\002 \001(\t\"P\n\024QueryBindingRespon" +
+      "se\0228\n\017service_binding\030\001 \001(\0132\037.irismod.se" +
+      "rvice.ServiceBinding\"w\n\024QueryBindingsReq" +
+      "uest\022\024\n\014service_name\030\001 \001(\t\022\r\n\005owner\030\002 \001(" +
+      "\t\022:\n\npagination\030\003 \001(\0132&.cosmos.base.quer" +
+      "y.v1beta1.PageRequest\"\217\001\n\025QueryBindingsR" +
+      "esponse\0229\n\020service_bindings\030\001 \003(\0132\037.iris" +
+      "mod.service.ServiceBinding\022;\n\npagination" +
+      "\030\002 \001(\0132\'.cosmos.base.query.v1beta1.PageR" +
+      "esponse\",\n\033QueryWithdrawAddressRequest\022\r" +
+      "\n\005owner\030\001 \001(\t\"8\n\034QueryWithdrawAddressRes" +
+      "ponse\022\030\n\020withdraw_address\030\001 \001(\t\"8\n\032Query" +
+      "RequestContextRequest\022\032\n\022request_context" +
+      "_id\030\001 \001(\t\"W\n\033QueryRequestContextResponse" +
+      "\0228\n\017request_context\030\001 \001(\0132\037.irismod.serv" +
+      "ice.RequestContext\")\n\023QueryRequestReques" +
+      "t\022\022\n\nrequest_id\030\001 \001(\t\"A\n\024QueryRequestRes" +
+      "ponse\022)\n\007request\030\001 \001(\0132\030.irismod.service" +
+      ".Request\"z\n\024QueryRequestsRequest\022\024\n\014serv" +
+      "ice_name\030\001 \001(\t\022\020\n\010provider\030\002 \001(\t\022:\n\npagi" +
+      "nation\030\003 \001(\0132&.cosmos.base.query.v1beta1" +
+      ".PageRequest\"\200\001\n\025QueryRequestsResponse\022*" +
+      "\n\010requests\030\001 \003(\0132\030.irismod.service.Reque" +
+      "st\022;\n\npagination\030\002 \001(\0132\'.cosmos.base.que" +
+      "ry.v1beta1.PageResponse\"\215\001\n\034QueryRequest" +
+      "sByReqCtxRequest\022\032\n\022request_context_id\030\001" +
+      " \001(\t\022\025\n\rbatch_counter\030\002 \001(\004\022:\n\npaginatio" +
+      "n\030\003 \001(\0132&.cosmos.base.query.v1beta1.Page" +
+      "Request\"\210\001\n\035QueryRequestsByReqCtxRespons" +
+      "e\022*\n\010requests\030\001 \003(\0132\030.irismod.service.Re" +
+      "quest\022;\n\npagination\030\002 \001(\0132\'.cosmos.base." +
+      "query.v1beta1.PageResponse\"*\n\024QueryRespo" +
+      "nseRequest\022\022\n\nrequest_id\030\001 \001(\t\"D\n\025QueryR" +
+      "esponseResponse\022+\n\010response\030\001 \001(\0132\031.iris" +
+      "mod.service.Response\"\206\001\n\025QueryResponsesR" +
+      "equest\022\032\n\022request_context_id\030\001 \001(\t\022\025\n\rba" +
+      "tch_counter\030\002 \001(\004\022:\n\npagination\030\003 \001(\0132&." +
+      "cosmos.base.query.v1beta1.PageRequest\"\203\001" +
+      "\n\026QueryResponsesResponse\022,\n\tresponses\030\001 " +
+      "\003(\0132\031.irismod.service.Response\022;\n\npagina" +
+      "tion\030\002 \001(\0132\'.cosmos.base.query.v1beta1.P" +
+      "ageResponse\"*\n\026QueryEarnedFeesRequest\022\020\n" +
+      "\010provider\030\001 \001(\t\"\212\001\n\027QueryEarnedFeesRespo" +
+      "nse\022o\n\004fees\030\001 \003(\0132\031.cosmos.base.v1beta1." +
+      "CoinBF\310\336\037\000\252\337\037(github.com/cosmos/cosmos-s" +
+      "dk/types.Coins\362\336\037\022yaml:\"service_fee\"\")\n\022" +
+      "QuerySchemaRequest\022\023\n\013schema_name\030\001 \001(\t\"" +
+      "%\n\023QuerySchemaResponse\022\016\n\006schema\030\001 \001(\t\"\024" +
+      "\n\022QueryParamsRequest\"z\n\023QueryParamsRespo" +
+      "nse\022-\n\006params\030\001 \001(\0132\027.irismod.service.Pa" +
+      "ramsB\004\310\336\037\000\0224\n\003res\030\002 \001(\0132\'.cosmos.base.qu" +
+      "ery.v1beta1.PageResponse2\256\017\n\005Query\022\224\001\n\nD" +
+      "efinition\022\'.irismod.service.QueryDefinit" +
+      "ionRequest\032(.irismod.service.QueryDefini" +
+      "tionResponse\"3\202\323\344\223\002-\022+/irismod/service/d" +
+      "efinitions/{service_name}\022\223\001\n\007Binding\022$." +
+      "irismod.service.QueryBindingRequest\032%.ir" +
+      "ismod.service.QueryBindingResponse\";\202\323\344\223" +
+      "\0025\0223/irismod/service/bindings/{service_n" +
+      "ame}/{provider}\022\213\001\n\010Bindings\022%.irismod.s" +
+      "ervice.QueryBindingsRequest\032&.irismod.se" +
+      "rvice.QueryBindingsResponse\"0\202\323\344\223\002*\022(/ir" +
+      "ismod/service/bindings/{service_name}\022\250\001" +
+      "\n\017WithdrawAddress\022,.irismod.service.Quer" +
+      "yWithdrawAddressRequest\032-.irismod.servic" +
+      "e.QueryWithdrawAddressResponse\"8\202\323\344\223\0022\0220" +
+      "/irismod/service/owners/{owner}/withdraw" +
+      "-address\022\243\001\n\016RequestContext\022+.irismod.se" +
+      "rvice.QueryRequestContextRequest\032,.irism" +
+      "od.service.QueryRequestContextResponse\"6" +
+      "\202\323\344\223\0020\022./irismod/service/contexts/{reque" +
+      "st_context_id}\022\206\001\n\007Request\022$.irismod.ser" +
+      "vice.QueryRequestRequest\032%.irismod.servi" +
+      "ce.QueryRequestResponse\".\202\323\344\223\002(\022&/irismo" +
+      "d/service/requests/{request_id}\022\226\001\n\010Requ" +
+      "ests\022%.irismod.service.QueryRequestsRequ" +
+      "est\032&.irismod.service.QueryRequestsRespo" +
+      "nse\";\202\323\344\223\0025\0223/irismod/service/requests/{" +
+      "service_name}/{provider}\022\271\001\n\020RequestsByR" +
+      "eqCtx\022-.irismod.service.QueryRequestsByR" +
+      "eqCtxRequest\032..irismod.service.QueryRequ" +
+      "estsByReqCtxResponse\"F\202\323\344\223\002@\022>/irismod/s" +
+      "ervice/requests/{request_context_id}/{ba" +
+      "tch_counter}\022\212\001\n\010Response\022%.irismod.serv" +
+      "ice.QueryResponseRequest\032&.irismod.servi" +
+      "ce.QueryResponseResponse\"/\202\323\344\223\002)\022\'/irism" +
+      "od/service/responses/{request_id}\022\245\001\n\tRe" +
+      "sponses\022&.irismod.service.QueryResponses" +
+      "Request\032\'.irismod.service.QueryResponses" +
+      "Response\"G\202\323\344\223\002A\022?/irismod/service/respo" +
+      "nses/{request_context_id}/{batch_counter" +
+      "}\022\211\001\n\nEarnedFees\022\'.irismod.service.Query" +
+      "EarnedFeesRequest\032(.irismod.service.Quer" +
+      "yEarnedFeesResponse\"(\202\323\344\223\002\"\022 /irismod/se" +
+      "rvice/fees/{provider}\022\203\001\n\006Schema\022#.irism" +
+      "od.service.QuerySchemaRequest\032$.irismod." +
+      "service.QuerySchemaResponse\".\202\323\344\223\002(\022&/ir" +
+      "ismod/service/schemas/{schema_name}\022t\n\006P" +
+      "arams\022#.irismod.service.QueryParamsReque" +
+      "st\032$.irismod.service.QueryParamsResponse" +
+      "\"\037\202\323\344\223\002\031\022\027/irismod/service/paramsB2Z0git" +
+      "hub.com/irisnet/irismod/modules/service/" +
+      "typesb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

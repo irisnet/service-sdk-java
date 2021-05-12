@@ -22044,8 +22044,9 @@ public final class Tx {
       "od.service.MsgUpdateRequestContextRespon" +
       "se\022l\n\022WithdrawEarnedFees\022&.irismod.servi" +
       "ce.MsgWithdrawEarnedFees\032..irismod.servi" +
-      "ce.MsgWithdrawEarnedFeesResponseB\004\310\341\036\000b\006" +
-      "proto3"
+      "ce.MsgWithdrawEarnedFeesResponseB6Z0gith" +
+      "ub.com/irisnet/irismod/modules/service/t" +
+      "ypes\310\341\036\000b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
