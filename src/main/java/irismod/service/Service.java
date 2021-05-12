@@ -15875,8 +15875,7 @@ public final class Service {
       "D\032\014\260\244\036\001\250\244\036\000\210\243\036\000*s\n\023RequestContextState\022\030" +
       "\n\007RUNNING\020\000\032\013\212\235 \007RUNNING\022\026\n\006PAUSED\020\001\032\n\212\235" +
       " \006PAUSED\022\034\n\tCOMPLETED\020\002\032\r\212\235 \tCOMPLETED\032\014" +
-      "\260\244\036\001\250\244\036\000\210\243\036\000B6Z0github.com/irisnet/irism" +
-      "od/modules/service/types\310\341\036\000b\006proto3"
+      "\260\244\036\001\250\244\036\000\210\243\036\000B\004\310\341\036\000b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
