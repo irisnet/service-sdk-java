@@ -1,6 +1,6 @@
-# irita-sdk-java
+# service-sdk-java
 
-irita-sdk-java for opb
+service-sdk-java for opb
 
 ## Key Manger
 
@@ -93,116 +93,144 @@ public interface Key {
         OpbOption opbOption=new OpbOption(opbUri,projectId,projectKey);
         IritaClient client=new IritaClient(chainId,opbOption,option);
 
-        WasmClient wasmClient=iritaClient.getWasmClient();
-        CommunityGovClient comGovClient=iritaClient.getCommunityGovClient();
+        ServiceClient serviceClient=iritaClient.getServiceClient();
 // get other client is as same as above
 ```
 
-### 2 use at spring
+## 使用Service模块
 
-Write next in application.yml
-
-```yaml
-irita:
-  sdk:
-    mnemonic: apart various produce pond bachelor size pumpkin gate pretty awake silver worth dust pledge pioneer patrol current fall escape lunar zero afraid this fish
-    opbUri: https://opbningxia.bsngate.com:18602
-    chainId: wenchangchain
-    projectId: 7b3c53beda5c48c6b07d98804e156389
-    contractAddr: iaa1cr8ard7tpvzf3g8n5llegc0fd92uuxeeuzt4s6
-```
-
-**Then use @ConfigurationProperties + @Component to register Bean.**
-You can also use EnableConfigurationProperties(IritaSdkConfig.class) as you like
+### 1.定义一个服务
 
 ```java
+    BaseTx baseTx=new BaseTx(200000,new IritaClientOption.Fee("200000","upoint"));
 
-@Configuration
-@Data
-@ConfigurationProperties(prefix = "irita.sdk")
-public class IritaSdkConfig {
-    private String mnemonic;
-    private String opbUri;
-    private String projectId;
-    private String projectKey;
-    private String chainId;
-    private int gas;
-    private String amount;
-    private String denom;
-    private String contractAddr;
+        String schemas="{\"input\":{\"type\":\"object\"},\"output\":{\"type\":\"object\"},\"error\":{\"type\":\"object\"}}";
+        String serviceName="test";
 
-    @Bean
-    public IritaClient iritaClient() {
-        Key km = new KeyManager(mnemonic);
-        IritaClientOption.Fee fee = new IritaClientOption.Fee(getAmount(), getDenom());
-        IritaClientOption option = new IritaClientOption(getGas(), fee, 1073741824, "", 1.0, km);
+        DefineServiceRequest defineReq=new DefineServiceRequest();
+        defineReq.setServiceName(serviceName);
+        defineReq.setDescription("this is a test service");
+        defineReq.setTags(null);
+        defineReq.setAuthorDescription("service provider");
+        defineReq.setSchemas(schemas);
 
-        OpbOption opbOption = new OpbOption(opbUri, projectId, projectKey);
-        return new IritaClient(chainId, opbOption, option);
-    }
-
-    @Bean
-    public WasmClient wasmClient(IritaClient iritaClient) {
-        if (StringUtils.hasLength(contractAddr))
-            ContractAddress.DEFAULT = contractAddr;
-
-        return iritaClient.getWasmClient();
-    }
-
-    @Bean
-    public CommunityGovClient comGovClient(IritaClient iritaClient) {
-        return iritaClient.getCommunityGovClient();
-    }
-
-    public String getAmount() {
-        if (StringUtils.hasLength(amount)) {
-            return amount;
-        }
-        return "200000";
-    }
-
-    public String getDenom() {
-        if (StringUtils.hasLength(denom)) {
-            return denom;
-        }
-        return "uirita";
-    }
-
-    public int getGas() {
-        return gas != 0 ? gas : 10000000;
-    }
-}
+        ResultTx resultTx=serviceClient.defineService(defineReq,baseTx);
 ```
 
-## Use CommunityGovClient
-
-### 1. add department(添加部门管理员)
+### 2.绑定一个服务
 
 ```java
-        final String publicKey = "iaa1ytemz2xqq2s73ut3ys8mcd6zca2564a5lfhtm3";
-        final String department = "测试部门";
+BindServiceRequest bindReq=mockBindReq(serviceName);
+        String pricing="{\"price\":\"1upoint\"}";
+        String options="{}";
 
-        try {
-            comGovClient.addDepartment(department, publicKey, baseTx);
-        } catch (ContractException e) {
-            // you can use log to record
-            e.printStackTrace();
-        }
+        BindServiceRequest bindReq=new BindServiceRequest();
+        bindReq.setServiceName(serviceName);
+        bindReq.setDeposit(new Coin("20000","upoint"));
+        bindReq.setPricing(pricing);
+        bindReq.setOptions(options);
+        bindReq.setQoS(10);
+
+        ResultTx resultTx=serviceClient.bindService(bindReq,baseTx);
 ```
 
-### 2. add a member(添加一个成员)
+### 3.一次服务调用
 
 ```java
-        String newAddr = "iaa1wfs050mv8taydn4cttsrhr5dq3tpdaemcm5sk2";
+        String input="{\"header\":{},\"body\":{\"pair\":\"point-usdt\"}}";
+        CallServiceRequest callReq=new CallServiceRequest();
+        callReq.setServiceName(serviceName);
 
-        try {
-            comGovClient.addMember(newAddr, Role.HASH_ADMIN, baseTx);
-        } catch (ContractException | IOException e) {
-            e.printStackTrace();
-        }
-        // 关于角色见 Role.java
+        ArrayList<String> providers=new ArrayList<>();
+        providers.add(km.getAddr());
+        callReq.setProviders(providers);
+        callReq.setInput(input);
+        callReq.setServiceFeeCap(new Coin("200","upoint"));
+        callReq.setTimeout(10);
+        callReq.setRepeated(true);
+        callReq.setRepeatedTotal(-1);
+
+        CallServiceRequest callReq=mockCallServiceReq(serviceName);
+        CallServiceResp callServiceResp=serviceClient.callService(callReq,baseTx);
 ```
 
-### 3. other operation(其他方法)
+### 4.一次服务响应
 
-详见KeyMangerTest.java, WasmTest.java, OpbTest.java
+```java
+        ResponseServiceRequest responseReq=new ResponseServiceRequest();
+        responseReq.setRequestId(reqId);
+        String output="{\"header\":{},\"body\":{\"last\":\"1:100\"}}";
+        String testResult="{\"code\":200,\"message\":\"\"}";
+        responseReq.setOutput(output);
+        responseReq.setResult(testResult);
+
+        ResultTx resultTx=serviceClient.responseService(responseReq,baseTx);
+```
+
+### 5.订阅服务请求
+
+客户端需要轮询调用subscribeRequest(...,最小高度，最大高度)方法
+不设置最小高度或最大高度，传入Null
+当处理完高度为0 - 1500高度。
+下一次指定为 1501 - 新的高度
+
+```java
+        int minHeight=0;
+        int maxHeight=15006;
+        List<Msg> otherMgs=serviceClient.subscribeRequest("test","iaa1ytemz2xqq2s73ut3ys8mcd6zca2564a5lfhtm3",minHeight,maxHeight);
+        for(Msg msg:otherMgs){
+        System.out.println(msg.getValue().getInput());
+        }
+```
+
+### 6.订阅服务响应
+
+客户端需要轮询调用subscribeResponse(...,最小高度，最大高度)方法
+不设置最小高度或最大高度，传入Null
+当处理完高度为0 - 1500高度。
+下一次指定为 1501 - 新的高度
+
+```java
+        int minHeight=0;
+        int maxHeight=15006;
+        List<Txs> otherTxs=serviceClient.subscribeResponse("hello","iaa1ytemz2xqq2s73ut3ys8mcd6zca2564a5lfhtm3","iaa1ytemz2xqq2s73ut3ys8mcd6zca2564a5lfhtm3",maxHeight,maxHeight);
+        for(Txs tx:otherTxs){
+        System.out.println(tx.getRawLog());
+        }
+```
+
+### 7.service查询
+
+```java
+    // 参数见实际调用
+    serviceClient.queryServiceDefinition(...)
+    serviceClient.queryServiceBinding(...)
+    serviceClient.queryServiceBindings(...)
+    serviceClient.queryServiceRequest(...)
+    serviceClient.queryServiceRequests(...)
+    serviceClient.queryRequestsByReqCtx(...)
+    serviceClient.queryServiceResponse(...)
+    serviceClient.queryServiceResponses(...)
+    serviceClient.queryRequestContext(...)
+```
+
+### 8.使用service例子
+
+详见ServiceTest.java（代码中使用的是本地网络）
+
+如要使用opb网络使用下列代码初始化客户端
+```java
+        String mnemonic="opera vivid pride shallow brick crew found resist decade neck expect apple chalk belt sick author know try tank detail tree impact hand best";
+        String opbUri="https://opbningxia.bsngate.com:18602";
+        String projectId="xxx";
+        String projectKey=null;
+
+        Key km=new KeyManager(mnemonic);
+        IritaClientOption.Fee fee=new IritaClientOption.Fee("2000000","uirita");
+        IritaClientOption option=new IritaClientOption("10000000",fee,1073741824,"",1.0,km);
+        OpbOption opbOption=new OpbOption(opbUri,projectId,projectKey);
+        IritaClient client=new IritaClient(chainId,opbOption,option);
+
+        ServiceClient serviceClient=iritaClient.getServiceClient();
+// get other client is as same as above
+```

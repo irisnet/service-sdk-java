@@ -175,5 +175,10 @@ public class ServiceTest {
         for (Txs tx : txs) {
             System.out.println(tx.getRawLog());
         }
+
+        List<Txs> otherTxs = serviceClient.subscribeResponse("hello", "iaa1ytemz2xqq2s73ut3ys8mcd6zca2564a5lfhtm3", "iaa1ytemz2xqq2s73ut3ys8mcd6zca2564a5lfhtm3",0,15006);
+        for (Txs tx : otherTxs) {
+            System.out.println(tx.getRawLog());
+        }
     }
 }
