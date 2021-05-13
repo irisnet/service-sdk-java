@@ -1,7 +1,6 @@
 package irita.sdk.module.service;
 
 import com.alibaba.fastjson.JSONObject;
-import com.sun.istack.internal.NotNull;
 import cosmos.base.v1beta1.CoinOuterClass;
 import cosmos.tx.v1beta1.TxOuterClass;
 import irismod.service.Tx;
@@ -104,7 +103,7 @@ public class ServiceClient extends Client {
     }
 
     // BindService is responsible for binding a new service definition
-    public ResultTx disableServiceBinding(@NotNull String serviceName, String provider, BaseTx baseTx) throws IOException {
+    public ResultTx disableServiceBinding(String serviceName, String provider, BaseTx baseTx) throws IOException {
         Account account = super.queryAccount(option.getKeyManager().getAddr());
         AddressUtils.validAddress(provider);
 
@@ -122,7 +121,7 @@ public class ServiceClient extends Client {
     }
 
     // BindService is responsible for binding a new service definition
-    public ResultTx enableServiceBinding(@NotNull String serviceName, String provider, Coin deposit, BaseTx baseTx) throws IOException {
+    public ResultTx enableServiceBinding(String serviceName, String provider, Coin deposit, BaseTx baseTx) throws IOException {
         Account account = super.queryAccount(option.getKeyManager().getAddr());
         AddressUtils.validAddress(provider);
 
@@ -198,7 +197,7 @@ public class ServiceClient extends Client {
         return ResUtils.checkAndConvert(res);
     }
 
-    public ServiceDefinition queryServiceDefinition(@NotNull String serviceName) throws QueryException {
+    public ServiceDefinition queryServiceDefinition(String serviceName) throws QueryException {
         String queryServiceDefinitionUri = getQueryUri() + "/irismod/service/definitions/" + serviceName;
         String res = httpUtils().get(queryServiceDefinitionUri);
         QueryServiceDefinitionResponse definitionResponse = JSONObject.parseObject(res, QueryServiceDefinitionResponse.class);
@@ -207,7 +206,7 @@ public class ServiceClient extends Client {
         return definitionResponse.getServiceDefinition();
     }
 
-    public ServiceBinding queryServiceBinding(@NotNull String serviceName, @NotNull String provider) throws QueryException {
+    public ServiceBinding queryServiceBinding(String serviceName, String provider) throws QueryException {
         String queryServiceBindingUri = getQueryUri() + "/irismod/service/bindings/" + serviceName + "/" + provider;
         String res = httpUtils().get(queryServiceBindingUri);
         QueryServiceBindingResponse bindingResponse = JSONObject.parseObject(res, QueryServiceBindingResponse.class);
@@ -216,11 +215,11 @@ public class ServiceClient extends Client {
         return bindingResponse.getServiceBinding();
     }
 
-    public List<ServiceBinding> queryServiceBindings(@NotNull String serviceName) throws QueryException {
+    public List<ServiceBinding> queryServiceBindings(String serviceName) throws QueryException {
         return queryServiceBindings(serviceName, null, null);
     }
 
-    public List<ServiceBinding> queryServiceBindings(@NotNull String serviceName, Integer offset, Integer limit) throws QueryException {
+    public List<ServiceBinding> queryServiceBindings(String serviceName, Integer offset, Integer limit) throws QueryException {
         String baseUri = getQueryUri() + "/irismod/service/bindings/" + serviceName;
         String queryServiceBindingUri = PageUtils.connectUri(baseUri, offset, limit);
         String res = httpUtils().get(queryServiceBindingUri);
@@ -230,7 +229,7 @@ public class ServiceClient extends Client {
         return bindingsResponse.getServiceBindings();
     }
 
-    public Request queryServiceRequest(@NotNull String requestID) throws QueryException {
+    public Request queryServiceRequest(String requestID) throws QueryException {
         String queryServiceRequestUri = getQueryUri() + "/irismod/service/requests/" + requestID;
         String res = httpUtils().get(queryServiceRequestUri);
 
@@ -239,11 +238,11 @@ public class ServiceClient extends Client {
         return serviceRequest.getRequest();
     }
 
-    public List<Request> queryServiceRequests(@NotNull String serviceName, @NotNull String provider) throws QueryException {
+    public List<Request> queryServiceRequests(String serviceName, String provider) throws QueryException {
         return queryServiceRequests(serviceName, provider, null, null);
     }
 
-    public List<Request> queryServiceRequests(@NotNull String serviceName, @NotNull String provider, Integer offset, Integer limit) throws QueryException {
+    public List<Request> queryServiceRequests(String serviceName, String provider, Integer offset, Integer limit) throws QueryException {
         String baseUri = getQueryUri() + "/irismod/service/requests/" + serviceName + "/" + provider;
         String queryServiceRequestsUri = PageUtils.connectUri(baseUri, offset, limit);
         String res = httpUtils().get(queryServiceRequestsUri);
@@ -253,7 +252,7 @@ public class ServiceClient extends Client {
         return serviceRequests.getRequests();
     }
 
-    public List<Request> queryRequestsByReqCtx(@NotNull String reqCtxID, int batchCounter, Integer offset, Integer limit) throws QueryException {
+    public List<Request> queryRequestsByReqCtx(String reqCtxID, int batchCounter, Integer offset, Integer limit) throws QueryException {
         String baseUri = getQueryUri() + "/irismod/service/requests/" + reqCtxID + "/" + batchCounter;
         String queryServiceRequestsUri = PageUtils.connectUri(baseUri, offset, limit);
         String res = httpUtils().get(queryServiceRequestsUri);
@@ -264,7 +263,7 @@ public class ServiceClient extends Client {
     }
 
 
-    public Response queryServiceResponse(@NotNull String requestID) throws QueryException {
+    public Response queryServiceResponse(String requestID) throws QueryException {
         String queryServiceResponseUri = getQueryUri() + "/irismod/service/responses/" + requestID;
         String res = httpUtils().get(queryServiceResponseUri);
 
@@ -273,11 +272,11 @@ public class ServiceClient extends Client {
         return serviceResponse.getResponse();
     }
 
-    public List<Response> queryServiceResponses(@NotNull String reqCtxID, int batchCounter) throws QueryException {
+    public List<Response> queryServiceResponses(String reqCtxID, int batchCounter) throws QueryException {
         return queryServiceResponses(reqCtxID, batchCounter, null, null);
     }
 
-    public List<Response> queryServiceResponses(@NotNull String reqCtxID, int batchCounter, Integer offset, Integer limit) throws QueryException {
+    public List<Response> queryServiceResponses(String reqCtxID, int batchCounter, Integer offset, Integer limit) throws QueryException {
         String queryServiceResponsesUri = getQueryUri() + "/irismod/service/responses/" + reqCtxID + "/" + batchCounter;
         String res = httpUtils().get(queryServiceResponsesUri);
 
@@ -287,7 +286,7 @@ public class ServiceClient extends Client {
     }
 
 
-    public RequestContext queryRequestContext(@NotNull String reqCtxID) throws QueryException {
+    public RequestContext queryRequestContext(String reqCtxID) throws QueryException {
         String queryRequestContextIro = getQueryUri() + "/irismod/service/contexts/" + reqCtxID;
         String res = httpUtils().get(queryRequestContextIro);
 
@@ -296,11 +295,11 @@ public class ServiceClient extends Client {
         return requestContextResponse.getRequestContext();
     }
 
-    public List<Msg> subscribeRequest(@NotNull String serviceName, @NotNull String provider) {
+    public List<Msg> subscribeRequest(String serviceName, String provider) {
         return subscribeRequest(serviceName, provider, null, null);
     }
 
-    public List<Msg> subscribeRequest(@NotNull String serviceName, @NotNull String provider, Integer minHeight, Integer maxHeight) {
+    public List<Msg> subscribeRequest(String serviceName, String provider, Integer minHeight, Integer maxHeight) {
         String baseUri = getQueryUri() + "/txs?create_context.service_name=" + serviceName;
         String subscribeRequestUri = connectMinMaxHeight(baseUri, minHeight, maxHeight);
 
@@ -324,12 +323,12 @@ public class ServiceClient extends Client {
         return res;
     }
 
-    public List<Txs> subscribeResponse(@NotNull String serviceName, String provider, String consumer) {
+    public List<Txs> subscribeResponse(String serviceName, String provider, String consumer) {
         return subscribeResponse(serviceName, provider, consumer, null, null);
     }
 
 
-    public List<Txs> subscribeResponse(@NotNull String serviceName, String provider, String consumer, Integer minHeight, Integer maxHeight) {
+    public List<Txs> subscribeResponse(String serviceName, String provider, String consumer, Integer minHeight, Integer maxHeight) {
         String baseUri = getQueryUri() + "/txs?respond_service.service_name=" + serviceName;
         String subscribeResponseUri = connectProviderConsumer(baseUri, provider, consumer);
         subscribeResponseUri = connectMinMaxHeight(baseUri, minHeight, maxHeight);

@@ -8,6 +8,7 @@ import irita.sdk.module.keys.Key;
 import irita.sdk.module.keys.KeyManager;
 import irita.sdk.module.service.*;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -18,6 +19,7 @@ import java.util.logging.Logger;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@Disabled
 public class ServiceTest {
     private ServiceClient serviceClient;
     private BaseTx baseTx;

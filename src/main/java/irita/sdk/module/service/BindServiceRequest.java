@@ -1,17 +1,12 @@
 package irita.sdk.module.service;
 
-import com.sun.istack.internal.NotNull;
 import irita.sdk.module.base.Coin;
 
 public class BindServiceRequest {
-    @NotNull
     private String serviceName;
-    @NotNull
     private Coin deposit;
-    @NotNull
     private String pricing;
     private long qoS;
-    @NotNull
     private String options;
     private String provider;
 

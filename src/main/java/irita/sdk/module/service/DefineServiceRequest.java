@@ -1,17 +1,13 @@
 package irita.sdk.module.service;
 
-import com.sun.istack.internal.NotNull;
-
 import java.util.List;
 
 // DefineServiceRequest defines the request parameters of the service definition
 public class DefineServiceRequest {
-    @NotNull
     private String serviceName;
     private String description;
     private List<String> tags;
     private String authorDescription;
-    @NotNull
     private String schemas;
 
     public String getServiceName() {
