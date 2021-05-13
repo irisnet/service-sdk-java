@@ -81,7 +81,7 @@ public interface Key {
 
 ### 1. 初始化客户端
 
-本地网络初始化如下：
+bsn(opb) 网络初始化如下：
 
 ```java
         String mnemonic = "opera vivid pride shallow brick crew found resist decade neck expect apple chalk belt sick author know try tank detail tree impact hand best";
@@ -98,22 +98,18 @@ public interface Key {
         ServiceClient serviceClient = iritaClient.getServiceClient();
 ```
 
-bsn(opb) 网络初始化如下：
-
+本地网络初始化如下：
 
 ```java
         String mnemonic = "opera vivid pride shallow brick crew found resist decade neck expect apple chalk belt sick author know try tank detail tree impact hand best";
-        String opbUr i= "https://opbningxia.bsngate.com:18602";
-        String projectId = "xxx";
-        String projectKey = "xxx";
+        km = new KeyManager(mnemonic);
+        IritaClientOption option = IritaClientOption.getDefaultOption(km);
 
-        Key km = new KeyManager(mnemonic);
-        IritaClientOption.Fee fee = new IritaClientOption.Fee("2000000","uirita");
-        IritaClientOption option = new IritaClientOption("10000000",fee,1073741824,"",1.0,km);
-        OpbOption opbOption = new OpbOption(opbUri,projectId,projectKey);
-        IritaClient client = new IritaClient(chainId,opbOption,option);
-
-        ServiceClient serviceClient = iritaClient.getServiceClient();
+        String nodeUri = "http://localhost:26657";
+        String lcd = "http://localhost:1317";
+        String chainId = "test";
+        IritaClient client = new IritaClient(nodeUri, lcd, chainId, option);
+        serviceClient = client.getServiceClient();
 ```
 
 ## 使用Service模块
