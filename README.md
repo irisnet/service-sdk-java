@@ -23,7 +23,7 @@ service-sdk-java支持bsn(opb)
 
 #### 1.3 从tendermint keystore恢复key
 
-**read from str**
+**从字符串读取**
 
 ```java
 String keystore = "-----BEGIN TENDERMINT PRIVATE KEY-----\n"+
@@ -40,7 +40,7 @@ String keystore = "-----BEGIN TENDERMINT PRIVATE KEY-----\n"+
         Key km = new KeyManager(input,"123456");
 ```
 
-**read from file**
+**从文件中读取**
 
 ```java
         FileInputStream input = new FileInputStream("src/test/resources/priv.key");
@@ -239,17 +239,16 @@ BindServiceRequest bindReq=mockBindReq(serviceName);
 
 如要使用opb网络使用下列代码初始化客户端
 ```java
-        String mnemonic="opera vivid pride shallow brick crew found resist decade neck expect apple chalk belt sick author know try tank detail tree impact hand best";
-        String opbUri="https://opbningxia.bsngate.com:18602";
-        String projectId="xxx";
-        String projectKey=null;
+        String mnemonic = "opera vivid pride shallow brick crew found resist decade neck expect apple chalk belt sick author know try tank detail tree impact hand best";
+        String opbUri = "https://opbningxia.bsngate.com:18602";
+        String projectId = "xxx";
+        String projectKey = null;
 
-        Key km=new KeyManager(mnemonic);
-        IritaClientOption.Fee fee=new IritaClientOption.Fee("2000000","uirita");
-        IritaClientOption option=new IritaClientOption("10000000",fee,1073741824,"",1.0,km);
-        OpbOption opbOption=new OpbOption(opbUri,projectId,projectKey);
-        IritaClient client=new IritaClient(chainId,opbOption,option);
+        Key km = new KeyManager(mnemonic);
+        IritaClientOption.Fee fee = new IritaClientOption.Fee("2000000","uirita");
+        IritaClientOption option = new IritaClientOption("10000000",fee,1073741824,"",1.0,km);
+        OpbOption opbOption = new OpbOption(opbUri,projectId,projectKey);
+        IritaClient client = new IritaClient(chainId,opbOption,option);
 
-        ServiceClient serviceClient=iritaClient.getServiceClient();
-// get other client is as same as above
+        ServiceClient serviceClient = iritaClient.getServiceClient();
 ```
