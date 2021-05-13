@@ -1,32 +1,32 @@
 # service-sdk-java
 
-service-sdk-java for opb
+service-sdk-java支持bsn(opb)
 
-## Key Manger
+## Key的管理
 
-### 1 recover
+### 1 恢复key
 
-#### 1.1 recover from mnemonic
-
-```java
-        String mnemonic="xxx";
-        Key km=new KeyManager(mnemonic);
-```
-
-#### 1.2 recover from privKey
+#### 1.1 从助记词恢复key
 
 ```java
-        String privKeyHex="3c49175daf981965679bf88d2690e22144424e16c84e9d397ddb58b63603eeec";
-        BigInteger privKey=new BigInteger(privKeyHex,16);
-        Key km=new KeyManager(privKey);
+        String mnemonic = "xxx";
+        Key km = new KeyManager(mnemonic);
 ```
 
-#### 1.3 recover from keystore
+#### 1.2 从私钥hex(编码)恢复key
+
+```java
+        String privKeyHex = "3c49175daf981965679bf88d2690e22144424e16c84e9d397ddb58b63603eeec";
+        BigInteger privKey = new BigInteger(privKeyHex,16);
+        Key km = new KeyManager(privKey);
+```
+
+#### 1.3 从tendermint keystore恢复key
 
 **read from str**
 
 ```java
-String keystore="-----BEGIN TENDERMINT PRIVATE KEY-----\n"+
+String keystore = "-----BEGIN TENDERMINT PRIVATE KEY-----\n"+
         "salt: 183EF9B57DEF8EF8C3AD9D21DE672E1B\n"+
         "type: sm2\n"+
         "kdf: bcrypt\n"+
@@ -36,25 +36,25 @@ String keystore="-----BEGIN TENDERMINT PRIVATE KEY-----\n"+
         "=nJvd\n"+
         "-----END TENDERMINT PRIVATE KEY-----";
 
-        InputStream input=new ByteArrayInputStream(keystore.getBytes(StandardCharsets.UTF_8));
-        Key km=new KeyManager(input,"123456");
+        InputStream input = new ByteArrayInputStream(keystore.getBytes(StandardCharsets.UTF_8));
+        Key km = new KeyManager(input,"123456");
 ```
 
 **read from file**
 
 ```java
-        FileInputStream input=new FileInputStream("src/test/resources/priv.key");
-        Key km=new KeyManager(input,"123456");
+        FileInputStream input = new FileInputStream("src/test/resources/priv.key");
+        Key km = new KeyManager(input,"123456");
 ```
 
-#### 1.4 recover from CaKeystore
+#### 1.4 从ca keystore恢复key
 
 ```java
-        FileInputStream input=new FileInputStream("src/test/resources/ca.JKS");
-        Key km=KeyManager.recoverFromCAKeystore(input,"123456");
+        FileInputStream input = new FileInputStream("src/test/resources/ca.JKS");
+        Key km = KeyManager.recoverFromCAKeystore(input,"123456");
 ```
 
-### 2 export
+### 2 导出key
 
 ```java
 public interface Key {
@@ -67,7 +67,7 @@ public interface Key {
 }
 ```
 
-### 3 getPrivKey or getAddr
+### 3 获得私钥/获得地址
 
 ```java
 public interface Key {
@@ -77,24 +77,43 @@ public interface Key {
 }
 ```
 
-## How to use irita-sdk-java
+## 怎么使用 service-sdk-java
 
-### 1 use in normal java project
+### 1. 初始化客户端
+
+本地网络初始化如下：
 
 ```java
-        String mnemonic="opera vivid pride shallow brick crew found resist decade neck expect apple chalk belt sick author know try tank detail tree impact hand best";
-        String opbUri="https://opbningxia.bsngate.com:18602";
-        String projectId="xxx";
-        String projectKey=null;
+        String mnemonic = "opera vivid pride shallow brick crew found resist decade neck expect apple chalk belt sick author know try tank detail tree impact hand best";
+        String opbUri = "https://opbningxia.bsngate.com:18602";
+        String projectId = "xxx";
+        String projectKey = null;
 
-        Key km=new KeyManager(mnemonic);
-        IritaClientOption.Fee fee=new IritaClientOption.Fee("2000000","uirita");
-        IritaClientOption option=new IritaClientOption("10000000",fee,1073741824,"",1.0,km);
-        OpbOption opbOption=new OpbOption(opbUri,projectId,projectKey);
-        IritaClient client=new IritaClient(chainId,opbOption,option);
+        Key km = new KeyManager(mnemonic);
+        IritaClientOption.Fee fee = new IritaClientOption.Fee("2000000","uirita");
+        IritaClientOption option = new IritaClientOption("10000000",fee,1073741824,"",1.0,km);
+        OpbOption opbOption = new OpbOption(opbUri,projectId,projectKey);
+        IritaClient client = new IritaClient(chainId,opbOption,option);
 
-        ServiceClient serviceClient=iritaClient.getServiceClient();
-// get other client is as same as above
+        ServiceClient serviceClient = iritaClient.getServiceClient();
+```
+
+bsn(opb) 网络初始化如下：
+
+
+```java
+        String mnemonic = "opera vivid pride shallow brick crew found resist decade neck expect apple chalk belt sick author know try tank detail tree impact hand best";
+        String opbUr i= "https://opbningxia.bsngate.com:18602";
+        String projectId = "xxx";
+        String projectKey = "xxx";
+
+        Key km = new KeyManager(mnemonic);
+        IritaClientOption.Fee fee = new IritaClientOption.Fee("2000000","uirita");
+        IritaClientOption option = new IritaClientOption("10000000",fee,1073741824,"",1.0,km);
+        OpbOption opbOption = new OpbOption(opbUri,projectId,projectKey);
+        IritaClient client = new IritaClient(chainId,opbOption,option);
+
+        ServiceClient serviceClient = iritaClient.getServiceClient();
 ```
 
 ## 使用Service模块
@@ -102,46 +121,47 @@ public interface Key {
 ### 1.定义一个服务
 
 ```java
-    BaseTx baseTx=new BaseTx(200000,new IritaClientOption.Fee("200000","upoint"));
+        // 定义一次交易的费用
+        BaseTx baseTx = new BaseTx(200000,new IritaClientOption.Fee("200000","uirita"));
 
-        String schemas="{\"input\":{\"type\":\"object\"},\"output\":{\"type\":\"object\"},\"error\":{\"type\":\"object\"}}";
-        String serviceName="test";
+        String schemas = "{\"input\":{\"type\":\"object\"},\"output\":{\"type\":\"object\"},\"error\":{\"type\":\"object\"}}";
+        String serviceName = "test";
 
-        DefineServiceRequest defineReq=new DefineServiceRequest();
+        DefineServiceRequest defineReq = new DefineServiceRequest();
         defineReq.setServiceName(serviceName);
         defineReq.setDescription("this is a test service");
         defineReq.setTags(null);
         defineReq.setAuthorDescription("service provider");
         defineReq.setSchemas(schemas);
 
-        ResultTx resultTx=serviceClient.defineService(defineReq,baseTx);
+        ResultTx resultTx = serviceClient.defineService(defineReq,baseTx);
 ```
 
 ### 2.绑定一个服务
 
 ```java
 BindServiceRequest bindReq=mockBindReq(serviceName);
-        String pricing="{\"price\":\"1upoint\"}";
-        String options="{}";
+        String pricing = "{\"price\":\"1uirita\"}";
+        String options = "{}";
 
-        BindServiceRequest bindReq=new BindServiceRequest();
+        BindServiceRequest bindReq = new BindServiceRequest();
         bindReq.setServiceName(serviceName);
-        bindReq.setDeposit(new Coin("20000","upoint"));
+        bindReq.setDeposit(new Coin("20000","uirita"));
         bindReq.setPricing(pricing);
         bindReq.setOptions(options);
         bindReq.setQoS(10);
 
-        ResultTx resultTx=serviceClient.bindService(bindReq,baseTx);
+        ResultTx resultTx = serviceClient.bindService(bindReq,baseTx);
 ```
 
 ### 3.一次服务调用
 
 ```java
-        String input="{\"header\":{},\"body\":{\"pair\":\"point-usdt\"}}";
-        CallServiceRequest callReq=new CallServiceRequest();
+        String input="{\"header\":{},\"body\":{\"pair\":\"uirita-usdt\"}}";
+        CallServiceRequest callReq = new CallServiceRequest();
         callReq.setServiceName(serviceName);
 
-        ArrayList<String> providers=new ArrayList<>();
+        ArrayList<String> providers = new ArrayList<>();
         providers.add(km.getAddr());
         callReq.setProviders(providers);
         callReq.setInput(input);
@@ -150,21 +170,20 @@ BindServiceRequest bindReq=mockBindReq(serviceName);
         callReq.setRepeated(true);
         callReq.setRepeatedTotal(-1);
 
-        CallServiceRequest callReq=mockCallServiceReq(serviceName);
-        CallServiceResp callServiceResp=serviceClient.callService(callReq,baseTx);
+        CallServiceResp callServiceResp = serviceClient.callService(callReq,baseTx);
 ```
 
 ### 4.一次服务响应
 
 ```java
-        ResponseServiceRequest responseReq=new ResponseServiceRequest();
+        ResponseServiceRequest responseReq = new ResponseServiceRequest();
         responseReq.setRequestId(reqId);
-        String output="{\"header\":{},\"body\":{\"last\":\"1:100\"}}";
-        String testResult="{\"code\":200,\"message\":\"\"}";
+        String output = "{\"header\":{},\"body\":{\"last\":\"1:100\"}}";
+        String testResult = "{\"code\":200,\"message\":\"\"}";
         responseReq.setOutput(output);
         responseReq.setResult(testResult);
 
-        ResultTx resultTx=serviceClient.responseService(responseReq,baseTx);
+        ResultTx resultTx = serviceClient.responseService(responseReq,baseTx);
 ```
 
 ### 5.订阅服务请求
@@ -175,11 +194,11 @@ BindServiceRequest bindReq=mockBindReq(serviceName);
 下一次指定为 1501 - 新的高度
 
 ```java
-        int minHeight=0;
-        int maxHeight=15006;
-        List<Msg> otherMgs=serviceClient.subscribeRequest("test","iaa1ytemz2xqq2s73ut3ys8mcd6zca2564a5lfhtm3",minHeight,maxHeight);
-        for(Msg msg:otherMgs){
-        System.out.println(msg.getValue().getInput());
+        int minHeight = 0;
+        int maxHeight = 15006;
+        List<Msg> otherMgs = serviceClient.subscribeRequest("test","iaa1ytemz2xqq2s73ut3ys8mcd6zca2564a5lfhtm3",minHeight,maxHeight);
+        for(Msg msg: otherMgs){
+            System.out.println(msg.getValue().getInput());
         }
 ```
 
@@ -191,11 +210,11 @@ BindServiceRequest bindReq=mockBindReq(serviceName);
 下一次指定为 1501 - 新的高度
 
 ```java
-        int minHeight=0;
-        int maxHeight=15006;
-        List<Txs> otherTxs=serviceClient.subscribeResponse("hello","iaa1ytemz2xqq2s73ut3ys8mcd6zca2564a5lfhtm3","iaa1ytemz2xqq2s73ut3ys8mcd6zca2564a5lfhtm3",maxHeight,maxHeight);
-        for(Txs tx:otherTxs){
-        System.out.println(tx.getRawLog());
+        int minHeight = 0;
+        int maxHeight = 15006;
+        List<Txs> otherTxs = serviceClient.subscribeResponse("hello","iaa1ytemz2xqq2s73ut3ys8mcd6zca2564a5lfhtm3","iaa1ytemz2xqq2s73ut3ys8mcd6zca2564a5lfhtm3",maxHeight,maxHeight);
+        for(Txs tx: otherTxs){
+            System.out.println(tx.getRawLog());
         }
 ```
 
