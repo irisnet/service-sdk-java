@@ -82,11 +82,11 @@ public final class Genesis {
         int index);
 
     /**
-     * <code>map&lt;string, bytes&gt; withdraw_addresses = 4 [(.gogoproto.moretags) = "yaml:&#92;"withdraw_addresses&#92;""];</code>
+     * <code>map&lt;string, string&gt; withdraw_addresses = 4 [(.gogoproto.moretags) = "yaml:&#92;"withdraw_addresses&#92;""];</code>
      */
     int getWithdrawAddressesCount();
     /**
-     * <code>map&lt;string, bytes&gt; withdraw_addresses = 4 [(.gogoproto.moretags) = "yaml:&#92;"withdraw_addresses&#92;""];</code>
+     * <code>map&lt;string, string&gt; withdraw_addresses = 4 [(.gogoproto.moretags) = "yaml:&#92;"withdraw_addresses&#92;""];</code>
      */
     boolean containsWithdrawAddresses(
         java.lang.String key);
@@ -94,25 +94,25 @@ public final class Genesis {
      * Use {@link #getWithdrawAddressesMap()} instead.
      */
     @java.lang.Deprecated
-    java.util.Map<java.lang.String, com.google.protobuf.ByteString>
+    java.util.Map<java.lang.String, java.lang.String>
     getWithdrawAddresses();
     /**
-     * <code>map&lt;string, bytes&gt; withdraw_addresses = 4 [(.gogoproto.moretags) = "yaml:&#92;"withdraw_addresses&#92;""];</code>
+     * <code>map&lt;string, string&gt; withdraw_addresses = 4 [(.gogoproto.moretags) = "yaml:&#92;"withdraw_addresses&#92;""];</code>
      */
-    java.util.Map<java.lang.String, com.google.protobuf.ByteString>
+    java.util.Map<java.lang.String, java.lang.String>
     getWithdrawAddressesMap();
     /**
-     * <code>map&lt;string, bytes&gt; withdraw_addresses = 4 [(.gogoproto.moretags) = "yaml:&#92;"withdraw_addresses&#92;""];</code>
+     * <code>map&lt;string, string&gt; withdraw_addresses = 4 [(.gogoproto.moretags) = "yaml:&#92;"withdraw_addresses&#92;""];</code>
      */
 
-    com.google.protobuf.ByteString getWithdrawAddressesOrDefault(
+    java.lang.String getWithdrawAddressesOrDefault(
         java.lang.String key,
-        com.google.protobuf.ByteString defaultValue);
+        java.lang.String defaultValue);
     /**
-     * <code>map&lt;string, bytes&gt; withdraw_addresses = 4 [(.gogoproto.moretags) = "yaml:&#92;"withdraw_addresses&#92;""];</code>
+     * <code>map&lt;string, string&gt; withdraw_addresses = 4 [(.gogoproto.moretags) = "yaml:&#92;"withdraw_addresses&#92;""];</code>
      */
 
-    com.google.protobuf.ByteString getWithdrawAddressesOrThrow(
+    java.lang.String getWithdrawAddressesOrThrow(
         java.lang.String key);
 
     /**
@@ -238,7 +238,7 @@ public final class Genesis {
                     WithdrawAddressesDefaultEntryHolder.defaultEntry);
                 mutable_bitField0_ |= 0x00000004;
               }
-              com.google.protobuf.MapEntry<java.lang.String, com.google.protobuf.ByteString>
+              com.google.protobuf.MapEntry<java.lang.String, java.lang.String>
               withdrawAddresses__ = input.readMessage(
                   WithdrawAddressesDefaultEntryHolder.defaultEntry.getParserForType(), extensionRegistry);
               withdrawAddresses_.getMutableMap().put(
@@ -419,18 +419,18 @@ public final class Genesis {
     public static final int WITHDRAW_ADDRESSES_FIELD_NUMBER = 4;
     private static final class WithdrawAddressesDefaultEntryHolder {
       static final com.google.protobuf.MapEntry<
-          java.lang.String, com.google.protobuf.ByteString> defaultEntry =
+          java.lang.String, java.lang.String> defaultEntry =
               com.google.protobuf.MapEntry
-              .<java.lang.String, com.google.protobuf.ByteString>newDefaultInstance(
+              .<java.lang.String, java.lang.String>newDefaultInstance(
                   irismod.service.Genesis.internal_static_irismod_service_GenesisState_WithdrawAddressesEntry_descriptor, 
                   com.google.protobuf.WireFormat.FieldType.STRING,
                   "",
-                  com.google.protobuf.WireFormat.FieldType.BYTES,
-                  com.google.protobuf.ByteString.EMPTY);
+                  com.google.protobuf.WireFormat.FieldType.STRING,
+                  "");
     }
     private com.google.protobuf.MapField<
-        java.lang.String, com.google.protobuf.ByteString> withdrawAddresses_;
-    private com.google.protobuf.MapField<java.lang.String, com.google.protobuf.ByteString>
+        java.lang.String, java.lang.String> withdrawAddresses_;
+    private com.google.protobuf.MapField<java.lang.String, java.lang.String>
     internalGetWithdrawAddresses() {
       if (withdrawAddresses_ == null) {
         return com.google.protobuf.MapField.emptyMapField(
@@ -443,7 +443,7 @@ public final class Genesis {
       return internalGetWithdrawAddresses().getMap().size();
     }
     /**
-     * <code>map&lt;string, bytes&gt; withdraw_addresses = 4 [(.gogoproto.moretags) = "yaml:&#92;"withdraw_addresses&#92;""];</code>
+     * <code>map&lt;string, string&gt; withdraw_addresses = 4 [(.gogoproto.moretags) = "yaml:&#92;"withdraw_addresses&#92;""];</code>
      */
 
     @java.lang.Override
@@ -457,39 +457,39 @@ public final class Genesis {
      */
     @java.lang.Override
     @java.lang.Deprecated
-    public java.util.Map<java.lang.String, com.google.protobuf.ByteString> getWithdrawAddresses() {
+    public java.util.Map<java.lang.String, java.lang.String> getWithdrawAddresses() {
       return getWithdrawAddressesMap();
     }
     /**
-     * <code>map&lt;string, bytes&gt; withdraw_addresses = 4 [(.gogoproto.moretags) = "yaml:&#92;"withdraw_addresses&#92;""];</code>
+     * <code>map&lt;string, string&gt; withdraw_addresses = 4 [(.gogoproto.moretags) = "yaml:&#92;"withdraw_addresses&#92;""];</code>
      */
     @java.lang.Override
 
-    public java.util.Map<java.lang.String, com.google.protobuf.ByteString> getWithdrawAddressesMap() {
+    public java.util.Map<java.lang.String, java.lang.String> getWithdrawAddressesMap() {
       return internalGetWithdrawAddresses().getMap();
     }
     /**
-     * <code>map&lt;string, bytes&gt; withdraw_addresses = 4 [(.gogoproto.moretags) = "yaml:&#92;"withdraw_addresses&#92;""];</code>
+     * <code>map&lt;string, string&gt; withdraw_addresses = 4 [(.gogoproto.moretags) = "yaml:&#92;"withdraw_addresses&#92;""];</code>
      */
     @java.lang.Override
 
-    public com.google.protobuf.ByteString getWithdrawAddressesOrDefault(
+    public java.lang.String getWithdrawAddressesOrDefault(
         java.lang.String key,
-        com.google.protobuf.ByteString defaultValue) {
+        java.lang.String defaultValue) {
       if (key == null) { throw new java.lang.NullPointerException(); }
-      java.util.Map<java.lang.String, com.google.protobuf.ByteString> map =
+      java.util.Map<java.lang.String, java.lang.String> map =
           internalGetWithdrawAddresses().getMap();
       return map.containsKey(key) ? map.get(key) : defaultValue;
     }
     /**
-     * <code>map&lt;string, bytes&gt; withdraw_addresses = 4 [(.gogoproto.moretags) = "yaml:&#92;"withdraw_addresses&#92;""];</code>
+     * <code>map&lt;string, string&gt; withdraw_addresses = 4 [(.gogoproto.moretags) = "yaml:&#92;"withdraw_addresses&#92;""];</code>
      */
     @java.lang.Override
 
-    public com.google.protobuf.ByteString getWithdrawAddressesOrThrow(
+    public java.lang.String getWithdrawAddressesOrThrow(
         java.lang.String key) {
       if (key == null) { throw new java.lang.NullPointerException(); }
-      java.util.Map<java.lang.String, com.google.protobuf.ByteString> map =
+      java.util.Map<java.lang.String, java.lang.String> map =
           internalGetWithdrawAddresses().getMap();
       if (!map.containsKey(key)) {
         throw new java.lang.IllegalArgumentException();
@@ -634,9 +634,9 @@ public final class Genesis {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(3, bindings_.get(i));
       }
-      for (java.util.Map.Entry<java.lang.String, com.google.protobuf.ByteString> entry
+      for (java.util.Map.Entry<java.lang.String, java.lang.String> entry
            : internalGetWithdrawAddresses().getMap().entrySet()) {
-        com.google.protobuf.MapEntry<java.lang.String, com.google.protobuf.ByteString>
+        com.google.protobuf.MapEntry<java.lang.String, java.lang.String>
         withdrawAddresses__ = WithdrawAddressesDefaultEntryHolder.defaultEntry.newBuilderForType()
             .setKey(entry.getKey())
             .setValue(entry.getValue())
@@ -1689,8 +1689,8 @@ public final class Genesis {
       }
 
       private com.google.protobuf.MapField<
-          java.lang.String, com.google.protobuf.ByteString> withdrawAddresses_;
-      private com.google.protobuf.MapField<java.lang.String, com.google.protobuf.ByteString>
+          java.lang.String, java.lang.String> withdrawAddresses_;
+      private com.google.protobuf.MapField<java.lang.String, java.lang.String>
       internalGetWithdrawAddresses() {
         if (withdrawAddresses_ == null) {
           return com.google.protobuf.MapField.emptyMapField(
@@ -1698,7 +1698,7 @@ public final class Genesis {
         }
         return withdrawAddresses_;
       }
-      private com.google.protobuf.MapField<java.lang.String, com.google.protobuf.ByteString>
+      private com.google.protobuf.MapField<java.lang.String, java.lang.String>
       internalGetMutableWithdrawAddresses() {
         onChanged();;
         if (withdrawAddresses_ == null) {
@@ -1715,7 +1715,7 @@ public final class Genesis {
         return internalGetWithdrawAddresses().getMap().size();
       }
       /**
-       * <code>map&lt;string, bytes&gt; withdraw_addresses = 4 [(.gogoproto.moretags) = "yaml:&#92;"withdraw_addresses&#92;""];</code>
+       * <code>map&lt;string, string&gt; withdraw_addresses = 4 [(.gogoproto.moretags) = "yaml:&#92;"withdraw_addresses&#92;""];</code>
        */
 
       @java.lang.Override
@@ -1729,39 +1729,39 @@ public final class Genesis {
        */
       @java.lang.Override
       @java.lang.Deprecated
-      public java.util.Map<java.lang.String, com.google.protobuf.ByteString> getWithdrawAddresses() {
+      public java.util.Map<java.lang.String, java.lang.String> getWithdrawAddresses() {
         return getWithdrawAddressesMap();
       }
       /**
-       * <code>map&lt;string, bytes&gt; withdraw_addresses = 4 [(.gogoproto.moretags) = "yaml:&#92;"withdraw_addresses&#92;""];</code>
+       * <code>map&lt;string, string&gt; withdraw_addresses = 4 [(.gogoproto.moretags) = "yaml:&#92;"withdraw_addresses&#92;""];</code>
        */
       @java.lang.Override
 
-      public java.util.Map<java.lang.String, com.google.protobuf.ByteString> getWithdrawAddressesMap() {
+      public java.util.Map<java.lang.String, java.lang.String> getWithdrawAddressesMap() {
         return internalGetWithdrawAddresses().getMap();
       }
       /**
-       * <code>map&lt;string, bytes&gt; withdraw_addresses = 4 [(.gogoproto.moretags) = "yaml:&#92;"withdraw_addresses&#92;""];</code>
+       * <code>map&lt;string, string&gt; withdraw_addresses = 4 [(.gogoproto.moretags) = "yaml:&#92;"withdraw_addresses&#92;""];</code>
        */
       @java.lang.Override
 
-      public com.google.protobuf.ByteString getWithdrawAddressesOrDefault(
+      public java.lang.String getWithdrawAddressesOrDefault(
           java.lang.String key,
-          com.google.protobuf.ByteString defaultValue) {
+          java.lang.String defaultValue) {
         if (key == null) { throw new java.lang.NullPointerException(); }
-        java.util.Map<java.lang.String, com.google.protobuf.ByteString> map =
+        java.util.Map<java.lang.String, java.lang.String> map =
             internalGetWithdrawAddresses().getMap();
         return map.containsKey(key) ? map.get(key) : defaultValue;
       }
       /**
-       * <code>map&lt;string, bytes&gt; withdraw_addresses = 4 [(.gogoproto.moretags) = "yaml:&#92;"withdraw_addresses&#92;""];</code>
+       * <code>map&lt;string, string&gt; withdraw_addresses = 4 [(.gogoproto.moretags) = "yaml:&#92;"withdraw_addresses&#92;""];</code>
        */
       @java.lang.Override
 
-      public com.google.protobuf.ByteString getWithdrawAddressesOrThrow(
+      public java.lang.String getWithdrawAddressesOrThrow(
           java.lang.String key) {
         if (key == null) { throw new java.lang.NullPointerException(); }
-        java.util.Map<java.lang.String, com.google.protobuf.ByteString> map =
+        java.util.Map<java.lang.String, java.lang.String> map =
             internalGetWithdrawAddresses().getMap();
         if (!map.containsKey(key)) {
           throw new java.lang.IllegalArgumentException();
@@ -1775,7 +1775,7 @@ public final class Genesis {
         return this;
       }
       /**
-       * <code>map&lt;string, bytes&gt; withdraw_addresses = 4 [(.gogoproto.moretags) = "yaml:&#92;"withdraw_addresses&#92;""];</code>
+       * <code>map&lt;string, string&gt; withdraw_addresses = 4 [(.gogoproto.moretags) = "yaml:&#92;"withdraw_addresses&#92;""];</code>
        */
 
       public Builder removeWithdrawAddresses(
@@ -1789,16 +1789,16 @@ public final class Genesis {
        * Use alternate mutation accessors instead.
        */
       @java.lang.Deprecated
-      public java.util.Map<java.lang.String, com.google.protobuf.ByteString>
+      public java.util.Map<java.lang.String, java.lang.String>
       getMutableWithdrawAddresses() {
         return internalGetMutableWithdrawAddresses().getMutableMap();
       }
       /**
-       * <code>map&lt;string, bytes&gt; withdraw_addresses = 4 [(.gogoproto.moretags) = "yaml:&#92;"withdraw_addresses&#92;""];</code>
+       * <code>map&lt;string, string&gt; withdraw_addresses = 4 [(.gogoproto.moretags) = "yaml:&#92;"withdraw_addresses&#92;""];</code>
        */
       public Builder putWithdrawAddresses(
           java.lang.String key,
-          com.google.protobuf.ByteString value) {
+          java.lang.String value) {
         if (key == null) { throw new java.lang.NullPointerException(); }
         if (value == null) { throw new java.lang.NullPointerException(); }
         internalGetMutableWithdrawAddresses().getMutableMap()
@@ -1806,11 +1806,11 @@ public final class Genesis {
         return this;
       }
       /**
-       * <code>map&lt;string, bytes&gt; withdraw_addresses = 4 [(.gogoproto.moretags) = "yaml:&#92;"withdraw_addresses&#92;""];</code>
+       * <code>map&lt;string, string&gt; withdraw_addresses = 4 [(.gogoproto.moretags) = "yaml:&#92;"withdraw_addresses&#92;""];</code>
        */
 
       public Builder putAllWithdrawAddresses(
-          java.util.Map<java.lang.String, com.google.protobuf.ByteString> values) {
+          java.util.Map<java.lang.String, java.lang.String> values) {
         internalGetMutableWithdrawAddresses().getMutableMap()
             .putAll(values);
         return this;
@@ -2033,7 +2033,7 @@ public final class Genesis {
       "ts\030\005 \003(\01322.irismod.service.GenesisState." +
       "RequestContextsEntryB\033\362\336\037\027yaml:\"request_" +
       "contexts\"\0328\n\026WithdrawAddressesEntry\022\013\n\003k" +
-      "ey\030\001 \001(\t\022\r\n\005value\030\002 \001(\014:\0028\001\032W\n\024RequestCo" +
+      "ey\030\001 \001(\t\022\r\n\005value\030\002 \001(\t:\0028\001\032W\n\024RequestCo" +
       "ntextsEntry\022\013\n\003key\030\001 \001(\t\022.\n\005value\030\002 \001(\0132" +
       "\037.irismod.service.RequestContext:\0028\001B2Z0" +
       "github.com/irisnet/irismod/modules/servi" +
