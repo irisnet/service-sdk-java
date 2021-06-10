@@ -14,7 +14,6 @@ public class Bech32Utils {
 
     public static byte[] fromBech32(String address) {
         Bech32.Bech32Data data = Bech32.decode(address);
-        byte[] bits = AddressUtils.convertBits(data.data, 0, data.data.length, 5, 8, true);
-        return bits;
+        return AddressUtils.convertBits(data.data, 0, data.data.length, 5, 8, true);
     }
 }

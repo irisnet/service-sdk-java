@@ -13,7 +13,7 @@ import java.io.IOException;
  */
 public class AuthServiceImpl implements IAuthService {
 
-    private QueryGrpc.QueryBlockingStub queryBlockingStub;
+    private final QueryGrpc.QueryBlockingStub queryBlockingStub;
 
     public AuthServiceImpl() {
 
@@ -27,8 +27,6 @@ public class AuthServiceImpl implements IAuthService {
         QueryOuterClass.QueryAccountRequest req = QueryOuterClass.QueryAccountRequest.newBuilder().setAddress(address).build();
 
         QueryOuterClass.QueryAccountResponse res = this.queryBlockingStub.account(req);
-        Auth.BaseAccount baseAccount = Auth.BaseAccount.parseFrom(res.getAccount().getValue().toByteArray());
-//        System.out.println(Bech32Utils.toBech32("iaa", baseAccount.getAddress().toByteArray()));
-        return baseAccount;
+        return Auth.BaseAccount.parseFrom(res.getAccount().getValue().toByteArray());
     }
 }

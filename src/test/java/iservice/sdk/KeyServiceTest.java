@@ -24,24 +24,25 @@ import static org.junit.Assert.assertTrue;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class KeyServiceTest {
 
-    private ServiceClientOptions options = new ServiceClientOptions();
     private static IKeyService keyService;
     private static final String HRP = "iaa";
-    private static Map<KEYS, Object> paramMap = new HashMap<>();
-
-    public KeyServiceTest() throws URISyntaxException {
-        options.setGrpcURI((new URI("http://localhost:9090")));
-        keyService = ServiceClientFactory.getInstance().setOptions(options).getClient().getKeyService();
-    }
-
+    private static final Map<KEYS, Object> paramMap = new HashMap<>();
     private enum KEYS {
         ADDRESS,
         MNEMONIC,
         FILEPATH
     }
 
+    private void init() throws URISyntaxException {
+        ServiceClientOptions options = new ServiceClientOptions();
+        options.setGrpcURI(new URI("http://localhost:26657"));
+        options.setRpcURI(new URI("http://localhost:9090"));
+        keyService = ServiceClientFactory.getInstance().setOptions(options).getClient().getKeyService();
+    }
+
     @Test
     public void test1AddKey() throws Exception {
+        init();
         Mnemonic mnemonic = keyService.addKey("test", "123456");
         assertNotNull(mnemonic.getAddress());
         assertNotNull(mnemonic.getMnemonic());
@@ -52,7 +53,7 @@ public class KeyServiceTest {
     }
 
     @Test
-    public void test2RecoverKey() throws Exception {
+    public void test2RecoverKey() {
         String address = keyService.recoverKey("test1", "123456", (String) paramMap.get(KEYS.MNEMONIC), true, 0, "");
         assertNotNull(address);
         assertTrue("Wrong HRP", address.startsWith(HRP));
@@ -60,7 +61,7 @@ public class KeyServiceTest {
     }
 
     @Test
-    public void test3ShowAddress() throws Exception {
+    public void test3ShowAddress() {
         String address = keyService.showAddress("test1");
         assertNotNull(address);
         assertEquals("Wrong Address", paramMap.get(KEYS.ADDRESS), address);
@@ -80,7 +81,7 @@ public class KeyServiceTest {
 
     @Test
     public void test6ImporttKey() throws Exception {
-        String address = keyService.importFromKeystore("test1", "123456", "123456", (String) paramMap.get(KEYS.FILEPATH));
+        String address = keyService.importFromKeystore("test", "123456", "123456", (String) paramMap.get(KEYS.FILEPATH));
         assertNotNull(address);
         assertEquals("Wrong Address", paramMap.get(KEYS.ADDRESS), address);
     }

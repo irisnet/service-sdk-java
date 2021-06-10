@@ -6,9 +6,6 @@ import org.apache.commons.lang3.StringUtils;
  * @author Yelong
  */
 public abstract class BaseRequest<T> {
-
-    public static final long DEFAULT_TIMEOUT = 100L;
-
     protected BaseRequest() {
     }
 
@@ -32,15 +29,6 @@ public abstract class BaseRequest<T> {
      * @return serviceName
      */
     public abstract String getServiceName();
-
-    /**
-     * Get request timeout in blocks
-     *
-     * @return timeout
-     */
-    public long getTimeout() {
-        return DEFAULT_TIMEOUT;
-    }
 
     /**
      * Get service request / response header

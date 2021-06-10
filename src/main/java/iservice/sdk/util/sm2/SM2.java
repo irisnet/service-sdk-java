@@ -1,23 +1,13 @@
-package org.zz.gmhelper;
+package iservice.sdk.util.sm2;
 
-import org.bouncycastle.asn1.ASN1Encodable;
-import org.bouncycastle.asn1.ASN1EncodableVector;
-import org.bouncycastle.asn1.ASN1Encoding;
-import org.bouncycastle.asn1.ASN1Integer;
-import org.bouncycastle.asn1.ASN1Sequence;
-import org.bouncycastle.asn1.DEROctetString;
-import org.bouncycastle.asn1.DERSequence;
+import org.bouncycastle.asn1.*;
 import org.bouncycastle.crypto.AsymmetricCipherKeyPair;
 import org.bouncycastle.crypto.CipherParameters;
 import org.bouncycastle.crypto.CryptoException;
 import org.bouncycastle.crypto.InvalidCipherTextException;
 import org.bouncycastle.crypto.engines.SM2Engine;
 import org.bouncycastle.crypto.engines.SM2Engine.Mode;
-import org.bouncycastle.crypto.params.ECDomainParameters;
-import org.bouncycastle.crypto.params.ECPrivateKeyParameters;
-import org.bouncycastle.crypto.params.ECPublicKeyParameters;
-import org.bouncycastle.crypto.params.ParametersWithID;
-import org.bouncycastle.crypto.params.ParametersWithRandom;
+import org.bouncycastle.crypto.params.*;
 import org.bouncycastle.crypto.signers.SM2Signer;
 import org.bouncycastle.jcajce.provider.asymmetric.ec.BCECPrivateKey;
 import org.bouncycastle.jcajce.provider.asymmetric.ec.BCECPublicKey;
@@ -26,15 +16,11 @@ import org.bouncycastle.math.ec.custom.gm.SM2P256V1Curve;
 
 import java.io.IOException;
 import java.math.BigInteger;
-import java.security.InvalidAlgorithmParameterException;
-import java.security.KeyPair;
-import java.security.NoSuchAlgorithmException;
-import java.security.NoSuchProviderException;
-import java.security.SecureRandom;
+import java.security.*;
 import java.security.spec.ECFieldFp;
 import java.security.spec.EllipticCurve;
 
-public class SM2Util extends GMBaseUtil {
+public class SM2 extends GMBaseUtils {
     //////////////////////////////////////////////////////////////////////////////////////
     /*
      * 以下为SM2推荐曲线参数
@@ -52,7 +38,7 @@ public class SM2Util extends GMBaseUtil {
     public static final ECPoint G_POINT = CURVE.createPoint(SM2_ECC_GX, SM2_ECC_GY);
     public static final ECDomainParameters DOMAIN_PARAMS = new ECDomainParameters(CURVE, G_POINT,
             SM2_ECC_N, SM2_ECC_H);
-    public static final int CURVE_LEN = BCECUtil.getCurveLength(DOMAIN_PARAMS);
+    public static final int CURVE_LEN = BCECUtils.getCurveLength(DOMAIN_PARAMS);
     //////////////////////////////////////////////////////////////////////////////////////
 
     public static final EllipticCurve JDK_CURVE = new EllipticCurve(new ECFieldFp(SM2_ECC_P), SM2_ECC_A, SM2_ECC_B);
@@ -72,7 +58,7 @@ public class SM2Util extends GMBaseUtil {
      */
     public static AsymmetricCipherKeyPair generateKeyPairParameter() {
         SecureRandom random = new SecureRandom();
-        return BCECUtil.generateKeyPairParameter(DOMAIN_PARAMS, random);
+        return BCECUtils.generateKeyPairParameter(DOMAIN_PARAMS, random);
     }
 
     /**
@@ -86,7 +72,7 @@ public class SM2Util extends GMBaseUtil {
     public static KeyPair generateKeyPair() throws NoSuchProviderException, NoSuchAlgorithmException,
             InvalidAlgorithmParameterException {
         SecureRandom random = new SecureRandom();
-        return BCECUtil.generateKeyPair(DOMAIN_PARAMS, random);
+        return BCECUtils.generateKeyPair(DOMAIN_PARAMS, random);
     }
 
     /**
@@ -119,7 +105,7 @@ public class SM2Util extends GMBaseUtil {
      * @throws InvalidCipherTextException
      */
     public static byte[] encrypt(BCECPublicKey pubKey, byte[] srcData) throws InvalidCipherTextException {
-        ECPublicKeyParameters pubKeyParameters = BCECUtil.convertPublicKeyToParameters(pubKey);
+        ECPublicKeyParameters pubKeyParameters = BCECUtils.convertPublicKeyToParameters(pubKey);
         return encrypt(Mode.C1C3C2, pubKeyParameters, srcData);
     }
 
@@ -131,7 +117,7 @@ public class SM2Util extends GMBaseUtil {
      * @throws InvalidCipherTextException
      */
     public static byte[] encrypt(Mode mode, BCECPublicKey pubKey, byte[] srcData) throws InvalidCipherTextException {
-        ECPublicKeyParameters pubKeyParameters = BCECUtil.convertPublicKeyToParameters(pubKey);
+        ECPublicKeyParameters pubKeyParameters = BCECUtils.convertPublicKeyToParameters(pubKey);
         return encrypt(mode, pubKeyParameters, srcData);
     }
 
@@ -168,7 +154,7 @@ public class SM2Util extends GMBaseUtil {
      * @throws InvalidCipherTextException
      */
     public static byte[] decrypt(BCECPrivateKey priKey, byte[] sm2Cipher) throws InvalidCipherTextException {
-        ECPrivateKeyParameters priKeyParameters = BCECUtil.convertPrivateKeyToParameters(priKey);
+        ECPrivateKeyParameters priKeyParameters = BCECUtils.convertPrivateKeyToParameters(priKey);
         return decrypt(Mode.C1C3C2, priKeyParameters, sm2Cipher);
     }
 
@@ -180,7 +166,7 @@ public class SM2Util extends GMBaseUtil {
      * @throws InvalidCipherTextException
      */
     public static byte[] decrypt(Mode mode, BCECPrivateKey priKey, byte[] sm2Cipher) throws InvalidCipherTextException {
-        ECPrivateKeyParameters priKeyParameters = BCECUtil.convertPrivateKeyToParameters(priKey);
+        ECPrivateKeyParameters priKeyParameters = BCECUtils.convertPrivateKeyToParameters(priKey);
         return decrypt(mode, priKeyParameters, sm2Cipher);
     }
 
@@ -217,7 +203,7 @@ public class SM2Util extends GMBaseUtil {
      * @throws Exception
      */
     public static SM2Cipher parseSM2Cipher(byte[] cipherText) throws Exception {
-        int curveLength = BCECUtil.getCurveLength(DOMAIN_PARAMS);
+        int curveLength = BCECUtils.getCurveLength(DOMAIN_PARAMS);
         return parseSM2Cipher(Mode.C1C3C2, curveLength, SM3_DIGEST_LENGTH, cipherText);
     }
 
@@ -229,7 +215,7 @@ public class SM2Util extends GMBaseUtil {
      * @return
      */
     public static SM2Cipher parseSM2Cipher(Mode mode, byte[] cipherText) throws Exception {
-        int curveLength = BCECUtil.getCurveLength(DOMAIN_PARAMS);
+        int curveLength = BCECUtils.getCurveLength(DOMAIN_PARAMS);
         return parseSM2Cipher(mode, curveLength, SM3_DIGEST_LENGTH, cipherText);
     }
 
@@ -287,7 +273,7 @@ public class SM2Util extends GMBaseUtil {
      * @throws IOException
      */
     public static byte[] encodeSM2CipherToDER(byte[] cipher) throws Exception {
-        int curveLength = BCECUtil.getCurveLength(DOMAIN_PARAMS);
+        int curveLength = BCECUtils.getCurveLength(DOMAIN_PARAMS);
         return encodeSM2CipherToDER(Mode.C1C3C2, curveLength, SM3_DIGEST_LENGTH, cipher);
     }
 
@@ -300,7 +286,7 @@ public class SM2Util extends GMBaseUtil {
      * @throws Exception
      */
     public static byte[] encodeSM2CipherToDER(Mode mode, byte[] cipher) throws Exception {
-        int curveLength = BCECUtil.getCurveLength(DOMAIN_PARAMS);
+        int curveLength = BCECUtils.getCurveLength(DOMAIN_PARAMS);
         return encodeSM2CipherToDER(mode, curveLength, SM3_DIGEST_LENGTH, cipher);
     }
 
@@ -427,7 +413,7 @@ public class SM2Util extends GMBaseUtil {
      * @throws CryptoException
      */
     public static byte[] sign(BCECPrivateKey priKey, byte[] srcData) throws CryptoException {
-        ECPrivateKeyParameters priKeyParameters = BCECUtil.convertPrivateKeyToParameters(priKey);
+        ECPrivateKeyParameters priKeyParameters = BCECUtils.convertPrivateKeyToParameters(priKey);
         return sign(priKeyParameters, null, srcData);
     }
 
@@ -454,7 +440,7 @@ public class SM2Util extends GMBaseUtil {
      * @throws CryptoException
      */
     public static byte[] sign(BCECPrivateKey priKey, byte[] withId, byte[] srcData) throws CryptoException {
-        ECPrivateKeyParameters priKeyParameters = BCECUtil.convertPrivateKeyToParameters(priKey);
+        ECPrivateKeyParameters priKeyParameters = BCECUtils.convertPrivateKeyToParameters(priKey);
         return sign(priKeyParameters, withId, srcData);
     }
 
@@ -527,7 +513,7 @@ public class SM2Util extends GMBaseUtil {
      * @return
      */
     public static boolean verify(BCECPublicKey pubKey, byte[] srcData, byte[] sign) {
-        ECPublicKeyParameters pubKeyParameters = BCECUtil.convertPublicKeyToParameters(pubKey);
+        ECPublicKeyParameters pubKeyParameters = BCECUtils.convertPublicKeyToParameters(pubKey);
         return verify(pubKeyParameters, null, srcData, sign);
     }
 
@@ -554,7 +540,7 @@ public class SM2Util extends GMBaseUtil {
      * @return
      */
     public static boolean verify(BCECPublicKey pubKey, byte[] withId, byte[] srcData, byte[] sign) {
-        ECPublicKeyParameters pubKeyParameters = BCECUtil.convertPublicKeyToParameters(pubKey);
+        ECPublicKeyParameters pubKeyParameters = BCECUtils.convertPublicKeyToParameters(pubKey);
         return verify(pubKeyParameters, withId, srcData, sign);
     }
 

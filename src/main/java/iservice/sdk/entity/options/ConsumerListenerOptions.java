@@ -9,18 +9,18 @@ import iservice.sdk.enums.ListenerType;
 public class ConsumerListenerOptions extends ServiceListenerOptions {
     private final ListenerType LISTENER_TYPE = ListenerType.CONSUMER;
     private final String MODULE = "service";
-    private String sender;
+    private String requestContextID;
     private String serviceName;
 
     public ConsumerListenerOptions() {
     }
 
-    public String getSender() {
-        return sender;
+    public String getRequestContextID() {
+        return requestContextID;
     }
 
-    public void setSender(String sender) {
-        this.sender = sender;
+    public void setRequestContextID(String requestContextID) {
+        this.requestContextID = requestContextID;
     }
 
     public String getModule() {
@@ -43,7 +43,7 @@ public class ConsumerListenerOptions extends ServiceListenerOptions {
     @Override
     public String toString() {
         return "ConsumerListenerOptions{" +
-                "sender='" + sender + '\'' +
+                "request_context_id='" + requestContextID + '\'' +
                 ", module='" + MODULE + '\'' +
                 '}';
     }

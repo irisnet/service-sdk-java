@@ -63,7 +63,7 @@ public class DefaultKeyServiceImpl extends AbstractKeyServiceImpl {
     }
 
     @Override
-    public String importFromKeystore(String name, String keyPassword, String keystorePassword, String keystore) throws ServiceSDKException, IOException, NoSuchElementException {
+    public String importFromKeystore(String name, String keyPassword, String keystorePassword, String keystore) throws ServiceSDKException, IOException {
         InputStream inputStream = new FileInputStream(keystore);
         ArmoredInputStream aIS = new ArmoredInputStream(inputStream);
         String[] headers = aIS.getArmorHeaders();

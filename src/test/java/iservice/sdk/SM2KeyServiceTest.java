@@ -29,7 +29,7 @@ public class SM2KeyServiceTest {
 
     private static IKeyService keyService ;
     private static final String HRP = "iaa";
-    private static Map<KEYS, Object> paramMap = new HashMap<>();
+    private static final Map<KEYS, Object> paramMap = new HashMap<>();
     private enum KEYS {
         ADDRESS,
         MNEMONIC,
@@ -58,7 +58,7 @@ public class SM2KeyServiceTest {
     }
 
     @Test
-    public void test2RecoverKey() throws Exception {
+    public void test2RecoverKey() {
         String address = keyService.recoverKey("test1", "12345678", (String) paramMap.get(KEYS.MNEMONIC), true, 0, "");
         assertNotNull(address);
         assertTrue("Wrong HRP", address.startsWith(HRP));

@@ -1,4 +1,4 @@
-package org.zz.gmhelper;
+package iservice.sdk.util.sm2;
 
 public class SM2Cipher {
     /**

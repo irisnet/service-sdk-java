@@ -17,7 +17,6 @@ public class SuperTest {
 
     public static void main(String[] args) throws URISyntaxException {
         ServiceClientOptions options = new ServiceClientOptions();
-        options.setSignAlgo(SignAlgo.SM2);
         options.setRpcURI(new URI("http://localhost:26657"));
         options.setGrpcURI(new URI("http://localhost:9090"));
         options.setRpcStartTimeout(TimeUnit.SECONDS.toMillis(7));

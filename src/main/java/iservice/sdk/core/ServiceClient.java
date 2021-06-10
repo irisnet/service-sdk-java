@@ -1,12 +1,21 @@
 package iservice.sdk.core;
 
+import java.io.IOException;
+import java.util.*;
+
 import com.alibaba.fastjson.JSON;
 import com.google.protobuf.Any;
 import cosmos.tx.v1beta1.TxOuterClass;
 import irismod.service.QueryGrpc;
 import irismod.service.Tx;
+import iservice.sdk.exception.ServiceSDKException;
+import org.apache.log4j.Logger;
+import org.bouncycastle.crypto.CryptoException;
+
+import iservice.sdk.entity.Res;
 import iservice.sdk.entity.BaseServiceRequest;
 import iservice.sdk.entity.ServiceMessage;
+import iservice.sdk.entity.SignAlgo;
 import iservice.sdk.entity.WrappedRequest;
 import iservice.sdk.entity.options.ServiceClientOptions;
 import iservice.sdk.entity.options.TxOptions;
@@ -23,11 +32,7 @@ import iservice.sdk.net.HttpClient;
 import iservice.sdk.net.WebSocketClient;
 import iservice.sdk.net.WebSocketClientOptions;
 import iservice.sdk.util.SubscribeUtil;
-import org.apache.log4j.Logger;
-import org.bouncycastle.crypto.CryptoException;
-
-import java.io.IOException;
-import java.util.*;
+import iservice.sdk.util.DecodeUtil;
 
 /**
  * @author Yelong
@@ -36,11 +41,11 @@ public final class ServiceClient {
 
   public static Logger logger = Logger.getLogger(ServiceClient.class);
 
-  private ServiceClientOptions options;
+  private final ServiceClientOptions options;
 
   private final List<AbstractServiceListener> LISTENERS = new ArrayList<>();
 
-  private IKeyDAO keyDAO;
+  private final IKeyDAO keyDAO;
 
   private IKeyService keyService;
   private IAuthService authService;
@@ -52,7 +57,7 @@ public final class ServiceClient {
   private int gasLimit;
 
   private volatile WebSocketClient webSocketClient = null;
-  private QueryGrpc.QueryBlockingStub serviceBlockingStub;
+  private final QueryGrpc.QueryBlockingStub serviceBlockingStub;
 
   ServiceClient(ServiceClientOptions options, List<AbstractServiceListener> listeners, IKeyDAO keyDAO) {
     this.options = options;
@@ -102,7 +107,7 @@ public final class ServiceClient {
    * @param req Service request
    * @param <T> Service request object type
    */
-  public <T> void callService(BaseServiceRequest<T> req) throws IOException, CryptoException {
+  public <T> String callService(BaseServiceRequest<T> req) throws IOException, CryptoException, ServiceSDKException {
 
     if (req == null) {
       throw new IllegalArgumentException("Service request is required");
@@ -112,18 +117,17 @@ public final class ServiceClient {
     String inputJson = JSON.toJSONString(new ServiceMessage<>(req.getHeader(), req.getBody()));
 
     Tx.MsgCallService.Builder msgBuilder = Tx.MsgCallService.newBuilder();
-    req.getProviders().forEach(address -> {
-      msgBuilder.addProviders(address);
-    });
+    req.getProviders().forEach(msgBuilder::addProviders);
 
     msgBuilder.setConsumer(this.getKeyService().showAddress(req.getKeyName()))
       .setServiceName(req.getServiceName())
       .setInput(inputJson)
       .addAllServiceFeeCap(req.getServiceFeeCap())
-      .setTimeout(req.getTimeout())
+//      .setTimeout(req.getTimeout())
+            .setTimeout(12L)
       .setSuperMode(false)
       .setRepeated(false)
-      .setRepeatedFrequency(0)
+      .setRepeatedFrequency(12)
       .setRepeatedTotal(0);
 
     TxOuterClass.TxBody body = TxOuterClass.TxBody.newBuilder()
@@ -136,11 +140,27 @@ public final class ServiceClient {
 
     Map<String, String> params = new HashMap<>();
     params.put("tx", Base64.getEncoder().encodeToString(tx.toByteArray()));
-    WrappedRequest<Map> msg = new WrappedRequest<>(params);
-    msg.setMethod("broadcast_tx_sync");
+    WrappedRequest<Map<String, String>> msg = new WrappedRequest<>(params);
+    msg.setMethod("broadcast_tx_commit");
     String res = HttpClient.getInstance().post(options.getRpcURI().toString(), JSON.toJSONString(msg));
-    // TODO error handler
-    System.out.println(res);
+
+    Res result = JSON.parseObject(res, Res.class);
+    if (result.getResult().getDeliverTx().getCode() != 0) {
+      System.out.println("Failed to call service!");
+      throw new ServiceSDKException();
+    }
+
+    String reqCxtID = "";
+    Res.Result.DeliverTx deliverTx = result.getResult().getDeliverTx();
+    for (int i = 0; i < deliverTx.getEvents().length; i++) {
+      if (Objects.equals(deliverTx.getEvents()[i].getType(), "create_context")) {
+        reqCxtID = deliverTx.getEvents()[i].getAttributes()[0].getValue();
+        break;
+      }
+    }
+
+    System.out.println("Called service successfully");
+    return DecodeUtil.DecodeReqCxtID(reqCxtID);
   }
 
   /**
@@ -154,12 +174,10 @@ public final class ServiceClient {
       return this.keyService;
     }
 
-    switch (this.options.getSignAlgo()) {
-      case SM2:
-        this.keyService = new SM2KeyServiceImpl(this.keyDAO);
-        break;
-      default:
-        this.keyService = new DefaultKeyServiceImpl(this.keyDAO);
+    if (this.options.getSignAlgo() == SignAlgo.SM2) {
+      this.keyService = new SM2KeyServiceImpl(this.keyDAO);
+    } else {
+      this.keyService = new DefaultKeyServiceImpl(this.keyDAO);
     }
 
     return this.keyService;
@@ -188,12 +206,10 @@ public final class ServiceClient {
       return this.txService;
     }
 
-    switch (this.options.getSignAlgo()) {
-      case SM2:
-        this.txService = new SM2TxServiceImpl();
-        break;
-      default:
-        this.txService = new DefaultTxServiceImpl();
+    if (this.options.getSignAlgo() == SignAlgo.SM2) {
+      this.txService = new SM2TxServiceImpl();
+    } else {
+      this.txService = new DefaultTxServiceImpl();
     }
 
     return this.txService;

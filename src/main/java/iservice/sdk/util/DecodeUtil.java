@@ -8,6 +8,7 @@ import iservice.sdk.enums.SubscribeQueryKeyEnum;
 import iservice.sdk.exception.ServiceSDKException;
 import iservice.sdk.message.*;
 
+import java.util.Base64;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -51,16 +52,19 @@ public class DecodeUtil {
         ResultEvents targetEvent = events.stream().filter(event -> {
             event.getDecodeAttributes();
             return event.compareAttribute(SubscribeQueryKeyEnum.CONSUMER.getKey(), options.getAddress())
-                    && event.compareAttribute(SubscribeQueryKeyEnum.SENDER.getKey(), options.getSender())
-                    && event.compareAttribute(SubscribeQueryKeyEnum.MODULE.getKey(), options.getModule())
-                    && event.compareAttribute(SubscribeQueryKeyEnum.SERVICE_NAME.getKey(), options.getServiceName())
-                    ;
+                    && event.compareAttribute(SubscribeQueryKeyEnum.REQUEST_CONTEXT_ID.getKey(), options.getRequestContextID());
+
         }).findAny().orElse(null);
         if (targetEvent == null) {
             throw new ServiceSDKException("Listener info not found! ListenerOption=" + JSON.toJSONString(options));
         }
         return targetEvent.getAttributesValueByKey("request_id");
 
+    }
+
+    public static String DecodeReqCxtID(String reqCxtID) {
+        byte[] decodedBytes = Base64.getDecoder().decode(reqCxtID);
+        return new String(decodedBytes);
     }
 
     private static <T> boolean checkMessageType(BaseServiceResult<T> messageResult, ServiceListenerOptions options, String requireType) {

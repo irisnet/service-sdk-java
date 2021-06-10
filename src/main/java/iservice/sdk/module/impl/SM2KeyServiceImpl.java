@@ -44,8 +44,7 @@ public class SM2KeyServiceImpl extends AbstractKeyServiceImpl {
     String mnemonic = Bip39Utils.generateMnemonic();
     DeterministicKey dk = super.generateDeterministicKey(mnemonic);
 
-    SM2Utils sm2Utils = new SM2Utils();
-    ECPoint pubkey = sm2Utils.getPubkeyFromPrivkey(dk.getPrivKey());
+    ECPoint pubkey = SM2Utils.getPublicKeyFromPrivkey(dk.getPrivKey());
 
     byte[] encoded = pubkey.getEncoded(true);
     byte[] hash = Hash.sha256(encoded);
@@ -60,9 +59,7 @@ public class SM2KeyServiceImpl extends AbstractKeyServiceImpl {
   public String recoverKey(String name, String password, String mnemonic, boolean derive, int index,
                            String saltPassword) throws ServiceSDKException {
     DeterministicKey dk = super.generateDeterministicKey(mnemonic);
-
-    SM2Utils sm2Utils = new SM2Utils();
-    ECPoint pubkey = sm2Utils.getPubkeyFromPrivkey(dk.getPrivKey());
+    ECPoint pubkey = SM2Utils.getPublicKeyFromPrivkey(dk.getPrivKey());
 
     byte[] encoded = pubkey.getEncoded(true);
     byte[] hash = Hash.sha256(encoded);
@@ -73,7 +70,7 @@ public class SM2KeyServiceImpl extends AbstractKeyServiceImpl {
     return addr;
   }
   @Override
-  public String importFromKeystore(String name, String keyPassword, String keystorePassword, String keystore) throws ServiceSDKException, IOException, NoSuchElementException {
+  public String importFromKeystore(String name, String keyPassword, String keystorePassword, String keystore) throws ServiceSDKException, IOException {
 
     InputStream inputStream = new FileInputStream(keystore);
     ArmoredInputStream aIS = new ArmoredInputStream(inputStream);
@@ -99,8 +96,7 @@ public class SM2KeyServiceImpl extends AbstractKeyServiceImpl {
     byte[] privKeyTemp= Arrays.copyOfRange(privKeyAmino, 5, privKeyAmino.length);
 
     BigInteger privKey = new BigInteger(1,privKeyTemp);
-    SM2Utils sm2Utils = new SM2Utils();
-    ECPoint pubkey = sm2Utils.getPubkeyFromPrivkey(privKey);
+    ECPoint pubkey = SM2Utils.getPublicKeyFromPrivkey(privKey);
 
     byte[] encoded = pubkey.getEncoded(true);
     byte[] hash = Hash.sha256(encoded);

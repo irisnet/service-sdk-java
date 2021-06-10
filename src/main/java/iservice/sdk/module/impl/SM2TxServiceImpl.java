@@ -1,5 +1,7 @@
 package iservice.sdk.module.impl;
 
+import com.google.protobuf.Any;
+import cosmos.crypto.sm2.Keys;
 import org.apache.commons.lang3.ArrayUtils;
 import org.bouncycastle.crypto.CryptoException;
 import org.bouncycastle.math.ec.ECPoint;
@@ -9,8 +11,6 @@ import java.io.IOException;
 import java.math.BigInteger;
 
 import com.google.protobuf.ByteString;
-import com.google.protobuf.Any;
-import cosmos.crypto.sm2.Keys;
 import cosmos.auth.v1beta1.Auth;
 import cosmos.base.v1beta1.CoinOuterClass;
 import cosmos.tx.signing.v1beta1.Signing;
@@ -48,8 +48,7 @@ public class SM2TxServiceImpl implements ITxService {
     Key key = this.keyService.getKey(name, password);
 
     BigInteger privKey = new BigInteger(1, key.getPrivKey());
-    SM2Utils sm2 = new SM2Utils();
-    ECPoint pubkey = sm2.getPubkeyFromPrivkey(privKey);
+    ECPoint pubkey = SM2Utils.getPublicKeyFromPrivkey(privKey);
 
     byte[] encodedPubkey = pubkey.getEncoded(true);
 
@@ -69,18 +68,16 @@ public class SM2TxServiceImpl implements ITxService {
       .setChainId(this.options.chainID)
       .build();
 
-    byte[] signature = sm2.sign(privKey, signdoc.toByteArray());
+    byte[] signature = SM2Utils.sign(privKey, signdoc.toByteArray());
 
-    BigInteger[] rs = sm2.getRSFromSignature(signature);
+    BigInteger[] rs = SM2Utils.getRSFromSignature(signature);
     byte[] sigBytes = ArrayUtils.addAll(Numeric.toBytesPadded(rs[0], 32), Numeric.toBytesPadded(rs[1], 32));
 
-    TxOuterClass.Tx tx = TxOuterClass.Tx.newBuilder()
+    return TxOuterClass.Tx.newBuilder()
       .setBody(txBody)
       .setAuthInfo(ai)
       .addSignatures(ByteString.copyFrom(sigBytes))
       .build();
-
-    return tx;
   }
 
   @Override

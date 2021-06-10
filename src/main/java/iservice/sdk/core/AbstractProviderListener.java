@@ -78,7 +78,7 @@ public abstract class AbstractProviderListener<T, B, R extends BaseServiceRespon
         TxOuterClass.TxBody body = TxOuterClass.TxBody.newBuilder()
                 .addMessages(Any.pack(msg, "/"))
                 .setMemo("")
-                .setTimeoutHeight(0)
+                .setTimeoutHeight(12)
                 .build();
 
         ServiceClientOptions options = new ServiceClientOptions();

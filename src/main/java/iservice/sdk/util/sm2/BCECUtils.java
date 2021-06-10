@@ -1,4 +1,4 @@
-package org.zz.gmhelper;
+package iservice.sdk.util.sm2;
 
 import org.bouncycastle.asn1.ASN1Encodable;
 import org.bouncycastle.asn1.ASN1EncodableVector;
@@ -60,7 +60,7 @@ import java.security.spec.X509EncodedKeySpec;
 /**
  * 这个工具类的方法，也适用于其他基于BC库的ECC算法
  */
-public class BCECUtil {
+public class BCECUtils {
     private static final String ALGO_NAME_EC = "EC";
     private static final String PEM_STRING_PUBLIC = "PUBLIC KEY";
     private static final String PEM_STRING_ECPRIVATEKEY = "EC PRIVATE KEY";
@@ -113,7 +113,7 @@ public class BCECUtil {
 
     /**
      * @param dHex             十六进制字符串形式的私钥d值，如果是SM2算法，Hex字符串长度应该是64（即32字节）
-     * @param domainParameters EC Domain参数，一般是固定的，如果是SM2算法的可参考{@link SM2Util#DOMAIN_PARAMS}
+     * @param domainParameters EC Domain参数，一般是固定的，如果是SM2算法的可参考{@link SM2#DOMAIN_PARAMS}
      * @return
      */
     public static ECPrivateKeyParameters createECPrivateKeyParameters(
@@ -123,7 +123,7 @@ public class BCECUtil {
 
     /**
      * @param dBytes           字节数组形式的私钥d值，如果是SM2算法，应该是32字节
-     * @param domainParameters EC Domain参数，一般是固定的，如果是SM2算法的可参考{@link SM2Util#DOMAIN_PARAMS}
+     * @param domainParameters EC Domain参数，一般是固定的，如果是SM2算法的可参考{@link SM2#DOMAIN_PARAMS}
      * @return
      */
     public static ECPrivateKeyParameters createECPrivateKeyParameters(
@@ -133,7 +133,7 @@ public class BCECUtil {
 
     /**
      * @param d                大数形式的私钥d值
-     * @param domainParameters EC Domain参数，一般是固定的，如果是SM2算法的可参考{@link SM2Util#DOMAIN_PARAMS}
+     * @param domainParameters EC Domain参数，一般是固定的，如果是SM2算法的可参考{@link SM2#DOMAIN_PARAMS}
      * @return
      */
     public static ECPrivateKeyParameters createECPrivateKeyParameters(
@@ -156,8 +156,8 @@ public class BCECUtil {
     /**
      * @param x                大数形式的公钥x分量
      * @param y                大数形式的公钥y分量
-     * @param curve            EC曲线参数，一般是固定的，如果是SM2算法的可参考{@link SM2Util#CURVE}
-     * @param domainParameters EC Domain参数，一般是固定的，如果是SM2算法的可参考{@link SM2Util#DOMAIN_PARAMS}
+     * @param curve            EC曲线参数，一般是固定的，如果是SM2算法的可参考{@link SM2#CURVE}
+     * @param domainParameters EC Domain参数，一般是固定的，如果是SM2算法的可参考{@link SM2#DOMAIN_PARAMS}
      * @return
      */
     public static ECPublicKeyParameters createECPublicKeyParameters(
@@ -168,8 +168,8 @@ public class BCECUtil {
     /**
      * @param xHex             十六进制形式的公钥x分量，如果是SM2算法，Hex字符串长度应该是64（即32字节）
      * @param yHex             十六进制形式的公钥y分量，如果是SM2算法，Hex字符串长度应该是64（即32字节）
-     * @param curve            EC曲线参数，一般是固定的，如果是SM2算法的可参考{@link SM2Util#CURVE}
-     * @param domainParameters EC Domain参数，一般是固定的，如果是SM2算法的可参考{@link SM2Util#DOMAIN_PARAMS}
+     * @param curve            EC曲线参数，一般是固定的，如果是SM2算法的可参考{@link SM2#CURVE}
+     * @param domainParameters EC Domain参数，一般是固定的，如果是SM2算法的可参考{@link SM2#DOMAIN_PARAMS}
      * @return
      */
     public static ECPublicKeyParameters createECPublicKeyParameters(
@@ -181,8 +181,8 @@ public class BCECUtil {
     /**
      * @param xBytes           十六进制形式的公钥x分量，如果是SM2算法，应该是32字节
      * @param yBytes           十六进制形式的公钥y分量，如果是SM2算法，应该是32字节
-     * @param curve            EC曲线参数，一般是固定的，如果是SM2算法的可参考{@link SM2Util#CURVE}
-     * @param domainParameters EC Domain参数，一般是固定的，如果是SM2算法的可参考{@link SM2Util#DOMAIN_PARAMS}
+     * @param curve            EC曲线参数，一般是固定的，如果是SM2算法的可参考{@link SM2#CURVE}
+     * @param domainParameters EC Domain参数，一般是固定的，如果是SM2算法的可参考{@link SM2#DOMAIN_PARAMS}
      * @return
      */
     public static ECPublicKeyParameters createECPublicKeyParameters(
@@ -215,7 +215,7 @@ public class BCECUtil {
     public static BCECPublicKey createPublicKeyFromSubjectPublicKeyInfo(SubjectPublicKeyInfo subPubInfo)
             throws NoSuchProviderException,
             NoSuchAlgorithmException, InvalidKeySpecException, IOException {
-        return BCECUtil.convertX509ToECPublicKey(subPubInfo.toASN1Primitive().getEncoded(ASN1Encoding.DER));
+        return BCECUtils.convertX509ToECPublicKey(subPubInfo.toASN1Primitive().getEncoded(ASN1Encoding.DER));
     }
 
     /**
@@ -311,7 +311,7 @@ public class BCECUtil {
          * 参考org.bouncycastle.asn1.pkcs.PrivateKeyInfo和
          * org.bouncycastle.jcajce.provider.asymmetric.ec.BCECPrivateKey，逆向拼装
          */
-        X962Parameters params = getDomainParametersFromName(SM2Util.JDK_EC_SPEC, false);
+        X962Parameters params = getDomainParametersFromName(SM2.JDK_EC_SPEC, false);
         ASN1OctetString privKey = new DEROctetString(sec1Key);
         ASN1EncodableVector v = new ASN1EncodableVector();
         v.add(new ASN1Integer(0)); //版本号
