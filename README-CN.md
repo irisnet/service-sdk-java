@@ -136,7 +136,7 @@ bsn(opb) 网络初始化如下：
 ### 2.绑定一个服务
 
 ```java
-        String pricing = "{\"price\":\"1uirita\"}";
+        String pricing = "{\"price\":\"1upoint\"}";
         String options = "{}";
 
         BindServiceRequest bindReq = new BindServiceRequest();
