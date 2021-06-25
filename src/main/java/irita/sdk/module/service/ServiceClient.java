@@ -306,19 +306,22 @@ public class ServiceClient extends Client {
         String res = httpUtils().get(subscribeRequestUri);
         QueryTxsResponse queryTxsResponse = JSONObject.parseObject(res, QueryTxsResponse.class);
 
-        return filterNeProvider(queryTxsResponse, provider);
+        return getTxMsgsEqualProvider(queryTxsResponse, provider);
     }
 
-    // filter when String provider not exist in txs
-    private List<Msg> filterNeProvider(QueryTxsResponse queryTxsResponse, String provider) {
+    // get All Msgs which provider equal input's provider
+    private List<Msg> getTxMsgsEqualProvider(QueryTxsResponse queryTxsResponse, String provider) {
         List<Msg> res = new ArrayList<>();
-        for (Txs tx : queryTxsResponse.getTxs()) {
-            List<Msg> msgs = tx.getTx().getValue().getMsg();
-            List<Msg> wantMsgs = msgs.stream().filter(m -> {
-                Optional<String> first = m.getValue().getProviders().stream().filter(p -> p.equals(provider)).findFirst();
-                return first.isPresent();
-            }).collect(Collectors.toList());
-            res.addAll(wantMsgs);
+        List<Txs> txs = queryTxsResponse.getTxs();
+        if (txs != null) {
+            for (Txs tx : queryTxsResponse.getTxs()) {
+                List<Msg> msgs = tx.getTx().getValue().getMsg();
+                List<Msg> wantMsgs = msgs.stream().filter(m -> {
+                    Optional<String> first = m.getValue().getProviders().stream().filter(p -> p.equals(provider)).findFirst();
+                    return first.isPresent();
+                }).collect(Collectors.toList());
+                res.addAll(wantMsgs);
+            }
         }
         return res;
     }

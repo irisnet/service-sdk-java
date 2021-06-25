@@ -90,12 +90,12 @@ bsn(opb) 网络初始化如下：
         String projectKey = null;
 
         Key km = new KeyManager(mnemonic);
-        IritaClientOption.Fee fee = new IritaClientOption.Fee("2000000","uirita");
-        IritaClientOption option = new IritaClientOption("10000000",fee,1073741824,"",1.0,km);
+        IritaClientOption.Fee fee = new IritaClientOption.Fee("200000","uirita");
+        IritaClientOption option = new IritaClientOption(200000,fee,1073741824,"",1.0,km);
         OpbOption opbOption = new OpbOption(opbUri,projectId,projectKey);
         IritaClient client = new IritaClient(chainId,opbOption,option);
 
-        ServiceClient serviceClient = iritaClient.getServiceClient();
+        ServiceClient serviceClient = client.getServiceClient();
 ```
 
 本地网络初始化如下：
@@ -136,8 +136,7 @@ bsn(opb) 网络初始化如下：
 ### 2.绑定一个服务
 
 ```java
-BindServiceRequest bindReq=mockBindReq(serviceName);
-        String pricing = "{\"price\":\"1uirita\"}";
+        String pricing = "{\"price\":\"1upoint\"}";
         String options = "{}";
 
         BindServiceRequest bindReq = new BindServiceRequest();
