@@ -252,14 +252,14 @@ public class ServiceClient extends Client {
         return serviceRequests.getRequests();
     }
 
-    public List<Request> queryRequestsByReqCtx(String reqCtxID, int batchCounter, Integer offset, Integer limit) throws QueryException {
+    public List<RequestByContext> queryRequestsByReqCtx(String reqCtxID, int batchCounter, Integer offset, Integer limit) throws QueryException {
         String baseUri = getQueryUri() + "/service/requests/" + reqCtxID + "/" + batchCounter;
         String queryServiceRequestsUri = PageUtils.connectUri(baseUri, offset, limit);
         String res = httpUtils().get(queryServiceRequestsUri);
 
-        QueryServiceRequestsResponse serviceRequests = JSONObject.parseObject(res, QueryServiceRequestsResponse.class);
+        QueryServiceRequestsResponseByContext serviceRequests = JSONObject.parseObject(res, QueryServiceRequestsResponseByContext.class);
         serviceRequests.valid();
-        return serviceRequests.getRequests();
+        return serviceRequests.getResult();
     }
 
 
@@ -339,9 +339,9 @@ public class ServiceClient extends Client {
             return null;
         }
 
-        List<Request> requests = queryRequestsByReqCtx(reqContextId, 0, null, null);
+        List<RequestByContext> requests = queryRequestsByReqCtx(reqContextId, 1, null, null);
         if (requests != null) {
-            for (Request request : requests) {
+            for (RequestByContext request : requests) {
                 return request.getId();
             }
         }
