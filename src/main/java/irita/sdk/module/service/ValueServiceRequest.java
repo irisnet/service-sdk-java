@@ -17,68 +17,88 @@ public class ValueServiceRequest {
     private boolean repeated;
     @JSONField(name = "repeated_total")
     private String repeatedTotal;
-
-    public void setServiceName(String serviceName) {
-        this.serviceName = serviceName;
-    }
+    @JSONField(name = "req_context_id")
+    private String reqContextId;
+    @JSONField(name = "req_id")
+    private String reqId;
 
     public String getServiceName() {
         return serviceName;
     }
 
-    public void setProviders(List<String> providers) {
-        this.providers = providers;
+    public void setServiceName(String serviceName) {
+        this.serviceName = serviceName;
     }
 
     public List<String> getProviders() {
         return providers;
     }
 
-    public void setConsumer(String consumer) {
-        this.consumer = consumer;
+    public void setProviders(List<String> providers) {
+        this.providers = providers;
     }
 
     public String getConsumer() {
         return consumer;
     }
 
-    public void setInput(String input) {
-        this.input = input;
+    public void setConsumer(String consumer) {
+        this.consumer = consumer;
     }
 
     public String getInput() {
         return input;
     }
 
-    public void setServiceFeeCap(List<Coin> serviceFeeCap) {
-        this.serviceFeeCap = serviceFeeCap;
+    public void setInput(String input) {
+        this.input = input;
     }
 
     public List<Coin> getServiceFeeCap() {
         return serviceFeeCap;
     }
 
-    public void setTimeout(String timeout) {
-        this.timeout = timeout;
+    public void setServiceFeeCap(List<Coin> serviceFeeCap) {
+        this.serviceFeeCap = serviceFeeCap;
     }
 
     public String getTimeout() {
         return timeout;
     }
 
+    public void setTimeout(String timeout) {
+        this.timeout = timeout;
+    }
+
+    public boolean isRepeated() {
+        return repeated;
+    }
+
     public void setRepeated(boolean repeated) {
         this.repeated = repeated;
     }
 
-    public boolean getRepeated() {
-        return repeated;
+    public String getRepeatedTotal() {
+        return repeatedTotal;
     }
 
     public void setRepeatedTotal(String repeatedTotal) {
         this.repeatedTotal = repeatedTotal;
     }
 
-    public String getRepeatedTotal() {
-        return repeatedTotal;
+    public String getReqContextId() {
+        return reqContextId;
+    }
+
+    public void setReqContextId(String reqContextId) {
+        this.reqContextId = reqContextId;
+    }
+
+    public String getReqId() {
+        return reqId;
+    }
+
+    public void setReqId(String reqId) {
+        this.reqId = reqId;
     }
 }

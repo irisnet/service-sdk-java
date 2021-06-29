@@ -20,4 +20,4 @@ public enum EventEnum {
     public String getKey() {
         return key;
     }
-}
+    }

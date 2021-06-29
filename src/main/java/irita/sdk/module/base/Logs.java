@@ -1,5 +1,7 @@
 package irita.sdk.module.base;
 
+import irita.sdk.constant.enums.EventEnum;
+
 import java.util.List;
 
 public class Logs {
@@ -11,5 +13,18 @@ public class Logs {
 
     public List<StringEvent> getEvents() {
         return events;
+    }
+
+    public String getEventValue(EventEnum eventEnum) {
+        for (StringEvent e : events) {
+            if (eventEnum.getType().equals(e.getType())) {
+                for (StringEvent.Attribute attr : e.getAttributes()) {
+                    if (eventEnum.getKey().equals(attr.key)) {
+                        return attr.value;
+                    }
+                }
+            }
+        }
+        return "";
     }
 }
