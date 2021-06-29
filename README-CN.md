@@ -191,9 +191,22 @@ bsn(opb) 网络初始化如下：
 ```java
         int minHeight = 0;
         int maxHeight = 15006;
-        List<Msg> otherMgs = serviceClient.subscribeRequest("test","iaa1ytemz2xqq2s73ut3ys8mcd6zca2564a5lfhtm3",minHeight,maxHeight);
-        for(Msg msg: otherMgs){
-            System.out.println(msg.getValue().getInput());
+        List<Msg> msgs = serviceClient.subscribeRequest("fei_xing_xu_qiu_bao_pi", "iaa1cwzn8lup6rz9n89p0328gte3ryf56ey24l7np3");
+        for (Msg msg : msgs) {
+            // input 是请求参数，接下来我们作为服务方的话，就拿到 input 做自己的业务逻辑
+            String input = msg.getValue().getInput();
+            // 使用 reqId 发送服务响应, reqId 不为空才需要响应，如果为空代表服务过期
+            String reqId = msg.getValue().getReqId();
+    
+            if (reqId != null) {
+            ResponseServiceRequest responseReq = new ResponseServiceRequest();
+            responseReq.setRequestId(reqId);
+            String output = "{\"header\":{},\"body\":{\"last\":\"1:100\"}}";
+            String testResult = "{\"code\":200,\"message\":\"\"}";
+            responseReq.setOutput(output);
+            responseReq.setResult(testResult);
+            serviceClient.responseService(responseReq, baseTx);
+            }
         }
 ```
 

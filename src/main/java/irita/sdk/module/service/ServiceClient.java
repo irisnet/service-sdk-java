@@ -253,7 +253,7 @@ public class ServiceClient extends Client {
     }
 
     public List<Request> queryRequestsByReqCtx(String reqCtxID, int batchCounter, Integer offset, Integer limit) throws QueryException {
-        String baseUri = getQueryUri() + "/irismod/service/requests/" + reqCtxID + "/" + batchCounter;
+        String baseUri = getQueryUri() + "/service/requests/" + reqCtxID + "/" + batchCounter;
         String queryServiceRequestsUri = PageUtils.connectUri(baseUri, offset, limit);
         String res = httpUtils().get(queryServiceRequestsUri);
 
@@ -295,11 +295,11 @@ public class ServiceClient extends Client {
         return requestContextResponse.getRequestContext();
     }
 
-    public List<Msg> subscribeRequest(String serviceName, String provider) {
+    public List<Msg> subscribeRequest(String serviceName, String provider) throws QueryException {
         return subscribeRequest(serviceName, provider, null, null);
     }
 
-    public List<Msg> subscribeRequest(String serviceName, String provider, Integer minHeight, Integer maxHeight) {
+    public List<Msg> subscribeRequest(String serviceName, String provider, Integer minHeight, Integer maxHeight) throws QueryException {
         String baseUri = getQueryUri() + "/txs?create_context.service_name=" + serviceName;
         String subscribeRequestUri = connectMinMaxHeight(baseUri, minHeight, maxHeight);
 
@@ -310,12 +310,20 @@ public class ServiceClient extends Client {
     }
 
     // get All Msgs which provider equal input's provider
-    private List<Msg> getTxMsgsEqualProvider(QueryTxsResponse queryTxsResponse, String provider) {
+    private List<Msg> getTxMsgsEqualProvider(QueryTxsResponse queryTxsResponse, String provider) throws QueryException {
         List<Msg> res = new ArrayList<>();
         List<Txs> txs = queryTxsResponse.getTxs();
         if (txs != null) {
             for (Txs tx : queryTxsResponse.getTxs()) {
+                String reqContextId = getReqContextId(tx.getLogs());
+                String reqId = getReqIdByReqContextId(reqContextId);
+
                 List<Msg> msgs = tx.getTx().getValue().getMsg();
+                msgs.forEach(m -> {
+                    m.getValue().setReqContextId(reqContextId);
+                    m.getValue().setReqId(reqId);
+                });
+
                 List<Msg> wantMsgs = msgs.stream().filter(m -> {
                     Optional<String> first = m.getValue().getProviders().stream().filter(p -> p.equals(provider)).findFirst();
                     return first.isPresent();
@@ -325,6 +333,34 @@ public class ServiceClient extends Client {
         }
         return res;
     }
+
+    private String getReqIdByReqContextId(String reqContextId) throws QueryException {
+        if (reqContextId == null) {
+            return null;
+        }
+
+        List<Request> requests = queryRequestsByReqCtx(reqContextId, 0, null, null);
+        if (requests != null) {
+            for (Request request : requests) {
+                return request.getId();
+            }
+        }
+        return null;
+    }
+
+    private String getReqContextId(List<Logs> logs) {
+        if (logs != null) {
+            for (Logs log : logs) {
+                String eventValue = log.getEventValue(EventEnum.CREATE_CONTEXT_REQUEST_CONTEXT_ID);
+                if (!"".equals(eventValue)) {
+                    return eventValue;
+                }
+            }
+        }
+
+        return null;
+    }
+
 
     public List<Txs> subscribeResponse(String serviceName, String provider, String consumer) {
         return subscribeResponse(serviceName, provider, consumer, null, null);
