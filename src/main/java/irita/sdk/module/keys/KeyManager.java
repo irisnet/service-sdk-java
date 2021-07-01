@@ -1,6 +1,7 @@
 package irita.sdk.module.keys;
 
 import com.codahale.xsalsa20poly1305.SimpleBox;
+import irita.sdk.exception.IritaSDKException;
 import irita.sdk.module.crypto.ArmoredInputStream;
 import irita.sdk.module.crypto.ArmoredOutputStreamImpl;
 import irita.sdk.util.Bech32Utils;
@@ -8,6 +9,7 @@ import irita.sdk.util.Bip44Utils;
 import irita.sdk.util.HashUtils;
 import irita.sdk.util.SM2Utils;
 import org.apache.commons.lang3.ArrayUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.bitcoinj.crypto.DeterministicKey;
 import org.bouncycastle.crypto.CryptoException;
 import org.bouncycastle.jcajce.provider.asymmetric.ec.BCECPrivateKey;
@@ -31,8 +33,8 @@ import static irita.sdk.module.crypto.BCryptImpl.decode_base64;
 import static irita.sdk.module.crypto.BCryptImpl.encode_base64;
 
 public class KeyManager implements Key {
-    private BigInteger privKey;
-    private String addr;
+    private final BigInteger privKey;
+    private final String addr;
     private String mnemonic;
     // this KEY_PATH just for iris
     private static final String KEY_PATH = "m/44'/118'/0'/0/0";
@@ -109,6 +111,11 @@ public class KeyManager implements Key {
         return new KeyManager(privateKey.getD());
     }
 
+    public static Key add() throws Exception {
+        String mnemonic = Bip44Utils.generateMnemonic();
+        return new KeyManager(mnemonic);
+    }
+
     @Override
     public byte[] sign(String stdSignMsg) {
         byte[] signDoc = stdSignMsg.getBytes(StandardCharsets.UTF_8);
@@ -162,6 +169,10 @@ public class KeyManager implements Key {
     }
 
     public String getMnemonic() {
+        if (StringUtils.isEmpty(mnemonic)) {
+            throw new IritaSDKException("this KeyManger can't export mnemonic");
+        }
+
         return mnemonic;
     }
 
