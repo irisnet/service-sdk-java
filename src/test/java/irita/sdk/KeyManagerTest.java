@@ -78,4 +78,12 @@ public class KeyManagerTest {
         Key km = KeyManager.recoverFromCAKeystore(input, "123456");
         assertEquals("iaa1sul8jyesxq5nuwstyj5lzzsdc2sedeehl365qk", km.getAddr());
     }
+
+
+    @Test
+    public void add() throws Exception {
+        Key km = KeyManager.add();
+        System.out.println("mnemonic: " + km.getMnemonic());
+        System.out.println("addr: " + km.getAddr());
+    }
 }

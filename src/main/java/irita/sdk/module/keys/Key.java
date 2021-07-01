@@ -10,6 +10,8 @@ public interface Key {
 
     String getAddr();
 
+    String getMnemonic();
+
     /**
      * export as keystore
      *
@@ -17,5 +19,3 @@ public interface Key {
      */
     String export(String password) throws IOException;
 }
-
-
